@@ -175,12 +175,13 @@
 
     function finishMeasure() {
       root.style.setProperty("--project-showcase-panel-min", maxH + "px");
-      if (isMobileShowcase()) {
-        root.style.setProperty("--project-showcase-title-min", maxTitleH + "px");
-        root.style.setProperty("--project-showcase-customer-min", maxCustomerH + "px");
-        root.style.setProperty("--project-showcase-lead-min", maxLeadH + "px");
-        root.classList.add("is-ready");
-      } else {
+    if (isMobileShowcase()) {
+      root.style.setProperty("--project-showcase-title-min", maxTitleH + "px");
+      root.style.setProperty("--project-showcase-customer-min", maxCustomerH + "px");
+      root.style.setProperty("--project-showcase-lead-min", maxLeadH + "px");
+      root.style.setProperty("--project-showcase-progress", (idx + 1) / SLIDES.length);
+      root.classList.add("is-ready");
+    } else {
         root.classList.remove("is-ready");
         root.style.removeProperty("--project-showcase-title-min");
         root.style.removeProperty("--project-showcase-customer-min");
@@ -394,6 +395,9 @@
     if (mobileCounterEl) {
       mobileCounterEl.textContent = formatIndex(idx + 1) + " / " + formatIndex(SLIDES.length);
     }
+    if (isMobileShowcase()) {
+      root.style.setProperty("--project-showcase-progress", (idx + 1) / SLIDES.length);
+    }
     if (prefersReducedMotion() || isMobileShowcase()) {
       clearRevealAnimations();
     } else {
@@ -413,6 +417,14 @@
     clearAutoplay();
 
     if (prefersReducedMotion() || isMobileShowcase()) {
+      if (isMobileShowcase() && panelInner) {
+        panelInner.classList.add("is-fading");
+        window.setTimeout(function () {
+          applySlide();
+          panelInner.classList.remove("is-fading");
+        }, 140);
+        return;
+      }
       applySlide();
       return;
     }
