@@ -64,6 +64,9 @@
   var leadEl = root.querySelector("[data-showcase-lead]");
   var yearEl = root.querySelector("[data-showcase-year]");
   var yearBadgeEl = root.querySelector("[data-showcase-year-badge]");
+  var mobileCounterEl = root.querySelector("[data-showcase-mobile-counter]");
+  var mobileDotsEl = root.querySelector("[data-showcase-mobile-dots]");
+  var customerGroupEl = root.querySelector(".project-split__customer-group");
   var panelInner = root.querySelector(".project-split__panel-inner");
   var swipeSurface = root.querySelector(".project-split__panel");
   var prevBtn = root.querySelector("[data-showcase-prev]");
@@ -165,10 +168,24 @@
     root.classList.add("is-measuring-panel");
 
     var maxH = 0;
+    var maxTitleH = 0;
+    var maxCustomerH = 0;
+    var maxLeadH = 0;
     var i = 0;
 
     function finishMeasure() {
       root.style.setProperty("--project-showcase-panel-min", maxH + "px");
+      if (isMobileShowcase()) {
+        root.style.setProperty("--project-showcase-title-min", maxTitleH + "px");
+        root.style.setProperty("--project-showcase-customer-min", maxCustomerH + "px");
+        root.style.setProperty("--project-showcase-lead-min", maxLeadH + "px");
+        root.classList.add("is-ready");
+      } else {
+        root.classList.remove("is-ready");
+        root.style.removeProperty("--project-showcase-title-min");
+        root.style.removeProperty("--project-showcase-customer-min");
+        root.style.removeProperty("--project-showcase-lead-min");
+      }
       root.classList.remove("is-measuring-panel");
       applySlide();
       if (document.hidden) clearAutoplay();
@@ -180,8 +197,14 @@
       fillDetailsDom(s);
       clearRevealAnimations();
       afterLayout(function () {
-        var h = panelInner.offsetHeight;
-        if (h > maxH) maxH = h;
+        var titleH = titleEl.offsetHeight;
+        var customerH = customerGroupEl ? customerGroupEl.offsetHeight : 0;
+        var leadH = leadEl ? leadEl.offsetHeight : 0;
+        var panelH = panelInner.offsetHeight;
+        if (titleH > maxTitleH) maxTitleH = titleH;
+        if (customerH > maxCustomerH) maxCustomerH = customerH;
+        if (leadH > maxLeadH) maxLeadH = leadH;
+        if (panelH > maxH) maxH = panelH;
         next();
       });
     }
@@ -324,6 +347,8 @@
   function renderSegments() {
     cancelActiveAnim();
     segmentsEl.innerHTML = "";
+    if (mobileDotsEl) mobileDotsEl.innerHTML = "";
+
     SLIDES.forEach(function (_, i) {
       var seg = document.createElement("button");
       seg.type = "button";
@@ -338,6 +363,22 @@
         go(i);
       });
       segmentsEl.appendChild(seg);
+
+      if (mobileDotsEl) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "project-showcase__mobile-dot" + (i === idx ? " is-active" : "");
+        dot.setAttribute("aria-label", "Проект " + (i + 1) + " из " + SLIDES.length);
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-selected", i === idx ? "true" : "false");
+        if (i === idx) {
+          dot.setAttribute("aria-current", "true");
+        }
+        dot.addEventListener("click", function () {
+          go(i);
+        });
+        mobileDotsEl.appendChild(dot);
+      }
     });
   }
 
@@ -350,6 +391,9 @@
     fillDetailsDom(s);
     renderSegments();
     if (counterEl) counterEl.textContent = formatIndex(idx + 1);
+    if (mobileCounterEl) {
+      mobileCounterEl.textContent = formatIndex(idx + 1) + " / " + formatIndex(SLIDES.length);
+    }
     if (prefersReducedMotion() || isMobileShowcase()) {
       clearRevealAnimations();
     } else {
@@ -480,6 +524,7 @@
   mobileMq.addEventListener("change", function () {
     clearAutoplay();
     cancelActiveAnim();
+    root.classList.remove("is-ready");
     schedulePanelMeasure();
   });
 
