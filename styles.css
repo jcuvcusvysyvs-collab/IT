@@ -2644,7 +2644,7 @@ body.nav-mega-open .nav-mega-backdrop {
   width: 100%;
   transform-origin: left center;
   transform: scaleX(var(--services-carousel-scroll, 0));
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--accent) 78%, #ffffff 22%) 0%,

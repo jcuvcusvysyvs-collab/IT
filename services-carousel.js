@@ -5,7 +5,9 @@
   var prev = document.querySelector("[data-services-carousel-prev]");
   var next = document.querySelector("[data-services-carousel-next]");
   var progress = document.querySelector("[data-services-carousel-progress]");
+  var progressFill = progress && progress.querySelector(".services-showcase__divider-fill");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var scrollRaf = null;
 
   function slideStep() {
     var slide = strip.querySelector(".services-slide");
@@ -32,11 +34,17 @@
   /* Базовое заполнение — чтобы прогресс на старте не выглядел «пустым»; диапазон 0..1 маппится в MIN..1 */
   var PROGRESS_MIN = 0.25;
 
+  function setProgress(visual) {
+    var value = visual.toFixed(4);
+    if (progress) progress.style.setProperty("--services-carousel-scroll", value);
+    if (progressFill) progressFill.style.transform = "scaleX(" + value + ")";
+  }
+
   function updateState() {
     var max = strip.scrollWidth - strip.clientWidth;
     var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, strip.scrollLeft / max));
     var visual = PROGRESS_MIN + ratio * (1 - PROGRESS_MIN);
-    if (progress) progress.style.setProperty("--services-carousel-scroll", visual.toFixed(4));
+    setProgress(visual);
 
     /* Дизейблим стрелки на крайних позициях — без этого пользователь жмёт «вперёд» в пустоту */
     var atStart = strip.scrollLeft <= 1;
@@ -45,7 +53,18 @@
     if (next) next.disabled = atEnd;
   }
 
-  strip.addEventListener("scroll", updateState, { passive: true });
+  function scheduleUpdateState() {
+    if (scrollRaf !== null) return;
+    scrollRaf = window.requestAnimationFrame(function () {
+      scrollRaf = null;
+      updateState();
+    });
+  }
+
+  strip.addEventListener("scroll", scheduleUpdateState, { passive: true });
+  if ("onscrollend" in strip) {
+    strip.addEventListener("scrollend", updateState, { passive: true });
+  }
   window.addEventListener("resize", updateState);
   if (typeof ResizeObserver !== "undefined") {
     new ResizeObserver(updateState).observe(strip);
