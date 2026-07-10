@@ -63,7 +63,10 @@
   var progressFillEl = root.querySelector("[data-showcase-progress-fill]");
   var mobileScroller = root.querySelector("[data-showcase-mobile-scroller]");
   var mobileTrack = root.querySelector("[data-showcase-mobile-track]");
-  var mobileDotsEl = root.querySelector("[data-showcase-mobile-dots]");
+  var mobileFooterCounter = root.querySelector("[data-showcase-mobile-footer-counter]");
+  var mobileProgress = root.querySelector("[data-showcase-mobile-progress]");
+  var mobileProgressFill =
+    mobileProgress && mobileProgress.querySelector(".projects-showcase__divider-fill");
 
   if (!logoEl || !titleEl || !segmentsEl) return;
 
@@ -73,6 +76,7 @@
   var mobileMq = window.matchMedia("(max-width: 799px)");
   var mobileScrollRaf = null;
   var mobileCards = [];
+  var MOBILE_PROGRESS_MIN = 0.25;
 
   function formatIndex(n) {
     return n < 10 ? "0" + n : "" + n;
@@ -166,12 +170,7 @@
     year.className = "project-mobile-card__year";
     year.textContent = extractYear(s);
 
-    var num = document.createElement("span");
-    num.className = "project-mobile-card__num";
-    num.textContent = formatIndex(i + 1);
-
     head.appendChild(year);
-    head.appendChild(num);
 
     var title = document.createElement("h3");
     title.className = "project-mobile-card__title";
@@ -214,6 +213,56 @@
     return card;
   }
 
+  function updateMobileFooterCounter(activeIdx) {
+    if (!mobileFooterCounter) return;
+    mobileFooterCounter.textContent =
+      formatIndex(activeIdx + 1) + " / " + formatIndex(SLIDES.length);
+  }
+
+  function setMobileProgress(visual) {
+    var value = visual.toFixed(4);
+    if (mobileProgress) {
+      mobileProgress.style.setProperty("--projects-mobile-scroll", value);
+    }
+    if (mobileProgressFill) {
+      mobileProgressFill.style.transform = "scaleX(" + value + ")";
+    }
+  }
+
+  function updateMobileProgress() {
+    if (!mobileScroller) return;
+    var max = mobileScroller.scrollWidth - mobileScroller.clientWidth;
+    var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, mobileScroller.scrollLeft / max));
+    var visual = MOBILE_PROGRESS_MIN + ratio * (1 - MOBILE_PROGRESS_MIN);
+    setMobileProgress(visual);
+  }
+
+  function equalizeMobileCardHeights(done) {
+    done = done || function () {};
+    if (!mobileCards.length) {
+      done();
+      return;
+    }
+
+    mobileCards.forEach(function (card) {
+      card.style.minHeight = "";
+    });
+
+    afterLayout(function () {
+      var maxH = 0;
+      mobileCards.forEach(function (card) {
+        var h = card.offsetHeight;
+        if (h > maxH) maxH = h;
+      });
+      if (maxH > 0) {
+        mobileCards.forEach(function (card) {
+          card.style.minHeight = maxH + "px";
+        });
+      }
+      done();
+    });
+  }
+
   function renderMobileCarousel() {
     if (!mobileTrack) return;
     mobileTrack.innerHTML = "";
@@ -222,24 +271,9 @@
       mobileTrack.appendChild(card);
       return card;
     });
-    root.classList.add("is-ready");
-  }
-
-  function renderMobileDots(activeIdx) {
-    if (!mobileDotsEl) return;
-    mobileDotsEl.innerHTML = "";
-    SLIDES.forEach(function (_, i) {
-      var dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "project-showcase__mobile-dot" + (i === activeIdx ? " is-active" : "");
-      dot.setAttribute("aria-label", "Проект " + (i + 1) + " из " + SLIDES.length);
-      dot.setAttribute("role", "tab");
-      dot.setAttribute("aria-selected", i === activeIdx ? "true" : "false");
-      if (i === activeIdx) dot.setAttribute("aria-current", "true");
-      dot.addEventListener("click", function () {
-        scrollToMobileCard(i);
-      });
-      mobileDotsEl.appendChild(dot);
+    equalizeMobileCardHeights(function () {
+      updateMobileProgress();
+      root.classList.add("is-ready");
     });
   }
 
@@ -267,34 +301,36 @@
       behavior: behavior,
     });
     idx = i;
-    renderMobileDots(idx);
+    updateMobileFooterCounter(idx);
   }
 
   function onMobileScroll() {
     if (mobileScrollRaf !== null) return;
     mobileScrollRaf = window.requestAnimationFrame(function () {
       mobileScrollRaf = null;
+      updateMobileProgress();
       var next = getMobileIndexFromScroll();
       if (next !== idx) {
         idx = next;
-        renderMobileDots(idx);
+        updateMobileFooterCounter(idx);
       }
     });
   }
 
   function initMobileMode() {
     renderMobileCarousel();
-    renderMobileDots(0);
+    updateMobileFooterCounter(0);
     if (mobileScroller) {
       mobileScroller.scrollLeft = 0;
     }
+    updateMobileProgress();
   }
 
   function destroyMobileMode() {
     root.classList.remove("is-ready");
     if (mobileTrack) mobileTrack.innerHTML = "";
-    if (mobileDotsEl) mobileDotsEl.innerHTML = "";
     mobileCards = [];
+    setMobileProgress(MOBILE_PROGRESS_MIN);
   }
 
   function measurePanelMinHeight(done) {
@@ -532,6 +568,13 @@
 
   if (mobileScroller) {
     mobileScroller.addEventListener("scroll", onMobileScroll, { passive: true });
+    if ("onscrollend" in mobileScroller) {
+      mobileScroller.addEventListener("scrollend", updateMobileProgress, { passive: true });
+    }
+    window.addEventListener("resize", function () {
+      if (!isMobileShowcase()) return;
+      equalizeMobileCardHeights(updateMobileProgress);
+    });
   }
 
   mobileMq.addEventListener("change", schedulePanelMeasure);

@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260710-projects-carousel" />
+    <link rel="stylesheet" href="styles.css?v=20260710-projects-polish" />
     <link rel="preload" href="images/hero_section/01_hero_section.png" as="image" />
     <link rel="preload" href="images/service_huawei.png" as="image" />
     <script defer src="theme.js"></script>
@@ -658,7 +658,9 @@
                 </p>
               </div>
             </header>
-            <div class="projects-showcase__divider" aria-hidden="true"></div>
+            <div class="projects-showcase__divider" data-showcase-mobile-progress aria-hidden="true">
+              <span class="projects-showcase__divider-fill"></span>
+            </div>
             <div class="project-showcase">
               <article class="project-split">
                 <div class="project-split__visual">
@@ -753,9 +755,13 @@
               >
                 <div class="project-showcase__mobile-track" data-showcase-mobile-track></div>
               </div>
-              <div class="project-showcase__mobile-dots" data-showcase-mobile-dots role="tablist" aria-label="Проекты"></div>
             </div>
             <div class="projects-showcase__footer">
+              <span
+                class="projects-showcase__mobile-counter"
+                data-showcase-mobile-footer-counter
+                aria-live="polite"
+              >01 / 04</span>
               <a class="projects-showcase__all" href="projects.html">
                 Все проекты
                 <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -884,7 +890,7 @@
     </footer>
 
     <script defer src="hero-pt.js?v=20260710-mobile-swipe-v2"></script>
-    <script defer src="projects-showcase.js?v=20260710-projects-carousel"></script>
+    <script defer src="projects-showcase.js?v=20260710-projects-polish"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
     <script defer src="nav.js?v=20260710-hero-header-hide-fix"></script>
