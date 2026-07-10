@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Инфраструктурные решения — DC Engineering</title>
+    <meta
+      name="description"
+      content="Полный цикл услуг по инфраструктурным решениям: обследование, проектирование, поставка, внедрение и эксплуатация ИТ-инфраструктуры."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-infra">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img class="logo__img logo__img--light" src="images/Logo_white.png" alt="" width="280" height="64" decoding="async" fetchpriority="high" />
+          <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+          <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem" aria-current="page">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-about" id="about-menu-button">
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="subpage-hero subpage-hero--about page-infra__hero" data-subpage-hero aria-labelledby="infra-page-title">
+        <div class="subpage-hero__inner">
+          <div class="subpage-hero__content">
+            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+              <ol class="subpage-breadcrumbs__list">
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
+                </li>
+                <li class="subpage-breadcrumbs__item">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
+                </li>
+                <li class="subpage-breadcrumbs__item" aria-current="page">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  Инфраструктурные решения
+                </li>
+              </ol>
+            </nav>
+            <h1 id="infra-page-title" class="subpage-hero__title">
+              <span class="subpage-hero__title-line">Инфраструктурные</span>
+                  <span class="subpage-hero__title-line about-dce__brand">решения</span>
+            </h1>
+            <p class="subpage-hero__lead">
+              Полный цикл услуг по&nbsp;инфраструктурным решениям на&nbsp;актуальной технологической базе
+            </p>
+            <div class="subpage-hero__actions">
+              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infra-examples">Примеры</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section about-dce page-infra__showcase" id="infra-intro" aria-labelledby="infra-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Состав</p>
+                <h2 id="infra-h-01" class="about-dce__title">
+                  Комплексная <span class="about-dce__brand">ИТ-инфраструктура</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Инфраструктурные решения обеспечивают информационные системы ИТ-ресурсами с&nbsp;качеством,
+                  зафиксированным в&nbsp;SLA. ИТ-инфраструктура&nbsp;— комплекс подсистем по&nbsp;ISO&nbsp;9001:2015:
+                </p>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-infra__subsystem-grid" role="list">
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                </p>
+                <h3 class="about-dce__card-title">Подсистемы инфраструктурных служб</h3>
+                <ul class="page-infra__list">
+                  <li>Базовые инфраструктурные службы (LDAP, AD, DNS, DHCP)</li>
+                  <li>Коммуникационные службы (почта, VoIP, UC)</li>
+                  <li>Системное и&nbsp;служебное ПО (ОС, инфраструктурные службы Linux, Microsoft)</li>
+                  <li>Подсистемы мониторинга и&nbsp;управления (SNMP, WMI)</li>
+                </ul>
+              </article>
+
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                </p>
+                <h3 class="about-dce__card-title">Подсистемы информационной безопасности</h3>
+                <ul class="page-infra__list">
+                  <li>Периметральные средства безопасности (FW, IPS/IDS, NTA, Threat Intelligence, DDoS mitigation)</li>
+                  <li>Средства идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM)</li>
+                  <li>Средства защиты от&nbsp;несанкционированного доступа (программные и&nbsp;аппаратные)</li>
+                  <li>Средства защиты от&nbsp;утечек конфиденциальной информации (DLP, MDM)</li>
+                  <li>Средства защиты рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
+                  <li>Средства сбора и&nbsp;корреляции событий безопасности (SIEM, IRP)</li>
+                </ul>
+              </article>
+
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                </p>
+                <h3 class="about-dce__card-title">Подсистемы платформенных сервисов</h3>
+                <ul class="page-infra__list">
+                  <li>Облачные платформы (IaaS, PaaS, SaaS)</li>
+                  <li>Кластерные технологии (HA, метро-, гео-)</li>
+                  <li>Гиперконвергентные решения</li>
+                  <li>Инфраструктурная виртуализация (bare metal, VDI, storage, network)</li>
+                  <li>Контейнерная виртуализация (Docker, Kubernetes)</li>
+                  <li>Средства непрерывной доставки приложений (CI/CD)</li>
+                  <li>Базы данных</li>
+                </ul>
+              </article>
+
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">04</span>
+                </p>
+                <h3 class="about-dce__card-title">Сетевые подсистемы</h3>
+                <ul class="page-infra__list">
+                  <li>Сети хранения данных (SAN, NAS)</li>
+                  <li>Сети передачи данных (LAN, WAN, WLAN)</li>
+                </ul>
+              </article>
+
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">05</span>
+                </p>
+                <h3 class="about-dce__card-title">Подсистемы хранения данных</h3>
+                <ul class="page-infra__list">
+                  <li>Подсистемы оперативного хранения данных (SAN, NAS)</li>
+                  <li>Подсистемы хранения больших данных (Object, DataLake, SQL/NoSQL Databases)</li>
+                  <li>Подсистемы резервного и&nbsp;архивного данных (TL, VTL, block/file)</li>
+                </ul>
+              </article>
+
+              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">06</span>
+                </p>
+                <h3 class="about-dce__card-title">Вычислительные подсистемы</h3>
+                <ul class="page-infra__list">
+                  <li>Серверы стандартной архитектуры (x64/86)</li>
+                  <li>Серверы проприетарной архитектуры (RISC, ARM, MIPS)</li>
+                  <li>Специализированные серверные платформы (blades, OCP)</li>
+                </ul>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="infra-approach" aria-labelledby="infra-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Методология</p>
+                <h2 id="infra-h-02" class="about-dce__title">
+                  Стандарты и&nbsp;<span class="about-dce__brand">ответственность</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="page-about__prose-wrap page-infra__section-prose">
+              <p>
+                Инженерные, кабельные и&nbsp;физические подсистемы (электроснабжение, кондиционирование, СКС, СКУД,
+                СВН) не&nbsp;внедряем сами&nbsp;— работаем с&nbsp;проверенными подрядчиками. В&nbsp;комплексных проектах
+                выступаем единым центром ответственности перед заказчиком.
+              </p>
+              <p>
+                Используем продукты отечественных и&nbsp;дружественных производителей; поддерживаем решения на&nbsp;базе
+                вендоров, прекративших работу с&nbsp;Россией. При необходимости обеспечиваем легальную поставку
+                через механизмы Правительства&nbsp;РФ.
+              </p>
+            </div>
+
+            <div class="page-infra__standards-block">
+              <p class="page-about__text page-infra__standards-lead">
+                Помимо процессов заказчика, регуляторики и&nbsp;требований контролирующих органов применяем
+                отраслевые стандарты.
+              </p>
+              <ul class="page-infra__standards" role="list">
+              <li class="page-infra__standard">
+                <span class="page-infra__standard-abbr" aria-hidden="true">ГОСТ</span>
+                <span class="page-infra__standard-label">Комплексы стандартов ГОСТ&nbsp;34 и&nbsp;ИСО</span>
+              </li>
+              <li class="page-infra__standard">
+                <span class="page-infra__standard-abbr" aria-hidden="true">ITIL</span>
+                <span class="page-infra__standard-label">Библиотека стандартов ITIL</span>
+              </li>
+              <li class="page-infra__standard">
+                <span class="page-infra__standard-abbr" aria-hidden="true">PMBOK</span>
+                <span class="page-infra__standard-label">Рекомендации проектного управления PMBOK</span>
+              </li>
+              <li class="page-infra__standard">
+                <span class="page-infra__standard-abbr" aria-hidden="true">BSI</span>
+                <span class="page-infra__standard-label">Разработки института стандартов BSI</span>
+              </li>
+              <li class="page-infra__standard">
+                <span class="page-infra__standard-abbr" aria-hidden="true">SNIA</span>
+                <span class="page-infra__standard-label">Рекомендации SNIA</span>
+              </li>
+            </ul>
+            </div>
+
+            <div class="page-infra__cycle">
+              <h3 class="page-infra__cycle-title">Полный цикл услуг</h3>
+              <p class="page-about__text">
+                Создание и&nbsp;эксплуатация всей инфраструктуры или отдельных подсистем&nbsp;— по&nbsp;этапам:
+              </p>
+              <ol class="page-infra__pipeline" role="list">
+                <li class="page-infra__pipeline-step">
+                  <span class="page-infra__pipeline-num" aria-hidden="true">01</span>
+                  <span class="page-infra__pipeline-label">Обследование</span>
+                </li>
+                <li class="page-infra__pipeline-step">
+                  <span class="page-infra__pipeline-num" aria-hidden="true">02</span>
+                  <span class="page-infra__pipeline-label">Проектирование</span>
+                </li>
+                <li class="page-infra__pipeline-step">
+                  <span class="page-infra__pipeline-num" aria-hidden="true">03</span>
+                  <span class="page-infra__pipeline-label">Поставка</span>
+                </li>
+                <li class="page-infra__pipeline-step">
+                  <span class="page-infra__pipeline-num" aria-hidden="true">04</span>
+                  <span class="page-infra__pipeline-label">Внедрение</span>
+                </li>
+                <li class="page-infra__pipeline-step">
+                  <span class="page-infra__pipeline-num" aria-hidden="true">05</span>
+                  <span class="page-infra__pipeline-label">
+                    Поддержка и&nbsp;эксплуатация
+                    <small class="page-infra__pipeline-sub">(аутсорсинг)</small>
+                  </span>
+                </li>
+              </ol>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce" id="infra-examples" aria-labelledby="infra-h-03">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">03</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Опыт</p>
+                <h2 id="infra-h-03" class="about-dce__title">
+                  Примеры <span class="about-dce__brand">проектов</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-infra__examples-grid" role="list">
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                  2018–2022 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Крупный банк Российской Федерации</h3>
+                <p class="page-about__card-text">
+                  С&nbsp;2018 по&nbsp;2022&nbsp;г. — портфель проектов по&nbsp;созданию двух ЦОД в&nbsp;режиме
+                  «активный&nbsp;— активный» в&nbsp;Москве и&nbsp;комплекса ЦОД в&nbsp;других городах.
+                </p>
+                <a class="page-about__card-cta" href="projects.html#projects-all">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                  2021 · Москва
+                </p>
+                <h3 class="about-dce__card-title">АО «Банк ДОМ. РФ», АО «ДОМ. РФ»</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2021&nbsp;г. — распределённая гиперконвергентная инфраструктура на&nbsp;двух равнозначных
+                  площадках (ЦОД) с&nbsp;моделями active-active и&nbsp;active-standby.
+                </p>
+                <a class="page-about__card-cta" href="project-domrf-hci.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                  2022–2023 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Система 112 города Москвы</h3>
+                <p class="page-about__card-text">
+                  Сопровождение и&nbsp;непрерывная работа базовой инфраструктуры комплекса экстренных служб
+                  и&nbsp;системы&nbsp;112.
+                </p>
+                <a class="page-about__card-cta" href="projects.html#projects-all">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">04</span>
+                  2021–2023 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Росавтодор</h3>
+                <p class="page-about__card-text">
+                  Сопровождение, непрерывная работа и&nbsp;развитие базовой инфраструктуры ИТ-систем Росавтодора
+                  в&nbsp;Москве.
+                </p>
+                <a class="page-about__card-cta" href="project-otr-security.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">05</span>
+                  2017–2023 · Москва
+                </p>
+                <h3 class="about-dce__card-title">БЦ «ОКО», Москва-Сити</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2017&nbsp;г.&nbsp;— проектная документация консолидированной инфраструктуры департаментов
+                  в&nbsp;БЦ «ОКО», внедрение; с&nbsp;2017 по&nbsp;2023&nbsp;г.&nbsp;— круглосуточное сопровождение.
+                </p>
+                <a class="page-about__card-cta" href="projects.html#projects-featured">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img class="footer-logo__img footer-logo__img--light" src="images/Logo_podval_white.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+                <img class="footer-logo__img footer-logo__img--dark" src="images/Logo_podval_black.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Реквизиты и контакты — в разделе <a href="contacts.html">Контакты</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+  </body>
+</html>

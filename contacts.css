@@ -1,0 +1,385 @@
+/* Страница «Контакты» — отдельный файл, подключается после styles.css */
+
+/* Hero как на «Проектах» */
+.page-contacts .projects-hero.subpage-hero--about {
+  --projects-hero-pad-top: clamp(1.35rem, 3vw, 1.85rem);
+  --projects-hero-pad-bottom: clamp(1.25rem, 2.8vw, 1.75rem);
+  --projects-hero-crumbs-gap: clamp(1.35rem, 3vw, 2rem);
+  --projects-hero-content-width: min(42rem, 100%);
+  --projects-hero-min-height: clamp(14rem, 28vh, 18rem);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--projects-hero-min-height);
+  position: relative;
+}
+
+.page-contacts .projects-hero .subpage-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: var(--projects-hero-pad-top) var(--layout-gutter) var(--projects-hero-pad-bottom);
+}
+
+.page-contacts .projects-hero.subpage-hero--about::before {
+  content: none;
+  display: none;
+}
+
+.page-contacts .projects-hero.subpage-hero--about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 58% 78% at 80% 48%, #000 20%, transparent 74%);
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+  width: 100%;
+}
+
+.page-contacts .projects-hero .subpage-hero__title {
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text);
+  text-shadow: none;
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs__item {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: color-mix(in srgb, var(--text) 48%, transparent);
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 0.7rem;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--text) 38%, transparent);
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs__item[aria-current="page"] {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-contacts .projects-hero .subpage-breadcrumbs__link:hover,
+.page-contacts .projects-hero .subpage-breadcrumbs__link:focus-visible {
+  color: var(--text);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .page-contacts .projects-hero.subpage-hero--about {
+  background: var(--bg-elevated);
+}
+
+[data-theme="dark"] .page-contacts .projects-hero .subpage-hero__title {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-contacts .projects-hero .subpage-breadcrumbs__item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .page-contacts .projects-hero .subpage-breadcrumbs__item:not(:first-child)::before {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="dark"] .page-contacts .projects-hero .subpage-breadcrumbs__item[aria-current="page"] {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-contacts .projects-hero .subpage-breadcrumbs__link:hover,
+[data-theme="dark"] .page-contacts .projects-hero .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+}
+
+/* Панель контактов */
+.page-contacts__section {
+  position: relative;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.page-contacts__section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 78% 52% at 50% 0%,
+    color-mix(in srgb, var(--accent) 6%, transparent),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.page-contacts__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: clamp(2rem, 4.5vw, 3rem) var(--layout-gutter) clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.page-contacts__panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--projects-shell-radius, 1rem);
+  box-shadow: var(--projects-shell-shadow, 0 12px 36px rgba(13, 17, 23, 0.06)), var(--project-card-inner-highlight, inset 0 1px 0 rgba(255, 255, 255, 0.04));
+  overflow: hidden;
+}
+
+.page-contacts__head {
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+  overflow: visible;
+}
+
+/* Поля контактов */
+.page-contacts__fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg) 24%, var(--bg-elevated) 76%) 0%,
+    var(--bg-elevated) 100%
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+.page-contacts__field {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.85rem, 1.6vw, 1.1rem);
+  margin: 0;
+  min-width: 0;
+  padding: clamp(1.5rem, 2.8vw, 1.85rem) clamp(1.5rem, 2.8vw, 2rem);
+  border-right: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+}
+
+.page-contacts__field:last-child {
+  border-right: none;
+}
+
+.page-contacts__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  color: color-mix(in srgb, var(--accent) 62%, var(--text-muted));
+}
+
+.page-contacts__field-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+.page-contacts__label {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.page-contacts__value {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.page-contacts__value a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.page-contacts__value a:hover {
+  color: var(--accent-hover);
+}
+
+.page-contacts__field--address .page-contacts__value {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--text) 88%, transparent);
+  text-wrap: pretty;
+}
+
+[data-theme="dark"] .page-contacts__fields {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg) 38%, var(--bg-elevated) 62%) 0%,
+    var(--bg-elevated) 100%
+  );
+}
+
+[data-theme="dark"] .page-contacts__icon {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  color: color-mix(in srgb, var(--accent) 72%, #fff 28%);
+}
+
+/* Карта и подвал */
+.page-contacts__map-wrap {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  line-height: 0;
+}
+
+.page-contacts__map-canvas,
+.page-contacts__map-iframe {
+  display: block;
+  width: 100%;
+  height: clamp(20rem, 45vh, 34rem);
+  min-height: 20rem;
+  border: 0;
+}
+
+.page-contacts__map-wrap[data-map-theme="dark"] .page-contacts__map-canvas,
+[data-theme="dark"] .page-contacts__map-canvas {
+  filter: invert(0.93) hue-rotate(180deg) brightness(0.84) contrast(1.08) saturate(0.78);
+}
+
+.page-contacts__map-wrap[data-map-theme="dark"] .page-contacts__map-canvas [class*="controls-pane"],
+.page-contacts__map-wrap[data-map-theme="dark"] .page-contacts__map-canvas [class*="geo-objects"],
+.page-contacts__map-wrap[data-map-theme="dark"] .page-contacts__map-canvas [class*="copyrights-pane"],
+[data-theme="dark"] .page-contacts__map-canvas [class*="controls-pane"],
+[data-theme="dark"] .page-contacts__map-canvas [class*="geo-objects"],
+[data-theme="dark"] .page-contacts__map-canvas [class*="copyrights-pane"] {
+  filter: invert(1) hue-rotate(180deg) brightness(1.02);
+}
+
+.page-contacts__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: clamp(1rem, 2vw, 1.25rem) clamp(1.25rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.page-contacts__map-link {
+  margin-left: auto;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 35%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.page-contacts__map-link:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.page-contacts .page-contacts__form-section .huawei-clients__form-wrap {
+  border-top: none;
+}
+
+.page-contacts .btn--secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+}
+
+.page-contacts .btn--secondary:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-elevated));
+}
+
+.page-contacts .btn--secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 1024px) {
+  .page-contacts__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-contacts__field:nth-child(2) {
+    border-right: none;
+  }
+
+  .page-contacts__field--address {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  }
+}
+
+@media (max-width: 860px) {
+  .page-contacts__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .page-contacts__field,
+  .page-contacts__field:nth-child(2),
+  .page-contacts__field--address {
+    border-right: none;
+    border-top: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  }
+
+  .page-contacts__field:first-child {
+    border-top: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-contacts__foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-contacts__foot .btn {
+    justify-content: center;
+  }
+
+  .page-contacts__map-link {
+    margin-left: 0;
+    text-align: center;
+  }
+}

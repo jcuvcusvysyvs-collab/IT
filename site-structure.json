@@ -1,0 +1,90 @@
+{
+  "reference": {
+    "site": "https://ptsecurity.com/",
+    "notes": "Акцент — тёмно-синий. Главная: hero + блок проектов + якоря."
+  },
+  "brand": {
+    "name": "DC Engineering",
+    "tagline": "Инженерия данных и сетей",
+    "legalNameHint": "Работаем под брендом DC (Data Center) Engineering с 2015 года"
+  },
+  "typography": {
+    "headingFont": "Manrope",
+    "bodyFont": "Manrope",
+    "import": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+  },
+  "colors": {
+    "light": {
+      "background": "#f5f5f5",
+      "surface": "#ffffff",
+      "text": "#0d0d0d",
+      "textMuted": "#5c5c5c",
+      "border": "#e5e5e5",
+      "accent": "#1a4a7c",
+      "accentHover": "#245a94"
+    },
+    "dark": {
+      "background": "#0c0e0d",
+      "surface": "#141816",
+      "text": "#f2f4f3",
+      "textMuted": "#9aa39a",
+      "border": "#252b27",
+      "accent": "#5b9bd4",
+      "accentHover": "#7db3e0"
+    }
+  },
+  "header": {
+    "sticky": true,
+    "logo": { "text": "DC", "accent": "Engineering" },
+    "nav": [
+      { "id": "services", "label": "Услуги" },
+      { "id": "projects", "label": "Проекты" },
+      { "id": "clients", "label": "Заказчики" },
+      {
+        "id": "about",
+        "label": "О компании",
+        "children": [
+          { "id": "career", "label": "Карьера" },
+          { "id": "contacts", "label": "Контакты" }
+        ]
+      }
+    ],
+    "actions": ["themeToggle"]
+  },
+  "main": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "variant": "darkBand",
+      "kicker": "Инженерия данных и сетей",
+      "title": "Вычислительные комплексы и корпоративные сети",
+      "lead": "Проектируем, внедряем и поддерживаем инфраструктуру хранения, обработки и передачи данных в корпоративных средах."
+    }
+  ],
+  "anchors": ["services", "projects", "clients", "career", "contacts"],
+  "footer": {
+    "layout": "columns",
+    "columns": [
+      {
+        "title": "Разделы",
+        "links": [
+          { "label": "Услуги", "href": "#services" },
+          { "label": "Проекты", "href": "#projects" },
+          { "label": "Заказчики", "href": "#clients" }
+        ]
+      },
+      {
+        "title": "О компании",
+        "links": [
+          { "label": "Карьера", "href": "#career" },
+          { "label": "Контакты", "href": "contacts.html" }
+        ]
+      }
+    ],
+    "aside": {
+      "title": "Связь",
+      "text": "Реквизиты и контакты — в разделе «Контакты»."
+    },
+    "legalLine": "© 2005–2026 DC Engineering"
+  }
+}

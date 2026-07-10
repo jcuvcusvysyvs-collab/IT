@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Проекты — DC Engineering</title>
+    <meta
+      name="description"
+      content="DC Engineering: мы — команда инженеров. Проектируем, внедряем, поддерживаем вычислительные комплексы и корпоративные сети передачи данных с 2005-го года."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260710-subnav-light" />
+    <link rel="preload" href="images/Project_hero.png" as="image" fetchpriority="high" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-projects">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img
+            class="logo__img logo__img--light"
+            src="images/Logo_white.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="logo__img logo__img--dark"
+            src="images/Logo_black.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+
+          <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html" aria-current="page">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path
+                    d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex"
+          data-subpage-hero
+          aria-labelledby="projects-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="projects-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Проекты</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Мы&nbsp;— команда инженеров. Проектируем, внедряем, поддерживаем вычислительные комплексы и&nbsp;корпоративные
+                сети передачи данных с&nbsp;2005-го&nbsp;года.
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner">
+            <nav class="projects-hero-switcher" aria-label="Разделы страницы проектов">
+              <div class="projects-hero-switcher__track">
+                <a class="projects-hero-switcher__item" href="#projects-featured">Ключевые проекты</a>
+                <a class="projects-hero-switcher__item" href="#projects-all">Все проекты</a>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+      <!-- Блок 01: Ключевые проекты -->
+      <section class="section about-dce page-projects__showcase" id="projects-featured" aria-labelledby="projects-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Избранные</p>
+                <h2 id="projects-h-01" class="about-dce__title">
+                  Ключевые <span class="about-dce__brand">проекты</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Государственные структуры, банки, промышленность и&nbsp;медицина. Проектирование, внедрение и&nbsp;долгосрочная поддержка критически важной инфраструктуры.
+                </p>
+              </div>
+            </header>
+
+            <div class="about-dce__grid" role="list">
+
+              <!-- Hero card: Здание ОКО -->
+              <article class="about-dce__card about-dce__card--hero about-dce__card--hero-photo" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                  Государственный сектор
+                </p>
+                <h3 class="about-dce__card-title">Здание ОКО, Москва&#8209;Сити</h3>
+                <p class="about-dce__card-customer">Правительство Москвы</p>
+                <p class="page-about__card-text">
+                  Проектирование и&nbsp;создание распределённой ИТ-инфраструктуры для всех подразделений Правительства Москвы, размещённых в&nbsp;башне.
+                </p>
+                <div class="about-dce__card-stat">
+                  <span class="about-dce__stat-value">2016&ndash;2017</span>
+                  <span class="about-dce__stat-label">Москва</span>
+                </div>
+                <a class="page-about__card-cta" href="project-oko.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <!-- Card 02: Гиперконвергентная инфраструктура -->
+              <article class="about-dce__card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                  Финансы
+                </p>
+                <h3 class="about-dce__card-title">Гиперконвергентная инфраструктура</h3>
+                <p class="page-about__card-text" style="font-weight:600;">АО «Банк ДОМ.РФ», АО «ДОМ.РФ»</p>
+                <p class="page-about__card-text">
+                  Создание гиперконвергентной инфраструктуры с&nbsp;режимом active-active между двумя дата-центрами.
+                </p>
+                <div class="about-dce__card-stat">
+                  <span class="about-dce__stat-value">2021</span>
+                  <span class="about-dce__stat-label">Москва</span>
+                </div>
+              </article>
+
+              <!-- Card 03: Поддержка двух дата-центров -->
+              <article class="about-dce__card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                  Нефтепереработка
+                </p>
+                <h3 class="about-dce__card-title">Поддержка двух дата-центров</h3>
+                <p class="page-about__card-text" style="font-weight:600;">ПАО «Саратовский НПЗ»</p>
+                <p class="page-about__card-text">
+                  Саратов и&nbsp;Москва: Huawei OceanStor, HPE, Fujitsu, Dell, SuperMicro, Cisco, ленточные библиотеки.
+                </p>
+                <div class="about-dce__card-stat">
+                  <span class="about-dce__stat-value">2024&ndash;2027</span>
+                  <span class="about-dce__stat-label">Саратов&nbsp;- Москва</span>
+                </div>
+              </article>
+
+              <!-- Card 04: Корпоративная сеть -->
+              <article class="about-dce__card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">04</span>
+                  Федеральная структура
+                </p>
+                <h3 class="about-dce__card-title">Корпоративная сеть</h3>
+                <p class="page-about__card-text" style="font-weight:600;">Фонд социального страхования РФ</p>
+                <p class="page-about__card-text">
+                  Создание универсальной, высокопроизводительной и&nbsp;отказоустойчивой сети передачи данных.
+                </p>
+                <div class="about-dce__card-stat">
+                  <span class="about-dce__stat-value">2019</span>
+                  <span class="about-dce__stat-label">Москва</span>
+                </div>
+              </article>
+
+              <!-- Card 05: Резервный дата-центр -->
+              <article class="about-dce__card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">05</span>
+                  Медицина
+                </p>
+                <h3 class="about-dce__card-title">Резервный дата-центр</h3>
+                <p class="page-about__card-text" style="font-weight:600;">ООО «ИНВИТРО»</p>
+                <p class="page-about__card-text">
+                  Аудит существующей инфраструктуры, анализ вариантов и&nbsp;создание резервного ЦОД.
+                </p>
+                <div class="about-dce__card-stat">
+                  <span class="about-dce__stat-value">2018</span>
+                  <span class="about-dce__stat-label">Москва</span>
+                </div>
+              </article>
+
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Блок 02: Все проекты -->
+      <section class="section about-dce about-dce--alt" id="projects-all" aria-labelledby="projects-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Хронология</p>
+                <h2 id="projects-h-02" class="about-dce__title">
+                  Все <span class="about-dce__brand">проекты</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Полный перечень реализованных проектов с&nbsp;2014 года.
+                </p>
+              </div>
+            </header>
+
+            <div class="page-about__body">
+              <div class="projects-filter" id="projects-filter" hidden>
+                <div class="projects-filter__row">
+                  <span class="projects-filter__label" id="projects-filter-label">Заказчик</span>
+                  <div class="projects-filter__combo" id="projects-filter-combo">
+                    <button
+                      type="button"
+                      class="projects-filter__trigger"
+                      id="projects-filter-trigger"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-labelledby="projects-filter-label projects-filter-trigger"
+                    >
+                      <span class="projects-filter__trigger-text" id="projects-filter-trigger-text">Все заказчики</span>
+                      <span class="projects-filter__trigger-icon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="projects-filter__menu" id="projects-filter-menu" role="listbox" hidden>
+                      <ul class="projects-filter__options" id="projects-filter-options" role="presentation"></ul>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="projects-filter__clear"
+                    id="projects-filter-clear"
+                    hidden
+                    aria-label="Сбросить фильтр"
+                    title="Сбросить"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="page-projects__list" id="projects-list">
+              <!-- 2024–2026 -->
+              <div class="page-projects__year-group">
+                <div class="page-projects__year-head">
+                  <span class="page-projects__year-num">2024–2026</span>
+                  <span class="page-projects__year-count"><span class="page-projects__year-count-value">25</span><span class="page-projects__year-count-label">проектов</span></span>
+                </div>
+                <ul class="page-projects__items">
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_01.png"
+                    data-project-image-dark="images/dark/project_01_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-orvd.html"
+                  >
+                    <span class="page-projects__item-client">ФГУП «Госкорпорация по&nbsp;ОрВД»</span>
+                    <span class="page-projects__item-desc">Техподдержка и&nbsp;обслуживание вычислительного и&nbsp;сетевого оборудования</span>
+                    <span class="page-projects__item-meta">Москва</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rdi"
+                    data-project-image="images/project_02.png"
+                    data-project-image-dark="images/dark/project_02_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rdi.html"
+                  >
+                    <span class="page-projects__item-client">ФКУ «Росдоринформсвязь»</span>
+                    <span class="page-projects__item-desc">Обеспечение непрерывности и&nbsp;развития информационных систем</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="mggt"
+                    data-project-image="images/project_03.png"
+                    data-project-image-dark="images/dark/project_03_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mggt.html"
+                  >
+                    <span class="page-projects__item-client">ГБУ «Мосгоргеотрест»</span>
+                    <span class="page-projects__item-desc">Внедрение многофакторной аутентификации</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_04.png"
+                    data-project-image-dark="images/dark/project_04_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-glupdk.html"
+                  >
+                    <span class="page-projects__item-client">ФГУП ГлавУпДК при МИД России</span>
+                    <span class="page-projects__item-desc">Техподдержка HPE: СХД, блейд-системы, серверы</span>
+                    <span class="page-projects__item-meta">Москва · 2023–2026</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_05.png"
+                    data-project-image-dark="images/dark/project_05_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-desc="Техническая поддержка систем хранения данных 12 моделей 3-х производителей"
+                    data-project-href="project-mastertel.html"
+                  >
+                    <span class="page-projects__item-client">АО «МАСТЕРТЕЛ»</span>
+                    <span class="page-projects__item-desc">Техническая поддержка систем хранения данных 12&nbsp;моделей 3-х производителей</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2026</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_06.png"
+                    data-project-image-dark="images/dark/project_06_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-peresvet.html"
+                  >
+                    <span class="page-projects__item-client">ПАО АКБ «ПЕРЕСВЕТ»</span>
+                    <span class="page-projects__item-desc">Поддержка Fujitsu, Huawei, SuperMicro: СХД, ленточные библиотеки, серверы, коммутаторы</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2026</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_07.png"
+                    data-project-image-dark="images/dark/project_07_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-geoprime.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ГЕОПРАЙМ»</span>
+                    <span class="page-projects__item-desc">Поддержка СХД EMC Isilon и&nbsp;коммутаторов Dell EMC</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2027</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_08.png"
+                    data-project-image-dark="images/dark/project_08_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-stavropol.html"
+                  >
+                    <span class="page-projects__item-client">Администрация г.&nbsp;Ставрополя</span>
+                    <span class="page-projects__item-desc">Техподдержка сетевых коммутаторов и&nbsp;блейд-серверов Cisco</span>
+                    <span class="page-projects__item-meta">Ставрополь · 2024–2027</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="saratovnpz"
+                    data-project-image="images/project_09.png"
+                    data-project-image-dark="images/dark/project_09_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-saratovnpz.html"
+                  >
+                    <span class="page-projects__item-client">ПАО «Саратовский НПЗ»</span>
+                    <span class="page-projects__item-desc">Поддержка двух ЦОД: Huawei OceanStor, HPE, Fujitsu, Dell, Cisco</span>
+                    <span class="page-projects__item-meta">Саратов · 2024–2027</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_10.png"
+                    data-project-image-dark="images/dark/project_10_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-tnt.html"
+                  >
+                    <span class="page-projects__item-client">АО «ТНТ-Телесеть»</span>
+                    <span class="page-projects__item-desc">Обслуживание FusionServer и&nbsp;OceanStor Huawei</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_11.png"
+                    data-project-image-dark="images/dark/project_11_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-gpmrtv.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ГПМ РТВ»</span>
+                    <span class="page-projects__item-desc">Серверы и&nbsp;системы хранения данных Huawei</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rgb"
+                    data-project-image="images/project_12.png"
+                    data-project-image-dark="images/dark/project_12_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rgb.html"
+                  >
+                    <span class="page-projects__item-client">ФГБУ «РГБ»</span>
+                    <span class="page-projects__item-desc">Поддержка NEC, EMC, Cisco, HPE: СХД, серверы, коммутаторы, ленточные библиотеки</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_13.png"
+                    data-project-image-dark="images/dark/project_13_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-tander.html"
+                  >
+                    <span class="page-projects__item-client">АО «Тандер»</span>
+                    <span class="page-projects__item-desc">Поддержка SAN-инфраструктуры Huawei и&nbsp;Brocade</span>
+                    <span class="page-projects__item-meta">Краснодар · 2024–2026</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_14.png"
+                    data-project-image-dark="images/dark/project_14_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-tatneft.html"
+                  >
+                    <span class="page-projects__item-client">ПАО «Татнефть» им.&nbsp;В.Д.&nbsp;Шашина</span>
+                    <span class="page-projects__item-desc">Обслуживание систем хранения данных NetApp</span>
+                    <span class="page-projects__item-meta">Казань · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="mggt"
+                    data-project-image="images/project_15.png"
+                    data-project-image-dark="images/dark/project_15_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mggt-spd.html"
+                  >
+                    <span class="page-projects__item-client">ГБУ «Мосгоргеотрест»</span>
+                    <span class="page-projects__item-desc">Обследование и&nbsp;проектирование инфраструктуры передачи данных</span>
+                    <span class="page-projects__item-meta">Москва · 2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="minenergo"
+                    data-project-image="images/project_16.png"
+                    data-project-image-dark="images/dark/project_16_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-minenergo.html"
+                  >
+                    <span class="page-projects__item-client">Министерство энергетики Российской Федерации</span>
+                    <span class="page-projects__item-desc">Миграция каталога и&nbsp;рабочих станций на&nbsp;RED OS</span>
+                    <span class="page-projects__item-meta">Москва · 2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rnpk"
+                    data-project-image="images/project_17.png"
+                    data-project-image-dark="images/dark/project_17_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rnpk.html"
+                  >
+                    <span class="page-projects__item-client">АО «РНПК»</span>
+                    <span class="page-projects__item-desc">Перевод рабочих мест сотрудников на&nbsp;AstraLinux</span>
+                    <span class="page-projects__item-meta">Москва · 2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rnpk"
+                    data-project-image="images/project_18.png"
+                    data-project-image-dark="images/dark/project_18_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rnpk-migration.html"
+                  >
+                    <span class="page-projects__item-client">АО «РНПК»</span>
+                    <span class="page-projects__item-desc">Миграция программного обеспечения на&nbsp;AstraLinux с&nbsp;сохранением настроек</span>
+                    <span class="page-projects__item-meta">Москва · 2024–2025</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="soees"
+                    data-project-image="images/project_19.png"
+                    data-project-image-dark="images/dark/project_19_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-soees.html"
+                  >
+                    <span class="page-projects__item-client">АО «СО ЕЭС»</span>
+                    <span class="page-projects__item-desc">Работы по&nbsp;созданию и&nbsp;внедрению системы электронной почты на&nbsp;Объектах пилотной зоны Заказчика, включая разработку технического проекта</span>
+                    <span class="page-projects__item-meta">Москва · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_20.png"
+                    data-project-image-dark="images/dark/project_20_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-otrbit.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ОТР-БИТ»</span>
+                    <span class="page-projects__item-desc">Создание распределённой ИТ-инфраструктуры для АО «МАЗ «Москвич»»</span>
+                    <span class="page-projects__item-meta">Москва · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="soees"
+                    data-project-image="images/project_21.png"
+                    data-project-image-dark="images/dark/project_21_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-soees-pilot.html"
+                  >
+                    <span class="page-projects__item-client">АО «СО ЕЭС»</span>
+                    <span class="page-projects__item-desc">Внедрение пилотной зоны почтовой системы на&nbsp;уровне объекта</span>
+                    <span class="page-projects__item-meta">Москва · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rgb"
+                    data-project-image="images/project_22.png"
+                    data-project-image-dark="images/dark/project_22_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rgb-support.html"
+                  >
+                    <span class="page-projects__item-client">ФГБУ «РГБ»</span>
+                    <span class="page-projects__item-desc">Техническое обслуживание серверной инфраструктуры</span>
+                    <span class="page-projects__item-meta">Москва · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="linsm"
+                    data-project-image="images/project_23.png"
+                    data-project-image-dark="images/dark/project_23_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-linsm.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ЛИНС-М»</span>
+                    <span class="page-projects__item-desc">Замена межсетевых экранов в&nbsp;частном облаке (Москва, СПб, Красноярск)</span>
+                    <span class="page-projects__item-meta">3 города · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="saratovnpz"
+                    data-project-image="images/project_24.png"
+                    data-project-image-dark="images/dark/project_24_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-saratovnpz-support.html"
+                  >
+                    <span class="page-projects__item-client">ПАО «Саратовский НПЗ»</span>
+                    <span class="page-projects__item-desc">Техническое обслуживание серверного и&nbsp;сетевого оборудования</span>
+                    <span class="page-projects__item-meta">Саратов · 2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_25.png"
+                    data-project-image-dark="images/dark/project_25_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rosseti-ural.html"
+                  >
+                    <span class="page-projects__item-client">ПАО «Россети Урал»</span>
+                    <span class="page-projects__item-desc">Обслуживание оборудования Brocade без поддержки производителя</span>
+                    <span class="page-projects__item-meta">Москва · 2024</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 2021–2023 -->
+              <div class="page-projects__year-group">
+                <div class="page-projects__year-head">
+                  <span class="page-projects__year-num">2021–2023</span>
+                  <span class="page-projects__year-count"><span class="page-projects__year-count-value">17</span><span class="page-projects__year-count-label">проектов</span></span>
+                </div>
+                <ul class="page-projects__items">
+                  <li
+                    class="page-projects__item"
+                    data-client="mggt"
+                    data-project-image="images/project_26.png"
+                    data-project-image-dark="images/dark/project_26_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mggt-infra.html"
+                  >
+                    <span class="page-projects__item-client">ГБУ «Мосгоргеотрест»</span>
+                    <span class="page-projects__item-desc">Обследование распределённой инфраструктуры, разработка рекомендаций и&nbsp;дорожной карты</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="linsm"
+                    data-project-image="images/project_27.png"
+                    data-project-image-dark="images/dark/project_27_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-linsm-splunk.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ЛИНС-М»</span>
+                    <span class="page-projects__item-desc">Поддержка платформы больших данных Splunk</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rdi"
+                    data-project-image="images/project_28.png"
+                    data-project-image-dark="images/dark/project_28_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rdi-antispam.html"
+                  >
+                    <span class="page-projects__item-client">ФКУ «Росдоринформсвязь»</span>
+                    <span class="page-projects__item-desc">Оптимизация работы антиспам системы согласно актуальным угрозам</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="minenergo"
+                    data-project-image="images/project_29.png"
+                    data-project-image-dark="images/dark/project_29_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-minenergo-2023.html"
+                  >
+                    <span class="page-projects__item-client">Министерство энергетики Российской Федерации</span>
+                    <span class="page-projects__item-desc">Внедрение импортонезависимой среды виртуализации, миграция файловых серверов и&nbsp;решения ВКС</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="rdi"
+                    data-project-image="images/project_30.png"
+                    data-project-image-dark="images/dark/project_30_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rdi-backup.html"
+                  >
+                    <span class="page-projects__item-client">ФКУ «Росдоринформсвязь»</span>
+                    <span class="page-projects__item-desc">Замена системы резервного копирования для 21&nbsp;ИС без остановки работы</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_31.png"
+                    data-project-image-dark="images/dark/project_31_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-esleasing.html"
+                  >
+                    <span class="page-projects__item-client">ЗАО «ЕС-лизинг»</span>
+                    <span class="page-projects__item-desc">Разработка документов технорабочего проекта для&nbsp;инфраструктурных решений</span>
+                    <span class="page-projects__item-meta">Москва · 2023</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_32.png"
+                    data-project-image-dark="images/dark/project_32_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mosvodokanal.html"
+                  >
+                    <span class="page-projects__item-client">АО «Мосводоканал»</span>
+                    <span class="page-projects__item-desc">Обеспечение непрерывного функционирования и&nbsp;выполнение задач системного администрирования</span>
+                    <span class="page-projects__item-meta">Москва · 2023–2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_33.png"
+                    data-project-image-dark="images/dark/project_33_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-perm-cir.html"
+                  >
+                    <span class="page-projects__item-client">ГБУ Центр информационного развития Пермского края</span>
+                    <span class="page-projects__item-desc">Обследование информационно-технологической инфраструктуры Центра информационного развития Пермского края</span>
+                    <span class="page-projects__item-meta">Пермь · 2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_34.png"
+                    data-project-image-dark="images/dark/project_34_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-dit-moscow.html"
+                  >
+                    <span class="page-projects__item-client">ДИТ Москвы</span>
+                    <span class="page-projects__item-desc">Технологическая и&nbsp;экономическая экспертиза проектов развития ИТ-инфраструктуры и&nbsp;результатов исполнения контрактов</span>
+                    <span class="page-projects__item-meta">Москва · 2017–2018</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_35.png"
+                    data-project-image-dark="images/dark/project_35_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-ncesmp.html"
+                  >
+                    <span class="page-projects__item-client">ФГБУ «НЦЭСМП» Минздрава России</span>
+                    <span class="page-projects__item-desc">Миграция почтовой системы, почтовых ящиков и&nbsp;функционального окружения пользователей на&nbsp;продукты отечественных производителей.</span>
+                    <span class="page-projects__item-meta">Москва · 2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_36.png"
+                    data-project-image-dark="images/dark/project_36_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-avileks.html"
+                  >
+                    <span class="page-projects__item-client">ООО «Авилекс»</span>
+                    <span class="page-projects__item-desc">Поддержка программно-технического комплекса «Oko»</span>
+                    <span class="page-projects__item-meta">Москва · 2022–2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_37.png"
+                    data-project-image-dark="images/dark/project_37_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-priorov.html"
+                  >
+                    <span class="page-projects__item-client">ФГБУ «НМИЦ ТО им.&nbsp;Н.Н.&nbsp;Приорова»</span>
+                    <span class="page-projects__item-desc">Планирование мер по&nbsp;защите критической информационной инфраструктуры</span>
+                    <span class="page-projects__item-meta">Москва · 2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_38.png"
+                    data-project-image-dark="images/dark/project_38_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-otr-security.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ОТР-безопасность ИТ»</span>
+                    <span class="page-projects__item-desc">Обслуживание, обеспечение непрерывности и&nbsp;развитие ИТ-систем Росавтодора</span>
+                    <span class="page-projects__item-meta">Москва · 2021–2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_39.png"
+                    data-project-image-dark="images/dark/project_39_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-psupport.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ПРОДЖЕКТ САППОРТ»</span>
+                    <span class="page-projects__item-desc">Сопровождение и&nbsp;обеспечение непрерывного функционирования базовой инфраструктуры заказчика.</span>
+                    <span class="page-projects__item-meta">Москва · 2022–2024</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_40.png"
+                    data-project-image-dark="images/dark/project_40_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-kvazar.html"
+                  >
+                    <span class="page-projects__item-client">ООО СЗ «Квазар»</span>
+                    <span class="page-projects__item-desc">Сопровождение и&nbsp;обеспечение непрерывного функционирования базовой инфраструктуры заказчика</span>
+                    <span class="page-projects__item-meta">Москва · 2021–2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_41.png"
+                    data-project-image-dark="images/dark/project_41_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-krok.html"
+                  >
+                    <span class="page-projects__item-client">ЗАО «Крок Инкорпорейтед»</span>
+                    <span class="page-projects__item-desc">Развитие системы доступа в&nbsp;Интернет распределённой федеральной инфраструктуры периметральных средств безопасности Росавтодора</span>
+                    <span class="page-projects__item-meta">Москва · 2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-client="linsm"
+                    data-project-image="images/project_42.png"
+                    data-project-image-dark="images/dark/project_42_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-linsm-perimeter.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ЛИНС-М»</span>
+                    <span class="page-projects__item-desc">Модернизация системы периметральных средств безопасности на&nbsp;28-ми объектах региональной сети филиалов банка</span>
+                    <span class="page-projects__item-meta">Москва · 2022</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 2016–2020 -->
+              <div class="page-projects__year-group">
+                <div class="page-projects__year-head">
+                  <span class="page-projects__year-num">2016–2020</span>
+                  <span class="page-projects__year-count"><span class="page-projects__year-count-value">22</span><span class="page-projects__year-count-label">проекта</span></span>
+                </div>
+                <ul class="page-projects__items">
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_43.png"
+                    data-project-image-dark="images/dark/project_43_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-domrf-hci.html"
+                  >
+                    <span class="page-projects__item-client">АО «Банк ДОМ.РФ», АО «ДОМ.РФ»</span>
+                    <span class="page-projects__item-desc">Создание гиперконвергентной инфраструктуры active-active между двумя ЦОД</span>
+                    <span class="page-projects__item-meta">Москва · 2021</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_44.png"
+                    data-project-image-dark="images/dark/project_44_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-kunatek.html"
+                  >
+                    <span class="page-projects__item-client">ООО «Кунатек»</span>
+                    <span class="page-projects__item-desc">Обеспечение непрерывности технической инфраструктуры комплекса ГАС ПС и&nbsp;ИСОП</span>
+                    <span class="page-projects__item-meta">Москва · 2021</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_45.png"
+                    data-project-image-dark="images/dark/project_45_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-sistemsoft.html"
+                  >
+                    <span class="page-projects__item-client">ООО «Системный софт»</span>
+                    <span class="page-projects__item-desc">Создание тестового стенда системы контроля и&nbsp;управления мобильными пользователями (СКУМУ) на&nbsp;стенде</span>
+                    <span class="page-projects__item-meta">Москва · 2021</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_46.png"
+                    data-project-image-dark="images/dark/project_46_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-itl-group.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ИТЛ ГРУПП»</span>
+                    <span class="page-projects__item-desc">Модернизация метрокластера: увеличение ёмкости дискового пространства между двумя ЦОД</span>
+                    <span class="page-projects__item-meta">Москва · 2021</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_47.png"
+                    data-project-image-dark="images/dark/project_47_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-aviadvigatel.html"
+                  >
+                    <span class="page-projects__item-client">ОДК «Авиадвигатель»</span>
+                    <span class="page-projects__item-desc">Техническая поддержка вычислительной инфраструктуры</span>
+                    <span class="page-projects__item-meta">Пермь · 2020–2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_48.png"
+                    data-project-image-dark="images/dark/project_48_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-rtk-gis.html"
+                  >
+                    <span class="page-projects__item-client">РТК Цифровые технологии</span>
+                    <span class="page-projects__item-desc">Руководство модернизацией вычислительной инфраструктуры под&nbsp;ГИС</span>
+                    <span class="page-projects__item-meta">Москва · 2020</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_49.jpg"
+                    data-project-image-dark="images/dark/project_49_dark.jpg"
+                    data-project-image-fit="contain"
+                    data-project-href="project-fss-network.html"
+                  >
+                    <span class="page-projects__item-client">Фонд социального страхования РФ</span>
+                    <span class="page-projects__item-desc">Создание универсальной высокопроизводительной отказоустойчивой корпоративной сети</span>
+                    <span class="page-projects__item-meta">Москва · 2019</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_50.png"
+                    data-project-image-dark="images/dark/project_50_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-pension-dc.html"
+                  >
+                    <span class="page-projects__item-client">Крупный пенсионный фонд</span>
+                    <span class="page-projects__item-desc">Проектирование инфраструктуры регионального дата-центра</span>
+                    <span class="page-projects__item-meta">Москва · 2019</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_51.png"
+                    data-project-image-dark="images/dark/project_51.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mediascope.html"
+                  >
+                    <span class="page-projects__item-client">Медиаскоп</span>
+                    <span class="page-projects__item-desc">Техническая поддержка вычислительной инфраструктуры</span>
+                    <span class="page-projects__item-meta">Москва · 2019–2020</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_52.png"
+                    data-project-image-dark="images/dark/project_52_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-bank-private-cloud.html"
+                  >
+                    <span class="page-projects__item-client">Крупный российский банк</span>
+                    <span class="page-projects__item-desc">Проектирование и&nbsp;поэтапное внедрение частного облака</span>
+                    <span class="page-projects__item-meta">Москва · 2018–2022</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_53.png"
+                    data-project-image-dark="images/dark/project_53_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-msf-oms.html"
+                  >
+                    <span class="page-projects__item-client">Медицинский страховой фонд</span>
+                    <span class="page-projects__item-desc">Организационно-техническое сопровождение ИТ-инфраструктуры ОМС</span>
+                    <span class="page-projects__item-meta">Москва · 2016–2019</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_54.png"
+                    data-project-image-dark="images/dark/project_54_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-glavgosexpertiza.html"
+                  >
+                    <span class="page-projects__item-client">ФАУ «Главгосэкспертиза России»</span>
+                    <span class="page-projects__item-desc">Разработка рабочей документации для&nbsp;создания вычислительной инфраструктуры ЦОД</span>
+                    <span class="page-projects__item-meta">Москва · 2018</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_55.png"
+                    data-project-image-dark="images/dark/project_55_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-invito.html"
+                  >
+                    <span class="page-projects__item-client">ООО «ИНВИТРО»</span>
+                    <span class="page-projects__item-desc">Создание резервного распределённого центра обработки данных</span>
+                    <span class="page-projects__item-meta">Москва · 2018</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_56.png"
+                    data-project-image-dark="images/dark/project_56_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-mosgortrans-bulat.html"
+                  >
+                    <span class="page-projects__item-client">ГУП «Мосгортранс»</span>
+                    <span class="page-projects__item-desc">Модернизация серверной инфраструктуры, внедрение СХД BULAT</span>
+                    <span class="page-projects__item-meta">Москва · 2018</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_57.png"
+                    data-project-image-dark="images/dark/project_57_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-waterco-ip.html"
+                  >
+                    <span class="page-projects__item-client">Водная компания</span>
+                    <span class="page-projects__item-desc">Развитие корпоративной вычислительной сети и&nbsp;IP-телефонии в&nbsp;комплексе административных зданий</span>
+                    <span class="page-projects__item-meta">Москва · 2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_58.png"
+                    data-project-image-dark="images/dark/project_58_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-feu-network.html"
+                  >
+                    <span class="page-projects__item-client">Федеральное экспертное учреждение в&nbsp;области строительства</span>
+                    <span class="page-projects__item-desc">Создание надёжной и&nbsp;высокопроизводительной корпоративной сети в&nbsp;здании заказчика</span>
+                    <span class="page-projects__item-meta">Москва · 2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_59.png"
+                    data-project-image-dark="images/dark/project_59_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-ameriabank.html"
+                  >
+                    <span class="page-projects__item-client">ЗАО «Америабанк»</span>
+                    <span class="page-projects__item-desc">Разработка рабочей документации и&nbsp;авторский надзор в&nbsp;рамках проекта по&nbsp;миграции информационной инфраструктуры банка</span>
+                    <span class="page-projects__item-meta">Ереван · 2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_60.png"
+                    data-project-image-dark="images/dark/project_60_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-waterco-backup.html"
+                  >
+                    <span class="page-projects__item-client">Водная компания</span>
+                    <span class="page-projects__item-desc">Модернизация и&nbsp;конфигурирование системы резервного копирования распределённого ЦОД</span>
+                    <span class="page-projects__item-meta">Москва · 2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_61.png"
+                    data-project-image-dark="images/dark/project_61_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-oko.html"
+                  >
+                    <span class="page-projects__item-client">Правительство Москвы</span>
+                    <span class="page-projects__item-desc">Проектирование, разработка рабочей документации и&nbsp;внедрение ЦОД в&nbsp;здании ОКО</span>
+                    <span class="page-projects__item-meta">Москва · 2016–2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_62.png"
+                    data-project-image-dark="images/dark/project_62_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-fhu-nas.html"
+                  >
+                    <span class="page-projects__item-client">ГБУ Финансово-хозяйственное управление Мэрии Москвы</span>
+                    <span class="page-projects__item-desc">Техническое обслуживание сетевого хранилища</span>
+                    <span class="page-projects__item-meta">Москва · 2016–2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_63.png"
+                    data-project-image-dark="images/dark/project_63_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-waterco-expertise.html"
+                  >
+                    <span class="page-projects__item-client">Водная компания</span>
+                    <span class="page-projects__item-desc">Технологическая экспертиза проектов развития ИТ-инфраструктуры</span>
+                    <span class="page-projects__item-meta">Москва · 2016–2017</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_64.png"
+                    data-project-image-dark="images/dark/project_64_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-npf-sberbank.html"
+                  >
+                    <span class="page-projects__item-client">АО «НПФ Сбербанка»</span>
+                    <span class="page-projects__item-desc">Реализация архивного хранения баз данных</span>
+                    <span class="page-projects__item-meta">Москва · 2016</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 2014–2016 -->
+              <div class="page-projects__year-group">
+                <div class="page-projects__year-head">
+                  <span class="page-projects__year-num">2014–2016</span>
+                  <span class="page-projects__year-count"><span class="page-projects__year-count-value">3</span><span class="page-projects__year-count-label">проекта</span></span>
+                </div>
+                <ul class="page-projects__items">
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_65.png"
+                    data-project-image-dark="images/dark/project_65_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-tatfundbank.html"
+                  >
+                    <span class="page-projects__item-client">ЗАО «Татфондбанк»</span>
+                    <span class="page-projects__item-desc">Управление проектом построения информационно-технологической инфраструктуры РЦОД и&nbsp;КСИБ</span>
+                    <span class="page-projects__item-meta">Казань · 2014–2016</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_66.png"
+                    data-project-image-dark="images/dark/project_66_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-waterco-rcod-support.html"
+                  >
+                    <span class="page-projects__item-client">Водная компания</span>
+                    <span class="page-projects__item-desc">Техническая поддержка резервного центра обработки данных</span>
+                    <span class="page-projects__item-meta">Москва · 2014–2016</span>
+                  </li>
+                  <li
+                    class="page-projects__item"
+                    data-project-image="images/project_67.png"
+                    data-project-image-dark="images/dark/project_67_dark.png"
+                    data-project-image-fit="contain"
+                    data-project-href="project-msf-rac.html"
+                  >
+                    <span class="page-projects__item-client">Медицинский страховой фонд</span>
+                    <span class="page-projects__item-desc">Проектирование и&nbsp;создание распределённого ЦОД active-active с&nbsp;Oracle RAC</span>
+                    <span class="page-projects__item-meta">Москва · 2014–2015</span>
+                  </li>
+                </ul>
+              </div>
+
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img
+                  class="footer-logo__img footer-logo__img--light"
+                  src="images/Logo_podval_white.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <img
+                  class="footer-logo__img footer-logo__img--dark"
+                  src="images/Logo_podval_black.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="projects.html" aria-current="page">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Реквизиты и контакты — в разделе <a href="contacts.html">Контакты</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
+    <script defer src="client-data.js"></script>
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="nav.js?v=20260710-subnav-header-lock"></script>
+    <script defer src="page-projects-cards.js"></script>
+    <script defer src="projects-filter.js"></script>
+    <script defer src="projects-page-reveal.js?v=20260709-reveal-fix"></script>
+  </body>
+</html>

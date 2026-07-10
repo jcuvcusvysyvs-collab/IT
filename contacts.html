@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Контакты — DC Engineering</title>
+    <meta
+      name="description"
+      content="Контакты DC Engineering: московский офис, телефон, электронная почта и адрес. Свяжитесь с нами по вопросам инженерии данных и корпоративных сетей."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <link rel="stylesheet" href="contacts.css?v=20260709-contacts-head-text" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-contacts">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img
+            class="logo__img logo__img--light"
+            src="images/Logo_white.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="logo__img logo__img--dark"
+            src="images/Logo_black.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+
+          <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none">
+                  <a href="contacts.html" role="menuitem" aria-current="page">Контакты</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path
+                    d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="subpage-hero subpage-hero--about projects-hero" data-subpage-hero aria-labelledby="contacts-page-title">
+        <div class="subpage-hero__inner">
+          <div class="subpage-hero__content">
+            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+              <ol class="subpage-breadcrumbs__list">
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная&nbsp;страница</a>
+                </li>
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="about.html">О&nbsp;компании</a>
+                </li>
+                <li class="subpage-breadcrumbs__item" aria-current="page">
+                  Контакты
+                </li>
+              </ol>
+            </nav>
+            <h1 id="contacts-page-title" class="subpage-hero__title">
+              <span class="subpage-hero__title-line">Контакты</span>
+            </h1>
+          </div>
+        </div>
+      </header>
+
+      <section class="section page-contacts__section" id="contacts-content" aria-labelledby="contacts-h-01">
+        <div class="page-contacts__inner">
+          <article class="page-contacts__panel" data-feature-reveal>
+            <header class="page-contacts__head about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow">Контактная информация</p>
+                <h2 id="contacts-h-01" class="about-dce__title">
+                  Московский <span class="about-dce__brand">офис</span>
+                </h2>
+              </div>
+            </header>
+
+            <dl class="page-contacts__fields">
+              <div class="page-contacts__field">
+                <span class="page-contacts__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3.5 2.5h2.1l.9 2.2a1 1 0 0 1-.24 1.03l-1.05 1.05a8.5 8.5 0 0 0 3.96 3.96l1.05-1.05a1 1 0 0 1 1.03-.24l2.2.9v2.1a1 1 0 0 1-.92 1A11.5 11.5 0 0 1 2.5 3.42a1 1 0 0 1 1-.92Z"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <div class="page-contacts__field-body">
+                  <dt class="page-contacts__label">Телефон</dt>
+                  <dd class="page-contacts__value">
+                    <a href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                  </dd>
+                </div>
+              </div>
+              <div class="page-contacts__field">
+                <span class="page-contacts__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M2.5 4.5h11v7H2.5v-7Z"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      stroke-linejoin="round"
+                    />
+                    <path d="M2.5 5.5 8 9l5.5-3.5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="page-contacts__field-body">
+                  <dt class="page-contacts__label">Эл. почта</dt>
+                  <dd class="page-contacts__value">
+                    <a href="mailto:info@dce.su">info@dce.su</a>
+                  </dd>
+                </div>
+              </div>
+              <div class="page-contacts__field page-contacts__field--address">
+                <span class="page-contacts__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M8 13.5s4.5-3.2 4.5-6.4A4.5 4.5 0 1 0 3.5 7.1C3.5 10.3 8 13.5 8 13.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="8" cy="7.1" r="1.35" stroke="currentColor" stroke-width="1.2" />
+                  </svg>
+                </span>
+                <div class="page-contacts__field-body">
+                  <dt class="page-contacts__label">Адрес</dt>
+                  <dd class="page-contacts__value">
+                    125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12,
+                    офис&nbsp;№&nbsp;314
+                  </dd>
+                </div>
+              </div>
+            </dl>
+
+            <div class="page-contacts__map-wrap" data-map-theme="light">
+              <div
+                id="contacts-yandex-map"
+                class="page-contacts__map-canvas"
+                role="img"
+                aria-label="Офис DC Engineering на карте — 3-я ул. Ямского Поля, 2, корп. 12"
+              ></div>
+            </div>
+
+            <footer class="page-contacts__foot">
+              <a
+                class="btn btn--lg btn--secondary orvd-case__cta"
+                href="https://yandex.ru/maps/?rtext=~55.781398%2C37.583508&amp;rtt=auto"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Построить маршрут
+              </a>
+              <a
+                class="page-contacts__map-link"
+                href="https://yandex.ru/maps/?text=125124%2C%20%D0%B3.%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%203-%D1%8F%20%D1%83%D0%BB.%20%D0%AF%D0%BC%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%20%D0%B4%D0%BE%D0%BC%202%2C%20%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%8112"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть в Яндекс Картах
+              </a>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <section class="section page-contacts__form-section" id="contacts-feedback" aria-labelledby="contacts-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="contacts-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="contacts-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="contacts-form-heading"
+              >
+                <div class="huawei-request-form__fields">
+                  <input
+                    class="huawei-request-form__input"
+                    type="text"
+                    name="name"
+                    placeholder="Имя Фамилия"
+                    autocomplete="name"
+                    aria-label="Имя Фамилия"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Почта"
+                    autocomplete="email"
+                    aria-label="Почта"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    aria-label="Телефон"
+                  />
+                  <textarea
+                    class="huawei-request-form__input huawei-request-form__input--area"
+                    name="message"
+                    placeholder="Ваш вопрос"
+                    rows="4"
+                    aria-label="Ваш вопрос"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="huawei-request-form__consent">
+                  <input
+                    class="huawei-request-form__checkbox"
+                    type="checkbox"
+                    name="consent"
+                    value="yes"
+                    required
+                  />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path
+                        d="M3 7h8M8 4l3 3-3 3"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <p
+                  class="huawei-request-form__status"
+                  id="contacts-form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img
+                  class="footer-logo__img footer-logo__img--light"
+                  src="images/Logo_podval_white.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <img
+                  class="footer-logo__img footer-logo__img--dark"
+                  src="images/Logo_podval_black.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC
+                (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html" aria-current="page">Контакты</a></li>
+              </ul>
+            </nav>
+
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                <a href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a><br />
+                <a href="mailto:info@dce.su">info@dce.su</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="contacts-map.js"></script>
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
+    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+  </body>
+</html>

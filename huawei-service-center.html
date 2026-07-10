@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сервисный центр HUAWEI — DC Engineering</title>
+    <meta
+      name="description"
+      content="Сервисный центр HUAWEI DC Engineering: инструменты сервисной поддержки, мониторинг, склад ЗИП, портал производителя."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260710-subnav-light" />
+    <link rel="preload" href="images/service_huawei.png" as="image" fetchpriority="high" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-huawei">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img
+            class="logo__img logo__img--light"
+            src="images/Logo_white.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="logo__img logo__img--dark"
+            src="images/Logo_black.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+
+          <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem" aria-current="page">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="index.html#projects">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path
+                    d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex"
+          data-subpage-hero
+          aria-labelledby="huawei-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="huawei-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Сервисный центр</span>
+                <span class="subpage-hero__title-line hero-pt__huawei">HUAWEI</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Круглосуточная авторизованная поддержка инфраструктуры HUAWEI: мониторинг, склад ЗИП и взаимодействие с
+                производителем в рамках сервисных контрактов.
+              </p>
+              <div class="projects-hero-actions">
+                <a
+                  class="btn btn--lg hero-pt__cta subpage-hero__cta"
+                  href="#huawei-feedback"
+                  data-huawei-request-type="pricelist"
+                >Прейскурант</a>
+                <a
+                  class="btn btn--lg btn--ghost-light subpage-hero__cta"
+                  href="#huawei-feedback"
+                  data-huawei-request-type="consultation"
+                >Консультация</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner">
+            <nav class="projects-hero-switcher" aria-label="Разделы страницы HUAWEI">
+              <div class="projects-hero-switcher__track">
+                <a class="projects-hero-switcher__item" href="#huawei-capabilities">Возможности</a>
+                <a class="projects-hero-switcher__item" href="#huawei-certificates">Сертификаты</a>
+                <a class="projects-hero-switcher__item" href="#huawei-clients">Заказчики</a>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+      <section
+        class="section huawei-showcase"
+        aria-labelledby="huawei-capabilities-heading huawei-certificates-heading"
+      >
+        <div class="huawei-showcase__inner">
+          <div class="huawei-module" id="huawei-capabilities" data-feature-reveal>
+          <header class="huawei-module__header">
+            <span class="huawei-module__index" aria-hidden="true">01</span>
+            <div class="huawei-module__intro">
+              <p class="huawei-module__eyebrow" aria-hidden="true">Возможности</p>
+              <h2 id="huawei-capabilities-heading" class="huawei-module__title">Инструменты сервисной поддержки</h2>
+              <p class="huawei-module__lead">
+                Сервис закрыт собственными ресурсами: круглосуточный центр, мониторинг, склад ЗИП и прямой доступ
+                к ресурсам производителя.
+              </p>
+            </div>
+          </header>
+          <div class="huawei-module__body">
+            <!-- В каждой карточке: внутрь .subpage-feature-card__visual добавьте
+                 <img class="subpage-feature-card__img" src="images/…" alt="" width="640" height="400" loading="lazy" decoding="async" /> -->
+            <div class="subpage-feature-grid subpage-feature-grid--huawei" role="list">
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_01.png"
+                  alt="Сервисный центр Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Собственный</span>
+                  <span class="subpage-feature-card__caption-main">сервисный центр, работающий в режиме 24/7</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_02.png"
+                  alt="Система удалённого мониторинга Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Собственная</span>
+                  <span class="subpage-feature-card__caption-main">система удалённого мониторинга</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_03.png"
+                  alt="Система учёта и контроля инцидентов Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Собственная</span>
+                  <span class="subpage-feature-card__caption-main">система учёта и контроля инцидентов</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_04.png"
+                  alt="Склад запасных частей Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Собственный</span>
+                  <span class="subpage-feature-card__caption-main">склад ЗИП</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_05.png"
+                  alt="Портал и база знаний производителя Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Доступ</span>
+                  <span class="subpage-feature-card__caption-main">к порталу и базе знаний производителя</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_06.png"
+                  alt="Обновления ПО Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Доступ</span>
+                  <span class="subpage-feature-card__caption-main">к обновлениям ПО</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_07.png"
+                  alt="Сервисные события у производителя Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Возможность</span>
+                  <span class="subpage-feature-card__caption-main">заводить сервисные события у производителя</span>
+                </p>
+              </div>
+            </article>
+            <article class="subpage-feature-card" role="listitem">
+              <div class="subpage-feature-card__visual">
+                <img
+                  class="subpage-feature-card__img"
+                  src="images/Huawei_08.png"
+                  alt="Сервисные контракты Huawei"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="subpage-feature-card__body">
+                <p class="subpage-feature-card__caption">
+                  <span class="subpage-feature-card__caption-lead">Более 30</span>
+                  <span class="subpage-feature-card__caption-main">активных сервисных контрактов</span>
+                </p>
+              </div>
+            </article>
+            </div>
+          </div>
+        </div>
+          <div class="huawei-module" id="huawei-certificates">
+            <header class="huawei-module__header">
+              <span class="huawei-module__index" aria-hidden="true">02</span>
+              <div class="huawei-module__intro">
+                <p class="huawei-module__eyebrow" aria-hidden="true">Компетенции</p>
+                <h2 id="huawei-certificates-heading" class="huawei-module__title">
+                  Сертификаты <span class="hero-pt__huawei">HUAWEI</span>
+                </h2>
+                <p class="huawei-module__lead">
+                  Подтверждённый статус авторизованного сервисного партнёра — карточки сертификатов с действующими
+                  направлениями подтверждения.
+                </p>
+              </div>
+            </header>
+            <div class="huawei-module__body">
+              <p id="huawei-cert-desc" class="visually-hidden">
+                Партнёрские сертификаты и сертификаты специалистов; клик по превью открывает просмотр.
+              </p>
+
+              <section class="huawei-cert-group" aria-labelledby="huawei-cert-partners-heading">
+                <div class="huawei-cert-group__label">
+                  <h3 id="huawei-cert-partners-heading" class="huawei-cert-group__text">
+                    Партнёрские сертификаты
+                  </h3>
+                  <span class="huawei-cert-group__line" aria-hidden="true"></span>
+                  <span class="huawei-cert-group__meta">2 сертификата</span>
+                </div>
+
+                <div class="huawei-partner-grid" aria-describedby="huawei-cert-desc">
+                  <article class="huawei-partner-card">
+                    <div
+                      class="huawei-partner-card__preview huawei-cert-lightbox-trigger"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                      aria-label="Открыть сертификат крупно: Enterprise IT"
+                    >
+                      <img
+                        src="images/Sertificate_01.png"
+                        alt="Сертификат Huawei: Certified Service Partner, Enterprise IT"
+                        width="600"
+                        height="800"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="huawei-partner-card__body">
+                      <div class="huawei-partner-card__row-top">
+                        <span class="huawei-partner-card__serial">NO. 20220305RU0009C</span>
+                      </div>
+                      <p class="huawei-partner-card__program" lang="en">
+                        Huawei Enterprise · Channel Partner Program
+                      </p>
+                      <h4 class="huawei-partner-card__title" lang="en">Enterprise IT</h4>
+                      <p class="huawei-partner-card__subtitle" lang="en">Certified Service Partner</p>
+                      <div class="huawei-partner-card__stars" role="img" aria-label="Рейтинг: четыре звезды">
+                        <span aria-hidden="true">★★★★</span>
+                      </div>
+                      <dl class="huawei-partner-card__meta">
+                        <div>
+                          <dt>Компания</dt>
+                          <dd lang="en">DC Engineering · Russian Federation</dd>
+                        </div>
+                        <div>
+                          <dt>Период действия</dt>
+                          <dd lang="en">March 05, 2022 — March 01, 2023</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </article>
+
+                  <article class="huawei-partner-card">
+                    <div
+                      class="huawei-partner-card__preview huawei-cert-lightbox-trigger"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                      aria-label="Открыть сертификат крупно: Data Communication"
+                    >
+                      <img
+                        src="images/Sertificate_02.png"
+                        alt="Сертификат Huawei: Certified Service Partner, Data Communication"
+                        width="600"
+                        height="800"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="huawei-partner-card__body">
+                      <div class="huawei-partner-card__row-top">
+                        <span class="huawei-partner-card__serial">NO. 20220306RU0010C</span>
+                      </div>
+                      <p class="huawei-partner-card__program" lang="en">
+                        Huawei Enterprise · Channel Partner Program
+                      </p>
+                      <h4 class="huawei-partner-card__title" lang="en">Data Communication</h4>
+                      <p class="huawei-partner-card__subtitle" lang="en">Certified Service Partner</p>
+                      <div class="huawei-partner-card__stars" role="img" aria-label="Рейтинг: четыре звезды">
+                        <span aria-hidden="true">★★★★</span>
+                      </div>
+                      <dl class="huawei-partner-card__meta">
+                        <div>
+                          <dt>Компания</dt>
+                          <dd lang="en">DC Engineering · Russian Federation</dd>
+                        </div>
+                        <div>
+                          <dt>Период действия</dt>
+                          <dd lang="en">March 12, 2022 — March 01, 2023</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="huawei-cert-group huawei-cert-group--spaced" aria-labelledby="huawei-cert-spec-heading">
+                <div class="huawei-cert-group__label">
+                  <h3 id="huawei-cert-spec-heading" class="huawei-cert-group__text">Сертификаты специалистов</h3>
+                  <span class="huawei-cert-group__line" aria-hidden="true"></span>
+                  <span class="huawei-cert-group__meta">2 сертификата · HCIE</span>
+                </div>
+
+                <div class="huawei-specialist-grid">
+                  <article class="huawei-spec-card">
+                    <div class="huawei-spec-card__info">
+                      <div class="huawei-spec-card__head">
+                        <span class="huawei-spec-card__badge">HCIE</span>
+                        <span class="huawei-spec-card__serial">No. 14490</span>
+                      </div>
+                      <h4 class="huawei-spec-card__title" lang="en">Routing &amp; Switching</h4>
+                      <div class="huawei-spec-card__lines">
+                        <p class="huawei-spec-card__line-en" lang="en">Huawei Certified ICT Expert</p>
+                        <p class="huawei-spec-card__line-ru">Сетевые технологии · Уровень эксперта</p>
+                      </div>
+                      <p class="huawei-spec-card__valid">
+                        <span class="huawei-spec-card__valid-label">Действителен до</span>
+                        <time datetime="2023–2001-18" lang="en">January 18, 2023</time>
+                      </p>
+                      <p class="huawei-spec-card__specialists-count">2 специалиста</p>
+                    </div>
+                    <div
+                      class="huawei-spec-card__preview huawei-cert-lightbox-trigger"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                      aria-label="Открыть изображение сертификации крупно"
+                    >
+                      <img
+                        src="images/Sertificate_03.png"
+                        alt="Huawei Certification: Routing &amp; Switching — материалы сертификации команды"
+                        width="1920"
+                        height="1080"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </article>
+
+                  <article class="huawei-spec-card">
+                    <div class="huawei-spec-card__info">
+                      <div class="huawei-spec-card__head">
+                        <span class="huawei-spec-card__badge">HCIE</span>
+                        <span class="huawei-spec-card__serial">No. 16619</span>
+                      </div>
+                      <h4 class="huawei-spec-card__title" lang="en">Storage</h4>
+                      <div class="huawei-spec-card__lines">
+                        <p class="huawei-spec-card__line-en" lang="en">Huawei Certified ICT Expert</p>
+                        <p class="huawei-spec-card__line-ru">Технологии хранения данных · Уровень эксперта</p>
+                      </div>
+                      <p class="huawei-spec-card__valid">
+                        <span class="huawei-spec-card__valid-label">Действителен до</span>
+                        <time datetime="2023–2009-27" lang="en">September 27, 2023</time>
+                      </p>
+                      <p class="huawei-spec-card__specialists-count">4 специалиста</p>
+                    </div>
+                    <div
+                      class="huawei-spec-card__preview huawei-cert-lightbox-trigger"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                      aria-label="Открыть изображение сертификата HCIE Storage крупно"
+                    >
+                      <img
+                        src="images/Sertificate_04.png"
+                        alt="Huawei HCIE Storage, номер 16619, действителен до 27 сентября 2023"
+                        width="1920"
+                        height="1080"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section huawei-clients" id="huawei-clients" aria-labelledby="huawei-clients-heading">
+        <div class="huawei-clients__inner">
+          <header class="huawei-clients__header huawei-module__header">
+            <span class="huawei-module__index" aria-hidden="true">03</span>
+            <div class="huawei-module__intro">
+              <p class="huawei-module__eyebrow" aria-hidden="true">Клиенты</p>
+              <h2 id="huawei-clients-heading" class="huawei-module__title">
+                Нам доверяют поддержку оборудования <span class="hero-pt__huawei">HUAWEI</span>
+              </h2>
+              <p class="huawei-module__lead">
+                Среди наших заказчиков — федеральные ведомства, банки, промышленные холдинги и медиа-компании России.
+              </p>
+            </div>
+          </header>
+        </div>
+
+        <div class="huawei-clients__marquee" data-clients-marquee="huawei" aria-label="Заказчики">
+          <div class="huawei-clients__marquee-row">
+            <div class="huawei-clients__track" id="huawei-clients-row-1" aria-hidden="true"></div>
+          </div>
+          <div class="huawei-clients__marquee-row">
+            <div
+              class="huawei-clients__track huawei-clients__track--reverse"
+              id="huawei-clients-row-2"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+
+        <div class="huawei-clients__form-wrap" id="huawei-feedback">
+          <div class="huawei-feedback">
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="huawei-feedback-heading">
+                <span class="huawei-feedback__title-line">Задайте</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">нам вопрос</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в течение одного рабочего дня. Для срочных вопросов — звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">+7 (495) 108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.ru">info@dce.ru</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >г. Москва, 3‑я ул. Ямского Поля, дом 2, корпус 12, офис № 314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="huawei-request-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="huawei-feedback-heading"
+              >
+                <fieldset class="huawei-request-form__type">
+                  <legend class="huawei-request-form__type-legend">Тип заявки</legend>
+                  <div class="huawei-request-form__type-grid" role="presentation">
+                    <label class="huawei-request-form__type-card">
+                      <input
+                        class="huawei-request-form__type-input"
+                        type="radio"
+                        name="request_type"
+                        value="consultation"
+                        checked
+                      />
+                      <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                      <span class="huawei-request-form__type-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M6 6.5h12a1.5 1.5 0 0 1 1.5 1.5v7.25a1.5 1.5 0 0 1-1.5 1.5H10l-3.75 2.5V8a1.5 1.5 0 0 1 1.5-1.5Z"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M8.25 10.25h7.5M8.25 13h4.5"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="huawei-request-form__type-body">
+                        <span class="huawei-request-form__type-title">Консультация</span>
+                        <span class="huawei-request-form__type-desc"
+                          >Ответим на вопросы по проекту или услуге</span
+                        >
+                      </span>
+                    </label>
+                    <label class="huawei-request-form__type-card">
+                      <input
+                        class="huawei-request-form__type-input"
+                        type="radio"
+                        name="request_type"
+                        value="pricelist"
+                      />
+                      <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                      <span class="huawei-request-form__type-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M7.25 5.5h9.5A1.75 1.75 0 0 1 18.5 7.25v9.5A1.75 1.75 0 0 1 16.75 18.5h-9.5A1.75 1.75 0 0 1 5.5 16.75v-9.5A1.75 1.75 0 0 1 7.25 5.5Z"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                          />
+                          <path
+                            d="M8.25 9.25h7.5M8.25 12h7.5M8.25 14.75h4.5"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="huawei-request-form__type-body">
+                        <span class="huawei-request-form__type-title">Прейскурант</span>
+                        <span class="huawei-request-form__type-desc">Пришлём актуальный прайс-лист</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="huawei-request-form__fields">
+              <input
+                class="huawei-request-form__input"
+                type="text"
+                name="name"
+                placeholder="Имя Фамилия"
+                autocomplete="name"
+                aria-label="Имя Фамилия"
+                required
+              />
+              <input
+                class="huawei-request-form__input"
+                type="email"
+                name="email"
+                placeholder="Почта"
+                autocomplete="email"
+                aria-label="Почта"
+                required
+              />
+              <input
+                class="huawei-request-form__input"
+                type="text"
+                name="inn"
+                placeholder="ИНН"
+                inputmode="numeric"
+                pattern="[0-9]{10}|[0-9]{12}"
+                maxlength="12"
+                aria-label="ИНН"
+              />
+              <textarea
+                class="huawei-request-form__input huawei-request-form__input--area"
+                id="huawei-request-message"
+                name="message"
+                placeholder="Ваш вопрос"
+                rows="4"
+                aria-label="Ваш вопрос"
+                required
+              ></textarea>
+            </div>
+
+            <label class="huawei-request-form__consent">
+              <input
+                class="huawei-request-form__checkbox"
+                type="checkbox"
+                name="consent"
+                value="yes"
+                required
+              />
+              <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+              <span class="huawei-request-form__consent-text">
+                Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                мою заявку.
+              </span>
+            </label>
+
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path
+                        d="M3 7h8M8 4l3 3-3 3"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <p
+                  class="huawei-request-form__status"
+                  id="huawei-request-form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <dialog
+      id="huawei-cert-lightbox"
+      class="cert-lightbox"
+      aria-modal="true"
+      aria-labelledby="huawei-cert-lightbox-title"
+    >
+      <button type="button" class="cert-lightbox__scrim" data-cert-lightbox-close aria-label="Закрыть просмотр"></button>
+      <div class="cert-lightbox__shell">
+        <h2 id="huawei-cert-lightbox-title" class="visually-hidden">Просмотр сертификата</h2>
+        <button
+          type="button"
+          class="cert-lightbox__close"
+          data-cert-lightbox-close
+          aria-label="Закрыть"
+        >
+          <span class="cert-lightbox__close-icon" aria-hidden="true"></span>
+        </button>
+        <img
+          id="huawei-cert-lightbox-img"
+          class="cert-lightbox__img"
+          alt=""
+          width="1200"
+          height="1600"
+          decoding="async"
+        />
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img
+                  class="footer-logo__img footer-logo__img--light"
+                  src="images/Logo_podval_white.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <img
+                  class="footer-logo__img footer-logo__img--dark"
+                  src="images/Logo_podval_black.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC
+                (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="index.html#projects">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Реквизиты и контакты — в разделе <a href="contacts.html">Контакты</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="clients-marquee.js?v=2"></script>
+    <script defer src="huawei-request-form.js?v=3"></script>
+    <script defer src="huawei-cert-lightbox.js"></script>
+    <script defer src="nav.js?v=20260710-subnav-header-lock"></script>
+  </body>
+</html>

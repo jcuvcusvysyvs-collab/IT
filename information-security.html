@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Информационная безопасность — DC Engineering</title>
+    <meta name="description" content="Обеспечение информационной безопасности: сетевая безопасность, управление доступом, мониторинг и реагирование на инциденты. DC Engineering." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-infra page-infosec">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img class="logo__img logo__img--light" src="images/Logo_white.png" alt="" width="280" height="64" decoding="async" fetchpriority="high" />
+          <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+          <ul id="nav-menu" class="nav-menu">
+            <li class="nav-item-has-submenu">
+              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-services" id="services-menu-button">
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem" aria-current="page">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-about" id="about-menu-button">
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="subpage-hero subpage-hero--about page-infosec__hero" data-subpage-hero aria-labelledby="service-page-title">
+        <div class="subpage-hero__inner">
+          <div class="subpage-hero__content">
+            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+              <ol class="subpage-breadcrumbs__list">
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
+                </li>
+                <li class="subpage-breadcrumbs__item">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
+                </li>
+                <li class="subpage-breadcrumbs__item" aria-current="page">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  Информационная безопасность
+                </li>
+              </ol>
+            </nav>
+            <h1 id="service-page-title" class="subpage-hero__title">
+              <span class="subpage-hero__title-line">Информационная</span>
+              <span class="subpage-hero__title-line about-dce__brand">безопасность</span>
+            </h1>
+            <p class="subpage-hero__lead">
+              Время и&nbsp;деньги, инвестированные в&nbsp;проектирование, возвращаются уже в&nbsp;первый год эксплуатации.
+            </p>
+            <div class="subpage-hero__actions">
+              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infosec-examples">Примеры</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section about-dce page-infra__showcase" id="infosec-intro" aria-labelledby="infosec-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Направление</p>
+                <h2 id="infosec-h-01" class="about-dce__title">
+                  Обеспечение <span class="about-dce__brand">информационной безопасности</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="page-about__prose-wrap page-infra__section-prose">
+              <p>
+                Сохранность данных и&nbsp;защищённая работа информационных систем требуют комплекса
+                организационно-технических мер&nbsp;— с&nbsp;учётом законодательства, подзаконных актов
+                и&nbsp;рекомендаций регуляторов в&nbsp;области ИБ. ИТ-инфраструктура&nbsp;— стратегический актив
+                компании; без продуманной системы безопасности на&nbsp;всех уровнях её нельзя считать надёжной,
+                особенно в&nbsp;условиях сложных гетерогенных сетей и&nbsp;постоянных изменений.
+              </p>
+              <p>
+                Мы проектируем защищённые и&nbsp;сегментированные ИТ-контуры с&nbsp;повышенными требованиями
+                к&nbsp;конфиденциальной информации, КИИ и&nbsp;персональным данным&nbsp;— для банков, страховых
+                и&nbsp;медицинских организаций, государственных заказчиков с&nbsp;различными требованиями
+                в&nbsp;каждом контуре обработки данных.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="infosec-approach" aria-labelledby="infosec-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Методология</p>
+                <h2 id="infosec-h-02" class="about-dce__title">
+                  Системный <span class="about-dce__brand">подход</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Используя системный подход, мы&nbsp;обеспечиваем организацию процессов по&nbsp;поддержанию
+                  конфиденциальности, целостности, доступности информации с&nbsp;использованием современных технических
+                  средств защиты и&nbsp;программных решений:
+                </p>
+              </div>
+            </header>
+
+            <ol class="page-infosec__steps" role="list">
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">01</span>
+                <span class="page-infosec__step-text">Проведём обследование, выявим уязвимости и&nbsp;оценим защищенность информации</span>
+              </li>
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">02</span>
+                <span class="page-infosec__step-text">Согласуем план действий по&nbsp;уменьшению рисков и&nbsp;угроз</span>
+              </li>
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">03</span>
+                <span class="page-infosec__step-text">Разработаем нормативно-техническую документацию</span>
+              </li>
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">04</span>
+                <span class="page-infosec__step-text">Осуществим проектирование решения и&nbsp;внедрим технические средства защиты</span>
+              </li>
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">05</span>
+                <span class="page-infosec__step-text">Подготовим персонал к&nbsp;реагированию на&nbsp;актуальные угрозы и&nbsp;атаки, проведем практические тренинги и&nbsp;киберучения</span>
+              </li>
+              <li class="page-infosec__step">
+                <span class="page-infosec__step-num" aria-hidden="true">06</span>
+                <span class="page-infosec__step-text">Обеспечим техническое сопровождение и&nbsp;поддержку средств ИБ</span>
+              </li>
+            </ol>
+
+            <div class="page-infosec__experience page-about__prose-wrap page-infra__section-prose">
+              <p>
+                У&nbsp;нас есть опыт построения ИТ-инфраструктур и&nbsp;многоуровневых сегментированных сетей
+                в&nbsp;жесточайших условиях защиты информации ДСП, конфиденциальной информации и&nbsp;персональных данных
+                для крупнейших банков, страховых, медицинских организаций и&nbsp;государственных заказчиков
+                с&nbsp;различными требованиями к&nbsp;контурам безопасности.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce" id="infosec-tech" aria-labelledby="infosec-h-03">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">03</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Компетенции</p>
+                <h2 id="infosec-h-03" class="about-dce__title">
+                  Профильные <span class="about-dce__brand">технологии</span>
+                </h2>
+              </div>
+            </header>
+
+            <nav class="page-infosec__tech-nav" aria-label="Разделы профильных технологий">
+              <a class="page-infosec__tech-nav-link" href="#infosec-network">Сетевая безопасность</a>
+              <a class="page-infosec__tech-nav-link" href="#infosec-access">Управление доступом и&nbsp;контроль действий пользователей</a>
+              <a class="page-infosec__tech-nav-link" href="#infosec-monitoring">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</a>
+            </nav>
+
+            <article class="page-infosec__tech-block" id="infosec-network" aria-labelledby="infosec-network-title">
+              <div class="page-infosec__tech-head">
+                <h3 id="infosec-network-title" class="page-infosec__tech-title">Сетевая безопасность</h3>
+              </div>
+              <div class="page-infosec__tech-body">
+                <p>
+                  Решения по&nbsp;сетевой безопасности являются фундаментом системы ИБ любой организации. Грамотно
+                  подобранное решение, тщательные настройки и&nbsp;проработанная архитектура&nbsp;— залог стабильной
+                  и&nbsp;непрерывной работы компании. Данный класс решений обеспечивает защищенный доступ к&nbsp;ресурсам
+                  и&nbsp;информационным системам предприятия, контролируемый внутренний и&nbsp;внешний обмен данными,
+                  защиту от&nbsp;несанкционированного проникновения и&nbsp;кражи информации.
+                </p>
+                <p>В&nbsp;качестве решений по&nbsp;обеспечению безопасности сетей мы&nbsp;предлагаем следующие:</p>
+                <ul class="page-infra__list">
+                  <li>Межсетевое экранирование (NGFW)</li>
+                  <li>Защита от&nbsp;направленных атак (APT) и&nbsp;обнаружение и&nbsp;предотвращение вторжений (IPS/sandbox)</li>
+                  <li>Виртуальные частные сети (VPN), защита данных при их&nbsp;передаче по&nbsp;каналам связи и&nbsp;защита удаленного доступа</li>
+                  <li>Защита Web-ресурсов и&nbsp;приложений (WAF/DBFW)</li>
+                  <li>Системы анализа трафика (NTA)</li>
+                  <li>Защита от&nbsp;DDoS-атак</li>
+                  <li>Защита беспроводных сетей</li>
+                </ul>
+                <p>Дополнительно могут применяться технологии сетевой безопасности узкого назначения, такие как:</p>
+                <ul class="page-infra__list">
+                  <li>Управление доступом в&nbsp;сеть и&nbsp;контроль состояния подключаемых устройств</li>
+                  <li>Защита данных при их&nbsp;передаче внутри виртуальных сред</li>
+                  <li>Защита от&nbsp;угроз на&nbsp;основе анализа сетевого трафика (NTA)</li>
+                  <li>Агрегирование, фильтрация и&nbsp;репликация сетевого трафика</li>
+                  <li>Разбор и&nbsp;анализ SSL/TLS-трафика</li>
+                </ul>
+                <p>
+                  В&nbsp;зависимости от&nbsp;нужд и&nbsp;потребностей мы&nbsp;можем сформировать, как комплексное решение,
+                  так и&nbsp;подобрать варианты реализации локальных и&nbsp;узкоспециализированных задач.
+                </p>
+              </div>
+            </article>
+
+            <article class="page-infosec__tech-block" id="infosec-access" aria-labelledby="infosec-access-title">
+              <div class="page-infosec__tech-head">
+                <h3 id="infosec-access-title" class="page-infosec__tech-title">Управление доступом и&nbsp;контроль действий пользователей</h3>
+              </div>
+              <div class="page-infosec__tech-body">
+                <p>
+                  Минимизация полномочий и&nbsp;предоставление только тех прав доступа, которые требуются пользователям
+                  для выполнения их&nbsp;должностных обязанностей, являются одним из&nbsp;главных принципов обеспечения
+                  информационной безопасности. Однако довольно часто организации этим принципом пренебрегают,
+                  сосредотачивая свое внимание преимущественно на&nbsp;защите от&nbsp;внешних угроз, тогда как
+                  в&nbsp;действительности наиболее распространенными и&nbsp;критичными с&nbsp;точки зрения ущерба
+                  являются угрозы внутренние.
+                </p>
+                <p>
+                  Для нейтрализации угроз несанкционированного доступа, разграничения полномочий и&nbsp;прав пользователей,
+                  повышения осведомленности о&nbsp;действиях пользователей и&nbsp;администраторов мы&nbsp;можем предложить
+                  комплекс решений, который позволяет реализовать данные задачи на&nbsp;различных уровнях: на&nbsp;уровне
+                  сети, на&nbsp;уровне операционной системы и&nbsp;на&nbsp;уровне приложений.
+                </p>
+                <p>В&nbsp;качестве основных решений в&nbsp;рамках по&nbsp;управлению доступом мы&nbsp;предлагаем следующие:</p>
+                <ul class="page-infra__list">
+                  <li>Защита от&nbsp;несанкционированного доступа (на&nbsp;уровне ОС и&nbsp;приложений)</li>
+                  <li>Контроль доступа в&nbsp;сеть на&nbsp;основе контекстной информации (кто, когда, откуда, с&nbsp;какого устройства производит подключение)</li>
+                  <li>Защита рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
+                  <li>Профилирование и&nbsp;оценка соответствия состояния подключаемых устройств</li>
+                  <li>Решения по&nbsp;идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM), управления учетными записями и&nbsp;их&nbsp;жизненными циклом</li>
+                  <li>Обеспечение доверенной загрузки</li>
+                  <li>Управление мобильными устройствами</li>
+                  <li>Обеспечение усиленной аутентификации</li>
+                  <li>Контроль доступа к&nbsp;системам управления виртуальными инфраструктурами</li>
+                  <li>Защита от&nbsp;утечек конфиденциальной информации (DLP)</li>
+                  <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
+                  <li>Аудит поведения персонала и&nbsp;использования инфраструктуры компании</li>
+                  <li>Контроль действий привилегированных пользователей и&nbsp;администраторов</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="page-infosec__tech-block" id="infosec-monitoring" aria-labelledby="infosec-monitoring-title">
+              <div class="page-infosec__tech-head">
+                <h3 id="infosec-monitoring-title" class="page-infosec__tech-title">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</h3>
+              </div>
+              <div class="page-infosec__tech-body">
+                <p>
+                  Большое количество разрозненных средств защиты информации, сложная сетевая архитектура, отсутствие
+                  ясной картины о&nbsp;том, что в&nbsp;действительности происходит в&nbsp;сети организации&nbsp;— все
+                  это снижает эффективность применяемых мер ИБ, усложняет процедуры администрирования, эксплуатации
+                  и&nbsp;мониторинга систем безопасности, увеличивает расходы на&nbsp;ИТ- и&nbsp;ИБ-персонал. Как следствие,
+                  это приводит к&nbsp;понижению реального уровня защищенности компании, значительно повышает вероятность
+                  утечек информации и&nbsp;возникновения сбоев, как в&nbsp;результате деятельности злоумышленников,
+                  так и&nbsp;из-за непреднамеренных действий пользователей.
+                </p>
+                <p>
+                  Для автоматизации процессов сбора и&nbsp;анализа событий, создания единой, продуманной системы
+                  мониторинга и&nbsp;управления инцидентами ИБ мы&nbsp;предлагаем следующие решения:
+                </p>
+                <ul class="page-infra__list">
+                  <li>Системы мониторинга событий и&nbsp;управления инцидентами (SIEM, IRP)</li>
+                  <li>Решения по&nbsp;поиску и&nbsp;обнаружению атак (Threat Intelligence, EDR)</li>
+                  <li>Анализ уязвимостей и&nbsp;контроль обновлений (Vulnerability Management)</li>
+                  <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
+                  <li>Аудит и&nbsp;контроль действий привилегированных пользователей и&nbsp;администраторов</li>
+                  <li>Контроль конфигураций, управление изменениями и&nbsp;системы резервного копирования</li>
+                </ul>
+              </div>
+            </article>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="infosec-examples" aria-labelledby="infosec-h-04">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">04</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Опыт</p>
+                <h2 id="infosec-h-04" class="about-dce__title">
+                  Примеры <span class="about-dce__brand">реализованных проектов</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-infra__examples-grid" role="list">
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                  2022 · Москва
+                </p>
+                <h3 class="about-dce__card-title">ФГБУ «НМИЦ ТО&nbsp;им.&nbsp;Н.Н.&nbsp;Приорова» Минздрава России</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2022-м году разработали план мероприятий, направленных на&nbsp;повышение защищенности объектов
+                  критической информационной инфраструктуры
+                </p>
+                <a class="page-about__card-cta" href="project-priorov.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                  2022 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Росавтодор</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2022-м году создали распределённую инфраструктуру периметральных средств безопасности
+                </p>
+                <a class="page-about__card-cta" href="project-krok.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                  2022 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Крупный банк Российской Федерации</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2022-м году выполнили миграцию на&nbsp;отечественные решения периметральных средств безопасности
+                  региональных сегментов
+                </p>
+                <a class="page-about__card-cta" href="project-linsm-perimeter.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img class="footer-logo__img footer-logo__img--light" src="images/Logo_podval_white.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+                <img class="footer-logo__img footer-logo__img--dark" src="images/Logo_podval_black.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Реквизиты и контакты — в разделе <a href="contacts.html">Контакты</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+  </body>
+</html>

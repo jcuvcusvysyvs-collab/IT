@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Масштабирование без закупок — DC Engineering</title>
+    <meta name="description" content="Повышение эффективности использования ИТ-ресурсов без закупок: инвентаризация, мониторинг утилизации и оптимизация инфраструктуры. DC Engineering." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-infra page-scaling">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="index.html#top">
+          <span class="visually-hidden">DC Engineering — на главную</span>
+          <img class="logo__img logo__img--light" src="images/Logo_white.png" alt="" width="280" height="64" decoding="async" fetchpriority="high" />
+          <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+          <ul id="nav-menu" class="nav-menu">
+            <li class="nav-item-has-submenu">
+              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-services" id="services-menu-button">
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem" aria-current="page">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-about" id="about-menu-button">
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="subpage-hero subpage-hero--about page-scaling__hero" data-subpage-hero aria-labelledby="service-page-title">
+        <div class="subpage-hero__inner">
+          <div class="subpage-hero__content">
+            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+              <ol class="subpage-breadcrumbs__list">
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
+                </li>
+                <li class="subpage-breadcrumbs__item">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
+                </li>
+                <li class="subpage-breadcrumbs__item" aria-current="page">
+                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                  Масштабирование без закупок
+                </li>
+              </ol>
+            </nav>
+            <h1 id="service-page-title" class="subpage-hero__title">
+              <span class="subpage-hero__title-line">Масштабирование</span>
+              <span class="subpage-hero__title-line about-dce__brand">без закупок</span>
+            </h1>
+            <p class="subpage-hero__lead">
+              Максимальную эффективность использования средств вы&nbsp;достигнете только при проверяемых
+              и&nbsp;состязательных закупочных процедурах.
+            </p>
+            <div class="subpage-hero__actions">
+              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#scaling-steps">Мероприятия</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section about-dce page-infra__showcase" id="scaling-intro" aria-labelledby="scaling-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Направление</p>
+                <h2 id="scaling-h-01" class="about-dce__title">
+                  Повышение эффективности <span class="about-dce__brand">использования имеющихся ресурсов</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="page-about__prose-wrap page-infra__section-prose page-scaling__intro-prose">
+              <p>
+                Нагрузка на&nbsp;информационные сервисы постоянно растёт, что приводит к&nbsp;необходимости добавления
+                новых ИТ-ресурсов. Вместо расходования средств на&nbsp;закупку нового оборудования, мы&nbsp;поможем вам
+                исследовать работу существующего и&nbsp;оптимизировать его использование, проведя следующие мероприятия:
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="scaling-steps" aria-labelledby="scaling-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Методология</p>
+                <h2 id="scaling-h-02" class="about-dce__title">
+                  Этапы <span class="about-dce__brand">работ</span>
+                </h2>
+              </div>
+            </header>
+
+            <ol class="page-infosec__steps page-scaling__steps" role="list">
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">01</span>
+                  <span class="page-scaling__step-label">Инвентаризация оборудования ИТ-инфраструктуры</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">Серверы, системы хранения данных, системы резервного копирования, коммутаторы, оборудование ИБ и&nbsp;т.&nbsp;д.</p>
+              </li>
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">02</span>
+                  <span class="page-scaling__step-label">Разработка или актуализация ресурсно-сервисной модели</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">Визуализированное представление состава и&nbsp;взаимосвязи ИТ-ресурсов, которые обеспечивают предоставление информационных сервисов.</p>
+              </li>
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">03</span>
+                  <span class="page-scaling__step-label">Установка системы мониторинга использования ИТ-оборудования</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">С&nbsp;аналитическими модулями, представляющими в&nbsp;агрегированном виде информацию об&nbsp;утилизации ИТ-ресурсов и&nbsp;их&nbsp;компонент.</p>
+              </li>
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">04</span>
+                  <span class="page-scaling__step-label">Выявление «узких мест» и&nbsp;неоптимальных конфигураций</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">На&nbsp;основании инвентаризации, ресурсно-сервисной модели и&nbsp;данных системы мониторинга&nbsp;— подсистемы, создающие повышенную нагрузку на&nbsp;оборудование.</p>
+              </li>
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">05</span>
+                  <span class="page-scaling__step-label">Устранение выявленных неоптимальностей</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">Путём реорганизации взаимодействия существующего оборудования и&nbsp;перераспределения нагрузки.</p>
+              </li>
+              <li class="page-infosec__step">
+                <div class="page-scaling__step-head">
+                  <span class="page-infosec__step-num" aria-hidden="true">06</span>
+                  <span class="page-scaling__step-label">Самостоятельные решения Заказчика о&nbsp;перераспределении нагрузки</span>
+                </div>
+                <span class="page-scaling__step-divider" aria-hidden="true"></span>
+                <p class="page-scaling__step-detail">Накопив статистически значимые данные об&nbsp;утилизации, система мониторинга определит скрытые резервы ресурсов, доступные для использования в&nbsp;дальнейшем.</p>
+              </li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce" id="scaling-results" aria-labelledby="scaling-h-03">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">03</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Результат</p>
+                <h2 id="scaling-h-03" class="about-dce__title">
+                  Что вы <span class="about-dce__brand">получите</span>
+                </h2>
+                <p class="about-dce__lead">
+                  По&nbsp;итогам оказания наших услуг вы&nbsp;получите настроенную систему мониторинга утилизации
+                  ресурсов, позволяющую также:
+                </p>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-scaling__benefits" role="list">
+              <article class="about-dce__card page-scaling__benefit-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                </p>
+                <h3 class="about-dce__card-title">Оптимизация затрат на&nbsp;связь</h3>
+                <p class="page-about__card-text">
+                  Оптимизировать затраты на&nbsp;аренду телекоммуникационных каналов связи на&nbsp;основании
+                  информации об&nbsp;их&nbsp;утилизации.
+                </p>
+              </article>
+
+              <article class="about-dce__card page-scaling__benefit-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                </p>
+                <h3 class="about-dce__card-title">Планирование модернизации</h3>
+                <p class="page-about__card-text">
+                  Планировать модернизацию ИТ-инфраструктуры на&nbsp;основании данных об&nbsp;утилизации оборудования.
+                </p>
+              </article>
+
+              <article class="about-dce__card page-scaling__benefit-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                </p>
+                <h3 class="about-dce__card-title">Предотвращение отказов</h3>
+                <p class="page-about__card-text">
+                  Предотвращать отказы при критической нехватке производительности компонентов ИТ-инфраструктуры
+                  из-за перегрузки.
+                </p>
+              </article>
+            </div>
+
+            <div class="page-scaling__notice">
+              <p>
+                Программное обеспечение, используемое при оказании услуги, распространяется по&nbsp;открытой лицензии
+                GPL и&nbsp;дорабатывается нашими специалистами согласно специфике вашей инфраструктуры.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="index.html#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img class="footer-logo__img footer-logo__img--light" src="images/Logo_podval_white.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+                <img class="footer-logo__img footer-logo__img--dark" src="images/Logo_podval_black.png" alt="" width="360" height="90" decoding="async" loading="lazy" />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+                <li><a href="index.html#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Реквизиты и контакты — в разделе <a href="contacts.html">Контакты</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="subpage-hero.js"></script>
+    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+  </body>
+</html>

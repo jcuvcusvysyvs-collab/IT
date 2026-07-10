@@ -1,0 +1,932 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DC Engineering — инженерия данных и сетей</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260710-hero-scada-slider-dce" />
+    <link rel="preload" href="images/hero_section/01_hero_section.png" as="image" />
+    <link rel="preload" href="images/service_huawei.png" as="image" />
+    <link rel="preload" href="images/hero_03.png" as="image" />
+    <script defer src="theme.js"></script>
+  </head>
+  <body class="page-home">
+    <a class="skip-link" href="#main">К основному содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#top">
+          <span class="visually-hidden">DC Engineering</span>
+          <img
+            class="logo__img logo__img--light"
+            src="images/Logo_white.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="logo__img logo__img--dark"
+            src="images/Logo_black.png"
+            alt=""
+            width="280"
+            height="64"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+
+          <ul id="nav-menu" class="nav-menu">
+            <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
+                Услуги
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
+                <div class="nav-submenu-panel">
+                                                      <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
+                  </li>
+                  <li role="none">
+                    <a href="information-security.html" role="menuitem">Информационная безопасность</a>
+                  </li>
+                  <li role="none">
+                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                  </li>
+                  <li role="none">
+                    <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
+                  </li>
+                  <li role="none">
+                    <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
+                  </li>
+                  </ul>
+                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
+                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
+                    <span class="nav-submenu-feature__title">HUAWEI</span>
+                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
+                    <span class="nav-submenu-feature__btn">Подробнее</span>
+                    <span class="nav-submenu-feature__decor" aria-hidden="true">
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                      <span class="nav-submenu-feature__tile"></span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="#clients">Заказчики</a></li>
+            <li class="nav-item-has-submenu">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
+                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <label class="theme-switch" title="Тема оформления">
+            <span class="visually-hidden">Переключить светлую и тёмную тему</span>
+            <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-decor theme-switch-decor--sun">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-decor theme-switch-decor--moon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
+                  <path
+                    d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
+                  <path
+                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    stroke="currentColor"
+                    stroke-width="2.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero-pt" id="top" aria-labelledby="hero-title" data-hero-slider>
+        <div class="hero-pt__slides">
+          <!-- Слайд 1: DC Engineering -->
+          <article
+            class="hero-pt__slide hero-pt__slide--dce is-active"
+            data-hero-slide
+            aria-labelledby="hero-title"
+            aria-hidden="false"
+          >
+            <div class="hero-pt__accent-bar" aria-hidden="true"></div>
+            <div class="hero-pt__bg hero-pt__bg--dce" aria-hidden="true"></div>
+            <div class="hero-pt__grid">
+              <div class="hero-pt__content">
+                <h1 id="hero-title" class="hero-pt__title">
+                  <span class="hero-pt__title-line">Data Center</span>
+                  <span class="hero-pt__title-line hero-pt__title-line--accent">Engineering</span>
+                </h1>
+                <p class="hero-pt__lead">
+                  <span class="hero-pt__lead-headline">Системы хранения, обработки и передачи данных</span>
+                  <span class="hero-pt__lead-text">20 лет опыта построения и эксплуатации ИТ-инфраструктур</span>
+                </p>
+                <ul class="hero-pt__stats hero-pt__stats--grid" aria-label="Ключевые показатели">
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">16</span>
+                    <span class="hero-pt__stat-label hero-pt__stat-label--long"
+                      >Лет средний профильный стаж&nbsp;сотрудников</span
+                    >
+                  </li>
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">70<sup>+</sup></span>
+                    <span class="hero-pt__stat-label">Проектов в год</span>
+                  </li>
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">31</span>
+                    <span class="hero-pt__stat-label">Активный сервисный контракт</span>
+                  </li>
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">300<sup>+</sup></span>
+                    <span class="hero-pt__stat-label hero-pt__stat-label--long"
+                      >Профильных профессиональных&nbsp;сертификатов</span
+                    >
+                  </li>
+                </ul>
+                <div class="hero-pt__ctas">
+                  <a class="hero-pt__btn hero-pt__btn--primary" href="about.html">
+                    Подробнее
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M2 7h10M8 3l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <a class="hero-pt__btn hero-pt__btn--ghost" href="contacts.html">Связаться</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Слайд 2: Huawei Service Center -->
+          <article
+            class="hero-pt__slide hero-pt__slide--huawei"
+            data-hero-slide
+            aria-labelledby="hero-title-huawei"
+            aria-hidden="true"
+          >
+            <div class="hero-pt__accent-bar" aria-hidden="true"></div>
+            <div class="hero-pt__bg hero-pt__bg--huawei" aria-hidden="true"></div>
+            <div class="hero-pt__grid">
+              <div class="hero-pt__content">
+                <h2 id="hero-title-huawei" class="hero-pt__title">
+                  <span class="hero-pt__title-line">Сервисный</span>
+                  <span class="hero-pt__title-line">центр</span>
+                  <span class="hero-pt__title-line hero-pt__title-line--accent">HUAWEI</span>
+                </h2>
+                <p class="hero-pt__lead">20 лет опыта построения и эксплуатации ИТ-инфраструктур</p>
+                <ul class="hero-pt__stats" aria-label="Ключевые показатели">
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">20<sup>+</sup></span>
+                    <span class="hero-pt__stat-label">Лет опыта</span>
+                  </li>
+                  <li class="hero-pt__stat-divider" aria-hidden="true"></li>
+                  <li class="hero-pt__stat">
+                    <span class="hero-pt__stat-num">300<sup>+</sup></span>
+                    <span class="hero-pt__stat-label">Проектов</span>
+                  </li>
+                  <li class="hero-pt__stat-divider" aria-hidden="true"></li>
+                  <li class="hero-pt__stat hero-pt__stat--contracts">
+                    <span class="hero-pt__stat-num">30<sup>+</sup></span>
+                    <span class="hero-pt__stat-label hero-pt__stat-label--long"
+                      >Активных сервисных<br />контрактов</span
+                    >
+                  </li>
+                </ul>
+                <div class="hero-pt__ctas">
+                  <a class="hero-pt__btn hero-pt__btn--primary" href="huawei-service-center.html">
+                    Подробнее
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M2 7h10M8 3l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <a class="hero-pt__btn hero-pt__btn--ghost" href="huawei-service-center.html#huawei-feedback">Консультация</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Слайд 3: АСДУ ЦОД SCADA+ -->
+          <article
+            class="hero-pt__slide hero-pt__slide--scada"
+            data-hero-slide
+            aria-labelledby="hero-title-scada"
+            aria-hidden="true"
+          >
+            <div class="hero-pt__accent-bar" aria-hidden="true"></div>
+            <div class="hero-pt__bg hero-pt__bg--scada" aria-hidden="true"></div>
+            <div class="hero-pt__grid">
+              <div class="hero-pt__content">
+                <h2 id="hero-title-scada" class="hero-pt__title">
+                  <span class="hero-pt__title-line">АСДУ ЦОД</span>
+                  <span class="hero-pt__title-line">на базе</span>
+                  <span class="hero-pt__title-line hero-pt__title-line--scada">
+                    <span class="hero-pt__title-scada">SCADA</span><span class="hero-pt__title-plus">+</span>
+                  </span>
+                </h2>
+                <p class="hero-pt__lead">
+                  <span class="hero-pt__lead-headline"
+                    >Автоматизированная диспетчерская система управления инженерной инфраструктурой центра обработки данных</span
+                  >
+                </p>
+                <div class="hero-pt__ctas">
+                  <a class="hero-pt__btn hero-pt__btn--primary" href="infrastructure-solutions.html">
+                    Подробнее
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M2 7h10M8 3l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <a class="hero-pt__btn hero-pt__btn--ghost" href="contacts.html">Связаться</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="hero-pt__dock">
+          <div class="hero-pt__controls" role="group" aria-label="Управление слайдами">
+            <button type="button" class="hero-pt__nav-btn" data-hero-prev aria-label="Предыдущий слайд">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <path
+                  d="M10 12L6 8l4-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <div class="hero-pt__segments" data-hero-segments role="tablist" aria-label="Слайды">
+              <button
+                type="button"
+                class="hero-pt__segment is-active"
+                data-hero-segment="0"
+                role="tab"
+                aria-selected="true"
+                aria-label="Слайд 1: Data Center Engineering"
+              >
+                <span class="hero-pt__segment-fill" aria-hidden="true"></span>
+              </button>
+              <button
+                type="button"
+                class="hero-pt__segment"
+                data-hero-segment="1"
+                role="tab"
+                aria-selected="false"
+                aria-label="Слайд 2: Сервисный центр Huawei"
+              >
+                <span class="hero-pt__segment-fill" aria-hidden="true"></span>
+              </button>
+              <button
+                type="button"
+                class="hero-pt__segment"
+                data-hero-segment="2"
+                role="tab"
+                aria-selected="false"
+                aria-label="Слайд 3: АСДУ ЦОД на базе SCADA+"
+              >
+                <span class="hero-pt__segment-fill" aria-hidden="true"></span>
+              </button>
+            </div>
+            <span class="hero-pt__counter" aria-hidden="true">
+              <span class="hero-pt__counter-current" data-hero-counter>01</span>
+              <span class="hero-pt__counter-sep">/</span>
+              <span class="hero-pt__counter-total">03</span>
+            </span>
+            <button type="button" class="hero-pt__nav-btn" data-hero-next aria-label="Следующий слайд">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <path
+                  d="M6 4l4 4-4 4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section services-showcase" aria-labelledby="services-heading">
+        <div class="services-showcase__inner">
+          <div class="services-showcase__block">
+            <header class="services-showcase__header">
+              <span class="services-showcase__index" aria-hidden="true">01</span>
+              <div class="services-showcase__title-block">
+                <h2 id="services-heading" class="services-showcase__title">Услуги</h2>
+                <p class="services-showcase__lead services-showcase__lead--header">
+                  Наша команда придумывает, документирует и реализует решения по хранению, обработке и передаче
+                  данных в корпоративных средах.
+                </p>
+              </div>
+              <div class="services-showcase__nav" role="group" aria-label="Прокрутка списка услуг">
+                <button type="button" class="services-showcase__nav-btn" data-services-carousel-prev aria-label="Назад">
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path
+                      d="M10 12L6 8l4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <button type="button" class="services-showcase__nav-btn" data-services-carousel-next aria-label="Вперёд">
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path
+                      d="M6 4l4 4-4 4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </header>
+            <div class="services-showcase__divider" aria-hidden="true" data-services-carousel-progress>
+              <span class="services-showcase__divider-fill"></span>
+            </div>
+            <div class="services-showcase__body">
+              <div class="services-showcase__grid" data-services-carousel tabindex="0" role="list">
+                <article class="services-slide" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">01</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/SERVICE_01.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">Инфраструктурные решения</h3>
+                    <p class="services-slide__desc">
+                      Вычислительные комплексы, СХД, сети передачи данных и встраивание в текущий ИТ-ландшафт.
+                    </p>
+                    <a class="services-slide__link" href="infrastructure-solutions.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+                <article class="services-slide" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">02</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/SERVICE_02.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">Информационная безопасность</h3>
+                    <p class="services-slide__desc">
+                      Контуры безопасности, соответствие регуляторным требованиям и сопровождение сертифицированных
+                      решений.
+                    </p>
+                    <a class="services-slide__link" href="contacts.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+                <article class="services-slide" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">03</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/SERVICE_03.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">Масштабирование без закупок</h3>
+                    <p class="services-slide__desc">
+                      Рост ёмкости и отказоустойчивости за счёт архитектуры, без проведения закупочных процедур.
+                    </p>
+                    <a class="services-slide__link" href="contacts.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+                <article class="services-slide" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">04</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/SERVICE_04.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">Обеспечение непрерывности</h3>
+                    <p class="services-slide__desc">
+                      Проектирование отказоустойчивости, резервирование и планы восстановления после сбоев.
+                    </p>
+                    <a class="services-slide__link" href="contacts.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+                <article class="services-slide" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">05</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/SERVICE_05.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">Эксплуатация и сопровождение</h3>
+                    <p class="services-slide__desc">
+                      Поддержка, мониторинг, обновления и развитие инфраструктуры под согласованным SLA.
+                    </p>
+                    <a class="services-slide__link" href="contacts.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="services-promo" role="region" aria-labelledby="services-promo-heading">
+              <div class="services-promo__layout">
+                <div class="services-promo__media">
+                  <img
+                    class="services-promo__gerb"
+                    src="images/gerb.png"
+                    alt=""
+                    width="480"
+                    height="640"
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="services-promo__main">
+                  <header class="services-promo__header">
+                    <div class="services-promo__title-block">
+                      <h3 id="services-promo-heading" class="services-promo__heading">
+                        Специальные условия для государственных&nbsp;заказчиков
+                      </h3>
+                      <p class="services-promo__lead">
+                        Импортозамещение, защита данных и расширение инфраструктуры — в формате, удобном для
+                        бюджетных процедур и 44/223-ФЗ.
+                      </p>
+                    </div>
+                  </header>
+                  <ul class="services-promo__list">
+                    <li class="services-promo__item">
+                      <span class="services-promo__icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <path
+                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linejoin="round"
+                          />
+                          <path d="M14 2v6h6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                          <path d="M8 12.5h8M8 15.5h8M8 18.5h5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+                        </svg>
+                      </span>
+                      <span class="services-promo__text">План импортозамещения</span>
+                    </li>
+                    <li class="services-promo__item">
+                      <span class="services-promo__icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <path
+                            d="M12 3L5 6.2v5.5c0 4.5 2.9 8.7 7 9.8 4.1-1.1 7-5.3 7-9.8V6.2L12 3z"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="services-promo__text">Информационная безопасность</span>
+                    </li>
+                    <li class="services-promo__item">
+                      <span class="services-promo__icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <rect x="7" y="7" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6" />
+                          <path d="M7 10H5M7 14H5M19 10h-2M19 14h-2M10 7V5M14 7V5M10 19v-2M14 19v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                          <rect x="10" y="10" width="4" height="4" rx="0.5" fill="currentColor" opacity="0.4" />
+                        </svg>
+                      </span>
+                      <span class="services-promo__text">Масштабирование без закупок</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects-showcase" aria-labelledby="projects-heading">
+        <div class="projects-showcase__inner">
+          <div class="projects-showcase__block" data-project-showcase role="region" aria-label="Избранные проекты">
+            <header class="projects-showcase__header">
+              <span class="projects-showcase__index" aria-hidden="true">02</span>
+              <div class="projects-showcase__intro">
+                <h2 id="projects-heading" class="projects-showcase__title">Проекты</h2>
+                <p class="projects-showcase__lead">
+                  С 2015 года мы выполнили более 300 проектов. Самые сложные, масштабные и уникальные для
+                  российского рынка, описаны в этом разделе.
+                </p>
+              </div>
+            </header>
+            <div class="projects-showcase__divider" aria-hidden="true"></div>
+            <div class="project-showcase">
+              <article class="project-split">
+                <div class="project-split__visual">
+                  <div class="project-split__visual-glow" aria-hidden="true"></div>
+                  <div class="project-split__visual-grid" aria-hidden="true"></div>
+                  <span class="project-split__year" data-showcase-year aria-hidden="true">2021</span>
+                  <div class="project-split__logo-wrap">
+                    <img
+                      class="project-split__logo"
+                      data-showcase-logo
+                      src="images/1.png"
+                      alt=""
+                      width="320"
+                      height="200"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+                <div class="project-split__panel">
+                  <div class="project-split__panel-inner">
+                    <div class="project-split__toolbar">
+                      <div class="project-split__controls" role="group" aria-label="Управление проектами">
+                        <span class="project-split__progress" aria-hidden="true">
+                          <span class="project-split__progress-fill" data-showcase-progress-fill></span>
+                        </span>
+                        <div class="project-split__controls-main">
+                          <div class="project-split__controls-left">
+                            <button type="button" class="project-split__nav-btn" data-showcase-prev aria-label="Предыдущий проект">
+                          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path
+                              d="M10 12L6 8l4-4"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                            </button>
+                            <button type="button" class="project-split__nav-btn" data-showcase-next aria-label="Следующий проект">
+                          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path
+                              d="M6 4l4 4-4 4"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                            </button>
+                            <span class="project-split__counter" aria-hidden="true">
+                              <span class="project-split__counter-current" data-showcase-counter>01</span>
+                              <span class="project-split__counter-sep">/</span>
+                              <span class="project-split__counter-total" data-showcase-total>04</span>
+                            </span>
+                          </div>
+                          <div class="project-split__segments" data-showcase-segments role="tablist" aria-label="Проекты"></div>
+                        </div>
+                      </div>
+                    </div>
+                  <h3
+                    class="project-split__title"
+                    data-showcase-title
+                    id="showcase-project-title"
+                    aria-live="polite"
+                  >
+                    Сопровождение базовой инфраструктуры Росавтодора
+                  </h3>
+                  <div class="project-split__details" data-showcase-details>
+                    <div class="project-split__customer-group">
+                      <p class="project-split__detail-label">Заказчик</p>
+                      <p class="project-split__customer-name" data-showcase-customer></p>
+                      <p class="project-split__customer-meta" data-showcase-period></p>
+                    </div>
+                    <p class="project-split__detail-lead" data-showcase-lead></p>
+                  </div>
+                  <a class="project-split__cta" href="contacts.html">Подробнее</a>
+                </div>
+              </div>
+              </article>
+            </div>
+            <div class="projects-showcase__footer">
+              <a class="projects-showcase__all" href="projects.html">
+                Все проекты
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" class="section clients-showcase" aria-labelledby="clients-heading">
+        <div class="clients-showcase__inner">
+          <header class="clients-showcase__header">
+            <span class="clients-showcase__index" aria-hidden="true">03</span>
+            <div class="clients-showcase__intro">
+              <p class="clients-showcase__eyebrow">Клиенты</p>
+              <h2 id="clients-heading" class="clients-showcase__title">
+                Наши <span class="clients-showcase__title-accent">заказчики</span>
+              </h2>
+              <p class="clients-showcase__lead">
+                Государственные структуры, промышленные предприятия и&nbsp;ведущие компании России
+                доверяют нам проектирование, внедрение и&nbsp;сопровождение ИТ-инфраструктуры.
+              </p>
+            </div>
+          </header>
+        </div>
+
+        <div class="clients-showcase__marquee" data-clients-marquee="home" aria-label="Заказчики">
+          <div class="clients-showcase__marquee-row">
+            <div class="clients-showcase__track" id="home-clients-row-1" aria-hidden="true"></div>
+          </div>
+          <div class="clients-showcase__marquee-row">
+            <div
+              class="clients-showcase__track clients-showcase__track--reverse"
+              id="home-clients-row-2"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <div id="contacts" class="page-anchor" aria-hidden="true"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="footer-logo" href="#top">
+                <span class="visually-hidden">DC Engineering — на главную</span>
+                <img
+                  class="footer-logo__img footer-logo__img--light"
+                  src="images/Logo_podval_white.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <img
+                  class="footer-logo__img footer-logo__img--dark"
+                  src="images/Logo_podval_black.png"
+                  alt=""
+                  width="360"
+                  height="90"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </a>
+              <p class="footer-tagline">
+                Инженерия вычислительных комплексов и корпоративных сетей передачи данных. Работаем под брендом DC
+                (Data Center) Engineering с 2015 года.
+              </p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Разделы сайта в подвале">
+              <h2 class="footer-heading">Разделы</h2>
+              <ul class="footer-nav-list">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+                <li><a href="#clients">Заказчики</a></li>
+              </ul>
+            </nav>
+
+            <nav class="footer-nav" aria-label="О компании в подвале">
+              <h2 class="footer-heading">О компании</h2>
+              <ul class="footer-nav-list">
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="about.html#certificates">Лицензии и сертификаты</a></li>
+                <li><a href="about.html#career">Карьера</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+              </ul>
+            </nav>
+
+            <div class="footer-aside">
+              <h2 class="footer-heading">Связь</h2>
+              <p class="footer-aside-text">
+                Телефон <a href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>, <a href="mailto:info@dce.su">info@dce.su</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bar">
+        <div class="footer-inner footer-bar-inner">
+          <nav class="footer-legal" aria-label="Правовая информация">
+            <a class="footer-legal__link" href="images/documents/persdata_policy.pdf" target="_blank" rel="noopener noreferrer">
+              Политика обработки и&nbsp;защиты персональных данных
+              <svg class="footer-legal__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h7.5M7 3.75l2.25 2.25L7 8.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </nav>
+          <p class="footer-copy">© 2005–2026 DC Engineering</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="hero-pt.js?v=20260525-slider-fix-v2"></script>
+    <script defer src="projects-showcase.js"></script>
+    <script defer src="services-carousel.js"></script>
+    <script defer src="clients-marquee.js?v=2"></script>
+    <script defer src="nav.js?v=20260710-hero-header-hide-fix"></script>
+  </body>
+</html>
