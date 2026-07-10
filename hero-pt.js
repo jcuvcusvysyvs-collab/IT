@@ -279,6 +279,53 @@
     }
   });
 
+  /* Свайп на мобильных — удобнее, чем только стрелки */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchActive = false;
+
+  root.addEventListener(
+    "touchstart",
+    function (e) {
+      if (!e.touches || e.touches.length !== 1) return;
+      touchActive = true;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  root.addEventListener(
+    "touchmove",
+    function (e) {
+      if (!touchActive || !e.touches || e.touches.length !== 1) return;
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        e.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+
+  root.addEventListener(
+    "touchend",
+    function (e) {
+      if (!touchActive || !e.changedTouches || e.changedTouches.length !== 1) return;
+      touchActive = false;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.1) return;
+      if (dx < 0) show(idx + 1);
+      else show(idx - 1);
+    },
+    { passive: true }
+  );
+
+  root.addEventListener("touchcancel", function () {
+    touchActive = false;
+  });
+
   applyActiveState();
   restartReveal();
   restartActiveFill();
