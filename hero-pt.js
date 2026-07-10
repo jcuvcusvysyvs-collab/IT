@@ -279,16 +279,34 @@
     }
   });
 
-  /* Свайп на мобильных — удобнее, чем только стрелки */
+  /* Свайп на мобильных — листание слайдов пальцем */
   var touchStartX = 0;
   var touchStartY = 0;
   var touchActive = false;
+  var touchSwipeEnabled = false;
+
+  function isMobileViewport() {
+    return window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+  }
+
+  function isSwipeBlockedTarget(target) {
+    if (!target || !target.closest) return false;
+    return !!target.closest(
+      "a, button, input, textarea, select, label, .hero-pt__controls, .hero-pt__ctas"
+    );
+  }
 
   root.addEventListener(
     "touchstart",
     function (e) {
-      if (!e.touches || e.touches.length !== 1) return;
+      if (!isMobileViewport() || !e.touches || e.touches.length !== 1) return;
+      if (isSwipeBlockedTarget(e.target)) {
+        touchActive = false;
+        touchSwipeEnabled = false;
+        return;
+      }
       touchActive = true;
+      touchSwipeEnabled = true;
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
     },
@@ -298,10 +316,10 @@
   root.addEventListener(
     "touchmove",
     function (e) {
-      if (!touchActive || !e.touches || e.touches.length !== 1) return;
+      if (!touchActive || !touchSwipeEnabled || !e.touches || e.touches.length !== 1) return;
       var dx = e.touches[0].clientX - touchStartX;
       var dy = e.touches[0].clientY - touchStartY;
-      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.2) {
         e.preventDefault();
       }
     },
@@ -311,11 +329,16 @@
   root.addEventListener(
     "touchend",
     function (e) {
-      if (!touchActive || !e.changedTouches || e.changedTouches.length !== 1) return;
+      if (!touchActive || !touchSwipeEnabled || !e.changedTouches || e.changedTouches.length !== 1) {
+        touchActive = false;
+        touchSwipeEnabled = false;
+        return;
+      }
       touchActive = false;
+      touchSwipeEnabled = false;
       var dx = e.changedTouches[0].clientX - touchStartX;
       var dy = e.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.1) return;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.15) return;
       if (dx < 0) show(idx + 1);
       else show(idx - 1);
     },
@@ -324,6 +347,7 @@
 
   root.addEventListener("touchcancel", function () {
     touchActive = false;
+    touchSwipeEnabled = false;
   });
 
   applyActiveState();
