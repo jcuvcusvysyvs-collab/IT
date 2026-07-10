@@ -49,7 +49,7 @@
     return s.logo;
   }
 
-  /** Длительность показа слайда и анимации заполнения сегмента (мс). */
+  /** Длительность показа слайда и анимации заполнения сегмента (мс) — только десктоп. */
   var AUTOPLAY_MS = 6000;
 
   var root = document.querySelector("[data-project-showcase]");
@@ -63,7 +63,9 @@
   var periodEl = root.querySelector("[data-showcase-period]");
   var leadEl = root.querySelector("[data-showcase-lead]");
   var yearEl = root.querySelector("[data-showcase-year]");
+  var yearBadgeEl = root.querySelector("[data-showcase-year-badge]");
   var panelInner = root.querySelector(".project-split__panel-inner");
+  var swipeSurface = root.querySelector(".project-split__panel");
   var prevBtn = root.querySelector("[data-showcase-prev]");
   var nextBtn = root.querySelector("[data-showcase-next]");
   var counterEl = root.querySelector("[data-showcase-counter]");
@@ -83,9 +85,18 @@
   var idx = 0;
   var autoplayTimer = null;
   var activeAnim = null;
+  var mobileMq = window.matchMedia("(max-width: 799px)");
 
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function isMobileShowcase() {
+    return mobileMq.matches;
+  }
+
+  function isDesktopPanelLayout() {
+    return window.matchMedia && window.matchMedia("(min-width: 800px)").matches;
   }
 
   function extractYear(s) {
@@ -95,10 +106,12 @@
   }
 
   function fillDetailsDom(s) {
+    var year = extractYear(s);
     if (customerEl) customerEl.textContent = s.customer || "";
     if (periodEl) periodEl.textContent = s.period || "";
     if (leadEl) leadEl.textContent = s.lead || "";
-    if (yearEl) yearEl.textContent = extractYear(s);
+    if (yearEl) yearEl.textContent = year;
+    if (yearBadgeEl) yearBadgeEl.textContent = year;
   }
 
   function clearRevealAnimations() {
@@ -107,18 +120,13 @@
     if (panelInner) panelInner.classList.remove("project-split__panel-inner--reveal");
   }
 
-  /** Заголовок → блок заказчика → лид → CTA: по очереди сверху вниз, выезд снизу вверх (CSS). */
   function restartRevealAnimations() {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isMobileShowcase()) return;
     clearRevealAnimations();
     void titleEl.offsetWidth;
     titleEl.classList.add("project-split__title--reveal");
     if (detailsEl) detailsEl.classList.add("project-split__details--anim");
     if (panelInner) panelInner.classList.add("project-split__panel-inner--reveal");
-  }
-
-  function isDesktopPanelLayout() {
-    return window.matchMedia && window.matchMedia("(min-width: 800px)").matches;
   }
 
   function afterLayout(cb) {
@@ -148,8 +156,7 @@
   function measurePanelMinHeight(done) {
     done = done || function () {};
 
-    var panelInnerMeasure = root.querySelector(".project-split__panel-inner");
-    if (!panelInnerMeasure) {
+    if (!panelInner) {
       done();
       return;
     }
@@ -168,6 +175,17 @@
       done();
     }
 
+    function measureSlideContent(s, next) {
+      titleEl.textContent = s.title;
+      fillDetailsDom(s);
+      clearRevealAnimations();
+      afterLayout(function () {
+        var h = panelInner.offsetHeight;
+        if (h > maxH) maxH = h;
+        next();
+      });
+    }
+
     function measureNext() {
       if (i >= SLIDES.length) {
         finishMeasure();
@@ -175,15 +193,17 @@
       }
 
       var s = SLIDES[i];
-      logoEl.src = logoSrcForSlide(s);
+      if (isMobileShowcase()) {
+        measureSlideContent(s, function () {
+          i += 1;
+          measureNext();
+        });
+        return;
+      }
 
+      logoEl.src = logoSrcForSlide(s);
       waitLogoDecoded(function () {
-        titleEl.textContent = s.title;
-        fillDetailsDom(s);
-        clearRevealAnimations();
-        afterLayout(function () {
-          var h = panelInnerMeasure.offsetHeight;
-          if (h > maxH) maxH = h;
+        measureSlideContent(s, function () {
           i += 1;
           measureNext();
         });
@@ -213,7 +233,7 @@
 
   function scheduleAutoplay() {
     clearAutoplay();
-    if (root.classList.contains("is-autoplay-paused")) return;
+    if (isMobileShowcase() || root.classList.contains("is-autoplay-paused")) return;
     autoplayTimer = window.setTimeout(function () {
       autoplayTimer = null;
       go(idx + 1);
@@ -245,6 +265,12 @@
 
   function restartActiveFill() {
     cancelActiveAnim();
+
+    if (isMobileShowcase()) {
+      if (progressFillEl) progressFillEl.style.transform = "scaleX(0)";
+      return;
+    }
+
     if (progressFillEl) progressFillEl.style.transform = "scaleX(0)";
 
     if (prefersReducedMotion() || SLIDES.length < 2) {
@@ -268,6 +294,7 @@
   }
 
   function resumeAutoplay() {
+    if (isMobileShowcase()) return;
     root.classList.remove("is-autoplay-paused");
     if (activeAnim && activeAnim.playState === "paused" && activeAnim.play) {
       try {
@@ -316,12 +343,14 @@
 
   function applySlide() {
     var s = SLIDES[idx];
-    logoEl.src = logoSrcForSlide(s);
+    if (!isMobileShowcase()) {
+      logoEl.src = logoSrcForSlide(s);
+    }
     titleEl.textContent = s.title;
     fillDetailsDom(s);
     renderSegments();
     if (counterEl) counterEl.textContent = formatIndex(idx + 1);
-    if (prefersReducedMotion()) {
+    if (prefersReducedMotion() || isMobileShowcase()) {
       clearRevealAnimations();
     } else {
       window.requestAnimationFrame(function () {
@@ -339,7 +368,7 @@
     idx = ((nextIdx % n) + n) % n;
     clearAutoplay();
 
-    if (prefersReducedMotion()) {
+    if (prefersReducedMotion() || isMobileShowcase()) {
       applySlide();
       return;
     }
@@ -356,6 +385,7 @@
       go(idx - 1);
     });
   }
+
   if (nextBtn) {
     nextBtn.addEventListener("click", function () {
       go(idx + 1);
@@ -384,11 +414,80 @@
     }
   });
 
+  /* Свайп на мобильных */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchActive = false;
+
+  function isSwipeBlockedTarget(target) {
+    if (!target || !target.closest) return false;
+    return !!target.closest(
+      "a, button, input, textarea, select, label, .project-split__controls, .project-split__cta"
+    );
+  }
+
+  if (swipeSurface) {
+    swipeSurface.addEventListener(
+      "touchstart",
+      function (e) {
+        if (!isMobileShowcase() || !e.touches || e.touches.length !== 1) return;
+        if (isSwipeBlockedTarget(e.target)) {
+          touchActive = false;
+          return;
+        }
+        touchActive = true;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    swipeSurface.addEventListener(
+      "touchmove",
+      function (e) {
+        if (!touchActive || !e.touches || e.touches.length !== 1) return;
+        var dx = e.touches[0].clientX - touchStartX;
+        var dy = e.touches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+
+    swipeSurface.addEventListener(
+      "touchend",
+      function (e) {
+        if (!touchActive || !e.changedTouches || e.changedTouches.length !== 1) {
+          touchActive = false;
+          return;
+        }
+        touchActive = false;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.15) return;
+        if (dx < 0) go(idx + 1);
+        else go(idx - 1);
+      },
+      { passive: true }
+    );
+
+    swipeSurface.addEventListener("touchcancel", function () {
+      touchActive = false;
+    });
+  }
+
+  mobileMq.addEventListener("change", function () {
+    clearAutoplay();
+    cancelActiveAnim();
+    schedulePanelMeasure();
+  });
+
   renderSegments();
   restartActiveFill();
   titleEl.textContent = SLIDES[0].title;
   fillDetailsDom(SLIDES[0]);
-  if (prefersReducedMotion()) {
+  if (prefersReducedMotion() || isMobileShowcase()) {
     clearRevealAnimations();
   } else {
     window.requestAnimationFrame(function () {
@@ -400,7 +499,7 @@
 
   function runInitialMeasure() {
     measurePanelMinHeight(function () {
-      if (!isDesktopPanelLayout() && !document.hidden) {
+      if (isDesktopPanelLayout() && !document.hidden) {
         scheduleAutoplay();
       }
     });
@@ -416,7 +515,7 @@
 
   try {
     var themeObserver = new MutationObserver(function () {
-      if (!logoEl) return;
+      if (!logoEl || isMobileShowcase()) return;
       logoEl.src = logoSrcForSlide(SLIDES[idx]);
     });
     themeObserver.observe(document.documentElement, {
