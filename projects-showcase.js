@@ -148,12 +148,6 @@
   function measurePanelMinHeight(done) {
     done = done || function () {};
 
-    if (!isDesktopPanelLayout()) {
-      root.style.removeProperty("--project-showcase-panel-min");
-      done();
-      return;
-    }
-
     var panelInnerMeasure = root.querySelector(".project-split__panel-inner");
     if (!panelInnerMeasure) {
       done();
