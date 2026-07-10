@@ -263,8 +263,12 @@
     });
   }
 
-  function renderMobileCarousel() {
-    if (!mobileTrack) return;
+  function renderMobileCarousel(done) {
+    done = done || function () {};
+    if (!mobileTrack) {
+      done();
+      return;
+    }
     mobileTrack.innerHTML = "";
     mobileCards = SLIDES.map(function (s, i) {
       var card = createMobileCard(s, i);
@@ -274,6 +278,25 @@
     equalizeMobileCardHeights(function () {
       updateMobileProgress();
       root.classList.add("is-ready");
+      done();
+    });
+  }
+
+  function restoreMobileScrollState(scrollLeft, activeIdx) {
+    idx = activeIdx;
+    if (mobileScroller) {
+      mobileScroller.scrollLeft = scrollLeft;
+    }
+    updateMobileFooterCounter(idx);
+    updateMobileProgress();
+  }
+
+  function refreshMobileLayout() {
+    if (!isMobileShowcase() || !mobileCards.length || !mobileScroller) return;
+    var savedScroll = mobileScroller.scrollLeft;
+    var savedIdx = idx;
+    equalizeMobileCardHeights(function () {
+      restoreMobileScrollState(savedScroll, savedIdx);
     });
   }
 
@@ -318,12 +341,18 @@
   }
 
   function initMobileMode() {
-    renderMobileCarousel();
-    updateMobileFooterCounter(0);
-    if (mobileScroller) {
-      mobileScroller.scrollLeft = 0;
+    if (mobileCards.length) {
+      refreshMobileLayout();
+      return;
     }
-    updateMobileProgress();
+    renderMobileCarousel(function () {
+      idx = 0;
+      updateMobileFooterCounter(0);
+      if (mobileScroller) {
+        mobileScroller.scrollLeft = 0;
+      }
+      updateMobileProgress();
+    });
   }
 
   function destroyMobileMode() {
@@ -384,7 +413,11 @@
     measureDebounce = window.setTimeout(function () {
       measureDebounce = null;
       if (isMobileShowcase()) {
-        initMobileMode();
+        if (mobileCards.length) {
+          refreshMobileLayout();
+        } else {
+          initMobileMode();
+        }
       } else {
         destroyMobileMode();
         measurePanelMinHeight(function () {});
@@ -571,10 +604,6 @@
     if ("onscrollend" in mobileScroller) {
       mobileScroller.addEventListener("scrollend", updateMobileProgress, { passive: true });
     }
-    window.addEventListener("resize", function () {
-      if (!isMobileShowcase()) return;
-      equalizeMobileCardHeights(updateMobileProgress);
-    });
   }
 
   mobileMq.addEventListener("change", schedulePanelMeasure);
