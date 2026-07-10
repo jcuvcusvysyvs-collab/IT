@@ -109,24 +109,81 @@
   var header = document.querySelector(".site-header");
   var syncMegaMenuPosition = null;
   var syncAboutMenuPosition = null;
+  var mobileBackdrop = null;
+  var mobileMq = window.matchMedia("(max-width: 768px)");
+  var closeAllSubmenusRef = null;
+
+  function isMobileNavViewport() {
+    return mobileMq.matches;
+  }
+
+  function setMobileNavOpen(open) {
+    if (!nav || !toggle) return;
+
+    nav.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-mobile-open", open && isMobileNavViewport());
+
+    if (mobileBackdrop) {
+      mobileBackdrop.classList.toggle("is-visible", open && isMobileNavViewport());
+    }
+
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+
+    if (header && open) {
+      header.classList.remove("site-header--hidden");
+    }
+
+    if (!open && closeAllSubmenusRef) {
+      closeAllSubmenusRef();
+    }
+  }
+
+  function injectMobileNavCta() {
+    if (!menu || menu.querySelector(".nav-mobile-cta")) return;
+
+    var item = document.createElement("li");
+    item.className = "nav-mobile-cta";
+
+    var link = document.createElement("a");
+    link.href = "contacts.html";
+    link.textContent = "Контакты";
+    item.appendChild(link);
+    menu.appendChild(item);
+  }
+
+  injectMobileNavCta();
 
   if (toggle && menu && nav) {
+    mobileBackdrop = document.createElement("div");
+    mobileBackdrop.className = "nav-mobile-backdrop";
+    mobileBackdrop.setAttribute("aria-hidden", "true");
+    document.body.appendChild(mobileBackdrop);
+
+    mobileBackdrop.addEventListener("click", function () {
+      setMobileNavOpen(false);
+    });
+
     toggle.addEventListener("click", function () {
-      var open = !nav.classList.contains("is-open");
-      nav.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
-      if (header && open) {
-        header.classList.remove("site-header--hidden");
-      }
+      setMobileNavOpen(!nav.classList.contains("is-open"));
     });
 
     menu.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Открыть меню");
+        setMobileNavOpen(false);
       });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open") && isMobileNavViewport()) {
+        setMobileNavOpen(false);
+      }
+    });
+
+    mobileMq.addEventListener("change", function () {
+      if (!mobileMq.matches) {
+        setMobileNavOpen(false);
+      }
     });
   }
 
@@ -254,6 +311,10 @@
       });
     }
 
+    closeAllSubmenusRef = function () {
+      closeAllSubmenus(null);
+    };
+
     submenuItems.forEach(function (item) {
       var trigger = item.querySelector(".nav-submenu-trigger");
       if (!trigger) return;
@@ -301,10 +362,13 @@
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        submenuItems.forEach(closeSubmenu);
-        syncMegaBackdrop();
+      if (e.key !== "Escape") return;
+      if (nav && nav.classList.contains("is-open") && mq.matches) {
+        setMobileNavOpen(false);
+        return;
       }
+      submenuItems.forEach(closeSubmenu);
+      syncMegaBackdrop();
     });
 
     mq.addEventListener("change", syncMegaBackdrop);
