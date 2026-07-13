@@ -30,6 +30,11 @@
       desc: "Официальный сервис и поддержка оборудования Huawei: диагностика, ремонт и сопровождение.",
       image: "images/menu_06.png",
     },
+    "asdu-datacenter.html": {
+      title: "АСДУ ЦОД",
+      desc: "Автоматизированные системы диспетчерского управления центра обработки данных на базе SCADA+",
+      image: "images/menu_07.png",
+    },
   };
 
   function enhanceServicesMegaMenu() {
