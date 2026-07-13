@@ -63,7 +63,8 @@
   var progressFillEl = root.querySelector("[data-showcase-progress-fill]");
   var mobileScroller = root.querySelector("[data-showcase-mobile-scroller]");
   var mobileTrack = root.querySelector("[data-showcase-mobile-track]");
-  var mobileFooterCounter = root.querySelector("[data-showcase-mobile-footer-counter]");
+  var mobileCounterCurrent = root.querySelector("[data-showcase-mobile-counter-current]");
+  var mobileCounterTotal = root.querySelector("[data-showcase-mobile-counter-total]");
   var mobileProgress = root.querySelector("[data-showcase-mobile-progress]");
   var mobileProgressFill =
     mobileProgress && mobileProgress.querySelector(".projects-showcase__divider-fill");
@@ -214,9 +215,12 @@
   }
 
   function updateMobileFooterCounter(activeIdx) {
-    if (!mobileFooterCounter) return;
-    mobileFooterCounter.textContent =
-      formatIndex(activeIdx + 1) + " / " + formatIndex(SLIDES.length);
+    if (mobileCounterCurrent) {
+      mobileCounterCurrent.textContent = formatIndex(activeIdx + 1);
+    }
+    if (mobileCounterTotal) {
+      mobileCounterTotal.textContent = formatIndex(SLIDES.length);
+    }
   }
 
   function setMobileProgress(visual) {

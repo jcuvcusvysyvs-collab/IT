@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260713-projects-customer" />
+    <link rel="stylesheet" href="styles.css?v=20260713-projects-counter" />
     <link rel="preload" href="images/hero_section/01_hero_section.png" as="image" />
     <link rel="preload" href="images/service_huawei.png" as="image" />
     <script defer src="theme.js"></script>
@@ -656,6 +656,16 @@
                   С 2015 года мы выполнили более 300 проектов. Самые сложные, масштабные и уникальные для
                   российского рынка, описаны в этом разделе.
                 </p>
+                <p
+                  class="projects-showcase__mobile-counter"
+                  data-showcase-mobile-counter
+                  aria-live="polite"
+                  aria-label="Текущий проект"
+                >
+                  <span class="projects-showcase__mobile-counter-current" data-showcase-mobile-counter-current>01</span>
+                  <span class="projects-showcase__mobile-counter-sep" aria-hidden="true">/</span>
+                  <span class="projects-showcase__mobile-counter-total" data-showcase-mobile-counter-total>04</span>
+                </p>
               </div>
             </header>
             <div class="projects-showcase__divider" data-showcase-mobile-progress aria-hidden="true">
@@ -757,11 +767,6 @@
               </div>
             </div>
             <div class="projects-showcase__footer">
-              <span
-                class="projects-showcase__mobile-counter"
-                data-showcase-mobile-footer-counter
-                aria-live="polite"
-              >01 / 04</span>
               <a class="projects-showcase__all" href="projects.html">
                 Все проекты
                 <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -890,7 +895,7 @@
     </footer>
 
     <script defer src="hero-pt.js?v=20260710-mobile-swipe-v2"></script>
-    <script defer src="projects-showcase.js?v=20260710-projects-scrollfix"></script>
+    <script defer src="projects-showcase.js?v=20260713-projects-counter"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
     <script defer src="nav.js?v=20260710-hero-header-hide-fix"></script>
