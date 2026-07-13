@@ -4867,7 +4867,9 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
 .project-split__panel-inner {
   display: flex;
   flex-direction: column;
-  padding: clamp(2rem, 4.5vw, 3rem) clamp(1.75rem, 4vw, 2.75rem) clamp(2rem, 4.5vw, 3rem);
+  --project-panel-pad-y: clamp(2rem, 4.5vw, 3rem);
+  --project-panel-pad-x: clamp(1.75rem, 4vw, 2.75rem);
+  padding: var(--project-panel-pad-y) var(--project-panel-pad-x) var(--project-panel-pad-y);
   transition: min-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -5289,6 +5291,9 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   margin-bottom: 0;
   padding-top: 1.05rem;
   border-top: 1px solid var(--project-detail-divider);
+  /* Доводим разделитель до краёв панели (как в hero) */
+  margin-inline: calc(var(--project-panel-pad-x, 2rem) * -1);
+  padding-inline: var(--project-panel-pad-x, 2rem);
 }
 
 .project-split__customer-group {
@@ -5393,6 +5398,9 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
     margin-top: auto;
     padding-top: clamp(1.5rem, 2.5vw, 2rem);
     border-top: 1px solid var(--project-detail-divider);
+    /* Доводим разделитель до краёв панели */
+    margin-inline: calc(var(--project-panel-pad-x, 2rem) * -1);
+    padding-inline: var(--project-panel-pad-x, 2rem);
   }
 
   .project-split__cta {
