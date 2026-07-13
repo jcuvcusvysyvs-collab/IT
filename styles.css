@@ -2926,11 +2926,11 @@ body.nav-mega-open .nav-mega-backdrop {
 .services-slide:hover {
   background: color-mix(in srgb, var(--services-slide-surface) 90%, var(--text) 10%);
   border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
-  box-shadow: 0 18px 40px color-mix(in srgb, var(--text) 8%, transparent);
+  box-shadow: none;
 }
 
 [data-theme="dark"] .services-slide:hover {
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+  box-shadow: none;
 }
 
 @media (max-width: 720px) {
@@ -3127,24 +3127,67 @@ body.nav-mega-open .nav-mega-backdrop {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
+html:not([data-theme="dark"]) .services-slide--huawei {
+  background:
+    radial-gradient(
+      ellipse 90% 76% at 100% 100%,
+      rgba(228, 30, 38, 0.12),
+      color-mix(in srgb, var(--bg-elevated) 92%, #0d1117 8%) 62%
+    ),
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-elevated) 94%, #ffffff 6%) 0%,
+      color-mix(in srgb, var(--bg-elevated) 88%, var(--accent) 12%) 100%
+    );
+  border-color: color-mix(in srgb, var(--border) 90%, rgba(228, 30, 38, 0.22));
+}
+
 .services-slide--huawei:hover {
   background:
     radial-gradient(ellipse 90% 70% at 100% 100%, rgba(228, 30, 38, 0.28), #0c1018 58%),
     linear-gradient(158deg, #151c28 0%, #0a1018 48%, #111822 100%);
   border-color: rgba(228, 30, 38, 0.35);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+  box-shadow: none;
+}
+
+html:not([data-theme="dark"]) .services-slide--huawei:hover {
+  background:
+    radial-gradient(
+      ellipse 92% 78% at 100% 100%,
+      rgba(228, 30, 38, 0.16),
+      color-mix(in srgb, var(--bg-elevated) 90%, #0d1117 10%) 66%
+    ),
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-elevated) 92%, #ffffff 8%) 0%,
+      color-mix(in srgb, var(--bg-elevated) 86%, var(--accent) 14%) 100%
+    );
+  border-color: color-mix(in srgb, var(--border) 84%, rgba(228, 30, 38, 0.28));
 }
 
 .services-slide--huawei .services-slide__media-wrap {
   background: #070b12;
 }
 
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__media-wrap {
+  background: color-mix(in srgb, var(--bg-elevated) 86%, #0d1117 14%);
+}
+
 .services-slide--huawei .services-slide__glow::before {
   background: radial-gradient(circle, rgba(228, 30, 38, 0.28) 0%, transparent 72%);
 }
 
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__glow::before {
+  background: radial-gradient(circle, rgba(228, 30, 38, 0.18) 0%, transparent 72%);
+}
+
 .services-slide--huawei .services-slide__visual::after {
   background: linear-gradient(to bottom, transparent 50%, rgba(10, 14, 20, 0.88) 100%);
+}
+
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__visual::after {
+  /* В светлой теме не даём «белую дымку» на фото — только лёгкий тёмный фейд для читаемости */
+  background: linear-gradient(to bottom, transparent 62%, rgba(13, 17, 23, 0.18) 100%);
 }
 
 .services-slide--huawei .services-slide__decor {
@@ -3194,6 +3237,10 @@ body.nav-mega-open .nav-mega-backdrop {
   line-height: 1.22;
 }
 
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__title {
+  color: var(--text);
+}
+
 .services-slide--huawei .services-slide__title-accent {
   display: inline;
   margin-top: 0;
@@ -3210,8 +3257,16 @@ body.nav-mega-open .nav-mega-backdrop {
   color: rgba(255, 255, 255, 0.72);
 }
 
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__desc {
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+}
+
 .services-slide--huawei .services-slide__link {
   color: #ffffff;
+}
+
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__link {
+  color: color-mix(in srgb, var(--text) 88%, transparent);
 }
 
 .services-slide--huawei:hover .services-slide__link {
@@ -3231,24 +3286,67 @@ body.nav-mega-open .nav-mega-backdrop {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
+html:not([data-theme="dark"]) .services-slide--asdu {
+  background:
+    radial-gradient(
+      ellipse 90% 76% at 100% 100%,
+      rgba(79, 159, 232, 0.14),
+      color-mix(in srgb, var(--bg-elevated) 92%, #0d1117 8%) 62%
+    ),
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-elevated) 94%, #ffffff 6%) 0%,
+      color-mix(in srgb, var(--bg-elevated) 86%, rgba(79, 159, 232, 0.2) 14%) 100%
+    );
+  border-color: color-mix(in srgb, var(--border) 90%, rgba(79, 159, 232, 0.24));
+}
+
 .services-slide--asdu:hover {
   background:
     radial-gradient(ellipse 90% 70% at 100% 100%, rgba(79, 159, 232, 0.28), #0c1018 58%),
     linear-gradient(158deg, #151c28 0%, #0a1018 48%, #111822 100%);
   border-color: rgba(79, 159, 232, 0.35);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+  box-shadow: none;
+}
+
+html:not([data-theme="dark"]) .services-slide--asdu:hover {
+  background:
+    radial-gradient(
+      ellipse 92% 78% at 100% 100%,
+      rgba(79, 159, 232, 0.2),
+      color-mix(in srgb, var(--bg-elevated) 90%, #0d1117 10%) 66%
+    ),
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-elevated) 92%, #ffffff 8%) 0%,
+      color-mix(in srgb, var(--bg-elevated) 84%, rgba(79, 159, 232, 0.22) 16%) 100%
+    );
+  border-color: color-mix(in srgb, var(--border) 84%, rgba(79, 159, 232, 0.3));
 }
 
 .services-slide--asdu .services-slide__media-wrap {
   background: #070b12;
 }
 
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__media-wrap {
+  background: color-mix(in srgb, var(--bg-elevated) 86%, #0d1117 14%);
+}
+
 .services-slide--asdu .services-slide__glow::before {
   background: radial-gradient(circle, rgba(79, 159, 232, 0.28) 0%, transparent 72%);
 }
 
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__glow::before {
+  background: radial-gradient(circle, rgba(79, 159, 232, 0.2) 0%, transparent 72%);
+}
+
 .services-slide--asdu .services-slide__visual::after {
   background: linear-gradient(to bottom, transparent 50%, rgba(10, 14, 20, 0.88) 100%);
+}
+
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__visual::after {
+  /* В светлой теме не даём «белую дымку» на фото — только лёгкий тёмный фейд для читаемости */
+  background: linear-gradient(to bottom, transparent 62%, rgba(13, 17, 23, 0.18) 100%);
 }
 
 .services-slide--asdu .services-slide__decor {
@@ -3301,6 +3399,10 @@ body.nav-mega-open .nav-mega-backdrop {
   letter-spacing: -0.015em;
 }
 
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__title {
+  color: var(--text);
+}
+
 .services-slide--asdu .services-slide__title-line,
 .services-slide--asdu .services-slide__title-accent {
   display: inline;
@@ -3320,8 +3422,16 @@ body.nav-mega-open .nav-mega-backdrop {
   color: rgba(255, 255, 255, 0.72);
 }
 
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__desc {
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+}
+
 .services-slide--asdu .services-slide__link {
   color: #ffffff;
+}
+
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
+  color: color-mix(in srgb, var(--text) 88%, transparent);
 }
 
 .services-slide--asdu:hover .services-slide__link {
