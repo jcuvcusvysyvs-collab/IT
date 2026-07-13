@@ -419,6 +419,10 @@
     }
 
     document.addEventListener("click", function (e) {
+      if (mq.matches && nav && nav.classList.contains("is-open") && header && header.contains(e.target)) {
+        return;
+      }
+
       submenuItems.forEach(function (item) {
         if (!item.contains(e.target)) {
           closeSubmenu(item);
