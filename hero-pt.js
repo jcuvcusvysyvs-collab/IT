@@ -15,13 +15,23 @@
     return n < 10 ? "0" + n : "" + n;
   }
 
-  /** Длительность показа слайда (мс). Синхронизирована с CSS-переменной --hero-slide-autoplay. */
-  var AUTOPLAY_MS = 7000;
+  /** Длительность показа слайда (мс). На ПК короче, на мобильной — дольше для чтения. */
+  var AUTOPLAY_MS_DESKTOP = 18000;
+  var AUTOPLAY_MS_MOBILE = 25000;
+  var desktopMq = window.matchMedia("(min-width: 721px)");
+
+  function getAutoplayMs() {
+    return desktopMq.matches ? AUTOPLAY_MS_DESKTOP : AUTOPLAY_MS_MOBILE;
+  }
+
+  function syncAutoplayCssVar() {
+    root.style.setProperty("--hero-slide-autoplay", getAutoplayMs() / 1000 + "s");
+  }
+
+  syncAutoplayCssVar();
 
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  root.style.setProperty("--hero-slide-autoplay", AUTOPLAY_MS / 1000 + "s");
 
   var idx = 0;
   var autoplayTimer = null;
@@ -43,7 +53,7 @@
     autoplayTimer = window.setTimeout(function () {
       autoplayTimer = null;
       show(idx + 1);
-    }, AUTOPLAY_MS);
+    }, getAutoplayMs());
   }
 
   function cancelActiveAnim() {
@@ -54,7 +64,6 @@
   }
 
   function restartActiveFill() {
-    /* Сбрасываем все заливки в исходное состояние и отменяем текущую анимацию */
     cancelActiveAnim();
     segments.forEach(function (seg) {
       var f = seg.querySelector(".hero-pt__segment-fill");
@@ -72,20 +81,17 @@
     }
 
     if (typeof fill.animate !== "function") {
-      /* Старые браузеры без WAAPI — просто покажем заполненным */
       fill.style.transform = "scaleX(1)";
       return;
     }
 
-    /* Запускаем анимацию заполнения через Web Animations API — управляемо и надёжно */
     activeAnim = fill.animate(
       [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
-      { duration: AUTOPLAY_MS, fill: "forwards", easing: "linear" }
+      { duration: getAutoplayMs(), fill: "forwards", easing: "linear" }
     );
   }
 
   function restartReveal() {
-    /* Снимаем класс анимации со всех слайдов, чтобы рестарт сработал чисто */
     slides.forEach(function (slide) {
       slide.classList.remove("is-revealing");
     });
@@ -93,10 +99,8 @@
     var activeSlide = slides[idx];
     if (!activeSlide) return;
 
-    /* Принудительный reflow, чтобы браузер увидел «снятие» класса перед повторным добавлением */
     void activeSlide.offsetWidth;
 
-    /* На следующем кадре навешиваем is-revealing — анимация ступенчато подъезжает заново */
     window.requestAnimationFrame(function () {
       activeSlide.classList.add("is-revealing");
     });
@@ -124,7 +128,6 @@
   function show(nextIdx) {
     var n = slides.length;
     idx = ((nextIdx % n) + n) % n;
-    /* Явное переключение слайда — снимаем «залипшую» паузу (фокус/уход со страницы без focusout). */
     manualPause = false;
     pausedByFocus = false;
     root.classList.remove("is-paused");
@@ -146,14 +149,12 @@
   function resumeAutoplay() {
     manualPause = false;
     root.classList.remove("is-paused");
-    /* Возобновляем именно текущую анимацию (а не рестартуем — иначе прогресс «уйдёт назад») */
     if (activeAnim && activeAnim.playState === "paused" && activeAnim.play) {
       try { activeAnim.play(); } catch (e) { /* noop */ }
-      /* Доводим до конца с учётом уже сыгранного времени, поэтому таймер ставим на остаток */
-      var remaining = AUTOPLAY_MS;
+      var remaining = getAutoplayMs();
       try {
         var current = activeAnim.currentTime || 0;
-        remaining = Math.max(0, AUTOPLAY_MS - current);
+        remaining = Math.max(0, getAutoplayMs() - current);
       } catch (e) { /* noop */ }
       clearAutoplay();
       if (!reduceMotion && slides.length >= 2) {
@@ -168,7 +169,6 @@
     scheduleAutoplay();
   }
 
-  /** Полный рестарт автоплея — после возврата на страницу (bfcache, логотип, «Назад»). */
   function restartPlayback() {
     manualPause = false;
     pausedByFocus = false;
@@ -180,7 +180,6 @@
     scheduleAutoplay();
   }
 
-  /** Отложенный рестарт: после pageshow фокус и visibility могут «догонять» и снова ставить паузу. */
   function scheduleRestartPlayback() {
     focusPauseSuppressed = true;
     window.requestAnimationFrame(function () {
@@ -220,16 +219,13 @@
     });
   });
 
-  /* Пауза только при клавиатурном фокусе (Tab) — клик мышью по стрелкам автоплей не прерывает.
-     Без проверки :focus-visible клик по prev/next ставил manualPause=true, и расписанный после show()
-     scheduleAutoplay() уходил в no-op — прогресс докручивался до конца без перехода. */
   root.addEventListener("focusin", function (e) {
     if (focusPauseSuppressed) return;
     var target = e.target;
     var isKeyboardFocus = false;
     try {
       isKeyboardFocus = !!(target && target.matches && target.matches(":focus-visible"));
-    } catch (err) { /* старые браузеры без :focus-visible — игнорируем фокус */ }
+    } catch (err) { /* noop */ }
     if (!isKeyboardFocus) return;
     pausedByFocus = true;
     pauseAutoplay();
@@ -241,7 +237,6 @@
     resumeAutoplay();
   });
 
-  /* Когда вкладка не видна — не крутим, ради экономии и корректности заполнения */
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
       clearAutoplay();
@@ -253,12 +248,10 @@
     }
   });
 
-  /* Любой показ страницы (в т.ч. переход по логотипу с другой страницы через bfcache) */
   window.addEventListener("pageshow", function () {
     scheduleRestartPlayback();
   });
 
-  /* Сбрасываем паузу при уходе, иначе focusout может не успеть сработать */
   window.addEventListener("pagehide", function () {
     clearAutoplay();
     cancelActiveAnim();
@@ -267,7 +260,6 @@
     root.classList.remove("is-paused");
   });
 
-  /* Клавиатура: стрелки переключают слайды, когда hero в фокусе */
   root.tabIndex = root.tabIndex || -1;
   root.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft") {
@@ -279,7 +271,6 @@
     }
   });
 
-  /* Свайп на мобильных — листание слайдов пальцем */
   var touchStartX = 0;
   var touchStartY = 0;
   var touchActive = false;
@@ -354,4 +345,13 @@
   restartReveal();
   restartActiveFill();
   scheduleAutoplay();
+
+  if (desktopMq.addEventListener) {
+    desktopMq.addEventListener("change", function () {
+      syncAutoplayCssVar();
+      if (!manualPause && !document.hidden) {
+        restartPlayback();
+      }
+    });
+  }
 })();

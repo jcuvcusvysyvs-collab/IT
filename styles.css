@@ -854,6 +854,19 @@ body.nav-mega-open .nav-mega-backdrop {
   display: block;
 }
 
+.nav-submenu-links__icon img {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+}
+
+.nav-submenu-links__icon--image {
+  width: 1.75rem;
+  height: 1.75rem;
+  background: color-mix(in srgb, var(--accent) 12%, #ffffff);
+}
+
 .nav-submenu-links__label {
   min-width: 0;
 }
@@ -887,6 +900,122 @@ body.nav-mega-open .nav-mega-backdrop {
   font-weight: 600;
   background: color-mix(in srgb, var(--accent) 10%, transparent);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, var(--border));
+}
+
+.nav-submenu-links--rich {
+  gap: 0;
+}
+
+#submenu-services,
+#submenu-services .nav-submenu-panel,
+#submenu-services .nav-submenu-links,
+#submenu-services .nav-submenu-links--rich {
+  --text: #0d1117;
+  --text-muted: #5c6678;
+  --accent: #1a4a7c;
+  --accent-hover: #245a94;
+  --border: #dde3ed;
+  background: #ffffff;
+  color: #0d1117;
+}
+
+.nav-submenu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
+  text-align: left;
+}
+
+.nav-submenu-card--visual {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.nav-submenu-card__media {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  margin-top: 0;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #f5f8fc 0%, #eef3f9 100%);
+  box-shadow: inset 0 0 0 1px #e2e9f2;
+  overflow: hidden;
+}
+
+.nav-submenu-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.nav-submenu-card--visual .nav-submenu-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.nav-submenu-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.nav-submenu-card__title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  color: #0d1117;
+  transition: color 0.18s ease;
+}
+
+.nav-submenu-card__desc {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.48;
+  color: #5c6678;
+}
+
+.nav-submenu-card:hover,
+.nav-submenu-card:focus-visible {
+  color: #0d1117;
+  background: #f3f6fa;
+}
+
+.nav-submenu-card:hover .nav-submenu-card__title,
+.nav-submenu-card:focus-visible .nav-submenu-card__title {
+  color: #1a4a7c;
+}
+
+.nav-submenu-card[aria-current="page"] {
+  background: #eef3f9;
+  box-shadow: inset 0 0 0 1px #c8d5e6;
+}
+
+.nav-submenu-card[aria-current="page"] .nav-submenu-card__title {
+  color: #1a4a7c;
+}
+
+.nav-submenu-links a.nav-submenu-card--visual {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .nav-submenu-feature {
@@ -1044,6 +1173,27 @@ body.nav-mega-open .nav-mega-backdrop {
 
 [data-theme="dark"] .nav-submenu--mega {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--border) 88%, transparent);
+}
+
+[data-theme="dark"] #submenu-services.nav-submenu--mega,
+[data-theme="dark"] #submenu-services .nav-submenu-panel,
+[data-theme="dark"] #submenu-services .nav-submenu-links,
+[data-theme="dark"] #submenu-services .nav-submenu-links--rich {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+[data-theme="dark"] #submenu-services .nav-submenu-card__title {
+  color: #0d1117;
+}
+
+[data-theme="dark"] #submenu-services .nav-submenu-card__desc {
+  color: #5c6678;
+}
+
+[data-theme="dark"] #submenu-services .nav-submenu-card:hover,
+[data-theme="dark"] #submenu-services .nav-submenu-card:focus-visible {
+  background: #f3f6fa;
 }
 
 .header-actions {
@@ -2976,6 +3126,133 @@ body.nav-mega-open .nav-mega-backdrop {
   border-radius: 2px;
 }
 
+.hero-pt__dock--hidden {
+  display: none !important;
+}
+
+.services-slide--huawei {
+  --huawei-card-red: #e41e26;
+  background:
+    radial-gradient(ellipse 88% 72% at 100% 100%, rgba(228, 30, 38, 0.22), #0a0e14 56%),
+    linear-gradient(158deg, #101722 0%, #070b12 48%, #0c121c 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.services-slide--huawei::after {
+  background: var(--huawei-card-red);
+}
+
+.services-slide--huawei:hover {
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 100%, rgba(228, 30, 38, 0.28), #0c1018 58%),
+    linear-gradient(158deg, #151c28 0%, #0a1018 48%, #111822 100%);
+  border-color: rgba(228, 30, 38, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+}
+
+.services-slide--huawei .services-slide__media-wrap {
+  background: #070b12;
+}
+
+.services-slide--huawei .services-slide__glow::before {
+  background: radial-gradient(circle, rgba(228, 30, 38, 0.28) 0%, transparent 72%);
+}
+
+.services-slide--huawei .services-slide__visual::after {
+  background: linear-gradient(to bottom, transparent 50%, rgba(10, 14, 20, 0.88) 100%);
+}
+
+.services-slide--huawei .services-slide__decor {
+  position: absolute;
+  right: 0.35rem;
+  bottom: 0.2rem;
+  z-index: 3;
+  width: 4.5rem;
+  height: 4rem;
+  pointer-events: none;
+}
+
+.services-slide--huawei .services-slide__tile {
+  position: absolute;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.45rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.services-slide--huawei .services-slide__tile:nth-child(1) {
+  right: 0.15rem;
+  bottom: 0.55rem;
+  transform: rotate(14deg);
+}
+
+.services-slide--huawei .services-slide__tile:nth-child(2) {
+  right: 1.85rem;
+  bottom: 1.35rem;
+  transform: rotate(-8deg);
+  opacity: 0.72;
+}
+
+.services-slide--huawei .services-slide__tile:nth-child(3) {
+  right: 0.95rem;
+  bottom: 2.15rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  transform: rotate(6deg);
+  opacity: 0.48;
+}
+
+.services-slide--huawei .services-slide__title {
+  color: #ffffff;
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  line-height: 1.22;
+}
+
+.services-slide--huawei .services-slide__title-accent {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.45rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--huawei-card-red);
+}
+
+.services-slide--huawei .services-slide__desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.services-slide--huawei .services-slide__link {
+  color: #ffffff;
+}
+
+.services-slide--huawei:hover .services-slide__link {
+  color: #ffffff;
+}
+
+.services-slide--huawei .services-slide__link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.7rem 1.15rem;
+  border-radius: 4px;
+  background: var(--huawei-card-red);
+  letter-spacing: 0.14em;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    gap 0.2s ease;
+}
+
+.services-slide--huawei:hover .services-slide__link {
+  background: #c91920;
+  gap: 0.5rem;
+}
+
+.services-slide--huawei .services-slide__link:focus-visible {
+  box-shadow: 0 0 0 2px rgba(228, 30, 38, 0.65);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .services-showcase__grid {
     scroll-behavior: auto;
@@ -4871,13 +5148,14 @@ body.nav-mega-open .nav-mega-backdrop {
 
 .project-split__cta {
   flex: 0 0 auto;
-  margin-top: auto;
-  padding-top: clamp(0.65rem, 1.8vw, 1rem);
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
   justify-content: center;
+  gap: 0.625rem;
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  min-width: 10.5rem;
   padding: 0.8125rem 1.5rem;
   border: 0.5px solid color-mix(in srgb, var(--border) 55%, var(--project-panel-color) 28%);
   border-radius: 4px;
@@ -4890,6 +5168,50 @@ body.nav-mega-open .nav-mega-backdrop {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.project-split__panel-foot {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .project-split__panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .project-split__panel-inner {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .project-split__details {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .project-split__detail-lead {
+    flex: 0 1 auto;
+  }
+
+  .project-split__panel-foot {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-top: auto;
+    padding-top: clamp(1.5rem, 2.5vw, 2rem);
+    border-top: 1px solid var(--project-detail-divider);
+  }
+
+  .project-split__cta {
+    margin: 0;
+  }
 }
 
 .project-split__cta:hover {
@@ -6105,6 +6427,39 @@ body.nav-mega-open .nav-mega-backdrop {
     border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
   }
 
+  .nav-submenu-links--rich a {
+    align-items: flex-start;
+    min-height: 0;
+    padding: 0.9rem 1.15rem;
+    border-bottom: 1px solid #e8edf3;
+    color: #0d1117;
+    background: #ffffff;
+  }
+
+  .nav-submenu-links--rich a.nav-submenu-card--visual {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.85rem 1.15rem;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card__media {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card__title {
+    color: #0d1117;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card__desc {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #5c6678;
+  }
+
   .nav-submenu-links li:last-child a,
   .nav-submenu--panel li:last-child a {
     border-bottom: none;
@@ -6232,7 +6587,7 @@ body.nav-mega-open .nav-mega-backdrop {
     transform: rotate(180deg);
   }
 
-  /* Mega «Услуги» — две колонки: список + HUAWEI */
+  /* Mega «Услуги» — сетка карточек с описанием */
   .nav-item-services {
     position: relative;
   }
@@ -6242,16 +6597,16 @@ body.nav-mega-open .nav-mega-backdrop {
     top: calc(var(--site-header-height, 4.5rem) + var(--nav-dropdown-gap));
     left: var(--nav-mega-left, 1rem);
     right: auto;
-    width: 34.5rem;
-    max-width: min(34.5rem, calc(100vw - 2 * var(--layout-gutter)));
+    width: 46rem;
+    max-width: min(46rem, calc(100vw - 2 * var(--layout-gutter)));
     min-width: 0;
     margin: 0;
     padding: 0;
     border: none;
     border-radius: 14px;
-    background: #0a0e14;
+    background: #ffffff;
     box-shadow:
-      0 0 0 1px var(--border),
+      0 0 0 1px #dde3ed,
       0 4px 8px rgba(13, 17, 23, 0.05),
       0 20px 48px rgba(13, 17, 23, 0.14);
     transform: translateY(-6px);
@@ -6326,14 +6681,13 @@ body.nav-mega-open .nav-mega-backdrop {
   }
 
   .nav-submenu-panel {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 16rem;
+    display: block;
     align-items: stretch;
     gap: 0;
     width: 100%;
     min-height: 0;
     padding: 0;
-    background: #0a0e14;
+    background: #ffffff;
     border-radius: 14px;
     overflow: hidden;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -6345,10 +6699,53 @@ body.nav-mega-open .nav-mega-backdrop {
     flex-wrap: nowrap;
     align-items: stretch;
     gap: 0.125rem;
-    padding: 0.55rem 0.5rem 0.55rem 0.55rem;
-    border-right: 1px solid #dde3ed;
+    padding: 0.55rem;
+    border-right: none;
     background: #ffffff;
-    border-radius: 13px 0 0 13px;
+    border-radius: 14px;
+  }
+
+  .nav-submenu-links--rich {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+    padding: 0.65rem;
+    align-items: stretch;
+  }
+
+  .nav-submenu-links--rich li {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+  }
+
+  .nav-submenu-links--rich a.nav-submenu-card--visual {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.95rem 1.1rem;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card__media {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 9px;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.1rem;
+    border-radius: 10px;
+    border-bottom: none;
+    box-sizing: border-box;
+  }
+
+  .nav-submenu-links--rich .nav-submenu-card__desc {
+    font-size: 0.8125rem;
+    line-height: 1.48;
+    color: #5c6678;
   }
 
   .nav-submenu-links::before,
@@ -6382,8 +6779,21 @@ body.nav-mega-open .nav-mega-backdrop {
       0 16px 40px rgba(0, 0, 0, 0.4);
   }
 
+  [data-theme="dark"] #submenu-services.nav-submenu--mega {
+    background: #ffffff;
+    box-shadow:
+      0 0 0 1px #dde3ed,
+      0 4px 8px rgba(13, 17, 23, 0.05),
+      0 20px 48px rgba(13, 17, 23, 0.14);
+  }
+
   [data-theme="dark"] .nav-submenu-panel {
     background: var(--bg-elevated);
+  }
+
+  [data-theme="dark"] #submenu-services .nav-submenu-panel,
+  [data-theme="dark"] #submenu-services .nav-submenu-links--rich {
+    background: #ffffff;
   }
 
   [data-theme="dark"] .nav-submenu-feature {
@@ -6391,6 +6801,17 @@ body.nav-mega-open .nav-mega-backdrop {
     min-height: 100%;
     margin: 0;
     padding: 1.25rem 1.15rem 1.15rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 980px) {
+  .nav-submenu--mega {
+    width: 24.5rem;
+    max-width: min(24.5rem, calc(100vw - 2 * var(--layout-gutter)));
+  }
+
+  .nav-submenu-links--rich {
+    grid-template-columns: 1fr;
   }
 }
 

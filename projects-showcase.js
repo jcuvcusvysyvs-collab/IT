@@ -40,7 +40,7 @@
     },
   ];
 
-  var AUTOPLAY_MS = 6000;
+  var AUTOPLAY_MS = 25000;
 
   var root = document.querySelector("[data-project-showcase]");
   if (!root || !SLIDES.length) return;

@@ -1,36 +1,98 @@
 (function () {
-  var serviceMenuIcons = {
-    "infrastructure-solutions.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<rect x="4" y="3" width="16" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/>' +
-      '<rect x="4" y="14" width="16" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/>' +
-      '<circle cx="7.5" cy="6.5" r="1" fill="currentColor"/>' +
-      '<circle cx="7.5" cy="17.5" r="1" fill="currentColor"/>' +
-      '<path d="M11 6.5h7M11 17.5h7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>' +
-      "</svg>",
-    "information-security.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<path d="M12 3L5 6.2v5.5c0 4.5 2.9 8.7 7 9.8 4.1-1.1 7-5.3 7-9.8V6.2L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-      '<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>' +
-      "</svg>",
-    "scaling-without-procurement.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<rect x="7" y="7" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/>' +
-      '<path d="M7 10H5M7 14H5M19 10h-2M19 14h-2M10 7V5M14 7V5M10 19v-2M14 19v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>' +
-      "</svg>",
-    "business-continuity.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<path d="M17 10a5 5 0 00-8.5-3.6L7 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M7 8v3h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M7 14a5 5 0 008.5 3.6L17 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M17 16v-3h-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      "</svg>",
-    "operations-support.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>' +
-      '<path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>' +
-      "</svg>",
+  var serviceMenuData = {
+    "infrastructure-solutions.html": {
+      title: "Инфраструктурные решения",
+      desc: "Вычислительные комплексы, СХД, сети передачи данных и встраивание в текущий ИТ-ландшафт.",
+      image: "images/menu_01.png",
+    },
+    "information-security.html": {
+      title: "Информационная безопасность",
+      desc: "Контуры безопасности, соответствие регуляторным требованиям и сопровождение сертифицированных решений.",
+      image: "images/menu_02.png",
+    },
+    "scaling-without-procurement.html": {
+      title: "Масштабирование без закупок",
+      desc: "Рост ёмкости и отказоустойчивости за счёт архитектуры, без проведения закупочных процедур.",
+      image: "images/menu_03.png",
+    },
+    "business-continuity.html": {
+      title: "Обеспечение непрерывности",
+      desc: "Проектирование отказоустойчивости, резервирование и планы восстановления после сбоев.",
+      image: "images/menu_04.png",
+    },
+    "operations-support.html": {
+      title: "Эксплуатация и сопровождение",
+      desc: "Поддержка, мониторинг, обновления и развитие инфраструктуры под согласованным SLA.",
+      image: "images/menu_05.png",
+    },
+    "huawei-service-center.html": {
+      title: "Сервисный центр HUAWEI",
+      desc: "Официальный сервис и поддержка оборудования Huawei: диагностика, ремонт и сопровождение.",
+      image: "images/menu_06.png",
+    },
   };
+
+  function enhanceServicesMegaMenu() {
+    var menu = document.getElementById("submenu-services");
+    if (!menu) return;
+
+    var list = menu.querySelector(".nav-submenu-links");
+    if (!list) return;
+
+    var feature = menu.querySelector(".nav-submenu-feature");
+    if (feature) {
+      feature.remove();
+    }
+
+    list.classList.add("nav-submenu-links--rich");
+
+    list.querySelectorAll("a[href]").forEach(function (link) {
+      if (link.classList.contains("nav-submenu-feature")) return;
+
+      var href = link.getAttribute("href") || "";
+      var file = href.split("/").pop().split("?")[0];
+      var data = serviceMenuData[file];
+      if (!data) return;
+
+      link.classList.add("nav-submenu-card");
+      link.classList.remove("nav-submenu-card--huawei");
+      if (data.image) {
+        link.classList.add("nav-submenu-card--visual");
+      } else {
+        link.classList.remove("nav-submenu-card--visual");
+      }
+      link.textContent = "";
+
+      if (data.image) {
+        var media = document.createElement("span");
+        media.className = "nav-submenu-card__media";
+        var img = document.createElement("img");
+        img.src = data.image;
+        img.alt = "";
+        img.width = 52;
+        img.height = 52;
+        img.decoding = "async";
+        img.loading = "lazy";
+        media.appendChild(img);
+        link.appendChild(media);
+      }
+
+      var body = document.createElement("span");
+      body.className = "nav-submenu-card__body";
+
+      var title = document.createElement("span");
+      title.className = "nav-submenu-card__title";
+      title.textContent = data.title;
+
+      var desc = document.createElement("span");
+      desc.className = "nav-submenu-card__desc";
+      desc.textContent = data.desc;
+
+      body.appendChild(title);
+      body.appendChild(desc);
+      link.appendChild(body);
+    });
+  }
 
   var aboutMenuIcons = {
     "about.html":
@@ -64,16 +126,19 @@
       var href = link.getAttribute("href") || "";
       var file = href.split("/").pop().split("?")[0];
       var hash = href.indexOf("#") !== -1 ? "#" + href.split("#")[1] : "";
-      var svg = iconMap[file] || iconMap[href] || iconMap[hash];
-      if (!svg) return;
+      var iconHtml = iconMap[file] || iconMap[href] || iconMap[hash];
+      if (!iconHtml) return;
 
       var label = link.textContent.trim();
       link.textContent = "";
 
       var icon = document.createElement("span");
       icon.className = "nav-submenu-links__icon";
+      if (iconHtml.indexOf("<img") === 0) {
+        icon.classList.add("nav-submenu-links__icon--image");
+      }
       icon.setAttribute("aria-hidden", "true");
-      icon.innerHTML = svg;
+      icon.innerHTML = iconHtml;
 
       var text = document.createElement("span");
       text.className = "nav-submenu-links__label";
@@ -84,7 +149,7 @@
     });
   }
 
-  injectSubmenuIcons(".nav-submenu-links a[href]", serviceMenuIcons, "nav-submenu-feature");
+  enhanceServicesMegaMenu();
   injectSubmenuIcons("#submenu-about a[href]", aboutMenuIcons);
 
   function injectHeaderCta() {
@@ -228,7 +293,7 @@
       var headerHeight = header
         ? header.getBoundingClientRect().height
         : parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-height")) || 72;
-      var megaWidth = mega.getBoundingClientRect().width || mega.offsetWidth || 552;
+      var megaWidth = mega.getBoundingClientRect().width || mega.offsetWidth || 736;
       var gutter = 18;
       var left = triggerRect.left;
       var maxLeft = window.innerWidth - megaWidth - gutter;
