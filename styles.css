@@ -5176,8 +5176,7 @@ body.nav-mega-open .nav-mega-backdrop {
 
   .project-mobile-card__customer {
     margin: 0 0 0.9rem;
-    padding: 0.75rem 0 0.75rem 0.85rem;
-    border-left: 2px solid color-mix(in srgb, var(--accent) 72%, var(--border));
+    padding: 0;
   }
 
   .project-mobile-card__label {
