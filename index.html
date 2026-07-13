@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260713-services-menu-dark" />
+    <link rel="stylesheet" href="styles.css?v=20260713-huawei-inline" />
     <link rel="preload" href="images/hero_section/01_hero_section.png" as="image" />
     <link rel="preload" href="images/service_huawei.png" as="image" />
     <script defer src="theme.js"></script>
@@ -98,23 +98,7 @@
             </li>
             <li><a href="projects.html">Проекты</a></li>
             <li><a href="#clients">Заказчики</a></li>
-            <li class="nav-item-has-submenu">
-              <button
-                type="button"
-                class="nav-submenu-trigger"
-                aria-expanded="false"
-                aria-controls="submenu-about"
-                id="about-menu-button"
-              >
-                О компании
-                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
-                </svg>
-              </button>
-              <ul id="submenu-about" class="nav-submenu" role="menu" aria-labelledby="about-menu-button">
-                <li role="none"><a href="about.html" role="menuitem">О компании</a></li>                <li role="none"><a href="contacts.html" role="menuitem">Контакты</a></li>
-              </ul>
-            </li>
+            <li><a href="about.html">О компании</a></li>
           </ul>
         </nav>
 
@@ -608,6 +592,49 @@
                     </a>
                   </div>
                 </article>
+                <article class="services-slide services-slide--asdu" role="listitem">
+                  <div class="services-slide__media-wrap">
+                    <span class="services-slide__num" aria-hidden="true">07</span>
+                    <div class="services-slide__glow" aria-hidden="true"></div>
+                    <div class="services-slide__visual">
+                      <img
+                        class="services-slide__logo"
+                        src="images/hero_03.png"
+                        alt=""
+                        width="200"
+                        height="140"
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span class="services-slide__decor" aria-hidden="true">
+                      <span class="services-slide__tile"></span>
+                      <span class="services-slide__tile"></span>
+                      <span class="services-slide__tile"></span>
+                    </span>
+                  </div>
+                  <div class="services-slide__content">
+                    <h3 class="services-slide__title">
+                      <span class="services-slide__title-line">АСДУ</span>
+                      <span class="services-slide__title-accent"> ЦОД</span>
+                    </h3>
+                    <p class="services-slide__desc">
+                      Автоматизированные системы диспетчерского управления центра обработки данных на базе SCADA+
+                    </p>
+                    <a class="services-slide__link" href="asdu-datacenter.html">
+                      Подробнее
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path
+                          d="M2 6h8M7 3l3 3-3 3"
+                          stroke="currentColor"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
               </div>
             </div>
             <div class="services-promo" role="region" aria-labelledby="services-promo-heading">
@@ -627,7 +654,7 @@
                   <header class="services-promo__header">
                     <div class="services-promo__title-block">
                       <h3 id="services-promo-heading" class="services-promo__heading">
-                        Специальные условия для государственных&nbsp;заказчиков
+                        Специальные предложения для государственных&nbsp;компаний и&nbsp;бюджетных&nbsp;учреждений
                       </h3>
                       <p class="services-promo__lead">
                         Импортозамещение, защита данных и расширение инфраструктуры — в формате, удобном для
@@ -937,6 +964,6 @@
     <script defer src="projects-showcase.js?v=20260713-projects-25s"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
-    <script defer src="nav.js?v=20260713-menu07-scada"></script>
+    <script defer src="nav.js?v=20260713-no-header-cta"></script>
   </body>
 </html>

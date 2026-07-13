@@ -99,78 +99,7 @@
     });
   }
 
-  var aboutMenuIcons = {
-    "about.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<path d="M4 20V8l8-4 8 4v12" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-      '<path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-      '<path d="M4 12h16" stroke="currentColor" stroke-width="1.6"/>' +
-      "</svg>",
-    "about.html#certificates":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<path d="M7 4h10v16H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-      '<path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
-      '<path d="M11 2v2M13 2v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
-      "</svg>",
-    "contacts.html":
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/>' +
-      '<path d="M3 8l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-      "</svg>",
-  };
-
-  function injectSubmenuIcons(selector, iconMap, skipClass) {
-    document.querySelectorAll(selector).forEach(function (link) {
-      if (skipClass && link.classList.contains(skipClass)) {
-        return;
-      }
-      if (link.querySelector(".nav-submenu-links__icon")) {
-        return;
-      }
-
-      var href = link.getAttribute("href") || "";
-      var file = href.split("/").pop().split("?")[0];
-      var hash = href.indexOf("#") !== -1 ? "#" + href.split("#")[1] : "";
-      var iconHtml = iconMap[file] || iconMap[href] || iconMap[hash];
-      if (!iconHtml) return;
-
-      var label = link.textContent.trim();
-      link.textContent = "";
-
-      var icon = document.createElement("span");
-      icon.className = "nav-submenu-links__icon";
-      if (iconHtml.indexOf("<img") === 0) {
-        icon.classList.add("nav-submenu-links__icon--image");
-      }
-      icon.setAttribute("aria-hidden", "true");
-      icon.innerHTML = iconHtml;
-
-      var text = document.createElement("span");
-      text.className = "nav-submenu-links__label";
-      text.textContent = label;
-
-      link.appendChild(icon);
-      link.appendChild(text);
-    });
-  }
-
   enhanceServicesMegaMenu();
-  injectSubmenuIcons("#submenu-about a[href]", aboutMenuIcons);
-
-  function injectHeaderCta() {
-    var actions = document.querySelector(".header-actions");
-    if (!actions || actions.querySelector(".header-cta")) {
-      return;
-    }
-
-    var cta = document.createElement("a");
-    cta.className = "header-cta";
-    cta.href = "contacts.html";
-    cta.textContent = "Контакты";
-    actions.appendChild(cta);
-  }
-
-  injectHeaderCta();
 
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".nav-toggle");
