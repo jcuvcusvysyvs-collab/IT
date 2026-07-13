@@ -6238,8 +6238,8 @@ body.nav-mega-open .nav-mega-backdrop {
     top: var(--site-header-height, 3.65rem);
     right: 0;
     bottom: 0;
-    left: auto;
-    width: min(20.5rem, 92vw);
+    left: 0;
+    width: 100%;
     max-width: none;
     height: calc(100dvh - var(--site-header-height, 3.65rem));
     flex-direction: column;
@@ -6248,8 +6248,8 @@ body.nav-mega-open .nav-mega-backdrop {
     padding: 0.5rem 0 1rem;
     background: var(--bg-elevated);
     border: none;
-    border-left: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
-    box-shadow: -16px 0 48px rgba(13, 17, 23, 0.14);
+    border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    box-shadow: none;
     transform: translateX(100%);
     opacity: 1;
     visibility: hidden;
