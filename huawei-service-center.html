@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260710-subnav-light" />
+    <link rel="stylesheet" href="styles.css?v=20260714-huawei-subnav-overlay" />
     <link rel="preload" href="images/service_huawei.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -205,14 +205,50 @@
 
       <div class="page-sticky-scope">
         <div class="page-section-subnav" data-section-subnav>
-          <div class="page-section-subnav__inner">
-            <nav class="projects-hero-switcher" aria-label="Разделы страницы HUAWEI">
-              <div class="projects-hero-switcher__track">
-                <a class="projects-hero-switcher__item" href="#huawei-capabilities">Возможности</a>
-                <a class="projects-hero-switcher__item" href="#huawei-certificates">Сертификаты</a>
-                <a class="projects-hero-switcher__item" href="#huawei-clients">Заказчики</a>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#huawei-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_06.png" alt="" width="32" height="32" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Сервисный центр</span>
+                <span class="page-section-subnav__brand-accent">HUAWEI</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="huawei-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="huawei-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы HUAWEI">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#huawei-capabilities">Возможности</a>
+                  <a class="projects-hero-switcher__item" href="#huawei-certificates">Сертификаты</a>
+                  <a class="projects-hero-switcher__item" href="#huawei-clients">Заказчики</a>
+                </div>
+              </nav>
+              <div class="page-section-subnav__actions">
+                <a
+                  class="page-section-subnav__btn page-section-subnav__btn--ghost"
+                  href="#huawei-feedback"
+                  data-huawei-request-type="consultation"
+                >Консультация</a>
+                <a
+                  class="page-section-subnav__btn page-section-subnav__btn--primary"
+                  href="#huawei-feedback"
+                  data-huawei-request-type="pricelist"
+                >Прейскурант</a>
               </div>
-            </nav>
+            </div>
           </div>
         </div>
 
@@ -911,6 +947,7 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=10"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="feature-reveal.js"></script>
