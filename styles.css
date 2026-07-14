@@ -10609,6 +10609,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
 .page-huawei .huawei-request-form__consent,
 .page-contacts .huawei-request-form__consent {
+  position: relative;
   display: flex;
   gap: 0.85rem;
   align-items: flex-start;
@@ -10631,14 +10632,22 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
 .page-huawei .huawei-request-form__consent-box,
 .page-contacts .huawei-request-form__consent-box {
+  position: relative;
   display: block;
+  flex: 0 0 1.125rem;
+  flex-shrink: 0;
   width: 1.125rem;
   height: 1.125rem;
+  min-width: 1.125rem;
+  min-height: 1.125rem;
+  max-width: 1.125rem;
+  max-height: 1.125rem;
   margin-top: 0.15rem;
   border: 1px solid var(--hc-consent-border);
   border-radius: 4px;
   background: var(--hc-consent-bg);
   box-shadow: inset 0 1px 0 var(--hc-consent-inset);
+  box-sizing: border-box;
   transition:
     border-color 0.2s ease,
     background 0.2s ease,
@@ -10669,13 +10678,16 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 .page-huawei .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after,
 .page-contacts .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after {
   content: "";
+  position: absolute;
+  top: 42%;
+  left: 50%;
   display: block;
-  width: 0.35rem;
-  height: 0.6rem;
-  margin: 0.12rem 0 0 0.32rem;
+  width: 0.3rem;
+  height: 0.55rem;
+  margin: 0;
   border: solid #fff;
   border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .page-huawei .huawei-request-form__submit,
@@ -10796,6 +10808,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 .page-contacts .huawei-feedback {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+
+.page-huawei .huawei-feedback__contacts {
+    display: none;
   }
 
 .page-huawei .huawei-feedback__contacts,
