@@ -14,10 +14,16 @@
   backdrop.type = "button";
   backdrop.className = "page-section-subnav__backdrop";
   backdrop.setAttribute("aria-label", "Закрыть меню");
-  document.body.appendChild(backdrop);
+  var backdropAnchor = subnav.nextElementSibling;
+  if (backdropAnchor) {
+    scope.insertBefore(backdrop, backdropAnchor);
+  } else {
+    scope.appendChild(backdrop);
+  }
 
   var spacer = null;
   var lockedScrollY = 0;
+  var scrollbarCompensation = 0;
   var isOpen = false;
   var isAnimating = false;
 
@@ -65,27 +71,21 @@
     }
   }
 
-  function mountOverlay() {
-    if (subnav.parentElement === document.body) return;
+  function insertSpacer() {
+    if (spacer) return;
 
+    var height = Math.round(subnav.getBoundingClientRect().height);
     spacer = document.createElement("div");
     spacer.className = "page-section-subnav__spacer";
     spacer.setAttribute("aria-hidden", "true");
-    spacer.style.height = subnav.offsetHeight + "px";
-    scope.insertBefore(spacer, subnav);
-    document.body.appendChild(subnav);
+    spacer.style.height = height + "px";
+    subnav.parentNode.insertBefore(spacer, subnav);
   }
 
-  function unmountOverlay() {
-    if (subnav.parentElement !== document.body) return;
-
-    if (spacer) {
-      scope.insertBefore(subnav, spacer);
-      spacer.remove();
-      spacer = null;
-    } else {
-      scope.insertBefore(subnav, scope.firstChild);
-    }
+  function removeSpacer() {
+    if (!spacer) return;
+    spacer.remove();
+    spacer = null;
   }
 
   function updateOverlayGeometry() {
@@ -107,23 +107,34 @@
     document.documentElement.style.removeProperty("--huawei-subnav-panel-top");
   }
 
+  function getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
+
   function lockPageScroll() {
     lockedScrollY = window.scrollY;
+    scrollbarCompensation = getScrollbarWidth();
     document.documentElement.classList.add("page-huawei-subnav-open");
     document.body.classList.add("page-huawei-subnav-open");
+
+    if (scrollbarCompensation > 0) {
+      document.body.style.paddingRight = scrollbarCompensation + "px";
+    }
+
     window.scrollTo(0, lockedScrollY);
   }
 
   function unlockPageScroll() {
     document.documentElement.classList.remove("page-huawei-subnav-open");
     document.body.classList.remove("page-huawei-subnav-open");
+    document.body.style.paddingRight = "";
     window.scrollTo(0, lockedScrollY);
     syncStickyState();
   }
 
   function preventTouchScroll(event) {
     if (!isOpen) return;
-    if (subnav.contains(event.target)) return;
+    if (subnav.contains(event.target) || panel.contains(event.target)) return;
     event.preventDefault();
   }
 
@@ -135,20 +146,25 @@
     toggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
 
     if (shouldOpen) {
+      var pinTop = Math.round(subnav.getBoundingClientRect().top);
+
+      insertSpacer();
       hideSiteHeader();
-      mountOverlay();
+      subnav.style.top = pinTop + "px";
       subnav.classList.add("page-section-subnav--menu-open");
       lockPageScroll();
-      syncSubnavHeight();
-      updateOverlayGeometry();
+
       window.requestAnimationFrame(function () {
+        subnav.style.top = "0px";
+        syncSubnavHeight();
         updateOverlayGeometry();
-        showBackdrop();
+        window.requestAnimationFrame(showBackdrop);
       });
     } else {
       hideBackdrop();
       subnav.classList.remove("page-section-subnav--menu-open");
-      unmountOverlay();
+      subnav.style.top = "";
+      removeSpacer();
       unlockPageScroll();
       syncSubnavHeight();
     }

@@ -7506,18 +7506,20 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 7px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9px;
   background: #06080c;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 10px rgba(232, 35, 42, 0.12);
   overflow: hidden;
 }
 
 .page-section-subnav__brand-icon img {
   display: block;
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 1.85rem;
+  height: 1.85rem;
   object-fit: contain;
 }
 
@@ -7669,7 +7671,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 }
 
 @media (max-width: 900px) {
-  .page-huawei .page-section-subnav {
+  .page-huawei .page-section-subnav:not(.page-section-subnav--menu-open) {
     padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
   }
 
@@ -7691,6 +7693,17 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   .page-section-subnav__brand-text {
     display: inline-flex;
+  }
+
+  .page-section-subnav__brand-icon {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 11px;
+  }
+
+  .page-section-subnav__brand-icon img {
+    width: 2.2rem;
+    height: 2.2rem;
   }
 
   .page-section-subnav__toggle {
@@ -7828,11 +7841,51 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
   }
 
-  html:not([data-theme="dark"]) .page-section-subnav__panel {
-    background: #080a0f;
+  html:not([data-theme="dark"]) .page-section-subnav__toggle:hover,
+  html:not([data-theme="dark"]) .page-section-subnav__toggle:focus-visible {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 35%, var(--border));
+    background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 7%, var(--bg-elevated));
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open::before {
+    background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
+    border-bottom-color: var(--border);
     box-shadow:
-      0 16px 42px rgba(0, 0, 0, 0.22),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 6px 24px rgba(15, 18, 24, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__panel {
+    background: var(--bg-elevated);
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    box-shadow:
+      0 20px 48px rgba(15, 18, 24, 0.11),
+      0 8px 22px rgba(15, 18, 24, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.96);
+  }
+
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item {
+    color: color-mix(in srgb, var(--text) 86%, transparent);
+  }
+
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+    color: var(--text);
+  }
+
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--text) 14%, var(--border));
+    background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
+  }
+
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:hover,
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:focus-visible {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 38%, var(--border));
+    background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 7%, var(--bg-elevated));
   }
 }
 
@@ -7866,7 +7919,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   right: 0;
   bottom: 0;
   top: var(--huawei-subnav-backdrop-top, 100vh);
-  z-index: 115;
+  z-index: 118;
   padding: 0;
   border: 0;
   background: rgba(10, 12, 18, 0.2);
@@ -7884,10 +7937,27 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   pointer-events: auto;
 }
 
+html:not([data-theme="dark"]) .page-section-subnav__backdrop {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(18px) saturate(1.06);
+  -webkit-backdrop-filter: blur(18px) saturate(1.06);
+}
+
 @media (max-width: 900px) {
   body.page-huawei-subnav-open .site-header {
     transform: translate3d(0, -100%, 0);
     pointer-events: none;
+    transition: none;
+  }
+
+  body.page-huawei-subnav-open .page-sticky-scope {
+    position: relative;
+    z-index: 120;
+    isolation: isolate;
+  }
+
+  body.page-huawei-subnav-open .page-section-subnav__backdrop.is-visible {
+    z-index: 118;
   }
 
   .page-section-subnav--menu-open {
@@ -7895,12 +7965,19 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 120;
+    z-index: 121;
     margin: 0;
     isolation: auto;
     overflow: visible;
-    padding-top: clamp(0.65rem, 2vw, 0.85rem);
-    padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
+    padding:
+      clamp(0.8rem, 1.5vw, 1rem)
+      0
+      clamp(0.65rem, 2vw, 0.85rem);
+    transition: none;
+  }
+
+  .page-section-subnav--menu-open::before {
+    transition: none;
   }
 
   .page-section-subnav__spacer {
@@ -7914,6 +7991,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     overflow: hidden;
     touch-action: none;
     overscroll-behavior: none;
+    scrollbar-gutter: stable;
   }
 
   .page-huawei .page-section-subnav__panel .projects-hero-switcher__item {
@@ -7927,19 +8005,6 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     color: #fff;
     background: transparent;
     box-shadow: none;
-  }
-
-  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost {
-    color: rgba(255, 255, 255, 0.94);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:hover,
-  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:focus-visible {
-    color: #fff;
-    border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 45%, transparent);
-    background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 12%, transparent);
   }
 }
 
