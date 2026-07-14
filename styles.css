@@ -6725,6 +6725,11 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
     min-width: 0;
   }
 
+  .logo__img {
+    height: clamp(1.95rem, 4.4vw, 2.35rem);
+    max-width: min(260px, 54vw);
+  }
+
   .header-actions {
     grid-column: auto;
     order: 1;
