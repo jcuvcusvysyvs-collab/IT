@@ -8131,6 +8131,113 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   }
 }
 
+/* Hero HUAWEI на мобильных — типографика и кнопки как на главной (hero-pt) */
+@media (max-width: 720px) {
+  .page-huawei .projects-hero-stage--photo .projects-hero__background::before {
+    inset: -2% -8% -6% -8%;
+    background-position: 64% 26%;
+    transform: scale(1.14);
+    transform-origin: 62% 30%;
+    filter: brightness(0.7) saturate(0.9);
+  }
+
+  .page-huawei .projects-hero-stage--photo .projects-hero__background::after {
+    inset: 0;
+    height: auto;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(10, 11, 13, 0.94) 0%,
+        rgba(10, 11, 13, 0.82) 28%,
+        rgba(10, 11, 13, 0.42) 58%,
+        rgba(10, 11, 13, 0.72) 100%
+      ),
+      radial-gradient(ellipse 70% 90% at 72% 50%, transparent 30%, rgba(10, 11, 13, 0.72) 100%),
+      linear-gradient(to right, rgba(10, 11, 13, 0.95) 0%, rgba(10, 11, 13, 0.6) 50%, transparent 100%);
+  }
+
+  .page-huawei .projects-hero--yandex.subpage-hero {
+    --projects-hero-pad-bottom: clamp(1.35rem, 4vw, 2rem);
+    justify-content: flex-end;
+  }
+
+  .page-huawei .projects-hero__inner--left {
+    padding-top: clamp(1.25rem, 5vh, 2.5rem);
+    padding-bottom: 0.25rem;
+  }
+
+  .page-huawei .projects-hero--yandex .projects-hero__content,
+  .page-huawei .projects-hero--yandex .subpage-hero__content {
+    gap: 0;
+    max-width: 100%;
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title {
+    font-family: "Oswald", system-ui, sans-serif;
+    font-size: clamp(2.35rem, 10.8vw, 3.35rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.015em;
+    gap: 0.04em;
+    text-transform: uppercase;
+    text-shadow: none;
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title-line {
+    line-height: 1.08;
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title .hero-pt__huawei {
+    font-weight: 700;
+    letter-spacing: 0.015em;
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__lead,
+  .page-huawei .projects-hero--yandex .projects-hero__lead {
+    margin-top: 1.1rem;
+    max-width: 100%;
+    font-family: "Onest", var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.55;
+    letter-spacing: normal;
+    color: var(--huawei-hero-lead);
+  }
+
+  .page-huawei .projects-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.65rem;
+    margin-top: 1.65rem;
+  }
+
+  .page-huawei .projects-hero-actions .btn {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.9rem 1.15rem;
+    font-family: "Onest", var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border-width: 0.5px;
+  }
+
+  .page-huawei .projects-hero-actions .btn--ghost-light {
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(2rem, 11.5vw, 2.65rem);
+  }
+}
+
 .page-huawei .projects-hero--yandex .subpage-hero__inner {
   padding: 0 var(--layout-gutter);
   flex: none;
