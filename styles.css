@@ -7599,34 +7599,37 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.25rem;
-  padding: 0.42rem 1.05rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-family: var(--font-text);
-  font-size: 0.8125rem;
+  min-height: 2.125rem;
+  padding: 0.5rem 1.15rem;
+  border: 0.5px solid transparent;
+  border-radius: 4px;
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.6875rem;
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .page-section-subnav__btn--ghost {
   color: var(--subnav-link-hover, #fff);
-  border-color: color-mix(in srgb, var(--subnav-link-hover, #fff) 24%, transparent);
-  background: color-mix(in srgb, var(--subnav-link-hover, #fff) 5%, transparent);
+  border-color: color-mix(in srgb, var(--subnav-link-hover, #fff) 25%, transparent);
+  background: transparent;
+  font-weight: 500;
 }
 
 .page-section-subnav__btn--ghost:hover,
 .page-section-subnav__btn--ghost:focus-visible {
   color: var(--subnav-link-hover, #fff);
-  border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 42%, transparent);
-  background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 10%, transparent);
+  border-color: color-mix(in srgb, var(--subnav-link-hover, #fff) 55%, transparent);
+  background: color-mix(in srgb, var(--subnav-link-hover, #fff) 5%, transparent);
 }
 
 .page-section-subnav__btn--primary {
@@ -7638,8 +7641,13 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
 .page-section-subnav__btn--primary:hover,
 .page-section-subnav__btn--primary:focus-visible {
   color: #fff;
-  border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 88%, #000 12%);
-  background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 88%, #000 12%);
+  border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 86%, #000 14%);
+  background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 86%, #000 14%);
+  transform: translateY(-1px);
+}
+
+.page-section-subnav__btn--primary:active {
+  transform: translateY(0);
 }
 
 .page-section-subnav__btn:focus-visible {
@@ -7659,14 +7667,14 @@ html:not([data-theme="dark"]) .page-section-subnav__brand-icon {
 html:not([data-theme="dark"]) .page-section-subnav__btn--ghost {
   color: var(--text);
   border-color: color-mix(in srgb, var(--text) 18%, var(--border));
-  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  background: transparent;
 }
 
 html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:hover,
 html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   color: var(--text);
-  border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 35%, var(--border));
-  background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 7%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--text) 32%, var(--border));
+  background: color-mix(in srgb, var(--text) 4%, transparent);
 }
 
 @media (max-width: 1180px) {
@@ -7822,22 +7830,24 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-section-subnav__btn {
     width: 100%;
     min-height: 3rem;
-    padding-inline: 1.25rem;
-    border-radius: 14px;
-    font-size: 0.9375rem;
+    padding: 0.9rem 1.15rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
   }
 
   .page-section-subnav__btn--ghost {
     color: rgba(255, 255, 255, 0.92);
-    border-color: rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: transparent;
+    font-weight: 500;
   }
 
   .page-section-subnav__btn--ghost:hover,
   .page-section-subnav__btn--ghost:focus-visible {
     color: #fff;
-    border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 45%, transparent);
-    background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 12%, transparent);
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   html:not([data-theme="dark"]) .page-section-subnav__toggle {
@@ -7882,15 +7892,15 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost {
     color: var(--text);
-    border-color: color-mix(in srgb, var(--text) 14%, var(--border));
-    background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
+    border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+    background: transparent;
   }
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:hover,
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .page-section-subnav__btn--ghost:focus-visible {
     color: var(--text);
-    border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 38%, var(--border));
-    background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 7%, var(--bg-elevated));
+    border-color: color-mix(in srgb, var(--text) 32%, var(--border));
+    background: color-mix(in srgb, var(--text) 4%, transparent);
   }
 }
 
@@ -8121,6 +8131,21 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
 .page-huawei .projects-hero-actions .btn--ghost-light:focus-visible {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--huawei-red) 45%, transparent);
+}
+
+.page-huawei .projects-hero-actions .btn {
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border-width: 0.5px;
+  padding: 0.875rem 1.75rem;
+}
+
+.page-huawei .projects-hero-actions .btn--ghost-light {
+  font-weight: 500;
 }
 
 @media (max-width: 860px) {
@@ -9815,6 +9840,13 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   background: rgba(4, 8, 18, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+html.cert-lightbox-open,
+body.cert-lightbox-open {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
 }
 
 .cert-lightbox__scrim {

@@ -6,7 +6,7 @@
     <title>Проекты — DC Engineering</title>
     <meta
       name="description"
-      content="DC Engineering: мы — команда инженеров. Проектируем, внедряем, поддерживаем вычислительные комплексы и корпоративные сети передачи данных с 2005-го года."
+      content="Проекты DC Engineering: ключевые и реализованные проекты для государственного сектора, банков, промышленности и медицины."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260710-subnav-light" />
-    <link rel="preload" href="images/Project_hero.png" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-projects">
@@ -153,30 +153,25 @@
 
     <main id="main">
 
-      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
-        <div class="projects-hero__background" aria-hidden="true"></div>
-
-        <header
-          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex"
-          data-subpage-hero
-          aria-labelledby="projects-page-title"
-        >
-          <div class="subpage-hero__inner projects-hero__inner--left">
-            <div class="subpage-hero__content projects-hero__content">
-              <h1 id="projects-page-title" class="subpage-hero__title projects-hero__title">
-                <span class="subpage-hero__title-line">Проекты</span>
-              </h1>
-              <p class="subpage-hero__lead projects-hero__lead">
-                Мы&nbsp;— команда инженеров. Проектируем, внедряем, поддерживаем вычислительные комплексы и&nbsp;корпоративные
-                сети передачи данных с&nbsp;2005-го&nbsp;года.
-              </p>
-              <div class="projects-hero-actions">
-                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
-              </div>
-            </div>
+      <header class="subpage-hero subpage-hero--about projects-hero" data-subpage-hero aria-labelledby="projects-page-title">
+        <div class="subpage-hero__inner">
+          <div class="subpage-hero__content">
+            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+              <ol class="subpage-breadcrumbs__list">
+                <li class="subpage-breadcrumbs__item">
+                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная&nbsp;страница</a>
+                </li>
+                <li class="subpage-breadcrumbs__item" aria-current="page">
+                  Проекты
+                </li>
+              </ol>
+            </nav>
+            <h1 id="projects-page-title" class="subpage-hero__title">
+              <span class="subpage-hero__title-line">Проекты</span>
+            </h1>
           </div>
-        </header>
-      </div>
+        </div>
+      </header>
 
       <div class="page-sticky-scope">
         <div class="page-section-subnav" data-section-subnav>
@@ -1243,7 +1238,6 @@
       </div>
     </footer>
 
-    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="client-data.js"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="nav.js?v=20260710-subnav-header-lock"></script>

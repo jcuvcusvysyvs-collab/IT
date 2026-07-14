@@ -1,0 +1,284 @@
+/* Страницы «Проекты» и кейсов — hero как на «Контактах» */
+
+/* ——— Список проектов ——— */
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) {
+  --projects-hero-pad-top: clamp(1.35rem, 3vw, 1.85rem);
+  --projects-hero-pad-bottom: clamp(1.25rem, 2.8vw, 1.75rem);
+  --projects-hero-crumbs-gap: clamp(1.35rem, 3vw, 2rem);
+  --projects-hero-content-width: min(42rem, 100%);
+  --projects-hero-min-height: clamp(14rem, 28vh, 18rem);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--projects-hero-min-height);
+  position: relative;
+}
+
+html:not([data-theme="dark"]) .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) {
+  background: var(--bg-elevated);
+  color-scheme: light;
+}
+
+.page-projects .projects-hero .subpage-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: var(--projects-hero-pad-top) var(--layout-gutter) var(--projects-hero-pad-bottom);
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex)::before {
+  content: none;
+  display: none;
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex):not(.projects-hero--interactive-grid)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 58% 78% at 80% 48%, #000 20%, transparent 74%);
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.page-projects .projects-hero .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+  width: 100%;
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-hero__title {
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text);
+  text-shadow: none;
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: color-mix(in srgb, var(--text) 48%, transparent);
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 0.7rem;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--text) 38%, transparent);
+  background: none;
+  width: auto;
+  height: auto;
+  mask-image: none;
+  -webkit-mask-image: none;
+  opacity: 1;
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item[aria-current="page"] {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__link:hover,
+.page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__link:focus-visible {
+  color: var(--text);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) {
+  background: var(--bg-elevated);
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-hero__title {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item:not(:first-child)::before {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__item[aria-current="page"] {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__link:hover,
+[data-theme="dark"] .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+}
+
+/* ——— Страницы кейсов (project-*.html) ——— */
+
+.page-project-case .projects-hero.subpage-hero--about {
+  --projects-hero-pad-top: clamp(1.35rem, 3vw, 1.85rem);
+  --projects-hero-pad-bottom: clamp(1.75rem, 3.5vw, 2.35rem);
+  --projects-hero-crumbs-gap: clamp(1.35rem, 3vw, 2rem);
+  --projects-hero-content-width: min(42rem, 100%);
+  --projects-hero-min-height: clamp(16rem, 32vh, 21rem);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--projects-hero-min-height);
+  position: relative;
+}
+
+html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--about {
+  background: var(--bg-elevated);
+  color-scheme: light;
+}
+
+.page-project-case .projects-hero .subpage-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: var(--projects-hero-pad-top) var(--layout-gutter) var(--projects-hero-pad-bottom);
+}
+
+.page-project-case .projects-hero.subpage-hero--about::before {
+  content: none;
+  display: none;
+}
+
+.page-project-case .projects-hero.subpage-hero--about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 58% 78% at 80% 48%, #000 20%, transparent 74%);
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.page-project-case .projects-hero .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+  width: 100%;
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-hero__title {
+  margin: 0 0 clamp(0.65rem, 1.4vw, 0.85rem);
+  line-height: 1.1;
+  color: var(--text);
+  text-shadow: none;
+}
+
+html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--about .subpage-hero__lead {
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+  text-shadow: none;
+}
+
+html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--about .case-hero__facts {
+  color: color-mix(in srgb, var(--text) 55%, transparent);
+}
+
+html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--about .case-hero__eyebrow {
+  color: color-mix(in srgb, var(--accent) 68%, var(--text));
+  text-shadow: none;
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: color-mix(in srgb, var(--text) 48%, transparent);
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 0.7rem;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--text) 38%, transparent);
+  background: none;
+  width: auto;
+  height: auto;
+  mask-image: none;
+  -webkit-mask-image: none;
+  opacity: 1;
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item[aria-current="page"],
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__current {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__link:hover,
+.page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__link:focus-visible {
+  color: var(--text);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about {
+  background: var(--bg-elevated);
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-hero__title {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-hero__lead {
+  color: rgba(255, 255, 255, 0.84);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .case-hero__facts {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item:not(:first-child)::before {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__item[aria-current="page"],
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__current {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__link:hover,
+[data-theme="dark"] .page-project-case .projects-hero.subpage-hero--about .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+}
