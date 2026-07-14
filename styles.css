@@ -7586,6 +7586,25 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
   background: transparent;
 }
 
+.page-huawei .page-section-subnav__brand-icon {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.page-huawei .page-section-subnav__brand-icon img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+html:not([data-theme="dark"]) .page-huawei .page-section-subnav__brand-icon {
+  background: transparent;
+  box-shadow: none;
+}
+
 .page-section-subnav__actions {
   grid-column: 3;
   justify-self: end;
@@ -7717,6 +7736,17 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-section-subnav__brand-icon img {
     width: 2.2rem;
     height: 2.2rem;
+  }
+
+  .page-huawei .page-section-subnav__brand-icon {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .page-huawei .page-section-subnav__brand-icon img {
+    width: 2.85rem;
+    height: 2.85rem;
   }
 
   .page-section-subnav__toggle {
