@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STYLES_VER = "20260714-site-sync"
+STYLES_VER = "20260714-hero-no-accent"
 NAV_VER = "20260710-subnav-header-lock"
 
 SERVICE_LINKS = [

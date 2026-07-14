@@ -1541,21 +1541,7 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .hero-pt__accent-bar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 3px;
-  z-index: 3;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--hero-slide-accent) 30%,
-    var(--hero-slide-accent) 70%,
-    transparent
-  );
-  opacity: 0.6;
+  display: none;
 }
 
 .hero-pt__bg {
@@ -2295,8 +2281,7 @@ body.nav-mega-open .nav-mega-backdrop {
   }
 
   .hero-pt__accent-bar {
-    width: 2px;
-    opacity: 0.45;
+    display: none;
   }
 
   .hero-pt__grid {
