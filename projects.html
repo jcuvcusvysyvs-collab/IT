@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260710-subnav-light" />
-    <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
+    <link rel="stylesheet" href="projects.css?v=20260714-projects-subnav-icon" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-projects">
@@ -175,13 +175,36 @@
 
       <div class="page-sticky-scope">
         <div class="page-section-subnav" data-section-subnav>
-          <div class="page-section-subnav__inner">
-            <nav class="projects-hero-switcher" aria-label="Разделы страницы проектов">
-              <div class="projects-hero-switcher__track">
-                <a class="projects-hero-switcher__item" href="#projects-featured">Ключевые проекты</a>
-                <a class="projects-hero-switcher__item" href="#projects-all">Все проекты</a>
-              </div>
-            </nav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#projects-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_project.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Проекты</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="projects-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="projects-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы проектов">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#projects-featured">Ключевые проекты</a>
+                  <a class="projects-hero-switcher__item" href="#projects-all">Все проекты</a>
+                </div>
+              </nav>
+            </div>
           </div>
         </div>
 
@@ -1244,5 +1267,6 @@
     <script defer src="page-projects-cards.js"></script>
     <script defer src="projects-filter.js"></script>
     <script defer src="projects-page-reveal.js?v=20260709-reveal-fix"></script>
+    <script defer src="huawei-subnav.js?v=20260714-projects-subnav"></script>
   </body>
 </html>

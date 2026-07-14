@@ -7757,7 +7757,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-section-subnav--menu-open .page-section-subnav__panel {
     display: block;
     position: fixed;
-    top: var(--huawei-subnav-panel-top, 4.5rem);
+    top: var(--section-subnav-panel-top, var(--huawei-subnav-panel-top, 4.5rem));
     left: var(--layout-gutter);
     right: var(--layout-gutter);
     z-index: 121;
@@ -7933,7 +7933,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  top: var(--huawei-subnav-backdrop-top, 100vh);
+  top: var(--section-subnav-backdrop-top, var(--huawei-subnav-backdrop-top, 100vh));
   z-index: 118;
   padding: 0;
   border: 0;
@@ -7959,19 +7959,22 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
 }
 
 @media (max-width: 900px) {
-  body.page-huawei-subnav-open .site-header {
+  body.page-huawei-subnav-open .site-header,
+  body.page-section-subnav-menu-open .site-header {
     transform: translate3d(0, -100%, 0);
     pointer-events: none;
     transition: none;
   }
 
-  body.page-huawei-subnav-open .page-sticky-scope {
+  body.page-huawei-subnav-open .page-sticky-scope,
+  body.page-section-subnav-menu-open .page-sticky-scope {
     position: relative;
     z-index: 120;
     isolation: isolate;
   }
 
-  body.page-huawei-subnav-open .page-section-subnav__backdrop.is-visible {
+  body.page-huawei-subnav-open .page-section-subnav__backdrop.is-visible,
+  body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-visible {
     z-index: 118;
   }
 
@@ -8002,7 +8005,9 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
   }
 
   html.page-huawei-subnav-open,
-  body.page-huawei-subnav-open {
+  body.page-huawei-subnav-open,
+  html.page-section-subnav-menu-open,
+  body.page-section-subnav-menu-open {
     overflow: hidden;
     touch-action: none;
     overscroll-behavior: none;
