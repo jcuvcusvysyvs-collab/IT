@@ -16,7 +16,7 @@
 
   function applyRequestType() {
     var selected = form.querySelector('input[name="request_type"]:checked');
-    var type = selected ? selected.value : "consultation";
+    var type = selected ? selected.value : "pricelist";
     var isPricelist = type === "pricelist";
 
     if (messageField) {
@@ -55,7 +55,7 @@
   applyRequestType();
 
   if (window.location.hash === "#huawei-feedback") {
-    openFeedback("consultation");
+    openFeedback("pricelist");
   }
 
   document.querySelectorAll("[data-huawei-request-type]").forEach(function (trigger) {

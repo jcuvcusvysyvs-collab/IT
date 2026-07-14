@@ -7114,6 +7114,11 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   background: var(--huawei-hero-bg);
 }
 
+/* Перекрывает #main > .projects-hero-stage:first-child { padding-top: 0 } — иначе заголовок под шапкой */
+.page-huawei #main > .projects-hero-stage:first-child {
+  padding-top: var(--hero-header-clearance);
+}
+
 .page-huawei .projects-hero--interactive-grid.subpage-hero::before {
   content: none;
   display: none;
@@ -8138,11 +8143,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     height: auto;
     min-height: calc(72svh + var(--site-header-height, 5.5rem));
     min-height: calc(72dvh + var(--site-header-height, 5.5rem));
-  }
-
-  .page-huawei .projects-hero-stage {
-    /* Только шапка + небольшой зазор, без лишнего «пустого потолка» */
-    padding-top: calc(var(--site-header-height, 5.5rem) + clamp(0.65rem, 2vh, 1.1rem));
+    padding-top: calc(var(--site-header-height, 5.5rem) + clamp(1rem, 3vh, 1.5rem));
   }
 
   .page-huawei .projects-hero-stage--photo .projects-hero__background::before {
@@ -8376,14 +8377,13 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   border: 1px solid color-mix(in srgb, var(--border) 90%, var(--huawei-red) 8%);
   box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent) inset;
   transform: none;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .page-huawei .subpage-feature-grid--huawei .subpage-feature-card:hover {
-  transform: translateY(-1px);
+  transform: none;
   border-color: color-mix(in srgb, var(--huawei-red) 28%, var(--border));
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--text) 4%, transparent) inset,
-    0 10px 24px color-mix(in srgb, var(--text) 6%, transparent);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent) inset;
 }
 
 /* Превью: фото на всю площадь блока (cover), без полей */
@@ -8454,7 +8454,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 }
 
 .page-huawei .subpage-feature-grid--huawei .subpage-feature-card:hover .subpage-feature-card__img {
-  transform: scale(1.045);
+  transform: scale(1);
 }
 
 /* Текстовый блок */

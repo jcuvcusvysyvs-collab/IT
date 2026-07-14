@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260714-huawei-spec-zoom" />
+    <link rel="stylesheet" href="styles.css?v=20260714-huawei-hero-header" />
     <link rel="preload" href="images/service_huawei.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -239,15 +239,15 @@
               </nav>
               <div class="page-section-subnav__actions">
                 <a
-                  class="page-section-subnav__btn page-section-subnav__btn--ghost"
-                  href="#huawei-feedback"
-                  data-huawei-request-type="consultation"
-                >Консультация</a>
-                <a
                   class="page-section-subnav__btn page-section-subnav__btn--primary"
                   href="#huawei-feedback"
                   data-huawei-request-type="pricelist"
                 >Прейскурант</a>
+                <a
+                  class="page-section-subnav__btn page-section-subnav__btn--ghost"
+                  href="#huawei-feedback"
+                  data-huawei-request-type="consultation"
+                >Консультация</a>
               </div>
             </div>
           </div>
@@ -703,8 +703,36 @@
                         class="huawei-request-form__type-input"
                         type="radio"
                         name="request_type"
-                        value="consultation"
+                        value="pricelist"
                         checked
+                      />
+                      <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                      <span class="huawei-request-form__type-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M7.25 5.5h9.5A1.75 1.75 0 0 1 18.5 7.25v9.5A1.75 1.75 0 0 1 16.75 18.5h-9.5A1.75 1.75 0 0 1 5.5 16.75v-9.5A1.75 1.75 0 0 1 7.25 5.5Z"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                          />
+                          <path
+                            d="M8.25 9.25h7.5M8.25 12h7.5M8.25 14.75h4.5"
+                            stroke="currentColor"
+                            stroke-width="1.35"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="huawei-request-form__type-body">
+                        <span class="huawei-request-form__type-title">Прейскурант</span>
+                        <span class="huawei-request-form__type-desc">Пришлём актуальный прайс-лист</span>
+                      </span>
+                    </label>
+                    <label class="huawei-request-form__type-card">
+                      <input
+                        class="huawei-request-form__type-input"
+                        type="radio"
+                        name="request_type"
+                        value="consultation"
                       />
                       <span class="huawei-request-form__type-check" aria-hidden="true"></span>
                       <span class="huawei-request-form__type-icon" aria-hidden="true">
@@ -728,34 +756,6 @@
                         <span class="huawei-request-form__type-desc"
                           >Ответим на вопросы по проекту или услуге</span
                         >
-                      </span>
-                    </label>
-                    <label class="huawei-request-form__type-card">
-                      <input
-                        class="huawei-request-form__type-input"
-                        type="radio"
-                        name="request_type"
-                        value="pricelist"
-                      />
-                      <span class="huawei-request-form__type-check" aria-hidden="true"></span>
-                      <span class="huawei-request-form__type-icon" aria-hidden="true">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <path
-                            d="M7.25 5.5h9.5A1.75 1.75 0 0 1 18.5 7.25v9.5A1.75 1.75 0 0 1 16.75 18.5h-9.5A1.75 1.75 0 0 1 5.5 16.75v-9.5A1.75 1.75 0 0 1 7.25 5.5Z"
-                            stroke="currentColor"
-                            stroke-width="1.35"
-                          />
-                          <path
-                            d="M8.25 9.25h7.5M8.25 12h7.5M8.25 14.75h4.5"
-                            stroke="currentColor"
-                            stroke-width="1.35"
-                            stroke-linecap="round"
-                          />
-                        </svg>
-                      </span>
-                      <span class="huawei-request-form__type-body">
-                        <span class="huawei-request-form__type-title">Прейскурант</span>
-                        <span class="huawei-request-form__type-desc">Пришлём актуальный прайс-лист</span>
                       </span>
                     </label>
                   </div>
@@ -953,7 +953,7 @@
     <script defer src="subpage-hero.js"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="clients-marquee.js?v=2"></script>
-    <script defer src="huawei-request-form.js?v=3"></script>
+    <script defer src="huawei-request-form.js?v=4"></script>
     <script defer src="huawei-cert-lightbox.js"></script>
     <script defer src="nav.js?v=20260710-subnav-header-lock"></script>
   </body>
