@@ -8370,7 +8370,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   flex-direction: row;
   align-items: stretch;
   height: auto;
-  min-height: calc(var(--huawei-feat-thumb) + 2px);
+  min-height: var(--huawei-feat-thumb);
   border-radius: 14px;
   overflow: hidden;
   background: var(--bg-elevated);
@@ -8394,10 +8394,13 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   min-height: var(--huawei-feat-thumb);
   aspect-ratio: auto;
   overflow: hidden;
+  border: none;
   border-bottom: none;
-  border-right: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-right: none;
   background: #0a0f16;
   isolation: isolate;
+  line-height: 0;
+  box-shadow: none;
 }
 
 .page-huawei .subpage-feature-grid--huawei .subpage-feature-card__visual::before {
@@ -8446,15 +8449,18 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   width: 100%;
   height: 100%;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
   object-fit: cover;
-  object-position: center center;
-  transform: scale(1);
+  object-position: center 38%;
+  transform: scale(1.08);
   transform-origin: center center;
+  display: block;
+  vertical-align: top;
 }
 
 .page-huawei .subpage-feature-grid--huawei .subpage-feature-card:hover .subpage-feature-card__img {
-  transform: scale(1);
+  transform: scale(1.08);
 }
 
 /* Текстовый блок */
@@ -8463,13 +8469,15 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   display: flex;
   align-items: center;
   min-width: 0;
+  margin: 0;
   padding: clamp(1.05rem, 1.45vw, 1.35rem) clamp(1.1rem, 1.7vw, 1.5rem);
   background: linear-gradient(
     108deg,
     color-mix(in srgb, var(--huawei-red, #b03840) 7%, var(--bg-elevated)) 0%,
     var(--bg-elevated) 52%
   );
-  border-left: 3px solid var(--huawei-red, #b03840);
+  border: none;
+  box-shadow: none;
 }
 
 [data-theme="dark"] .page-huawei .subpage-feature-grid--huawei .subpage-feature-card__body {
@@ -8521,6 +8529,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   .page-huawei .subpage-feature-grid--huawei .subpage-feature-card {
     flex-direction: column;
     min-height: 0;
+    gap: 0;
   }
 
   .page-huawei .subpage-feature-grid--huawei .subpage-feature-card__visual {
@@ -8528,13 +8537,16 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     width: 100%;
     min-height: 9.25rem;
     height: 9.25rem;
-    border-right: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    max-height: 9.25rem;
+    aspect-ratio: unset;
+    border: none;
+    box-shadow: none;
   }
 
   .page-huawei .subpage-feature-grid--huawei .subpage-feature-card__body {
-    border-left: none;
-    border-top: 3px solid var(--huawei-red, #b03840);
+    margin: 0;
+    border: none;
+    box-shadow: none;
     padding: 1rem 1.05rem 1.05rem;
   }
 
@@ -8550,7 +8562,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
 /* Анимация появления — без конфликта scale(1.02) / scale(1.12) */
 .page-huawei [data-feature-reveal]:not(.is-revealing) .subpage-feature-grid--huawei .subpage-feature-card__img {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 .page-huawei [data-feature-reveal].is-revealing .subpage-feature-grid--huawei .subpage-feature-card__img {
@@ -8559,10 +8571,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
 @keyframes huawei-feature-img-in {
   from {
-    transform: scale(1.06);
+    transform: scale(1.1);
   }
   to {
-    transform: scale(1);
+    transform: scale(1.08);
   }
 }
 
@@ -8572,13 +8584,13 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   }
 
   .page-huawei .subpage-feature-grid--huawei .subpage-feature-card:hover .subpage-feature-card__img {
-    transform: scale(1);
+    transform: scale(1.08);
   }
 
   .page-huawei [data-feature-reveal]:not(.is-revealing) .subpage-feature-grid--huawei .subpage-feature-card__img,
   .page-huawei [data-feature-reveal].is-revealing .subpage-feature-grid--huawei .subpage-feature-card__img {
     animation: none;
-    transform: scale(1);
+    transform: scale(1.08);
   }
 }
 
@@ -10791,15 +10803,92 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 }
 
 @media (max-width: 520px) {
-.page-huawei .huawei-request-form__type-grid,
-.page-contacts .huawei-request-form__type-grid {
+  .page-huawei .huawei-request-form__type-grid,
+  .page-contacts .huawei-request-form__type-grid {
     grid-template-columns: 1fr;
+    border-radius: 10px;
   }
 
-.page-huawei .huawei-request-form__type-card + .huawei-request-form__type-card,
-.page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card {
+  .page-huawei .huawei-request-form__type-card,
+  .page-contacts .huawei-request-form__type-card {
+    display: grid;
+    grid-template-columns: 2.125rem minmax(0, 1fr) 1.125rem;
+    grid-template-areas: "icon body check";
+    align-items: center;
+    column-gap: 0.7rem;
+    min-height: 0;
+    padding: 0.72rem 0.85rem;
+  }
+
+  .page-huawei .huawei-request-form__type-card + .huawei-request-form__type-card,
+  .page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card {
     border-left: none;
     border-top: 0.5px solid var(--hc-border);
+  }
+
+  .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked),
+  .page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) {
+    border-bottom-color: transparent;
+    box-shadow: none;
+  }
+
+  .page-huawei .huawei-request-form__type-check,
+  .page-contacts .huawei-request-form__type-check {
+    grid-area: check;
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .page-huawei
+    .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
+    .huawei-request-form__type-check::after,
+  .page-contacts
+    .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
+    .huawei-request-form__type-check::after {
+    position: static;
+    width: 0.28rem;
+    height: 0.5rem;
+    margin: 0;
+    transform: rotate(45deg) translateY(-1px);
+  }
+
+  .page-huawei .huawei-request-form__type-icon,
+  .page-contacts .huawei-request-form__type-icon {
+    grid-area: icon;
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 8px;
+  }
+
+  .page-huawei .huawei-request-form__type-icon svg,
+  .page-contacts .huawei-request-form__type-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .page-huawei .huawei-request-form__type-body,
+  .page-contacts .huawei-request-form__type-body {
+    grid-area: body;
+    min-width: 0;
+    padding-right: 0;
+    gap: 0.1rem;
+  }
+
+  .page-huawei .huawei-request-form__type-title,
+  .page-contacts .huawei-request-form__type-title {
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+
+  .page-huawei .huawei-request-form__type-desc,
+  .page-contacts .huawei-request-form__type-desc {
+    font-size: 0.6875rem;
+    line-height: 1.35;
   }
 }
 
