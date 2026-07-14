@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <link rel="stylesheet" href="styles.css?v=20260714-site-sync" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-infra page-infosec">
@@ -25,15 +25,28 @@
           <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
         </a>
 
-        <nav class="nav" aria-label="Основное меню">
-          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+                        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
             <span class="nav-toggle-bar" aria-hidden="true"></span>
             <span class="nav-toggle-bar" aria-hidden="true"></span>
             <span class="nav-toggle-bar" aria-hidden="true"></span>
           </button>
+
           <ul id="nav-menu" class="nav-menu">
             <li class="nav-item-has-submenu">
-              <button type="button" class="nav-submenu-trigger" aria-expanded="false" aria-controls="submenu-services" id="services-menu-button">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-services"
+                id="services-menu-button"
+              >
                 Услуги
                 <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
                   <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
@@ -41,7 +54,7 @@
               </button>
               <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
                 <div class="nav-submenu-panel">
-                                                      <ul class="nav-submenu-links" role="menu">
+                  <ul class="nav-submenu-links" role="menu">
                   <li role="none">
                     <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
                   </li>
@@ -58,20 +71,12 @@
                     <a href="operations-support.html" role="menuitem">Эксплуатация и сопровождение</a>
                   </li>
                   <li role="none">
+                    <a href="huawei-service-center.html" role="menuitem">Сервисный центр HUAWEI</a>
+                  </li>
+                  <li role="none">
                     <a href="asdu-datacenter.html" role="menuitem">АСДУ ЦОД</a>
                   </li>
                   </ul>
-                  <a class="nav-submenu-feature" href="huawei-service-center.html" role="menuitem">
-                    <span class="nav-submenu-feature__eyebrow">Сервисный<br />центр</span>
-                    <span class="nav-submenu-feature__title">HUAWEI</span>
-                    <span class="nav-submenu-feature__lead">Официальный сервис и поддержка оборудования</span>
-                    <span class="nav-submenu-feature__btn">Подробнее</span>
-                    <span class="nav-submenu-feature__decor" aria-hidden="true">
-                      <span class="nav-submenu-feature__tile"></span>
-                      <span class="nav-submenu-feature__tile"></span>
-                      <span class="nav-submenu-feature__tile"></span>
-                    </span>
-                  </a>
                 </div>
               </div>
             </li>
@@ -489,6 +494,6 @@
     </footer>
 
     <script defer src="subpage-hero.js"></script>
-    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+    <script defer src="nav.js?v=20260710-subnav-header-lock"></script>
   </body>
 </html>

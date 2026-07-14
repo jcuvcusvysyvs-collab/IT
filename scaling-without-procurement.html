@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260709-header-dropdown-fix" />
+    <link rel="stylesheet" href="styles.css?v=20260714-site-sync" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-infra page-scaling">
@@ -25,12 +25,19 @@
           <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
         </a>
 
-        <nav class="nav" aria-label="Основное меню">
-          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+                        <nav class="nav" aria-label="Основное меню">
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Открыть меню"
+          >
             <span class="nav-toggle-bar" aria-hidden="true"></span>
             <span class="nav-toggle-bar" aria-hidden="true"></span>
             <span class="nav-toggle-bar" aria-hidden="true"></span>
           </button>
+
           <ul id="nav-menu" class="nav-menu">
             <li class="nav-item-has-submenu">
               <button
@@ -47,7 +54,7 @@
               </button>
               <div id="submenu-services" class="nav-submenu nav-submenu--mega" aria-labelledby="services-menu-button">
                 <div class="nav-submenu-panel">
-                                                      <ul class="nav-submenu-links" role="menu">
+                  <ul class="nav-submenu-links" role="menu">
                   <li role="none">
                     <a href="infrastructure-solutions.html" role="menuitem">Инфраструктурные решения</a>
                   </li>
@@ -55,7 +62,7 @@
                     <a href="information-security.html" role="menuitem">Информационная безопасность</a>
                   </li>
                   <li role="none">
-                    <a href="scaling-without-procurement.html" role="menuitem">Масштабирование без закупок</a>
+                    <a href="scaling-without-procurement.html" role="menuitem" aria-current="page">Масштабирование без закупок</a>
                   </li>
                   <li role="none">
                     <a href="business-continuity.html" role="menuitem">Обеспечение непрерывности</a>
@@ -70,6 +77,13 @@
                     <a href="asdu-datacenter.html" role="menuitem">АСДУ ЦОД</a>
                   </li>
                   </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="index.html#clients">Заказчики</a></li>
+            <li><a href="about.html">О компании</a></li>
+          </ul>
         </nav>
 
         <div class="header-actions">
@@ -347,6 +361,6 @@
     </footer>
 
     <script defer src="subpage-hero.js"></script>
-    <script defer src="nav.js?v=20260709-header-shell-sync"></script>
+    <script defer src="nav.js?v=20260710-subnav-header-lock"></script>
   </body>
 </html>
