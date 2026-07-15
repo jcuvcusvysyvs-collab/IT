@@ -36,17 +36,30 @@
 
   function scrollToFeedback() {
     if (!feedbackSection) return;
+
+    var headerH =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-height")) || 72;
+    var subnavH =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--section-subnav-height")) || 76;
+    var targetY = Math.max(
+      0,
+      Math.round(feedbackSection.getBoundingClientRect().top + window.scrollY - headerH - subnavH)
+    );
     var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    feedbackSection.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+
+    window.scrollTo({ top: targetY, behavior: smooth ? "smooth" : "auto" });
   }
 
-  function openFeedback(type) {
+  function openFeedback(type, options) {
+    options = options || {};
     if (type) selectRequestType(type);
-    scrollToFeedback();
+    if (options.scroll !== false) scrollToFeedback();
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", "#huawei-feedback");
     }
   }
+
+  window.dceOpenHuaweiFeedback = openFeedback;
 
   typeInputs.forEach(function (input) {
     input.addEventListener("change", applyRequestType);
@@ -60,6 +73,7 @@
 
   document.querySelectorAll("[data-huawei-request-type]").forEach(function (trigger) {
     trigger.addEventListener("click", function (event) {
+      if (trigger.closest("[data-section-subnav]")) return;
       var type = trigger.getAttribute("data-huawei-request-type");
       if (!type || !validTypes[type]) return;
       event.preventDefault();

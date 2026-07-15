@@ -105,8 +105,7 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-vis
   }
 
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
     color: var(--text);
     background: transparent;
   }

@@ -128,6 +128,78 @@
 
 
 
+  var spyLinks = Array.prototype.slice.call(
+
+    panel.querySelectorAll(".projects-hero-switcher__item[href^='#']")
+
+  ).filter(function (link) {
+
+    var id = link.getAttribute("href").slice(1);
+
+    return id && document.getElementById(id);
+
+  });
+
+
+
+  function spyOffset() {
+
+    return headerOffset() + subnav.getBoundingClientRect().height + 24;
+
+  }
+
+
+
+  function updateActiveSectionLink() {
+
+    if (!spyLinks.length) return;
+
+
+
+    var marker = spyOffset();
+
+    var activeLink = spyLinks[0];
+
+
+
+    spyLinks.forEach(function (link) {
+
+      var section = document.getElementById(link.getAttribute("href").slice(1));
+
+      var markerTarget = section ? resolveScrollTarget(section) || section : null;
+
+      if (markerTarget && markerTarget.getBoundingClientRect().top <= marker) {
+
+        activeLink = link;
+
+      }
+
+    });
+
+
+
+    spyLinks.forEach(function (link) {
+
+      var isActive = link === activeLink;
+
+      link.classList.toggle("is-active", isActive);
+
+      if (isActive) {
+
+        link.setAttribute("aria-current", "location");
+
+      } else {
+
+        link.removeAttribute("aria-current");
+
+      }
+
+    });
+
+  }
+
+
+
   function syncStickyState() {
 
     stickyTicking = false;
@@ -139,6 +211,8 @@
     }
 
     syncSubnavHeight();
+
+    updateActiveSectionLink();
 
   }
 
@@ -352,6 +426,8 @@
 
         updateOverlayGeometry();
 
+        updateActiveSectionLink();
+
         window.requestAnimationFrame(showBackdrop);
 
       });
@@ -425,6 +501,250 @@
       window.addEventListener("scroll", onScroll, { passive: true });
 
     });
+
+  }
+
+
+
+  function showSiteHeader() {
+
+    if (header) {
+
+      header.classList.remove("site-header--hidden");
+
+    }
+
+  }
+
+
+
+  function resolveScrollTarget(element) {
+
+    if (!element) return null;
+
+
+
+    var shellBlock = element.querySelector(":scope > .about-dce__inner > .about-dce__block");
+
+    if (shellBlock) return shellBlock;
+
+
+
+    if (element.id === "huawei-clients" || element.classList.contains("huawei-clients")) {
+
+      var clientsInner = element.querySelector(":scope > .huawei-clients__inner");
+
+      if (clientsInner) return clientsInner;
+
+    }
+
+
+
+    return element;
+
+  }
+
+
+
+  function stickyScrollOffset() {
+
+    syncSubnavHeight();
+
+    return headerOffset() + Math.round(subnav.getBoundingClientRect().height);
+
+  }
+
+
+
+  function getElementScrollTop(element) {
+
+    var target = resolveScrollTarget(element) || element;
+
+    return Math.max(
+
+      0,
+
+      Math.round(target.getBoundingClientRect().top + window.scrollY - stickyScrollOffset())
+
+    );
+
+  }
+
+
+
+  function waitForScrollEnd(targetY) {
+
+    if (reducedMotionQuery.matches) {
+
+      return Promise.resolve();
+
+    }
+
+
+
+    return new Promise(function (resolve) {
+
+      var done = false;
+
+
+
+      function finish() {
+
+        if (done) return;
+
+        done = true;
+
+        window.removeEventListener("scroll", onScroll);
+
+        window.clearTimeout(fallbackTimer);
+
+        resolve();
+
+      }
+
+
+
+      function onScroll() {
+
+        if (Math.abs(window.scrollY - targetY) <= 2) {
+
+          finish();
+
+        }
+
+      }
+
+
+
+      var fallbackTimer = window.setTimeout(finish, 900);
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      onScroll();
+
+    });
+
+  }
+
+
+
+  function scrollToElement(element) {
+
+    if (!element) return Promise.resolve();
+
+
+
+    showSiteHeader();
+
+    var targetY = getElementScrollTop(element);
+
+
+
+    window.scrollTo({
+
+      top: targetY,
+
+      behavior: reducedMotionQuery.matches ? "auto" : "smooth",
+
+    });
+
+
+
+    return waitForScrollEnd(targetY).then(function () {
+
+      syncStickyState();
+
+      updateActiveSectionLink();
+
+    });
+
+  }
+
+
+
+  function setLocationHash(id) {
+
+    if (!id) return;
+
+    if (window.history && window.history.replaceState) {
+
+      window.history.replaceState(null, "", "#" + id);
+
+    } else {
+
+      window.location.hash = id;
+
+    }
+
+  }
+
+
+
+  function navigatePanelLink(link) {
+
+    var href = link.getAttribute("href");
+
+    if (!href || href.charAt(0) !== "#") return Promise.resolve();
+
+
+
+    var id = href.slice(1);
+
+    if (!id) return Promise.resolve();
+
+
+
+    var target = document.getElementById(id);
+
+    if (!target) return Promise.resolve();
+
+
+
+    var requestType = link.getAttribute("data-huawei-request-type");
+
+
+
+    function finishNavigation() {
+
+      return scrollToElement(target).then(function () {
+
+        setLocationHash(id);
+
+        if (requestType && typeof window.dceOpenHuaweiFeedback === "function") {
+
+          window.dceOpenHuaweiFeedback(requestType, { scroll: false });
+
+        }
+
+      });
+
+    }
+
+
+
+    if (isOpen) {
+
+      setOpen(false);
+
+      return new Promise(function (resolve) {
+
+        window.requestAnimationFrame(function () {
+
+          window.requestAnimationFrame(function () {
+
+            finishNavigation().then(resolve);
+
+          });
+
+        });
+
+      });
+
+    }
+
+
+
+    return finishNavigation();
 
   }
 
@@ -526,11 +846,35 @@
 
 
 
-  panel.querySelectorAll("a").forEach(function (link) {
+  panel.querySelectorAll("a[href^='#']").forEach(function (link) {
 
-    link.addEventListener("click", function () {
+    link.addEventListener("click", function (event) {
 
-      setOpen(false);
+      var href = link.getAttribute("href");
+
+      if (!href || href.charAt(0) !== "#") return;
+
+
+
+      var id = href.slice(1);
+
+      if (!id || !document.getElementById(id)) return;
+
+
+
+      event.preventDefault();
+
+      if (isAnimating) return;
+
+
+
+      isAnimating = true;
+
+      navigatePanelLink(link).catch(function () {}).finally(function () {
+
+        isAnimating = false;
+
+      });
 
     });
 
