@@ -1,0 +1,110 @@
+/* Страница «О компании» — липкая лента (как на «Проекты») */
+
+.page-about .page-section-subnav .projects-hero-switcher {
+  width: auto;
+  flex: 0 1 auto;
+  justify-content: center;
+}
+
+.page-about .page-section-subnav .projects-hero-switcher__track {
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.page-about .page-section-subnav .projects-hero-switcher__item {
+  padding: 0.2rem 0;
+  border-radius: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.page-about .page-section-subnav__brand-icon {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.page-about .page-section-subnav__brand-icon img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav__brand-icon {
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-about .page-section-subnav__toggle:hover,
+.page-about .page-section-subnav__toggle:focus-visible {
+  border-color: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 28%, transparent);
+  background: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 8%, transparent);
+}
+
+.page-about .page-section-subnav__toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:hover,
+html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-visible {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 28%, var(--border));
+  background: color-mix(in srgb, var(--text) 6%, var(--bg-elevated));
+}
+
+@media (max-width: 900px) {
+  .page-about .page-section-subnav:not(.page-section-subnav--menu-open) {
+    padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
+  }
+
+  .page-about .page-section-subnav .projects-hero-switcher {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-about .page-section-subnav .projects-hero-switcher__track {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+    width: 100%;
+  }
+
+  .page-about .page-section-subnav .projects-hero-switcher__item {
+    padding: 0.1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .page-about .page-section-subnav__brand-icon {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .page-about .page-section-subnav__brand-icon img {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item {
+    color: var(--text);
+  }
+
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+    color: var(--text);
+    background: transparent;
+  }
+}

@@ -7363,7 +7363,8 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
 }
 
 .page-projects .projects-hero-switcher,
-.page-huawei .projects-hero-switcher {
+.page-huawei .projects-hero-switcher,
+.page-about .projects-hero-switcher {
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -7686,7 +7687,9 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 }
 
 @media (max-width: 900px) {
-  .page-huawei .page-section-subnav:not(.page-section-subnav--menu-open) {
+  .page-huawei .page-section-subnav:not(.page-section-subnav--menu-open),
+  .page-projects .page-section-subnav:not(.page-section-subnav--menu-open),
+  .page-about .page-section-subnav:not(.page-section-subnav--menu-open) {
     padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
   }
 
@@ -7721,13 +7724,17 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     height: 2.2rem;
   }
 
-  .page-huawei .page-section-subnav__brand-icon {
+  .page-huawei .page-section-subnav__brand-icon,
+  .page-projects .page-section-subnav__brand-icon,
+  .page-about .page-section-subnav__brand-icon {
     width: auto;
     height: auto;
     border-radius: 0;
   }
 
-  .page-huawei .page-section-subnav__brand-icon img {
+  .page-huawei .page-section-subnav__brand-icon img,
+  .page-projects .page-section-subnav__brand-icon img,
+  .page-about .page-section-subnav__brand-icon img {
     width: 2.85rem;
     height: 2.85rem;
   }
@@ -7805,12 +7812,16 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
       backdrop-filter 0.24s ease;
   }
 
-  .page-huawei .page-section-subnav .projects-hero-switcher {
+  .page-huawei .page-section-subnav .projects-hero-switcher,
+  .page-projects .page-section-subnav .projects-hero-switcher,
+  .page-about .page-section-subnav .projects-hero-switcher {
     width: 100%;
     justify-content: center;
   }
 
-  .page-huawei .page-section-subnav .projects-hero-switcher__track {
+  .page-huawei .page-section-subnav .projects-hero-switcher__track,
+  .page-projects .page-section-subnav .projects-hero-switcher__track,
+  .page-about .page-section-subnav .projects-hero-switcher__track {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -7818,18 +7829,27 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
     width: 100%;
   }
 
-  .page-huawei .page-section-subnav .projects-hero-switcher__item {
+  .page-huawei .page-section-subnav .projects-hero-switcher__item,
+  .page-projects .page-section-subnav .projects-hero-switcher__item,
+  .page-about .page-section-subnav .projects-hero-switcher__item {
     padding: 0.1rem 0;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.35;
     color: rgba(255, 255, 255, 0.92);
     text-align: center;
+    text-decoration: none;
   }
 
   .page-huawei .page-section-subnav .projects-hero-switcher__item:hover,
   .page-huawei .page-section-subnav .projects-hero-switcher__item:focus-visible,
-  .page-huawei .page-section-subnav .projects-hero-switcher__item.is-active {
+  .page-huawei .page-section-subnav .projects-hero-switcher__item.is-active,
+  .page-projects .page-section-subnav .projects-hero-switcher__item:hover,
+  .page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
+  .page-projects .page-section-subnav .projects-hero-switcher__item.is-active,
+  .page-about .page-section-subnav .projects-hero-switcher__item:hover,
+  .page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
+  .page-about .page-section-subnav .projects-hero-switcher__item.is-active {
     color: #fff;
   }
 
@@ -7893,13 +7913,21 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
       inset 0 1px 0 rgba(255, 255, 255, 0.96);
   }
 
-  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item {
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item {
     color: color-mix(in srgb, var(--text) 86%, transparent);
   }
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item:hover,
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     color: var(--text);
   }
 
@@ -7918,24 +7946,30 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 }
 
 .page-huawei .page-section-subnav .projects-hero-switcher__item,
-.page-projects .page-section-subnav .projects-hero-switcher__item {
+.page-projects .page-section-subnav .projects-hero-switcher__item,
+.page-about .page-section-subnav .projects-hero-switcher__item {
   color: var(--subnav-link);
   background: transparent;
+  text-decoration: none;
 }
 
 .page-huawei .page-section-subnav .projects-hero-switcher__item:hover,
 .page-huawei .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-projects .page-section-subnav .projects-hero-switcher__item:hover,
 .page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
+.page-about .page-section-subnav .projects-hero-switcher__item:hover,
+.page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-huawei .page-section-subnav .projects-hero-switcher__item.is-active,
-.page-projects .page-section-subnav .projects-hero-switcher__item.is-active {
+.page-projects .page-section-subnav .projects-hero-switcher__item.is-active,
+.page-about .page-section-subnav .projects-hero-switcher__item.is-active {
   color: var(--subnav-link-hover);
   background: transparent;
   box-shadow: none;
 }
 
 .page-huawei .page-section-subnav .projects-hero-switcher__item:focus-visible,
-.page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible {
+.page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
+.page-about .page-section-subnav .projects-hero-switcher__item:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }
@@ -8054,7 +8088,11 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
 .page-huawei #huawei-certificates,
 .page-huawei #huawei-clients,
 .page-projects #projects-featured,
-.page-projects #projects-all {
+.page-projects #projects-all,
+.page-about #about-content,
+.page-about #about-partners,
+.page-about #certificates,
+.page-about #career {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
@@ -15853,7 +15891,8 @@ a.page-projects__item-client:hover {
   text-shadow: none;
 }
 
-.page-projects .projects-hero-switcher__track {
+.page-projects .projects-hero-switcher__track,
+.page-about .projects-hero-switcher__track {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -15868,7 +15907,8 @@ a.page-projects__item-client:hover {
   box-shadow: none;
 }
 
-.page-projects .projects-hero-switcher__item {
+.page-projects .projects-hero-switcher__item,
+.page-about .projects-hero-switcher__item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15889,18 +15929,22 @@ a.page-projects__item-client:hover {
 }
 
 .page-projects .projects-hero-switcher__item:hover,
-.page-projects .projects-hero-switcher__item:focus-visible {
+.page-projects .projects-hero-switcher__item:focus-visible,
+.page-about .projects-hero-switcher__item:hover,
+.page-about .projects-hero-switcher__item:focus-visible {
   color: var(--projects-hero-switcher-text-hover);
   background: rgba(255, 255, 255, 0.06);
 }
 
-.page-projects .projects-hero-switcher__item.is-active {
+.page-projects .projects-hero-switcher__item.is-active,
+.page-about .projects-hero-switcher__item.is-active {
   color: var(--projects-hero-switcher-text-hover);
   background: var(--projects-hero-switcher-active-bg);
   box-shadow: none;
 }
 
-.page-projects .projects-hero-switcher__item:focus-visible {
+.page-projects .projects-hero-switcher__item:focus-visible,
+.page-about .projects-hero-switcher__item:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }
@@ -15982,11 +16026,13 @@ a.page-projects__item-client:hover {
 }
 
 @media (max-width: 860px) {
-  .page-projects .projects-hero-switcher__track {
+  .page-projects .projects-hero-switcher__track,
+  .page-about .projects-hero-switcher__track {
     gap: 0.25rem;
   }
 
-  .page-projects .projects-hero-switcher__item {
+  .page-projects .projects-hero-switcher__item,
+  .page-about .projects-hero-switcher__item {
     padding: 0.72rem 0.85rem;
     font-size: 0.875rem;
     white-space: normal;
@@ -16001,13 +16047,15 @@ a.page-projects__item-client:hover {
     --projects-hero-pad-bottom: clamp(1rem, 2.5vw, 1.5rem);
   }
 
-  .page-projects .projects-hero-switcher__track {
+  .page-projects .projects-hero-switcher__track,
+  .page-about .projects-hero-switcher__track {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
   }
 
-  .page-projects .projects-hero-switcher__item {
+  .page-projects .projects-hero-switcher__item,
+  .page-about .projects-hero-switcher__item {
     width: 100%;
   }
 }
