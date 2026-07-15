@@ -134,7 +134,19 @@
     }
 
     if (!open && closeAllSubmenusRef) {
-      closeAllSubmenusRef();
+      if (menu && menu.classList.contains("nav-menu--drill")) {
+        menu.classList.remove("nav-menu--drill");
+        var servicesEl = document.querySelector("#submenu-services")?.closest(".nav-item-has-submenu");
+        if (servicesEl) {
+          servicesEl.classList.remove("is-open");
+          var servicesTrigger = servicesEl.querySelector(".nav-submenu-trigger");
+          if (servicesTrigger) {
+            servicesTrigger.setAttribute("aria-expanded", "false");
+          }
+        }
+      } else {
+        closeAllSubmenusRef();
+      }
     }
   }
 
@@ -152,6 +164,24 @@
   }
 
   injectMobileNavCta();
+
+  function unwrapMobileNavStack() {
+    if (!menu) return;
+
+    var stack = menu.querySelector(".nav-mobile-panels");
+    if (!stack) return;
+
+    var root = stack.querySelector(".nav-mobile-panel--root");
+    if (root) {
+      while (root.firstChild) {
+        menu.insertBefore(root.firstChild, stack);
+      }
+    }
+
+    stack.remove();
+  }
+
+  unwrapMobileNavStack();
 
   if (toggle && menu && nav) {
     mobileBackdrop = document.createElement("div");
@@ -175,6 +205,7 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && nav.classList.contains("is-open") && isMobileNavViewport()) {
+        if (menu && menu.classList.contains("nav-menu--drill")) return;
         setMobileNavOpen(false);
       }
     });
@@ -192,6 +223,67 @@
     var aboutItem = document.querySelector("#submenu-about")?.closest(".nav-item-has-submenu");
     var aboutSubmenu = document.getElementById("submenu-about");
     var megaBackdrop = null;
+    var drillMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var servicesDrillClosing = false;
+
+    function waitForDrillTransition(callback) {
+      if (!servicesItem || drillMotionQuery.matches) {
+        callback();
+        return;
+      }
+
+      var submenu = servicesItem.querySelector(".nav-submenu");
+      if (!submenu) {
+        callback();
+        return;
+      }
+
+      var done = false;
+
+      function finish() {
+        if (done) return;
+        done = true;
+        submenu.removeEventListener("transitionend", onEnd);
+        window.clearTimeout(fallback);
+        callback();
+      }
+
+      function onEnd(e) {
+        if (e.target === submenu && e.propertyName === "transform") {
+          finish();
+        }
+      }
+
+      var fallback = window.setTimeout(finish, 350);
+      submenu.addEventListener("transitionend", onEnd);
+    }
+
+    function closeServicesDrillAnimated(callback) {
+      if (!menu || !servicesItem) {
+        if (callback) callback();
+        return;
+      }
+
+      if (!menu.classList.contains("nav-menu--drill")) {
+        closeSubmenu(servicesItem);
+        if (callback) callback();
+        return;
+      }
+
+      if (servicesDrillClosing) return;
+      servicesDrillClosing = true;
+      menu.classList.remove("nav-menu--drill");
+
+      waitForDrillTransition(function () {
+        var trigger = servicesItem.querySelector(".nav-submenu-trigger");
+        servicesItem.classList.remove("is-open");
+        if (trigger) {
+          trigger.setAttribute("aria-expanded", "false");
+        }
+        servicesDrillClosing = false;
+        if (callback) callback();
+      });
+    }
 
     if (aboutItem && aboutSubmenu) {
       aboutItem.classList.add("nav-item-about");
@@ -294,6 +386,11 @@
     }
 
     function closeSubmenu(item) {
+      if (item === servicesItem && menu && menu.classList.contains("nav-menu--drill")) {
+        closeServicesDrillAnimated();
+        return;
+      }
+
       var trigger = item.querySelector(".nav-submenu-trigger");
       item.classList.remove("is-open");
       if (trigger) {
@@ -311,8 +408,65 @@
     }
 
     closeAllSubmenusRef = function () {
+      if (menu && menu.classList.contains("nav-menu--drill")) {
+        closeServicesDrillAnimated(function () {
+          closeAllSubmenus(null);
+        });
+        return;
+      }
       closeAllSubmenus(null);
     };
+
+    function ensureServicesDrillBack() {
+      if (!servicesItem) return null;
+
+      var servicesSubmenu = document.getElementById("submenu-services");
+      if (!servicesSubmenu) return null;
+
+      var panel = servicesSubmenu.querySelector(".nav-submenu-panel") || servicesSubmenu;
+      var backBtn = panel.querySelector(".nav-mobile-drill-back");
+
+      if (!backBtn) {
+        backBtn = document.createElement("button");
+        backBtn.type = "button";
+        backBtn.className = "nav-mobile-drill-back";
+        backBtn.setAttribute("aria-label", "Назад к меню");
+        backBtn.innerHTML =
+          '<svg class="nav-mobile-drill-back__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+          '<path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />' +
+          "</svg>" +
+          "<span>Услуги</span>";
+        panel.insertBefore(backBtn, panel.firstChild);
+
+        backBtn.addEventListener("click", function () {
+          closeAllSubmenusRef();
+        });
+      }
+
+      return backBtn;
+    }
+
+    function openServicesDrill() {
+      if (!menu || !servicesItem || servicesDrillClosing) return;
+
+      ensureServicesDrillBack();
+      closeAllSubmenus(null);
+
+      var trigger = servicesItem.querySelector(".nav-submenu-trigger");
+      servicesItem.classList.add("is-open");
+      if (trigger) {
+        trigger.setAttribute("aria-expanded", "true");
+      }
+
+      if (drillMotionQuery.matches) {
+        menu.classList.add("nav-menu--drill");
+        return;
+      }
+
+      window.requestAnimationFrame(function () {
+        menu.classList.add("nav-menu--drill");
+      });
+    }
 
     submenuItems.forEach(function (item) {
       var trigger = item.querySelector(".nav-submenu-trigger");
@@ -321,6 +475,17 @@
       trigger.addEventListener("click", function (e) {
         if (mq.matches) {
           e.preventDefault();
+
+          if (item === servicesItem) {
+            if (menu && menu.classList.contains("nav-menu--drill")) {
+              closeAllSubmenusRef();
+            } else {
+              openServicesDrill();
+            }
+            syncMegaBackdrop();
+            return;
+          }
+
           var open = !item.classList.contains("is-open");
           closeAllSubmenus(open ? item : null);
           item.classList.toggle("is-open", open);
@@ -367,6 +532,10 @@
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
       if (nav && nav.classList.contains("is-open") && mq.matches) {
+        if (menu && menu.classList.contains("nav-menu--drill")) {
+          closeAllSubmenusRef();
+          return;
+        }
         setMobileNavOpen(false);
         return;
       }
