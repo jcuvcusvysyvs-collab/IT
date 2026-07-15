@@ -7157,6 +7157,7 @@ a.footer-contact-item__value:hover {
     grid-column: auto;
     order: 1;
     margin-left: 0;
+    margin-right: 0.45rem;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
