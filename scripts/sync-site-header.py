@@ -7,8 +7,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STYLES_VER = "20260715-footer-labor"
-NAV_VER = "20260710-subnav-header-lock"
+STYLES_VER = "20260715-nav-drill-swipe2"
+NAV_VER = "20260715-nav-drill-swipe2"
 
 SERVICE_LINKS = [
     ("infrastructure-solutions.html", "Инфраструктурные решения"),
@@ -18,6 +18,17 @@ SERVICE_LINKS = [
     ("operations-support.html", "Эксплуатация и сопровождение"),
     ("huawei-service-center.html", "Сервисный центр HUAWEI"),
     ("asdu-datacenter.html", "АСДУ ЦОД"),
+]
+
+PROJECT_LINKS = [
+    ("#projects-featured", "Ключевые проекты"),
+    ("#projects-all", "Все проекты"),
+]
+
+ABOUT_LINKS = [
+    ("#about-partners", "Наши партнёры"),
+    ("#certificates", "Лицензии и сертификаты"),
+    ("#career", "Карьера"),
 ]
 
 PAGE_CURRENT = {
@@ -32,9 +43,26 @@ PAGE_CURRENT = {
 }
 
 
+def page_href(filename: str, page: str, anchor: str) -> str:
+    if filename == page:
+        return anchor
+    return f"{page}{anchor}"
+
+
+def build_submenu_items(filename: str, page: str, links: list[tuple[str, str]]) -> str:
+    items = []
+    for anchor, label in links:
+        href = page_href(filename, page, anchor)
+        items.append(
+            f'                  <li role="none">\n'
+            f'                    <a href="{href}" role="menuitem">{label}</a>\n'
+            f"                  </li>"
+        )
+    return "\n".join(items)
+
+
 def build_nav(filename: str) -> str:
     is_index = filename == "index.html"
-    projects_href = "projects.html"
     clients_href = "#clients" if is_index else "index.html#clients"
 
     service_current, _huawei_current = PAGE_CURRENT.get(filename, (None, None))
@@ -48,8 +76,11 @@ def build_nav(filename: str) -> str:
             f"                  </li>"
         )
 
-    projects_current = ' aria-current="page"' if service_current == "projects.html" else ""
-    about_current = ' aria-current="page"' if service_current == "about.html" else ""
+    projects_current = ' aria-current="page"' if filename == "projects.html" else ""
+    about_current = ' aria-current="page"' if filename == "about.html" else ""
+
+    project_items = build_submenu_items(filename, "projects.html", PROJECT_LINKS)
+    about_items = build_submenu_items(filename, "about.html", ABOUT_LINKS)
 
     return f"""        <nav class="nav" aria-label="Основное меню">
           <button
@@ -65,7 +96,7 @@ def build_nav(filename: str) -> str:
           </button>
 
           <ul id="nav-menu" class="nav-menu">
-            <li class="nav-item-has-submenu">
+            <li class="nav-item-has-submenu nav-item-drill nav-item-services">
               <button
                 type="button"
                 class="nav-submenu-trigger"
@@ -86,9 +117,49 @@ def build_nav(filename: str) -> str:
                 </div>
               </div>
             </li>
-            <li><a href="{projects_href}"{projects_current}>Проекты</a></li>
+            <li class="nav-item-has-submenu nav-item-drill nav-item-projects">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-projects"
+                id="projects-menu-button"{projects_current}
+              >
+                Проекты
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-projects" class="nav-submenu nav-submenu--panel" aria-labelledby="projects-menu-button">
+                <div class="nav-submenu-panel">
+                  <ul class="nav-submenu-links" role="menu">
+{project_items}
+                  </ul>
+                </div>
+              </div>
+            </li>
             <li><a href="{clients_href}">Заказчики</a></li>
-            <li><a href="about.html"{about_current}>О компании</a></li>
+            <li class="nav-item-has-submenu nav-item-drill nav-item-about">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"{about_current}
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-about" class="nav-submenu nav-submenu--panel" aria-labelledby="about-menu-button">
+                <div class="nav-submenu-panel">
+                  <ul class="nav-submenu-links" role="menu">
+{about_items}
+                  </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </nav>"""
 

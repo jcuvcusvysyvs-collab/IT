@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260715-header-actions-gap" />
+    <link rel="stylesheet" href="styles.css?v=20260715-nav-drill-swipe2" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <link rel="preload" href="images/hero_section/orvd_hero_section_project.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
@@ -45,7 +45,7 @@
           />
         </a>
 
-                                        <nav class="nav" aria-label="Основное меню">
+                                                                        <nav class="nav" aria-label="Основное меню">
           <button
             type="button"
             class="nav-toggle"
@@ -59,7 +59,7 @@
           </button>
 
           <ul id="nav-menu" class="nav-menu">
-            <li class="nav-item-has-submenu">
+            <li class="nav-item-has-submenu nav-item-drill nav-item-services">
               <button
                 type="button"
                 class="nav-submenu-trigger"
@@ -100,9 +100,62 @@
                 </div>
               </div>
             </li>
-            <li><a href="projects.html">Проекты</a></li>
+            <li class="nav-item-has-submenu nav-item-drill nav-item-projects">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-projects"
+                id="projects-menu-button"
+              >
+                Проекты
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-projects" class="nav-submenu nav-submenu--panel" aria-labelledby="projects-menu-button">
+                <div class="nav-submenu-panel">
+                  <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="projects.html#projects-featured" role="menuitem">Ключевые проекты</a>
+                  </li>
+                  <li role="none">
+                    <a href="projects.html#projects-all" role="menuitem">Все проекты</a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
             <li><a href="index.html#clients">Заказчики</a></li>
-            <li><a href="about.html">О компании</a></li>
+            <li class="nav-item-has-submenu nav-item-drill nav-item-about">
+              <button
+                type="button"
+                class="nav-submenu-trigger"
+                aria-expanded="false"
+                aria-controls="submenu-about"
+                id="about-menu-button"
+              >
+                О компании
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+              <div id="submenu-about" class="nav-submenu nav-submenu--panel" aria-labelledby="about-menu-button">
+                <div class="nav-submenu-panel">
+                  <ul class="nav-submenu-links" role="menu">
+                  <li role="none">
+                    <a href="about.html#about-partners" role="menuitem">Наши партнёры</a>
+                  </li>
+                  <li role="none">
+                    <a href="about.html#certificates" role="menuitem">Лицензии и сертификаты</a>
+                  </li>
+                  <li role="none">
+                    <a href="about.html#career" role="menuitem">Карьера</a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </nav>
 
@@ -381,6 +434,6 @@
     </footer>
 
     <script defer src="subpage-hero.js"></script>
-    <script defer src="nav.js?v=20260715-scroll-lock"></script>
+    <script defer src="nav.js?v=20260715-nav-drill-swipe2"></script>
   </body>
 </html>

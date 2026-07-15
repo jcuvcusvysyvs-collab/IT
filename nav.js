@@ -108,6 +108,7 @@
   var header = document.querySelector(".site-header");
   var syncMegaMenuPosition = null;
   var syncAboutMenuPosition = null;
+  var syncProjectsMenuPosition = null;
   var mobileBackdrop = null;
   var mobileMq = window.matchMedia("(max-width: 768px)");
   var closeAllSubmenusRef = null;
@@ -157,14 +158,13 @@
     if (!open && closeAllSubmenusRef) {
       if (menu && menu.classList.contains("nav-menu--drill")) {
         menu.classList.remove("nav-menu--drill");
-        var servicesEl = document.querySelector("#submenu-services")?.closest(".nav-item-has-submenu");
-        if (servicesEl) {
-          servicesEl.classList.remove("is-open");
-          var servicesTrigger = servicesEl.querySelector(".nav-submenu-trigger");
-          if (servicesTrigger) {
-            servicesTrigger.setAttribute("aria-expanded", "false");
+        menu.querySelectorAll(".nav-item-drill.is-open").forEach(function (drillItem) {
+          drillItem.classList.remove("is-open");
+          var drillTrigger = drillItem.querySelector(".nav-submenu-trigger");
+          if (drillTrigger) {
+            drillTrigger.setAttribute("aria-expanded", "false");
           }
-        }
+        });
       } else {
         closeAllSubmenusRef();
       }
@@ -241,19 +241,39 @@
   if (submenuItems.length) {
     var mq = window.matchMedia("(max-width: 768px)");
     var servicesItem = document.querySelector("#submenu-services")?.closest(".nav-item-has-submenu");
+    var projectsItem = document.querySelector("#submenu-projects")?.closest(".nav-item-has-submenu");
     var aboutItem = document.querySelector("#submenu-about")?.closest(".nav-item-has-submenu");
+    var projectsSubmenu = document.getElementById("submenu-projects");
     var aboutSubmenu = document.getElementById("submenu-about");
     var megaBackdrop = null;
     var drillMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    var servicesDrillClosing = false;
+    var drillClosing = false;
 
-    function waitForDrillTransition(callback) {
-      if (!servicesItem || drillMotionQuery.matches) {
+    function getDrillLabel(item) {
+      var trigger = item && item.querySelector(".nav-submenu-trigger");
+      if (!trigger) return "Назад";
+
+      var label = "";
+      trigger.childNodes.forEach(function (node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          label += node.textContent;
+        }
+      });
+
+      return label.trim() || "Назад";
+    }
+
+    function getOpenDrillItem() {
+      return menu ? menu.querySelector(".nav-item-drill.is-open") : null;
+    }
+
+    function waitForDrillTransition(item, callback) {
+      if (!item || drillMotionQuery.matches) {
         callback();
         return;
       }
 
-      var submenu = servicesItem.querySelector(".nav-submenu");
+      var submenu = item.querySelector(".nav-submenu");
       if (!submenu) {
         callback();
         return;
@@ -279,43 +299,46 @@
       submenu.addEventListener("transitionend", onEnd);
     }
 
-    function closeServicesDrillAnimated(callback) {
-      if (!menu || !servicesItem) {
+    function closeDrillAnimated(item, callback) {
+      if (!menu || !item) {
         if (callback) callback();
         return;
       }
 
-      if (!menu.classList.contains("nav-menu--drill")) {
-        closeSubmenu(servicesItem);
+      if (!menu.classList.contains("nav-menu--drill") || !item.classList.contains("is-open")) {
+        closeSubmenu(item);
         if (callback) callback();
         return;
       }
 
-      if (servicesDrillClosing) return;
-      servicesDrillClosing = true;
+      if (drillClosing) return;
+      drillClosing = true;
       menu.classList.remove("nav-menu--drill");
 
-      waitForDrillTransition(function () {
-        var trigger = servicesItem.querySelector(".nav-submenu-trigger");
-        servicesItem.classList.remove("is-open");
+      waitForDrillTransition(item, function () {
+        var trigger = item.querySelector(".nav-submenu-trigger");
+        item.classList.remove("is-open");
         if (trigger) {
           trigger.setAttribute("aria-expanded", "false");
         }
-        servicesDrillClosing = false;
+        drillClosing = false;
         if (callback) callback();
       });
-    }
-
-    if (aboutItem && aboutSubmenu) {
-      aboutItem.classList.add("nav-item-about");
-      aboutSubmenu.classList.add("nav-submenu--panel");
     }
 
     if (servicesItem) {
       servicesItem.classList.add("nav-item-services");
     }
 
-    if (servicesItem || aboutItem) {
+    if (projectsItem && projectsSubmenu) {
+      projectsItem.classList.add("nav-item-projects");
+    }
+
+    if (aboutItem && aboutSubmenu) {
+      aboutItem.classList.add("nav-item-about");
+    }
+
+    if (servicesItem || projectsItem || aboutItem) {
       megaBackdrop = document.createElement("div");
       megaBackdrop.className = "nav-mega-backdrop";
       megaBackdrop.setAttribute("aria-hidden", "true");
@@ -355,23 +378,23 @@
       mega.style.setProperty("--nav-mega-bridge", bridgeHeight + "px");
     };
 
-    syncAboutMenuPosition = function () {
-      if (!aboutItem || !aboutSubmenu || mq.matches) {
-        if (aboutSubmenu) {
-          aboutSubmenu.style.removeProperty("--nav-about-left");
-          aboutSubmenu.style.removeProperty("--nav-about-bridge");
+    function syncPanelMenuPosition(item, submenu) {
+      if (!item || !submenu || mq.matches) {
+        if (submenu) {
+          submenu.style.removeProperty("--nav-about-left");
+          submenu.style.removeProperty("--nav-about-bridge");
         }
         return;
       }
 
-      var trigger = aboutItem.querySelector(".nav-submenu-trigger");
+      var trigger = item.querySelector(".nav-submenu-trigger");
       if (!trigger) return;
 
       var triggerRect = trigger.getBoundingClientRect();
       var headerHeight = header
         ? header.getBoundingClientRect().height
         : parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-height")) || 72;
-      var submenuWidth = aboutSubmenu.getBoundingClientRect().width || aboutSubmenu.offsetWidth || 208;
+      var submenuWidth = submenu.getBoundingClientRect().width || submenu.offsetWidth || 208;
       var gutter = 18;
       var gap =
         parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-dropdown-gap")) || 10;
@@ -381,12 +404,21 @@
       var maxLeft = window.innerWidth - submenuWidth - gutter;
       left = Math.max(gutter, Math.min(left, maxLeft));
 
-      aboutSubmenu.style.setProperty("--nav-about-left", left + "px");
-      aboutSubmenu.style.setProperty("--nav-about-bridge", bridgeHeight + "px");
+      submenu.style.setProperty("--nav-about-left", left + "px");
+      submenu.style.setProperty("--nav-about-bridge", bridgeHeight + "px");
+    }
+
+    syncAboutMenuPosition = function () {
+      syncPanelMenuPosition(aboutItem, aboutSubmenu);
+    };
+
+    syncProjectsMenuPosition = function () {
+      syncPanelMenuPosition(projectsItem, projectsSubmenu);
     };
 
     function syncNavDropdowns() {
       syncMegaMenuPosition();
+      syncProjectsMenuPosition();
       if (syncAboutMenuPosition) {
         syncAboutMenuPosition();
       }
@@ -402,13 +434,22 @@
     function syncMegaBackdrop() {
       syncNavDropdowns();
       if (!megaBackdrop) return;
-      var show = isSubmenuActive(servicesItem) || isSubmenuActive(aboutItem);
+      var show =
+        isSubmenuActive(servicesItem) ||
+        isSubmenuActive(projectsItem) ||
+        isSubmenuActive(aboutItem);
       document.body.classList.toggle("nav-mega-open", show);
     }
 
     function closeSubmenu(item) {
-      if (item === servicesItem && menu && menu.classList.contains("nav-menu--drill")) {
-        closeServicesDrillAnimated();
+      if (
+        item &&
+        item.classList.contains("nav-item-drill") &&
+        menu &&
+        menu.classList.contains("nav-menu--drill") &&
+        item.classList.contains("is-open")
+      ) {
+        closeDrillAnimated(item);
         return;
       }
 
@@ -429,8 +470,9 @@
     }
 
     closeAllSubmenusRef = function () {
-      if (menu && menu.classList.contains("nav-menu--drill")) {
-        closeServicesDrillAnimated(function () {
+      var openDrillItem = getOpenDrillItem();
+      if (menu && menu.classList.contains("nav-menu--drill") && openDrillItem) {
+        closeDrillAnimated(openDrillItem, function () {
           closeAllSubmenus(null);
         });
         return;
@@ -438,14 +480,15 @@
       closeAllSubmenus(null);
     };
 
-    function ensureServicesDrillBack() {
-      if (!servicesItem) return null;
+    function ensureDrillBack(item) {
+      if (!item) return null;
 
-      var servicesSubmenu = document.getElementById("submenu-services");
-      if (!servicesSubmenu) return null;
+      var submenu = item.querySelector(".nav-submenu");
+      if (!submenu) return null;
 
-      var panel = servicesSubmenu.querySelector(".nav-submenu-panel") || servicesSubmenu;
+      var panel = submenu.querySelector(".nav-submenu-panel") || submenu;
       var backBtn = panel.querySelector(".nav-mobile-drill-back");
+      var label = getDrillLabel(item);
 
       if (!backBtn) {
         backBtn = document.createElement("button");
@@ -456,7 +499,7 @@
           '<svg class="nav-mobile-drill-back__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
           '<path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />' +
           "</svg>" +
-          "<span>Услуги</span>";
+          "<span></span>";
         panel.insertBefore(backBtn, panel.firstChild);
 
         backBtn.addEventListener("click", function () {
@@ -464,17 +507,27 @@
         });
       }
 
+      var labelEl = backBtn.querySelector("span");
+      if (labelEl) {
+        labelEl.textContent = label;
+      }
+
       return backBtn;
     }
 
-    function openServicesDrill() {
-      if (!menu || !servicesItem || servicesDrillClosing) return;
+    function startDrill(item) {
+      if (!menu || !item) return;
 
-      ensureServicesDrillBack();
-      closeAllSubmenus(null);
+      ensureDrillBack(item);
 
-      var trigger = servicesItem.querySelector(".nav-submenu-trigger");
-      servicesItem.classList.add("is-open");
+      submenuItems.forEach(function (other) {
+        if (other !== item && !other.classList.contains("nav-item-drill")) {
+          closeSubmenu(other);
+        }
+      });
+
+      var trigger = item.querySelector(".nav-submenu-trigger");
+      item.classList.add("is-open");
       if (trigger) {
         trigger.setAttribute("aria-expanded", "true");
       }
@@ -484,9 +537,28 @@
         return;
       }
 
+      var submenu = item.querySelector(".nav-submenu");
+      if (submenu) {
+        void submenu.offsetWidth;
+      }
+
       window.requestAnimationFrame(function () {
         menu.classList.add("nav-menu--drill");
       });
+    }
+
+    function openDrill(item) {
+      if (!menu || !item || drillClosing || !item.classList.contains("nav-item-drill")) return;
+
+      var openDrillItem = getOpenDrillItem();
+      if (openDrillItem && openDrillItem !== item) {
+        closeDrillAnimated(openDrillItem, function () {
+          startDrill(item);
+        });
+        return;
+      }
+
+      startDrill(item);
     }
 
     submenuItems.forEach(function (item) {
@@ -496,12 +568,13 @@
       trigger.addEventListener("click", function (e) {
         if (mq.matches) {
           e.preventDefault();
+          e.stopPropagation();
 
-          if (item === servicesItem) {
-            if (menu && menu.classList.contains("nav-menu--drill")) {
+          if (item.classList.contains("nav-item-drill")) {
+            if (menu && menu.classList.contains("nav-menu--drill") && item.classList.contains("is-open")) {
               closeAllSubmenusRef();
             } else {
-              openServicesDrill();
+              openDrill(item);
             }
             syncMegaBackdrop();
             return;
@@ -516,31 +589,24 @@
       });
     });
 
-    if (servicesItem) {
-      servicesItem.addEventListener("mouseenter", syncMegaBackdrop);
-      servicesItem.addEventListener("mouseleave", function () {
-        window.requestAnimationFrame(syncMegaBackdrop);
-      });
-      servicesItem.addEventListener("focusin", syncMegaBackdrop);
-      servicesItem.addEventListener("focusout", function () {
-        window.requestAnimationFrame(syncMegaBackdrop);
-      });
-    }
+    [servicesItem, projectsItem, aboutItem].forEach(function (item) {
+      if (!item) return;
 
-    if (aboutItem) {
-      aboutItem.addEventListener("mouseenter", syncMegaBackdrop);
-      aboutItem.addEventListener("mouseleave", function () {
+      item.addEventListener("mouseenter", syncMegaBackdrop);
+      item.addEventListener("mouseleave", function () {
         window.requestAnimationFrame(syncMegaBackdrop);
       });
-      aboutItem.addEventListener("focusin", syncMegaBackdrop);
-      aboutItem.addEventListener("focusout", function () {
+      item.addEventListener("focusin", syncMegaBackdrop);
+      item.addEventListener("focusout", function () {
         window.requestAnimationFrame(syncMegaBackdrop);
       });
-    }
+    });
 
     document.addEventListener("click", function (e) {
-      if (mq.matches && nav && nav.classList.contains("is-open") && header && header.contains(e.target)) {
-        return;
+      if (mq.matches && nav && nav.classList.contains("is-open")) {
+        if (menu && (menu.contains(e.target) || (header && header.contains(e.target)))) {
+          return;
+        }
       }
 
       submenuItems.forEach(function (item) {
@@ -626,8 +692,9 @@
         document.documentElement.style.setProperty("--hero-header-clearance", h + gap + "px");
       }
       syncHeaderShell();
-      if (syncMegaMenuPosition || syncAboutMenuPosition) {
+      if (syncMegaMenuPosition || syncAboutMenuPosition || syncProjectsMenuPosition) {
         syncMegaMenuPosition && syncMegaMenuPosition();
+        syncProjectsMenuPosition && syncProjectsMenuPosition();
         syncAboutMenuPosition && syncAboutMenuPosition();
       }
     }
