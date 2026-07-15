@@ -1,0 +1,332 @@
+/* Страница «Сводные ведомости оценки условий труда» */
+
+.page-labor .projects-hero.subpage-hero--about {
+  --projects-hero-pad-top: clamp(1.35rem, 3vw, 1.85rem);
+  --projects-hero-pad-bottom: clamp(1.25rem, 2.8vw, 1.75rem);
+  --projects-hero-crumbs-gap: clamp(1.35rem, 3vw, 2rem);
+  --projects-hero-content-width: min(48rem, 100%);
+  --projects-hero-min-height: clamp(14rem, 28vh, 18rem);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--projects-hero-min-height);
+  position: relative;
+}
+
+html:not([data-theme="dark"]) .page-labor .projects-hero.subpage-hero--about {
+  color-scheme: light;
+}
+
+.page-labor .projects-hero .subpage-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: var(--projects-hero-pad-top) var(--layout-gutter) var(--projects-hero-pad-bottom);
+}
+
+.page-labor .projects-hero.subpage-hero--about::before {
+  content: none;
+  display: none;
+}
+
+.page-labor .projects-hero.subpage-hero--about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 92%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 58% 78% at 80% 48%, #000 20%, transparent 74%);
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+  width: 100%;
+}
+
+.page-labor .projects-hero .subpage-hero__title {
+  margin: 0;
+  line-height: 1.08;
+  color: var(--text);
+  text-shadow: none;
+  max-width: min(36rem, 100%);
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs__item {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: color-mix(in srgb, var(--text) 48%, transparent);
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 0.7rem;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--text) 38%, transparent);
+  background: none;
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs__item[aria-current="page"] {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-labor .projects-hero .subpage-breadcrumbs__link:hover,
+.page-labor .projects-hero .subpage-breadcrumbs__link:focus-visible {
+  color: var(--text);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .page-labor .projects-hero.subpage-hero--about {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .page-labor .projects-hero .subpage-hero__title {
+  color: #fff;
+}
+
+[data-theme="dark"] .page-labor .projects-hero .subpage-breadcrumbs__item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .page-labor .projects-hero .subpage-breadcrumbs__item:not(:first-child)::before {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="dark"] .page-labor .projects-hero .subpage-breadcrumbs__item[aria-current="page"] {
+  color: #fff;
+}
+
+.page-labor__section {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.page-labor__inner {
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: clamp(2rem, 4.5vw, 3rem) var(--layout-gutter) clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.page-labor__panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--projects-shell-radius, 1rem);
+  box-shadow: var(--projects-shell-shadow, 0 12px 36px rgba(13, 17, 23, 0.06));
+  overflow: hidden;
+}
+
+.page-labor__panel-head {
+  padding: clamp(1.35rem, 2.8vw, 1.75rem) clamp(1.35rem, 2.8vw, 1.85rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-labor__panel-title {
+  margin: 0;
+  font-family: var(--font-display, "Bebas Neue", sans-serif);
+  font-size: clamp(1.65rem, 3.2vw, 2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.page-labor__intro {
+  margin: clamp(1rem, 2vw, 1.25rem) 0 0;
+  max-width: 52rem;
+  font-family: var(--font-text);
+  font-size: clamp(0.9375rem, 1.15vw, 1rem);
+  line-height: 1.62;
+  color: var(--text-muted);
+}
+
+.page-labor__intro strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-labor__groups {
+  padding: 0;
+}
+
+.page-labor__group {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.page-labor__group:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.page-labor__group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+  margin: 0;
+  padding: clamp(1.35rem, 2.4vw, 2rem) clamp(1.35rem, 2.8vw, 1.85rem);
+  border: 0;
+  background: transparent;
+  font-family: var(--font-text);
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  list-style: none;
+}
+
+.page-labor__group-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.page-labor__group-toggle::marker {
+  content: "";
+}
+
+.page-labor__group-toggle::after {
+  content: "+";
+  flex-shrink: 0;
+  width: 1.5rem;
+  font-family: var(--font-text);
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: color-mix(in srgb, var(--text) 42%, transparent);
+  text-align: center;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.page-labor__group.is-expanded .page-labor__group-toggle::after,
+.page-labor__group[open] .page-labor__group-toggle::after {
+  content: "−";
+  font-weight: 300;
+}
+
+.page-labor__group-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-labor__group.is-expanded .page-labor__group-body {
+  grid-template-rows: 1fr;
+}
+
+.page-labor__groups:not([data-labor-accordion-ready]) .page-labor__group[open] .page-labor__group-body {
+  grid-template-rows: 1fr;
+}
+
+.page-labor__group-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-labor__group-toggle:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.page-labor__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.4vw, 1rem);
+  margin: 0;
+  padding: 0 clamp(1.35rem, 2.8vw, 1.85rem) clamp(1.35rem, 2.4vw, 1.85rem);
+  list-style: none;
+}
+
+.page-labor__doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  height: 100%;
+  min-height: clamp(7.25rem, 14vw, 8.5rem);
+  padding: clamp(1rem, 2vw, 1.15rem) clamp(1rem, 2vw, 1.2rem);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--text) 5%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.page-labor__doc-card:hover {
+  background: color-mix(in srgb, var(--text) 7%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+}
+
+.page-labor__doc-card:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.page-labor__doc-title {
+  font-family: var(--font-text);
+  font-size: clamp(0.9375rem, 1.1vw, 1rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.page-labor__doc-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  color: color-mix(in srgb, var(--text) 52%, transparent);
+  text-transform: lowercase;
+}
+
+.page-labor__doc-meta svg {
+  flex-shrink: 0;
+  opacity: 0.72;
+}
+
+[data-theme="dark"] .page-labor__doc-card {
+  background: color-mix(in srgb, var(--bg) 42%, var(--bg-elevated));
+}
+
+[data-theme="dark"] .page-labor__doc-card:hover {
+  background: color-mix(in srgb, var(--bg) 32%, var(--bg-elevated));
+}
+
+@media (max-width: 768px) {
+  .page-labor__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-labor__group-body,
+  .page-labor__group-toggle::after {
+    transition: none;
+  }
+}

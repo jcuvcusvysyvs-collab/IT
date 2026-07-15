@@ -91,46 +91,87 @@
   if (!lightbox) return;
 
   var caption = lightbox.querySelector(".page-about__cert-lightbox-caption");
-  var image = lightbox.querySelector(".page-about__cert-lightbox-img");
+  var pagesRoot = document.getElementById("about-cert-lightbox-pages");
   var closeTargets = lightbox.querySelectorAll("[data-cert-lightbox-close]");
   var certTriggers = document.querySelectorAll("[data-about-cert-zoom]");
 
-  function openLightbox(title, src, alt, certW, certH) {
+  if (!pagesRoot) return;
+
+  function parsePages(trigger) {
+    var pagesJson = trigger.getAttribute("data-cert-pages");
+    if (pagesJson) {
+      try {
+        var parsed = JSON.parse(pagesJson);
+        if (Array.isArray(parsed) && parsed.length) return parsed;
+      } catch (error) {
+        /* fall through to single-page mode */
+      }
+    }
+
+    return [
+      {
+        src: trigger.getAttribute("data-cert-src") || "",
+        w: trigger.getAttribute("data-cert-w") || "1000",
+        h: trigger.getAttribute("data-cert-h") || "1420",
+        alt: trigger.querySelector("img") ? trigger.querySelector("img").alt : "",
+      },
+    ];
+  }
+
+  function renderPages(pages) {
+    pagesRoot.innerHTML = "";
+
+    pages.forEach(function (page, index) {
+      var figure = document.createElement("figure");
+      figure.className = "page-about__cert-lightbox-page";
+
+      if (pages.length > 1 && page.label) {
+        var label = document.createElement("p");
+        label.className = "page-about__cert-lightbox-page-label";
+        label.textContent = page.label;
+        figure.appendChild(label);
+      }
+
+      var img = document.createElement("img");
+      img.className = "page-about__cert-lightbox-img";
+      img.src = page.src;
+      img.alt = page.alt || "";
+      img.style.setProperty("--cert-w", page.w || "1000");
+      img.style.setProperty("--cert-h", page.h || "1420");
+      if (index > 0) img.loading = "lazy";
+      figure.appendChild(img);
+      pagesRoot.appendChild(figure);
+    });
+  }
+
+  function openLightbox(title, pages) {
     caption.textContent = title;
-    image.src = src;
-    image.alt = alt || title;
-    image.style.setProperty("--cert-w", certW || "1000");
-    image.style.setProperty("--cert-h", certH || "1420");
+    renderPages(pages);
+    lightbox.classList.toggle("page-about__cert-lightbox--multi", pages.length > 1);
     lightbox.hidden = false;
     lockScroll();
     requestAnimationFrame(function () {
       lightbox.classList.add("is-open");
     });
+    pagesRoot.scrollTop = 0;
     lightbox.querySelector(".page-about__cert-lightbox-close").focus();
   }
 
   function closeLightbox() {
     lightbox.classList.remove("is-open");
+    lightbox.classList.remove("page-about__cert-lightbox--multi");
     unlockScroll();
     window.setTimeout(function () {
       if (!lightbox.classList.contains("is-open")) {
         lightbox.hidden = true;
-        image.removeAttribute("src");
-        image.style.removeProperty("--cert-w");
-        image.style.removeProperty("--cert-h");
+        pagesRoot.innerHTML = "";
       }
     }, 240);
   }
 
   certTriggers.forEach(function (trigger) {
     trigger.addEventListener("click", function () {
-      openLightbox(
-        trigger.getAttribute("data-cert-title") || "",
-        trigger.getAttribute("data-cert-src") || "",
-        trigger.querySelector("img") ? trigger.querySelector("img").alt : "",
-        trigger.getAttribute("data-cert-w"),
-        trigger.getAttribute("data-cert-h")
-      );
+      openLightbox(trigger.getAttribute("data-cert-title") || "", parsePages(trigger));
     });
   });
 

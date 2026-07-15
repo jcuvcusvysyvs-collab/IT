@@ -6176,6 +6176,10 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
 
 .footer-legal {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
 }
 
 .footer-legal__link {
@@ -11794,6 +11798,18 @@ a.page-about__partner-card:focus-visible {
 
 .page-about__partner-card:hover .page-about__partner-logo {
   transform: scale(1.03);
+}
+
+.page-about__partner-card--scada .page-about__partner-logo {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: scale(1.45);
+}
+
+.page-about__partner-card--scada:hover .page-about__partner-logo {
+  transform: scale(1.5);
 }
 
 .page-about__sw-grid {
@@ -17946,6 +17962,12 @@ a.page-projects__item-client:hover {
   align-items: stretch;
 }
 
+@media (min-width: 1100px) {
+  .page-about__certs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 720px) {
   .page-about__certs {
     grid-template-columns: 1fr;
@@ -18198,6 +18220,39 @@ a.page-projects__item-client:hover {
     transform 0.24s ease;
 }
 
+.page-about__cert-lightbox--multi .page-about__cert-lightbox-dialog {
+  max-height: 92vh;
+}
+
+.page-about__cert-lightbox-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-height: calc(92vh - 3.5rem);
+}
+
+.page-about__cert-lightbox--multi .page-about__cert-lightbox-pages {
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+.page-about__cert-lightbox-page {
+  margin: 0;
+}
+
+.page-about__cert-lightbox-page-label {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .page-about__cert-lightbox.is-open .page-about__cert-lightbox-dialog {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -18227,6 +18282,10 @@ a.page-projects__item-client:hover {
     0 1px 0 rgba(255, 255, 255, 0.1),
     0 24px 64px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.page-about__cert-lightbox--multi .page-about__cert-lightbox-img {
+  max-height: none;
 }
 
 .page-about__cert-lightbox-close {
