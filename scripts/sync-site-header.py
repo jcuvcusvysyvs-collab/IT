@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STYLES_VER = "20260715-nav-drill-swipe2"
-NAV_VER = "20260715-nav-drill-swipe2"
+NAV_VER = "20260715-nav-panel-align"
 
 SERVICE_LINKS = [
     ("infrastructure-solutions.html", "Инфраструктурные решения"),

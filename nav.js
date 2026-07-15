@@ -381,8 +381,8 @@
     function syncPanelMenuPosition(item, submenu) {
       if (!item || !submenu || mq.matches) {
         if (submenu) {
-          submenu.style.removeProperty("--nav-about-left");
-          submenu.style.removeProperty("--nav-about-bridge");
+          submenu.style.removeProperty("--nav-panel-left");
+          submenu.style.removeProperty("--nav-panel-bridge");
         }
         return;
       }
@@ -400,12 +400,12 @@
         parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-dropdown-gap")) || 10;
       var submenuTop = headerHeight + gap;
       var bridgeHeight = Math.max(8, submenuTop - triggerRect.bottom + 2);
-      var left = triggerRect.right - submenuWidth;
+      var left = triggerRect.left;
       var maxLeft = window.innerWidth - submenuWidth - gutter;
       left = Math.max(gutter, Math.min(left, maxLeft));
 
-      submenu.style.setProperty("--nav-about-left", left + "px");
-      submenu.style.setProperty("--nav-about-bridge", bridgeHeight + "px");
+      submenu.style.setProperty("--nav-panel-left", left + "px");
+      submenu.style.setProperty("--nav-panel-bridge", bridgeHeight + "px");
     }
 
     syncAboutMenuPosition = function () {

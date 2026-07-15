@@ -7260,7 +7260,7 @@ a.footer-contact-item__value:hover {
   .nav-submenu--panel {
     position: fixed;
     top: calc(var(--site-header-height, 4.5rem) + var(--nav-dropdown-gap));
-    left: var(--nav-about-left, auto);
+    left: var(--nav-panel-left, auto);
     right: auto;
     min-width: 13rem;
     width: max-content;
@@ -7284,7 +7284,7 @@ a.footer-contact-item__value:hover {
     left: -0.75rem;
     right: -0.75rem;
     bottom: 100%;
-    height: var(--nav-about-bridge, calc(var(--nav-dropdown-gap) + 0.75rem));
+    height: var(--nav-panel-bridge, calc(var(--nav-dropdown-gap) + 0.75rem));
     pointer-events: auto;
   }
 
