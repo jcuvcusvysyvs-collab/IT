@@ -14,8 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260715-iso45001-lightbox" />
-    <link rel="preload" href="images/about-hero.avif" as="image" />
+    <link rel="stylesheet" href="styles.css?v=20260715-about-hero-light" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-about">
@@ -161,7 +160,7 @@
     <main id="main">
 
       <!-- ① Hero: тёмный фон, заголовок, кнопки -->
-      <header class="subpage-hero subpage-hero--about" data-subpage-hero aria-labelledby="about-page-title">
+      <header class="subpage-hero subpage-hero--about projects-hero" data-subpage-hero aria-labelledby="about-page-title">
         <div class="subpage-hero__inner">
           <div class="subpage-hero__content">
             <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
@@ -179,7 +178,7 @@
               <span class="subpage-hero__title-line">О компании</span>
             </h1>
             <p class="subpage-hero__lead">
-              Инженерия вычислительных комплексов и&nbsp;корпоративных сетей передачи данных с&nbsp;2005&nbsp;года.
+              Инжиниринг вычислительных комплексов и&nbsp;корпоративных сетей передачи данных с&nbsp;2005&nbsp;года.
             </p>
             <div class="subpage-hero__actions">
               <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
@@ -201,8 +200,8 @@
                   Мы&nbsp;— <span class="about-dce__brand">инженеры</span>
                 </h2>
                 <p class="about-dce__lead">
-                  Проектируем, внедряем, поддерживаем вычислительные комплексы и&nbsp;корпоративные сети
-                  передачи данных с&nbsp;2005-го года.
+                  Проектируем, внедряем, оптимизируем, поддерживаем, эксплуатируем ИТ-инфраструктуры
+                  в&nbsp;интересах наших Заказчиков.
                 </p>
               </div>
             </header>
@@ -210,17 +209,23 @@
             <!-- Карточки достижений и ценностей -->
             <div class="about-dce__grid page-about__achievement-grid" role="list">
 
-              <!-- Hero: опыт + метрики -->
+              <!-- Hero: экспертиза + метрики -->
               <article class="about-dce__card about-dce__card--hero" role="listitem">
                 <p class="about-dce__card-kicker" aria-hidden="true">
                   <span class="about-dce__card-num">01</span>
-                  Опыт
+                  Экспертиза
                 </p>
-                <h3 class="about-dce__card-title">С 2005 года</h3>
+                <h3 class="about-dce__card-title">Наша команда</h3>
                 <p class="page-about__card-text">
-                  Реализовали более сотни проектов. Ядро команды не&nbsp;менялось&nbsp;— каждый инженер знает
-                  историю внедрений и&nbsp;хранит их&nbsp;контекст. Самые сложные и&nbsp;уникальные
-                  для российского рынка&nbsp;— в&nbsp;разделе «Опыт».
+                  имеет опыт реализации крупных, сложных, географически распределённых систем
+                  и&nbsp;решений в&nbsp;условиях ограниченного времени и&nbsp;дефицита ресурсов.
+                  Доступная к&nbsp;распространению информация приведена в&nbsp;разделе
+                  <a class="page-about__link page-about__link--arrow" href="projects.html">
+                    Проекты
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
                 </p>
                 <div class="page-about__hero-stats" aria-label="Показатели">
                   <div class="page-about__hero-stat">
@@ -240,28 +245,18 @@
                     <span class="about-dce__stat-label">партнёров-производителей</span>
                   </div>
                 </div>
-                <a class="page-about__card-cta" href="index.html#projects">
-                  Смотреть проекты
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
               </article>
 
               <!-- Сертификация -->
               <article class="about-dce__card" role="listitem">
-                <div class="page-about__card-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                  </svg>
-                </div>
                 <p class="about-dce__card-kicker" aria-hidden="true">
                   <span class="about-dce__card-num">02</span>
                   Сертификация
                 </p>
                 <h3 class="about-dce__card-title">20+ производителей</h3>
                 <p class="page-about__card-text">
-                  Нишевые вендоры, проверенные временем. Техническая база&nbsp;— естественнонаучное высшее образование.
+                  Наши знания и&nbsp;опыт работы с&nbsp;продуктами отечественных и&nbsp;мировых производителей
+                  подтвержден персональными инженерными сертификатами
                 </p>
                 <div class="about-dce__card-stat">
                   <span class="about-dce__stat-value">300<span class="about-dce__stat-plus">+</span></span>
@@ -271,11 +266,6 @@
 
               <!-- Гибкость -->
               <article class="about-dce__card" role="listitem">
-                <div class="page-about__card-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                  </svg>
-                </div>
                 <p class="about-dce__card-kicker" aria-hidden="true">
                   <span class="about-dce__card-num">03</span>
                   Гибкость
@@ -289,11 +279,6 @@
 
               <!-- Надёжность -->
               <article class="about-dce__card" role="listitem">
-                <div class="page-about__card-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                </div>
                 <p class="about-dce__card-kicker" aria-hidden="true">
                   <span class="about-dce__card-num">04</span>
                   Надёжность
@@ -307,11 +292,6 @@
 
               <!-- Ответственность -->
               <article class="about-dce__card" role="listitem">
-                <div class="page-about__card-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                  </svg>
-                </div>
                 <p class="about-dce__card-kicker" aria-hidden="true">
                   <span class="about-dce__card-num">05</span>
                   Ответственность
@@ -1344,8 +1324,10 @@
                     class="page-about__cert-preview page-about__cert-preview--iso"
                     data-about-cert-zoom
                     data-cert-title="Сертификат ISO 45001"
-                    data-cert-pages='[{"src":"images/documents/ISO_Certificate_01.jpg","w":"2480","h":"3493","label":"Сертификат соответствия"},{"src":"images/documents/ISO_Certificate_02.jpg","w":"2455","h":"3481","label":"Приложение №1"}]'
-                    aria-label="Открыть сертификат ISO 45001 и приложение в полном размере"
+                    data-cert-w="2480"
+                    data-cert-h="3493"
+                    data-cert-src="images/documents/ISO_Certificate_01.jpg"
+                    aria-label="Открыть сертификат ISO 45001 в полном размере"
                   >
                     <img
                       src="images/documents/ISO_Certificate_01.jpg"
@@ -1361,6 +1343,151 @@
                     <p class="page-about__cert-desc">
                       Система менеджмента охраны труда. Подтверждение соответствия международному
                       стандарту ISO&nbsp;45001:2018.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="page-about__cert" role="listitem">
+                  <button
+                    type="button"
+                    class="page-about__cert-preview page-about__cert-preview--iso"
+                    data-about-cert-zoom
+                    data-cert-title="Сертификат ISO 9001"
+                    data-cert-w="2480"
+                    data-cert-h="3505"
+                    data-cert-src="images/documents/ISO_Certificate_02.jpg"
+                    aria-label="Открыть сертификат ISO 9001 в полном размере"
+                  >
+                    <img
+                      src="images/documents/ISO_Certificate_02.jpg"
+                      alt=""
+                      width="2480"
+                      height="3505"
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </button>
+                  <div class="page-about__cert-body">
+                    <h3 class="page-about__cert-title">Сертификат ISO 9001</h3>
+                    <p class="page-about__cert-desc">
+                      Система менеджмента качества. Подтверждение соответствия международному
+                      стандарту ISO&nbsp;9001:2015.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="page-about__cert" role="listitem">
+                  <button
+                    type="button"
+                    class="page-about__cert-preview page-about__cert-preview--iso"
+                    data-about-cert-zoom
+                    data-cert-title="Сертификат ISO 14001"
+                    data-cert-w="2480"
+                    data-cert-h="3505"
+                    data-cert-src="images/documents/ISO_Certificate_03.jpg"
+                    aria-label="Открыть сертификат ISO 14001 в полном размере"
+                  >
+                    <img
+                      src="images/documents/ISO_Certificate_03.jpg"
+                      alt=""
+                      width="2480"
+                      height="3505"
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </button>
+                  <div class="page-about__cert-body">
+                    <h3 class="page-about__cert-title">Сертификат ISO 14001</h3>
+                    <p class="page-about__cert-desc">
+                      Система экологического менеджмента. Подтверждение соответствия международному
+                      стандарту ISO&nbsp;14001:2015.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="page-about__cert" role="listitem">
+                  <button
+                    type="button"
+                    class="page-about__cert-preview page-about__cert-preview--iso"
+                    data-about-cert-zoom
+                    data-cert-title="Сертификат ISO/МЭК 19770"
+                    data-cert-w="1654"
+                    data-cert-h="2339"
+                    data-cert-src="images/documents/ISO_Certificate_04.jpg"
+                    aria-label="Открыть сертификат ISO/МЭК 19770 в полном размере"
+                  >
+                    <img
+                      src="images/documents/ISO_Certificate_04.jpg"
+                      alt=""
+                      width="1654"
+                      height="2339"
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </button>
+                  <div class="page-about__cert-body">
+                    <h3 class="page-about__cert-title">Сертификат ISO/МЭК&nbsp;19770</h3>
+                    <p class="page-about__cert-desc">
+                      Система менеджмента программных активов. Подтверждение соответствия международному
+                      стандарту ISO/МЭК&nbsp;19770:2014.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="page-about__cert" role="listitem">
+                  <button
+                    type="button"
+                    class="page-about__cert-preview page-about__cert-preview--iso"
+                    data-about-cert-zoom
+                    data-cert-title="Сертификат ISO/IEC 20000"
+                    data-cert-w="2480"
+                    data-cert-h="3505"
+                    data-cert-src="images/documents/ISO_Certificate_05.jpg"
+                    aria-label="Открыть сертификат ISO/IEC 20000 в полном размере"
+                  >
+                    <img
+                      src="images/documents/ISO_Certificate_05.jpg"
+                      alt=""
+                      width="2480"
+                      height="3505"
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </button>
+                  <div class="page-about__cert-body">
+                    <h3 class="page-about__cert-title">Сертификат ISO/IEC&nbsp;20000</h3>
+                    <p class="page-about__cert-desc">
+                      Система менеджмента услуг в&nbsp;сфере информационных технологий. Подтверждение
+                      соответствия международному стандарту ISO/IEC&nbsp;20000-1:2011.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="page-about__cert" role="listitem">
+                  <button
+                    type="button"
+                    class="page-about__cert-preview page-about__cert-preview--iso"
+                    data-about-cert-zoom
+                    data-cert-title="Сертификат ISO/IEC 27001"
+                    data-cert-w="2480"
+                    data-cert-h="3505"
+                    data-cert-src="images/documents/ISO_Certificate_06.jpg"
+                    aria-label="Открыть сертификат ISO/IEC 27001 в полном размере"
+                  >
+                    <img
+                      src="images/documents/ISO_Certificate_06.jpg"
+                      alt=""
+                      width="2480"
+                      height="3505"
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </button>
+                  <div class="page-about__cert-body">
+                    <h3 class="page-about__cert-title">Сертификат ISO/IEC&nbsp;27001</h3>
+                    <p class="page-about__cert-desc">
+                      Система менеджмента информационной безопасности. Подтверждение соответствия
+                      международному стандарту ISO/IEC&nbsp;27001:2013.
                     </p>
                   </div>
                 </article>
