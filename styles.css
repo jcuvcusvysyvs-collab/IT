@@ -10083,6 +10083,7 @@ body.cert-lightbox-open {
   --hc-type-card-hover: color-mix(in srgb, var(--text) 4%, transparent);
   --hc-type-card-selected: color-mix(in srgb, var(--hc-red) 7%, var(--bg-elevated));
   --hc-type-check-idle: color-mix(in srgb, var(--border) 82%, var(--text) 18%);
+  --hc-type-check-active-bg: color-mix(in srgb, var(--bg-elevated) 92%, var(--hc-red) 8%);
   --hc-type-icon-border: color-mix(in srgb, var(--border) 88%, var(--text) 12%);
   --hc-type-icon-color: var(--text);
   --hc-type-icon-bg: var(--bg-elevated);
@@ -10132,6 +10133,7 @@ body.cert-lightbox-open {
   --hc-type-card-hover: color-mix(in srgb, rgba(255, 255, 255, 0.04) 100%, transparent);
   --hc-type-card-selected: color-mix(in srgb, var(--hc-red) 6%, transparent);
   --hc-type-check-idle: color-mix(in srgb, var(--hc-off) 55%, rgba(255, 255, 255, 0.2));
+  --hc-type-check-active-bg: color-mix(in srgb, var(--hc-panel) 88%, var(--hc-red) 12%);
   --hc-type-icon-border: color-mix(in srgb, var(--hc-off) 45%, rgba(255, 255, 255, 0.12));
   --hc-type-icon-color: color-mix(in srgb, var(--hc-off) 80%, rgba(255, 255, 255, 0.35));
   --hc-type-icon-bg: color-mix(in srgb, var(--hc-panel) 75%, rgba(255, 255, 255, 0.03));
@@ -10583,6 +10585,7 @@ body.cert-lightbox-open {
   position: absolute;
   top: 0.95rem;
   right: 0.95rem;
+  box-sizing: border-box;
   width: 1.125rem;
   height: 1.125rem;
   border-radius: 50%;
@@ -10596,23 +10599,13 @@ body.cert-lightbox-open {
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check,
 .page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check {
   border-color: var(--hc-red);
-  background: var(--hc-red);
-}
-
-.page-huawei
-  .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
-  .huawei-request-form__type-check::after,
-.page-contacts
-  .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
-  .huawei-request-form__type-check::after {
-  content: "";
-  display: block;
-  width: 0.3rem;
-  height: 0.55rem;
-  margin: 0.1rem 0 0 0.3rem;
-  border: solid #fff;
-  border-width: 0 1.5px 1.5px 0;
-  transform: rotate(45deg);
+  background-color: var(--hc-type-check-active-bg);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--hc-red) 0,
+    var(--hc-red) 38%,
+    var(--hc-type-check-active-bg) 38%
+  );
 }
 
 .page-huawei .huawei-request-form__type-icon,
@@ -10952,25 +10945,9 @@ body.cert-lightbox-open {
   .page-contacts .huawei-request-form__type-check {
     grid-area: check;
     position: static;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     width: 1.125rem;
     height: 1.125rem;
     flex-shrink: 0;
-  }
-
-  .page-huawei
-    .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
-    .huawei-request-form__type-check::after,
-  .page-contacts
-    .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked)
-    .huawei-request-form__type-check::after {
-    position: static;
-    width: 0.28rem;
-    height: 0.5rem;
-    margin: 0;
-    transform: rotate(45deg) translateY(-1px);
   }
 
   .page-huawei .huawei-request-form__type-icon,
@@ -18183,6 +18160,7 @@ a.page-projects__item-client:hover {
   --hc-type-card-hover: color-mix(in srgb, var(--text) 4%, transparent);
   --hc-type-card-selected: color-mix(in srgb, var(--accent) 7%, var(--bg-elevated));
   --hc-type-check-idle: color-mix(in srgb, var(--border) 82%, var(--text) 18%);
+  --hc-type-check-active-bg: color-mix(in srgb, var(--bg-elevated) 92%, var(--accent) 8%);
   --hc-type-icon-border: color-mix(in srgb, var(--border) 88%, var(--text) 12%);
   --hc-type-icon-color: var(--text);
   --hc-type-icon-bg: var(--bg-elevated);
