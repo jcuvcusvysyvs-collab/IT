@@ -116,14 +116,35 @@
     return mobileMq.matches;
   }
 
+  var mobileScrollLockY = 0;
+
   function setMobileNavOpen(open) {
     if (!nav || !toggle) return;
 
+    var shouldLockScroll = open && isMobileNavViewport();
+
     nav.classList.toggle("is-open", open);
-    document.body.classList.toggle("nav-mobile-open", open && isMobileNavViewport());
+    document.documentElement.classList.toggle("nav-mobile-open", shouldLockScroll);
+    document.body.classList.toggle("nav-mobile-open", shouldLockScroll);
+
+    if (shouldLockScroll) {
+      mobileScrollLockY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = "fixed";
+      document.body.style.top = "-" + mobileScrollLockY + "px";
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+    } else if (document.body.style.position === "fixed") {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, mobileScrollLockY);
+    }
 
     if (mobileBackdrop) {
-      mobileBackdrop.classList.toggle("is-visible", open && isMobileNavViewport());
+      mobileBackdrop.classList.toggle("is-visible", shouldLockScroll);
     }
 
     toggle.setAttribute("aria-expanded", open ? "true" : "false");

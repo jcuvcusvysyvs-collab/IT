@@ -6639,6 +6639,13 @@ a.footer-contact-item__value:hover {
   body.nav-mobile-open {
     overflow: hidden;
     touch-action: none;
+    overscroll-behavior: none;
+  }
+
+  html.nav-mobile-open {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
   }
 
   .nav-menu {
