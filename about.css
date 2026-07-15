@@ -93,8 +93,11 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-vis
   }
 
   .page-about .page-section-subnav__brand-icon img {
-    width: 2.85rem;
-    height: 2.85rem;
+    width: auto;
+    height: clamp(1.95rem, 4.4vw, 2.35rem);
+    max-width: min(260px, 54vw);
+    object-fit: contain;
+    object-position: left center;
   }
 
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item {
