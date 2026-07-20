@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-infra-method" />
+    <link rel="stylesheet" href="styles.css?v=20260720-reorder" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -517,13 +517,185 @@
               </p>
             </div>
 
+            <div class="page-infra__cycle">
+              <h3 class="page-infra__cycle-title">Полный цикл услуг</h3>
+              <p class="page-about__text">
+                Создание и&nbsp;эксплуатация всей инфраструктуры или отдельных подсистем&nbsp;— по&nbsp;этапам:
+              </p>
+
+              <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
+                <div class="infra-scenarios__chrome">
+                  <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка этапов">
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M10 12L6 8l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-next aria-label="Вперёд">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                  <span class="infra-scenarios__progress-fill"></span>
+                </div>
+                <div
+                  class="infra-scenarios__tabs infra-scenarios__tabs--5"
+                  role="tablist"
+                  aria-label="Этапы полного цикла"
+                  data-infra-tabs-strip
+                >
+                  <button type="button" class="infra-scenarios__tab is-active" role="tab" id="cycle-tab-01" aria-selected="true" aria-controls="cycle-panel-01" data-infra-tab="01">
+                    <span class="infra-scenarios__tab-label">Обследование</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-02" aria-selected="false" aria-controls="cycle-panel-02" data-infra-tab="02" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">Проектирование</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-03" aria-selected="false" aria-controls="cycle-panel-03" data-infra-tab="03" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">Поставка</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-04" aria-selected="false" aria-controls="cycle-panel-04" data-infra-tab="04" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">Внедрение</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-05" aria-selected="false" aria-controls="cycle-panel-05" data-infra-tab="05" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">Поддержка</span>
+                  </button>
+                </div>
+                <div class="infra-scenarios__stage">
+                  <div class="infra-scenarios__panel is-active" role="tabpanel" id="cycle-panel-01" aria-labelledby="cycle-tab-01" data-infra-panel="01">
+                    <div class="infra-scenarios__copy">
+                      <h3 class="infra-scenarios__title">Обследование</h3>
+                      <div class="infra-scenarios__prose">
+                        <p>
+                          Чем сложнее задача, тем больше неопределённостей&nbsp;— технических, организационных,
+                          административных. Если вам необходимо разобраться в&nbsp;существующей ИТ-инфраструктуре;
+                          корректно, полно и&nbsp;неизбыточно сформулировать задачу внешнему или внутреннему
+                          исполнителю; проконтролировать результат выполнения&nbsp;— мы&nbsp;поможем в&nbsp;этом
+                          и&nbsp;разделим ответственность за&nbsp;итоговый результат.
+                        </p>
+                        <p>
+                          Мы&nbsp;не&nbsp;ориентированы на&nbsp;конкретных производителей, что делает нашу экспертизу
+                          независимой и&nbsp;управляемой. Подсветив и&nbsp;проработав проблемные места один раз,
+                          вы&nbsp;получите интегральный экономический эффект, который окупит затраты на&nbsp;экспертизу
+                          в&nbsp;течение 10–20&nbsp;месяцев.
+                        </p>
+                        <p>Результатами оказания данной услуги могут быть:</p>
+                      </div>
+                      <ul class="infra-scenarios__list">
+                        <li>Отчет об&nbsp;аудите&nbsp;— описание существующей ситуации</li>
+                        <li>
+                          Техническое задание&nbsp;— система требований к&nbsp;целевой системе, включая цифровые
+                          и&nbsp;качественные параметры, проверяемые на&nbsp;приемо-сдаточных испытаниях
+                        </li>
+                        <li>
+                          Отчет об&nbsp;экспертизе&nbsp;— результаты проверок объекта на&nbsp;предмет соответствия
+                          целевым требованиям
+                        </li>
+                        <li>Документы, регламентирующие процессы управления жизненным циклом ИТ-активов</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-02" aria-labelledby="cycle-tab-02" data-infra-panel="02">
+                    <div class="infra-scenarios__copy">
+                      <h3 class="infra-scenarios__title">Проектирование</h3>
+                      <div class="infra-scenarios__prose">
+                        <p>
+                          Когда техническое решение хорошо продумано, вы&nbsp;сможете быстро и&nbsp;безболезненно
+                          его внедрить, легко эксплуатировать и&nbsp;развивать с&nbsp;минимальными рисками.
+                        </p>
+                        <p>
+                          Методология, описанная в&nbsp;комплексе стандартов ГОСТ&nbsp;34, как и&nbsp;любая
+                          методология создания сложных технических решений, предусматривает стадию
+                          проектирования&nbsp;— этап, на&nbsp;котором технические решения описываются
+                          и&nbsp;согласовываются с&nbsp;заказчиком. В&nbsp;ходе проектирования мы&nbsp;достигаем
+                          следующих целей:
+                        </p>
+                      </div>
+                      <ul class="infra-scenarios__list">
+                        <li>Выравнивание технических решений с&nbsp;ожиданиями заказчика</li>
+                        <li>
+                          Уменьшение рисков несовместимости, недостаточности, избыточности технического решения
+                        </li>
+                        <li>Упрощение развития и&nbsp;модернизации технического решения</li>
+                        <li>Упрощение и&nbsp;деперсонификация процесса эксплуатации</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-03" aria-labelledby="cycle-tab-03" data-infra-panel="03">
+                    <div class="infra-scenarios__copy">
+                      <h3 class="infra-scenarios__title">Поставка</h3>
+                      <div class="infra-scenarios__prose">
+                        <p>
+                          Максимальную эффективность использования средств вы&nbsp;достигнете только при
+                          проверяемых и&nbsp;состязательных закупочных процедурах. Являясь сертифицированным
+                          партнером крупнейших производителей оборудования и&nbsp;ПО, наша компания предлагает
+                          современные программно-технические средства для построения корпоративных
+                          ИТ-инфраструктур.
+                        </p>
+                        <p>
+                          Руководствуясь принципами прозрачности и&nbsp;состязательности, нам удается снизить
+                          для наших заказчиков стоимость приобретения программно-технических средств относительно
+                          среднерыночного уровня.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-04" aria-labelledby="cycle-tab-04" data-infra-panel="04">
+                    <div class="infra-scenarios__copy">
+                      <h3 class="infra-scenarios__title">Внедрение</h3>
+                      <div class="infra-scenarios__prose">
+                        <p>
+                          Высокое качество внедрения вам обеспечат двойной контроль в&nbsp;виде предварительных
+                          и&nbsp;приемочных испытаний, а&nbsp;также этап опытной эксплуатации между ними.
+                        </p>
+                        <p>
+                          При внедрении разнородных программно-технических средств на&nbsp;стыке между ними
+                          возникают функциональные риски и&nbsp;сложности. Наши инженеры специализируются
+                          в&nbsp;2–3 смежных технических направлениях, актуальность знаний в&nbsp;которых
+                          подтверждается регулярной сертификацией, и&nbsp;не&nbsp;ориентированы на&nbsp;решения
+                          конкретных производителей. Такая практика вырабатывает системный подход к&nbsp;процессу
+                          внедрения. Благодаря ей, устоявшимся связям с&nbsp;сервисными подразделениями
+                          производителей и&nbsp;доступом к&nbsp;технической документации, наша команда качественно
+                          и&nbsp;быстро развертывает самые сложные технические решения.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-05" aria-labelledby="cycle-tab-05" data-infra-panel="05">
+                    <div class="infra-scenarios__copy">
+                      <h3 class="infra-scenarios__title">Поддержка и&nbsp;эксплуатация</h3>
+                      <div class="infra-scenarios__prose">
+                        <p>
+                          Отлаженные процессы, эксплуатационная документация и&nbsp;квалифицированные
+                          ресурсы&nbsp;— залог непрерывной эксплуатации технических решений. Мы&nbsp;предлагаем
+                          нашим заказчикам воспользоваться выстроенным процессом управления эксплуатацией,
+                          включающим управление инцидентами, обслуживанием и&nbsp;изменениями.
+                        </p>
+                        <p>
+                          Классическая трехуровневая модель службы технической поддержки и&nbsp;наличие
+                          горизонтальных контактов со&nbsp;службами технической поддержки производителей
+                          обеспечивают экономически эффективное решение эксплуатационных задач.
+                        </p>
+                        <p>
+                          Работа круглосуточной службы технической поддержки с&nbsp;собственной системой
+                          мониторинга уменьшает время реакции на&nbsp;критические события и, как следствие,
+                          время восстановления после сбоя.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="page-infra__standards-block">
               <p class="page-about__text page-infra__standards-lead">
                 Помимо процессов заказчика, регуляторики и&nbsp;требований контролирующих органов применяем
                 отраслевые стандарты.
               </p>
 
-              <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
+              <div class="infra-scenarios infra-scenarios--compact infra-scenarios--strip" data-infra-scenarios>
                 <div class="infra-scenarios__chrome">
                   <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка стандартов">
                     <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
@@ -598,89 +770,6 @@
               </div>
             </div>
 
-            <div class="page-infra__cycle">
-              <h3 class="page-infra__cycle-title">Полный цикл услуг</h3>
-              <p class="page-about__text">
-                Создание и&nbsp;эксплуатация всей инфраструктуры или отдельных подсистем&nbsp;— по&nbsp;этапам:
-              </p>
-
-              <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
-                <div class="infra-scenarios__chrome">
-                  <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка этапов">
-                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
-                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path d="M10 12L6 8l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-next aria-label="Вперёд">
-                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
-                  <span class="infra-scenarios__progress-fill"></span>
-                </div>
-                <div
-                  class="infra-scenarios__tabs infra-scenarios__tabs--5"
-                  role="tablist"
-                  aria-label="Этапы полного цикла"
-                  data-infra-tabs-strip
-                >
-                  <button type="button" class="infra-scenarios__tab is-active" role="tab" id="cycle-tab-01" aria-selected="true" aria-controls="cycle-panel-01" data-infra-tab="01">
-                    <span class="infra-scenarios__tab-label">01 Обследование</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-02" aria-selected="false" aria-controls="cycle-panel-02" data-infra-tab="02" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">02 Проектирование</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-03" aria-selected="false" aria-controls="cycle-panel-03" data-infra-tab="03" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">03 Поставка</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-04" aria-selected="false" aria-controls="cycle-panel-04" data-infra-tab="04" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">04 Внедрение</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-05" aria-selected="false" aria-controls="cycle-panel-05" data-infra-tab="05" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">05 Поддержка</span>
-                  </button>
-                </div>
-                <div class="infra-scenarios__stage">
-                  <div class="infra-scenarios__panel is-active" role="tabpanel" id="cycle-panel-01" aria-labelledby="cycle-tab-01" data-infra-panel="01">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
-                      <span class="infra-scenarios__stage-num" aria-hidden="true">01</span>
-                      <h3 class="infra-scenarios__title">Обследование</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-02" aria-labelledby="cycle-tab-02" data-infra-panel="02">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
-                      <span class="infra-scenarios__stage-num" aria-hidden="true">02</span>
-                      <h3 class="infra-scenarios__title">Проектирование</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-03" aria-labelledby="cycle-tab-03" data-infra-panel="03">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
-                      <span class="infra-scenarios__stage-num" aria-hidden="true">03</span>
-                      <h3 class="infra-scenarios__title">Поставка</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-04" aria-labelledby="cycle-tab-04" data-infra-panel="04">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
-                      <span class="infra-scenarios__stage-num" aria-hidden="true">04</span>
-                      <h3 class="infra-scenarios__title">Внедрение</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-05" aria-labelledby="cycle-tab-05" data-infra-panel="05">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
-                      <span class="infra-scenarios__stage-num" aria-hidden="true">05</span>
-                      <h3 class="infra-scenarios__title">
-                        Поддержка и&nbsp;эксплуатация
-                        <small class="infra-scenarios__title-sub">(аутсорсинг)</small>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </article>
         </div>
       </section>
