@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-reorder" />
+    <link rel="stylesheet" href="styles.css?v=20260720-std-flush" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -501,28 +501,15 @@
                 <h2 id="infra-h-02" class="about-dce__title">
                   Стандарты и&nbsp;<span class="about-dce__brand">ответственность</span>
                 </h2>
+                <p class="about-dce__lead">
+                  В&nbsp;комплексных проектах выступаем единым центром ответственности: привлекаем проверенных
+                  подрядчиков, работаем с&nbsp;доступными вендорами и&nbsp;ведём полный цикл услуг по&nbsp;отраслевым
+                  стандартам.
+                </p>
               </div>
             </header>
 
-            <div class="page-about__prose-wrap page-infra__section-prose">
-              <p>
-                Инженерные, кабельные и&nbsp;физические подсистемы (электроснабжение, кондиционирование, СКС, СКУД,
-                СВН) не&nbsp;внедряем сами&nbsp;— работаем с&nbsp;проверенными подрядчиками. В&nbsp;комплексных проектах
-                выступаем единым центром ответственности перед заказчиком.
-              </p>
-              <p>
-                Используем продукты отечественных и&nbsp;дружественных производителей; поддерживаем решения на&nbsp;базе
-                вендоров, прекративших работу с&nbsp;Россией. При необходимости обеспечиваем легальную поставку
-                через механизмы Правительства&nbsp;РФ.
-              </p>
-            </div>
-
             <div class="page-infra__cycle">
-              <h3 class="page-infra__cycle-title">Полный цикл услуг</h3>
-              <p class="page-about__text">
-                Создание и&nbsp;эксплуатация всей инфраструктуры или отдельных подсистем&nbsp;— по&nbsp;этапам:
-              </p>
-
               <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
                 <div class="infra-scenarios__chrome">
                   <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка этапов">
@@ -690,84 +677,117 @@
               </div>
             </div>
             <div class="page-infra__standards-block">
-              <p class="page-about__text page-infra__standards-lead">
-                Помимо процессов заказчика, регуляторики и&nbsp;требований контролирующих органов применяем
-                отраслевые стандарты.
-              </p>
-
-              <div class="infra-scenarios infra-scenarios--compact infra-scenarios--strip" data-infra-scenarios>
-                <div class="infra-scenarios__chrome">
-                  <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка стандартов">
-                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
-                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path d="M10 12L6 8l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-next aria-label="Вперёд">
-                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                  </div>
+              <aside class="infra-std-banner" aria-label="Отраслевые стандарты">
+                <div class="infra-std-banner__copy">
+                  <h3 class="infra-std-banner__title">Применяем отраслевые стандарты</h3>
+                  <p class="infra-std-banner__text">
+                    Помимо процессов заказчика, регуляторики и&nbsp;требований контролирующих органов&nbsp;— ГОСТ,
+                    ITIL, PMBOK, BSI и&nbsp;SNIA.
+                  </p>
                 </div>
-                <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
-                  <span class="infra-scenarios__progress-fill"></span>
+                <div class="infra-std-banner__logos">
+                  <span class="infra-std-banner__logo">
+                    <img
+                      class="infra-std-banner__logo--light"
+                      src="images/standard/standart_02_white.png"
+                      alt="ГОСТ"
+                      width="120"
+                      height="120"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class="infra-std-banner__logo--dark"
+                      src="images/standard/standart_02_dark.png"
+                      alt=""
+                      width="120"
+                      height="120"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span class="infra-std-banner__logo">
+                    <img
+                      class="infra-std-banner__logo--light"
+                      src="images/standard/standart_03_white.png"
+                      alt="ITIL"
+                      width="160"
+                      height="64"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class="infra-std-banner__logo--dark"
+                      src="images/standard/standart_03_dark.png"
+                      alt=""
+                      width="160"
+                      height="64"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span class="infra-std-banner__logo">
+                    <img
+                      class="infra-std-banner__logo--light"
+                      src="images/standard/standard_01_white.png"
+                      alt="PMBOK"
+                      width="140"
+                      height="92"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class="infra-std-banner__logo--dark"
+                      src="images/standard/standard_01_dark.png"
+                      alt=""
+                      width="140"
+                      height="92"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span class="infra-std-banner__logo">
+                    <img
+                      class="infra-std-banner__logo--light"
+                      src="images/standard/standart_04_white.png"
+                      alt="BSI"
+                      width="120"
+                      height="48"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class="infra-std-banner__logo--dark"
+                      src="images/standard/standart_04_dark.png"
+                      alt=""
+                      width="120"
+                      height="48"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span class="infra-std-banner__logo infra-std-banner__logo--snia">
+                    <img
+                      class="infra-std-banner__logo--light"
+                      src="images/standard/standard_05_white.png"
+                      alt="SNIA"
+                      width="160"
+                      height="48"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class="infra-std-banner__logo--dark"
+                      src="images/standard/standard_05_dark.png"
+                      alt=""
+                      width="160"
+                      height="48"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
                 </div>
-                <div
-                  class="infra-scenarios__tabs infra-scenarios__tabs--5"
-                  role="tablist"
-                  aria-label="Отраслевые стандарты"
-                  data-infra-tabs-strip
-                >
-                  <button type="button" class="infra-scenarios__tab is-active" role="tab" id="std-tab-gost" aria-selected="true" aria-controls="std-panel-gost" data-infra-tab="gost">
-                    <span class="infra-scenarios__tab-label">ГОСТ</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-itil" aria-selected="false" aria-controls="std-panel-itil" data-infra-tab="itil" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">ITIL</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-pmbok" aria-selected="false" aria-controls="std-panel-pmbok" data-infra-tab="pmbok" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">PMBOK</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-bsi" aria-selected="false" aria-controls="std-panel-bsi" data-infra-tab="bsi" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">BSI</span>
-                  </button>
-                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-snia" aria-selected="false" aria-controls="std-panel-snia" data-infra-tab="snia" tabindex="-1">
-                    <span class="infra-scenarios__tab-label">SNIA</span>
-                  </button>
-                </div>
-                <div class="infra-scenarios__stage">
-                  <div class="infra-scenarios__panel is-active" role="tabpanel" id="std-panel-gost" aria-labelledby="std-tab-gost" data-infra-panel="gost">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
-                      <span class="infra-scenarios__abbr" aria-hidden="true">ГОСТ</span>
-                      <h3 class="infra-scenarios__title">Комплексы стандартов ГОСТ&nbsp;34 и&nbsp;ИСО</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-itil" aria-labelledby="std-tab-itil" data-infra-panel="itil">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
-                      <span class="infra-scenarios__abbr" aria-hidden="true">ITIL</span>
-                      <h3 class="infra-scenarios__title">Библиотека стандартов ITIL</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-pmbok" aria-labelledby="std-tab-pmbok" data-infra-panel="pmbok">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
-                      <span class="infra-scenarios__abbr" aria-hidden="true">PMBOK</span>
-                      <h3 class="infra-scenarios__title">Рекомендации проектного управления PMBOK</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-bsi" aria-labelledby="std-tab-bsi" data-infra-panel="bsi">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
-                      <span class="infra-scenarios__abbr" aria-hidden="true">BSI</span>
-                      <h3 class="infra-scenarios__title">Разработки института стандартов BSI</h3>
-                    </div>
-                  </div>
-                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-snia" aria-labelledby="std-tab-snia" data-infra-panel="snia">
-                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
-                      <span class="infra-scenarios__abbr" aria-hidden="true">SNIA</span>
-                      <h3 class="infra-scenarios__title">Рекомендации SNIA</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </aside>
             </div>
 
           </article>

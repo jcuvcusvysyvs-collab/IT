@@ -18266,11 +18266,11 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 .infra-scenarios__title {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1rem;
   font-family: var(--font-display, var(--font-text));
-  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--sc-ink);
   text-wrap: balance;
@@ -18531,38 +18531,188 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 .page-infra__standards-block {
-  border-top: 1px solid var(--border);
-  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem) clamp(1.15rem, 2.2vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
   min-width: 0;
-  max-width: 100%;
+  max-width: none;
 }
 
-.page-infra__standards-lead {
-  margin: 0 0 clamp(0.85rem, 1.6vw, 1.1rem);
-  max-width: 48rem;
+/* Как services-promo: баннер на всю ширину оболочки, закрывает низ блока */
+#infra-approach .about-dce__block {
+  overflow: hidden;
+}
+
+#infra-approach .page-infra__cycle {
+  padding-bottom: clamp(1.25rem, 2.6vw, 1.75rem);
+}
+
+.infra-std-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  min-height: clamp(11.5rem, 20vw, 15rem);
+  margin: 0;
+  padding: clamp(1.6rem, 3.4vw, 2.5rem) clamp(1.35rem, 3vw, 2.25rem);
+  border: none;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg) 62%, var(--bg-elevated));
+  overflow: hidden;
+}
+
+.infra-std-banner::before {
+  display: none;
+}
+
+.infra-std-banner::after {
+  display: none;
+}
+
+.infra-std-banner__copy,
+.infra-std-banner__logos {
+  position: relative;
+  z-index: 1;
+}
+
+.infra-std-banner__copy {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 28rem;
+}
+
+.infra-std-banner__title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.infra-std-banner__text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--text) 72%, var(--text-muted));
+  text-wrap: pretty;
+}
+
+.infra-std-banner__logos {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(1.15rem, 2.8vw, 2rem);
+  min-width: 0;
+}
+
+.infra-std-banner__logo {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: clamp(5.25rem, 10.5vw, 7.25rem);
+  height: clamp(3.5rem, 7.2vw, 4.85rem);
+}
+
+.infra-std-banner__logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.infra-std-banner__logo img.infra-std-banner__logo--dark {
+  display: none;
+}
+
+html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo--dark {
+  display: none;
+}
+
+[data-theme="dark"] .infra-std-banner__logo img.infra-std-banner__logo--light {
+  display: none;
+}
+
+[data-theme="dark"] .infra-std-banner__logo img.infra-std-banner__logo--dark {
+  display: block;
+}
+
+.infra-std-banner__logo--snia {
+  width: clamp(6.75rem, 13vw, 9rem);
+  height: clamp(3.15rem, 6.5vw, 4.35rem);
+}
+
+[data-theme="dark"] .infra-std-banner {
+  background: linear-gradient(155deg, #141b26 0%, #121821 55%, #0a0e14 100%);
+}
+
+@media (max-width: 900px) {
+  .infra-std-banner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 1.35rem;
+    padding: clamp(1.35rem, 4vw, 1.75rem) clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .infra-std-banner__logos {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: center;
+    justify-items: center;
+    column-gap: 0.65rem;
+    row-gap: 1.1rem;
+    width: 100%;
+  }
+
+  /* 3 + 2 centered: first row takes 2 cols each, second row centered */
+  .infra-std-banner__logo:nth-child(1),
+  .infra-std-banner__logo:nth-child(2),
+  .infra-std-banner__logo:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .infra-std-banner__logo:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .infra-std-banner__logo:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  .infra-std-banner__logo {
+    width: 100%;
+    max-width: 6.75rem;
+    height: 3.65rem;
+  }
+
+  .infra-std-banner__logo--snia {
+    max-width: 7.5rem;
+    height: 3.35rem;
+  }
 }
 
 .page-infra__cycle {
   display: grid;
-  gap: 0.85rem;
-  padding: clamp(0.35rem, 1vw, 0.5rem) clamp(1rem, 2.4vw, 1.5rem) clamp(1.5rem, 3vw, 2rem);
+  gap: clamp(1rem, 2vw, 1.35rem);
+  padding: clamp(1.35rem, 2.8vw, 1.85rem) clamp(1rem, 2.4vw, 1.5rem) clamp(1.5rem, 3vw, 2rem);
   border-top: 1px solid var(--border);
   min-width: 0;
   max-width: 100%;
-}
-
-.page-infra__cycle-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--text);
-}
-
-.page-infra__cycle .page-about__text {
-  margin: 0;
-  max-width: 48rem;
 }
 
 .infra-scenarios__tabs--5 {
@@ -18579,34 +18729,6 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 
 .infra-scenarios--compact .infra-scenarios__panel {
   padding: clamp(1.25rem, 2.8vw, 1.85rem) clamp(1.15rem, 2.6vw, 1.85rem);
-}
-
-/* Standards: compact one-line strip — no empty tall panel */
-.infra-scenarios--strip .infra-scenarios__stage::before {
-  display: none;
-}
-
-.infra-scenarios--strip .infra-scenarios__panel {
-  padding: 0.95rem 1.2rem;
-  align-items: center;
-}
-
-.infra-scenarios--strip .infra-scenarios__copy--standard {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem 0.95rem;
-  max-width: none;
-  width: 100%;
-}
-
-.infra-scenarios--strip .infra-scenarios__title {
-  margin: 0;
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
 }
 
 .infra-scenarios__copy--standard,
