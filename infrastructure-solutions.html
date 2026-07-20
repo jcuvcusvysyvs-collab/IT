@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-infra-btns" />
+    <link rel="stylesheet" href="styles.css?v=20260720-infra-tab-active" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -250,90 +250,200 @@
                 </h2>
                 <p class="about-dce__lead">
                   Инфраструктурные решения обеспечивают информационные системы ИТ-ресурсами с&nbsp;качеством,
-                  зафиксированным в&nbsp;SLA. ИТ-инфраструктура&nbsp;— комплекс подсистем по&nbsp;ISO&nbsp;9001:2015:
+                  зафиксированным в&nbsp;SLA.
                 </p>
               </div>
             </header>
 
-            <div class="about-dce__grid page-infra__subsystem-grid" role="list">
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">01</span>
-                </p>
-                <h3 class="about-dce__card-title">Подсистемы инфраструктурных служб</h3>
-                <ul class="page-infra__list">
-                  <li>Базовые инфраструктурные службы (LDAP, AD, DNS, DHCP)</li>
-                  <li>Коммуникационные службы (почта, VoIP, UC)</li>
-                  <li>Системное и&nbsp;служебное ПО (ОС, инфраструктурные службы Linux, Microsoft)</li>
-                  <li>Подсистемы мониторинга и&nbsp;управления (SNMP, WMI)</li>
-                </ul>
-              </article>
+            <div class="infra-scenarios" data-infra-scenarios>
+              <div
+                class="infra-scenarios__tabs"
+                role="tablist"
+                aria-label="Подсистемы ИТ-инфраструктуры"
+              >
+                <button
+                  type="button"
+                  class="infra-scenarios__tab is-active"
+                  role="tab"
+                  id="infra-tab-01"
+                  aria-selected="true"
+                  aria-controls="infra-panel-01"
+                  data-infra-tab="01"
+                >
+                  <span class="infra-scenarios__tab-label">Подсистемы инфраструктурных служб</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infra-tab-02"
+                  aria-selected="false"
+                  aria-controls="infra-panel-02"
+                  data-infra-tab="02"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Подсистемы информационной безопасности</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infra-tab-03"
+                  aria-selected="false"
+                  aria-controls="infra-panel-03"
+                  data-infra-tab="03"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Подсистемы платформенных сервисов</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infra-tab-04"
+                  aria-selected="false"
+                  aria-controls="infra-panel-04"
+                  data-infra-tab="04"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Сетевые подсистемы</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infra-tab-05"
+                  aria-selected="false"
+                  aria-controls="infra-panel-05"
+                  data-infra-tab="05"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Подсистемы хранения данных</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infra-tab-06"
+                  aria-selected="false"
+                  aria-controls="infra-panel-06"
+                  data-infra-tab="06"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Вычислительные подсистемы</span>
+                </button>
+              </div>
 
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">02</span>
-                </p>
-                <h3 class="about-dce__card-title">Подсистемы информационной безопасности</h3>
-                <ul class="page-infra__list">
-                  <li>Периметральные средства безопасности (FW, IPS/IDS, NTA, Threat Intelligence, DDoS mitigation)</li>
-                  <li>Средства идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM)</li>
-                  <li>Средства защиты от&nbsp;несанкционированного доступа (программные и&nbsp;аппаратные)</li>
-                  <li>Средства защиты от&nbsp;утечек конфиденциальной информации (DLP, MDM)</li>
-                  <li>Средства защиты рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
-                  <li>Средства сбора и&nbsp;корреляции событий безопасности (SIEM, IRP)</li>
-                </ul>
-              </article>
+              <div class="infra-scenarios__stage">
+                <div
+                  class="infra-scenarios__panel is-active"
+                  role="tabpanel"
+                  id="infra-panel-01"
+                  aria-labelledby="infra-tab-01"
+                  data-infra-panel="01"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Подсистемы инфраструктурных служб</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Базовые инфраструктурные службы (LDAP, AD, DNS, DHCP)</li>
+                      <li>Коммуникационные службы (почта, VoIP, UC)</li>
+                      <li>Системное и&nbsp;служебное ПО (ОС, инфраструктурные службы Linux, Microsoft)</li>
+                      <li>Подсистемы мониторинга и&nbsp;управления (SNMP, WMI)</li>
+                    </ul>
+                  </div>
+                </div>
 
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">03</span>
-                </p>
-                <h3 class="about-dce__card-title">Подсистемы платформенных сервисов</h3>
-                <ul class="page-infra__list">
-                  <li>Облачные платформы (IaaS, PaaS, SaaS)</li>
-                  <li>Кластерные технологии (HA, метро-, гео-)</li>
-                  <li>Гиперконвергентные решения</li>
-                  <li>Инфраструктурная виртуализация (bare metal, VDI, storage, network)</li>
-                  <li>Контейнерная виртуализация (Docker, Kubernetes)</li>
-                  <li>Средства непрерывной доставки приложений (CI/CD)</li>
-                  <li>Базы данных</li>
-                </ul>
-              </article>
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infra-panel-02"
+                  aria-labelledby="infra-tab-02"
+                  data-infra-panel="02"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Подсистемы информационной безопасности</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Периметральные средства безопасности (FW, IPS/IDS, NTA, Threat Intelligence, DDoS mitigation)</li>
+                      <li>Средства идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM)</li>
+                      <li>Средства защиты от&nbsp;несанкционированного доступа (программные и&nbsp;аппаратные)</li>
+                      <li>Средства защиты от&nbsp;утечек конфиденциальной информации (DLP, MDM)</li>
+                      <li>Средства защиты рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
+                      <li>Средства сбора и&nbsp;корреляции событий безопасности (SIEM, IRP)</li>
+                    </ul>
+                  </div>
+                </div>
 
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">04</span>
-                </p>
-                <h3 class="about-dce__card-title">Сетевые подсистемы</h3>
-                <ul class="page-infra__list">
-                  <li>Сети хранения данных (SAN, NAS)</li>
-                  <li>Сети передачи данных (LAN, WAN, WLAN)</li>
-                </ul>
-              </article>
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infra-panel-03"
+                  aria-labelledby="infra-tab-03"
+                  data-infra-panel="03"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Подсистемы платформенных сервисов</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Облачные платформы (IaaS, PaaS, SaaS)</li>
+                      <li>Кластерные технологии (HA, метро-, гео-)</li>
+                      <li>Гиперконвергентные решения</li>
+                      <li>Инфраструктурная виртуализация (bare metal, VDI, storage, network)</li>
+                      <li>Контейнерная виртуализация (Docker, Kubernetes)</li>
+                      <li>Средства непрерывной доставки приложений (CI/CD)</li>
+                      <li>Базы данных</li>
+                    </ul>
+                  </div>
+                </div>
 
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">05</span>
-                </p>
-                <h3 class="about-dce__card-title">Подсистемы хранения данных</h3>
-                <ul class="page-infra__list">
-                  <li>Подсистемы оперативного хранения данных (SAN, NAS)</li>
-                  <li>Подсистемы хранения больших данных (Object, DataLake, SQL/NoSQL Databases)</li>
-                  <li>Подсистемы резервного и&nbsp;архивного данных (TL, VTL, block/file)</li>
-                </ul>
-              </article>
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infra-panel-04"
+                  aria-labelledby="infra-tab-04"
+                  data-infra-panel="04"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Сетевые подсистемы</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Сети хранения данных (SAN, NAS)</li>
+                      <li>Сети передачи данных (LAN, WAN, WLAN)</li>
+                    </ul>
+                  </div>
+                </div>
 
-              <article class="about-dce__card page-infra__subsystem-card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">06</span>
-                </p>
-                <h3 class="about-dce__card-title">Вычислительные подсистемы</h3>
-                <ul class="page-infra__list">
-                  <li>Серверы стандартной архитектуры (x64/86)</li>
-                  <li>Серверы проприетарной архитектуры (RISC, ARM, MIPS)</li>
-                  <li>Специализированные серверные платформы (blades, OCP)</li>
-                </ul>
-              </article>
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infra-panel-05"
+                  aria-labelledby="infra-tab-05"
+                  data-infra-panel="05"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Подсистемы хранения данных</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Подсистемы оперативного хранения данных (SAN, NAS)</li>
+                      <li>Подсистемы хранения больших данных (Object, DataLake, SQL/NoSQL Databases)</li>
+                      <li>Подсистемы резервного и&nbsp;архивного данных (TL, VTL, block/file)</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infra-panel-06"
+                  aria-labelledby="infra-tab-06"
+                  data-infra-panel="06"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Вычислительные подсистемы</h3>
+                    <ul class="infra-scenarios__list">
+                      <li>Серверы стандартной архитектуры (x64/86)</li>
+                      <li>Серверы проприетарной архитектуры (RISC, ARM, MIPS)</li>
+                      <li>Специализированные серверные платформы (blades, OCP)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -648,6 +758,7 @@
     <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
+    <script defer src="infra-scenarios.js?v=20260720-fixed-h"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>
