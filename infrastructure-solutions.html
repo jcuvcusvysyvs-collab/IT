@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-infra-mobile-dark" />
+    <link rel="stylesheet" href="styles.css?v=20260720-infra-btns" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -200,6 +200,43 @@
           </div>
         </header>
       </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#infra-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_01.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Инфраструктурные</span>
+                <span class="page-section-subnav__brand-accent page-infra__subnav-accent">решения</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="infra-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="infra-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы инфраструктурных решений">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#infra-intro">Инфраструктура</a>
+                  <a class="projects-hero-switcher__item" href="#infra-approach">Стандарты</a>
+                  <a class="projects-hero-switcher__item" href="#infra-examples">Примеры</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
 
       <section class="section about-dce page-infra__showcase" id="infra-intro" aria-labelledby="infra-h-01">
         <div class="about-dce__inner">
@@ -499,6 +536,7 @@
           </article>
         </div>
       </section>
+      </div>
     </main>
 
                 <footer class="site-footer">
@@ -607,6 +645,7 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>

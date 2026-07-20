@@ -7827,7 +7827,8 @@ a.footer-contact-item__value:hover {
 
 .page-projects .projects-hero-switcher,
 .page-huawei .projects-hero-switcher,
-.page-about .projects-hero-switcher {
+.page-about .projects-hero-switcher,
+.page-infra .projects-hero-switcher {
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -8152,7 +8153,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 @media (max-width: 900px) {
   .page-huawei .page-section-subnav:not(.page-section-subnav--menu-open),
   .page-projects .page-section-subnav:not(.page-section-subnav--menu-open),
-  .page-about .page-section-subnav:not(.page-section-subnav--menu-open) {
+  .page-about .page-section-subnav:not(.page-section-subnav--menu-open),
+  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open) {
     padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
   }
 
@@ -8189,7 +8191,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   .page-huawei .page-section-subnav__brand-icon,
   .page-projects .page-section-subnav__brand-icon,
-  .page-about .page-section-subnav__brand-icon {
+  .page-about .page-section-subnav__brand-icon,
+  .page-infra .page-section-subnav__brand-icon {
     width: auto;
     height: auto;
     border-radius: 0;
@@ -8197,7 +8200,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   .page-huawei .page-section-subnav__brand-icon img,
   .page-projects .page-section-subnav__brand-icon img,
-  .page-about .page-section-subnav__brand-icon img {
+  .page-about .page-section-subnav__brand-icon img,
+  .page-infra .page-section-subnav__brand-icon img {
     width: auto;
     height: clamp(1.95rem, 4.4vw, 2.35rem);
     max-width: min(260px, 54vw);
@@ -8280,14 +8284,16 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   .page-huawei .page-section-subnav .projects-hero-switcher,
   .page-projects .page-section-subnav .projects-hero-switcher,
-  .page-about .page-section-subnav .projects-hero-switcher {
+  .page-about .page-section-subnav .projects-hero-switcher,
+  .page-infra .page-section-subnav .projects-hero-switcher {
     width: 100%;
     justify-content: center;
   }
 
   .page-huawei .page-section-subnav .projects-hero-switcher__track,
   .page-projects .page-section-subnav .projects-hero-switcher__track,
-  .page-about .page-section-subnav .projects-hero-switcher__track {
+  .page-about .page-section-subnav .projects-hero-switcher__track,
+  .page-infra .page-section-subnav .projects-hero-switcher__track {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -8297,7 +8303,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   .page-huawei .page-section-subnav .projects-hero-switcher__item,
   .page-projects .page-section-subnav .projects-hero-switcher__item,
-  .page-about .page-section-subnav .projects-hero-switcher__item {
+  .page-about .page-section-subnav .projects-hero-switcher__item,
+  .page-infra .page-section-subnav .projects-hero-switcher__item {
     padding: 0.1rem 0;
     font-size: 1rem;
     font-weight: 500;
@@ -8315,20 +8322,25 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-projects .page-section-subnav .projects-hero-switcher__item.is-active,
   .page-about .page-section-subnav .projects-hero-switcher__item:hover,
   .page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
-  .page-about .page-section-subnav .projects-hero-switcher__item.is-active {
+  .page-about .page-section-subnav .projects-hero-switcher__item.is-active,
+  .page-infra .page-section-subnav .projects-hero-switcher__item:hover,
+  .page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible,
+  .page-infra .page-section-subnav .projects-hero-switcher__item.is-active {
     color: #fff;
   }
 
   .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     border-radius: 999px;
     padding: 0.55rem 1.35rem;
   }
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     color: var(--text);
     background: #fff;
     box-shadow:
@@ -8338,7 +8350,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   [data-theme="dark"] .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   [data-theme="dark"] .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  [data-theme="dark"] .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  [data-theme="dark"] .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  [data-theme="dark"] .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     color: #fff;
     background: rgba(255, 255, 255, 0.14);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -8406,7 +8419,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item,
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item {
     color: color-mix(in srgb, var(--text) 86%, transparent);
   }
 
@@ -8418,7 +8432,10 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:hover,
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     color: var(--text);
   }
 
@@ -8438,7 +8455,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
 .page-huawei .page-section-subnav .projects-hero-switcher__item,
 .page-projects .page-section-subnav .projects-hero-switcher__item,
-.page-about .page-section-subnav .projects-hero-switcher__item {
+.page-about .page-section-subnav .projects-hero-switcher__item,
+.page-infra .page-section-subnav .projects-hero-switcher__item {
   color: var(--subnav-link);
   background: transparent;
   text-decoration: none;
@@ -8450,9 +8468,12 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 .page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-about .page-section-subnav .projects-hero-switcher__item:hover,
 .page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
+.page-infra .page-section-subnav .projects-hero-switcher__item:hover,
+.page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-huawei .page-section-subnav .projects-hero-switcher__item.is-active,
 .page-projects .page-section-subnav .projects-hero-switcher__item.is-active,
-.page-about .page-section-subnav .projects-hero-switcher__item.is-active {
+.page-about .page-section-subnav .projects-hero-switcher__item.is-active,
+.page-infra .page-section-subnav .projects-hero-switcher__item.is-active {
   color: var(--subnav-link-hover);
   background: transparent;
   box-shadow: none;
@@ -8460,7 +8481,8 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 
 .page-huawei .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
-.page-about .page-section-subnav .projects-hero-switcher__item:focus-visible {
+.page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
+.page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }
@@ -8583,7 +8605,10 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
 .page-about #about-content,
 .page-about #about-partners,
 .page-about #certificates,
-.page-about #career {
+.page-about #career,
+.page-infra #infra-intro,
+.page-infra #infra-approach,
+.page-infra #infra-examples {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
@@ -16360,7 +16385,8 @@ a.page-projects__item-client:hover {
 }
 
 .page-projects .projects-hero-switcher__track,
-.page-about .projects-hero-switcher__track {
+.page-about .projects-hero-switcher__track,
+.page-infra .projects-hero-switcher__track {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17402,6 +17428,177 @@ a.page-projects__item-client:hover {
 
 /* ——— Страница «Инфраструктурные решения» ——— */
 
+/* Липкая лента — как на «О компании» */
+.page-infra .page-section-subnav .projects-hero-switcher {
+  display: flex;
+  flex-shrink: 0;
+  width: auto;
+  flex: 0 1 auto;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.page-infra .page-section-subnav .projects-hero-switcher__track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-infra .page-section-subnav .projects-hero-switcher__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0;
+  border: none;
+  border-radius: 0;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: none;
+  background: transparent;
+}
+
+.page-infra .page-section-subnav__brand-icon {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.page-infra .page-section-subnav__brand-icon img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+html:not([data-theme="dark"]) .page-infra .page-section-subnav__brand-icon {
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-infra .page-section-subnav__toggle:hover,
+.page-infra .page-section-subnav__toggle:focus-visible {
+  border-color: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 28%, transparent);
+  background: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 8%, transparent);
+}
+
+.page-infra .page-section-subnav__toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:hover,
+html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-visible {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 28%, var(--border));
+  background: color-mix(in srgb, var(--text) 6%, var(--bg-elevated));
+}
+
+.page-infra .page-section-subnav__brand-accent.page-infra__subnav-accent,
+.page-infra__subnav-accent {
+  color: color-mix(in srgb, var(--accent, #1a4a7c) 72%, var(--subnav-link-hover, var(--text)));
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 900px) {
+  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open) {
+    padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
+  }
+
+  .page-infra .page-section-subnav__brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    max-width: calc(100% - 3.4rem);
+  }
+
+  .page-infra .page-section-subnav__brand-text {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.28em;
+    min-width: 0;
+    font-size: clamp(0.78rem, 3.4vw, 0.9rem);
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .page-infra .page-section-subnav__brand-title,
+  .page-infra .page-section-subnav__brand-accent {
+    white-space: nowrap;
+  }
+
+  .page-infra .page-section-subnav .projects-hero-switcher {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-infra .page-section-subnav .projects-hero-switcher__track {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+    width: 100%;
+  }
+
+  .page-infra .page-section-subnav .projects-hero-switcher__item {
+    display: inline-flex;
+    padding: 0.1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+  }
+
+  .page-infra .page-section-subnav__brand-icon {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .page-infra .page-section-subnav__brand-icon img {
+    width: auto;
+    height: clamp(1.95rem, 4.4vw, 2.35rem);
+    max-width: min(260px, 54vw);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item {
+    color: var(--text);
+  }
+
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
+    color: var(--text);
+    background: transparent;
+  }
+}
+
+
+
 .page-infra__showcase.about-dce {
   border-top: none;
 }
@@ -17648,9 +17845,12 @@ a.page-projects__item-client:hover {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   border-radius: 4px;
+  border-width: 0.5px;
+  padding: 0.875rem 1.75rem;
 }
 
 .page-infra .projects-hero-actions .btn--ghost-light {
+  font-weight: 500;
   color: color-mix(in srgb, var(--infra-hero-title) 78%, transparent);
   border-color: color-mix(in srgb, var(--infra-hero-title) 22%, transparent);
   background: color-mix(in srgb, var(--infra-hero-title) 4%, transparent);
@@ -17733,13 +17933,25 @@ a.page-projects__item-client:hover {
   }
 
   .page-infra .projects-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
+    gap: 0.65rem;
+    margin-top: 1.35rem;
   }
 
   .page-infra .projects-hero-actions .btn {
-    flex: 1 1 auto;
+    width: 100%;
     justify-content: center;
     min-height: 3rem;
+    padding: 0.9rem 1.15rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    border-width: 0.5px;
+  }
+
+  .page-infra .projects-hero-actions .btn--ghost-light {
+    font-weight: 500;
   }
 }
 
