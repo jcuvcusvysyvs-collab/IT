@@ -211,6 +211,8 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   scrollbar-gutter: stable;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
 }
 
 body {
