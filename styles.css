@@ -18132,6 +18132,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   font-family: var(--font-text);
   text-align: center;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -18142,6 +18143,10 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
   color: var(--text);
   border-color: color-mix(in srgb, var(--border) 70%, var(--text-muted));
+}
+
+.infra-scenarios__tab:focus {
+  outline: none;
 }
 
 .infra-scenarios__tab:focus-visible {
@@ -18170,6 +18175,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 .infra-scenarios__stage {
   position: relative;
   isolation: isolate;
+  display: grid;
   border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
   border-radius: var(--sc-radius);
   background: var(--sc-surface);
@@ -18217,44 +18223,28 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   );
 }
 
+/* Все панели в одной ячейке: высота stage = самая высокая вкладка (ПК и мобилка) */
 .infra-scenarios__panel {
   position: relative;
-  z-index: 1;
-  display: none;
+  grid-area: 1 / 1;
+  z-index: 0;
+  display: grid;
   grid-template-columns: 1fr;
   align-items: start;
+  align-self: stretch;
   padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.4rem, 3.2vw, 2.5rem);
   min-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .infra-scenarios__panel.is-active {
-  display: grid;
-  animation: infra-scenarios-in 0.32s ease;
-}
-
-/* Desktop: stack panels so stage height = tallest tab (no jump) */
-@media (min-width: 901px) {
-  .infra-scenarios__stage {
-    display: grid;
-  }
-
-  .infra-scenarios__panel {
-    grid-area: 1 / 1;
-    display: grid;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 0;
-    animation: none;
-  }
-
-  .infra-scenarios__panel.is-active {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1;
-    animation: infra-scenarios-fade 0.22s ease;
-  }
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+  animation: infra-scenarios-fade 0.22s ease;
 }
 
 .infra-scenarios__copy {
@@ -18469,15 +18459,18 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     scroll-snap-align: start;
   }
 
+  /* На таче outline после тапа выглядит как синяя обводка вокруг вкладки */
+  .infra-scenarios__tab:focus,
+  .infra-scenarios__tab:focus-visible,
+  .infra-scenarios__tab.is-active:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
   .infra-scenarios__panel {
-    display: none;
     padding: clamp(1.25rem, 4vw, 1.6rem);
     min-width: 0;
     max-width: 100%;
-  }
-
-  .infra-scenarios__panel.is-active {
-    display: grid;
   }
 
   .infra-scenarios__stage {
@@ -18787,12 +18780,6 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 [data-theme="dark"] .infra-scenarios__stage-num {
   color: rgba(255, 255, 255, 0.14);
-}
-
-@media (min-width: 901px) {
-  .infra-scenarios--compact .infra-scenarios__panel.is-active {
-    animation: infra-scenarios-fade 0.22s ease;
-  }
 }
 
 .page-infra__examples-grid {
