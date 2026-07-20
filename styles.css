@@ -18028,6 +18028,91 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   padding: 0;
 }
 
+.infra-scenarios__chrome,
+.infra-scenarios__progress {
+  display: none;
+}
+
+.infra-scenarios__nav {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.infra-scenarios__nav-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 0.5px solid color-mix(in srgb, var(--border) 70%, var(--text) 30%);
+  background: transparent;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.infra-scenarios__nav-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.infra-scenarios__nav-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.infra-scenarios__nav-btn[disabled],
+.infra-scenarios__nav-btn[disabled]:hover {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: transparent;
+  border-color: color-mix(in srgb, var(--border) 70%, var(--text) 30%);
+  color: var(--text-muted);
+}
+
+.infra-scenarios__progress {
+  position: relative;
+  height: 2px;
+  margin: 0 0 0.85rem;
+  background: color-mix(in srgb, var(--border) 92%, transparent);
+  overflow: hidden;
+  --infra-tabs-scroll: 0.25;
+}
+
+[data-theme="dark"] .infra-scenarios__progress {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.infra-scenarios__progress-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(var(--infra-tabs-scroll, 0.25));
+  will-change: transform;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 78%, #ffffff 22%) 0%,
+    var(--accent) 60%,
+    color-mix(in srgb, var(--accent) 70%, #bcdcff 30%) 100%
+  );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+[data-theme="dark"] .infra-scenarios__progress-fill {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 72%, #c5e9ff 28%) 0%,
+    var(--accent) 60%,
+    color-mix(in srgb, var(--accent) 80%, #a8e2ff 20%) 100%
+  );
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
 .infra-scenarios__tab {
   display: flex;
   flex-direction: row;
@@ -18281,13 +18366,29 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 @media (max-width: 900px) {
+  .infra-scenarios__chrome {
+    display: block;
+    margin: 0 0 0.75rem;
+  }
+
+  .infra-scenarios__progress {
+    display: block;
+  }
+
   .infra-scenarios__tabs {
     display: flex;
     gap: 0.45rem;
     overflow-x: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.2rem;
+    scroll-snap-type: x proximity;
+    padding-inline: 0;
+    padding-bottom: 0.15rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .infra-scenarios__tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .infra-scenarios__tab {
@@ -18296,6 +18397,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     max-width: 13rem;
     justify-content: flex-start;
     text-align: left;
+    scroll-snap-align: start;
   }
 
   .infra-scenarios__panel {
@@ -18326,6 +18428,10 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   .infra-scenarios__panel.is-active {
     transition: none;
     animation: none;
+  }
+
+  .infra-scenarios__progress-fill {
+    transition: none;
   }
 }
 

@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-infra-tab-active" />
+    <link rel="stylesheet" href="styles.css?v=20260720-tab-edge" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -256,10 +256,52 @@
             </header>
 
             <div class="infra-scenarios" data-infra-scenarios>
+              <div class="infra-scenarios__chrome">
+                <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка подсистем">
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-prev
+                    aria-label="Назад"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M10 12L6 8l4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-next
+                    aria-label="Вперёд"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M6 4l4 4-4 4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                <span class="infra-scenarios__progress-fill"></span>
+              </div>
               <div
                 class="infra-scenarios__tabs"
                 role="tablist"
                 aria-label="Подсистемы ИТ-инфраструктуры"
+                data-infra-tabs-strip
               >
                 <button
                   type="button"
@@ -758,7 +800,7 @@
     <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
-    <script defer src="infra-scenarios.js?v=20260720-fixed-h"></script>
+    <script defer src="infra-scenarios.js?v=20260720-tab-edge"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>
