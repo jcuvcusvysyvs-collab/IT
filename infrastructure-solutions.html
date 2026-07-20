@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-tab-edge" />
+    <link rel="stylesheet" href="styles.css?v=20260720-infra-method" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -522,28 +522,80 @@
                 Помимо процессов заказчика, регуляторики и&nbsp;требований контролирующих органов применяем
                 отраслевые стандарты.
               </p>
-              <ul class="page-infra__standards" role="list">
-              <li class="page-infra__standard">
-                <span class="page-infra__standard-abbr" aria-hidden="true">ГОСТ</span>
-                <span class="page-infra__standard-label">Комплексы стандартов ГОСТ&nbsp;34 и&nbsp;ИСО</span>
-              </li>
-              <li class="page-infra__standard">
-                <span class="page-infra__standard-abbr" aria-hidden="true">ITIL</span>
-                <span class="page-infra__standard-label">Библиотека стандартов ITIL</span>
-              </li>
-              <li class="page-infra__standard">
-                <span class="page-infra__standard-abbr" aria-hidden="true">PMBOK</span>
-                <span class="page-infra__standard-label">Рекомендации проектного управления PMBOK</span>
-              </li>
-              <li class="page-infra__standard">
-                <span class="page-infra__standard-abbr" aria-hidden="true">BSI</span>
-                <span class="page-infra__standard-label">Разработки института стандартов BSI</span>
-              </li>
-              <li class="page-infra__standard">
-                <span class="page-infra__standard-abbr" aria-hidden="true">SNIA</span>
-                <span class="page-infra__standard-label">Рекомендации SNIA</span>
-              </li>
-            </ul>
+
+              <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
+                <div class="infra-scenarios__chrome">
+                  <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка стандартов">
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M10 12L6 8l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-next aria-label="Вперёд">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                  <span class="infra-scenarios__progress-fill"></span>
+                </div>
+                <div
+                  class="infra-scenarios__tabs infra-scenarios__tabs--5"
+                  role="tablist"
+                  aria-label="Отраслевые стандарты"
+                  data-infra-tabs-strip
+                >
+                  <button type="button" class="infra-scenarios__tab is-active" role="tab" id="std-tab-gost" aria-selected="true" aria-controls="std-panel-gost" data-infra-tab="gost">
+                    <span class="infra-scenarios__tab-label">ГОСТ</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-itil" aria-selected="false" aria-controls="std-panel-itil" data-infra-tab="itil" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">ITIL</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-pmbok" aria-selected="false" aria-controls="std-panel-pmbok" data-infra-tab="pmbok" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">PMBOK</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-bsi" aria-selected="false" aria-controls="std-panel-bsi" data-infra-tab="bsi" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">BSI</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="std-tab-snia" aria-selected="false" aria-controls="std-panel-snia" data-infra-tab="snia" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">SNIA</span>
+                  </button>
+                </div>
+                <div class="infra-scenarios__stage">
+                  <div class="infra-scenarios__panel is-active" role="tabpanel" id="std-panel-gost" aria-labelledby="std-tab-gost" data-infra-panel="gost">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
+                      <span class="infra-scenarios__abbr" aria-hidden="true">ГОСТ</span>
+                      <h3 class="infra-scenarios__title">Комплексы стандартов ГОСТ&nbsp;34 и&nbsp;ИСО</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-itil" aria-labelledby="std-tab-itil" data-infra-panel="itil">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
+                      <span class="infra-scenarios__abbr" aria-hidden="true">ITIL</span>
+                      <h3 class="infra-scenarios__title">Библиотека стандартов ITIL</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-pmbok" aria-labelledby="std-tab-pmbok" data-infra-panel="pmbok">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
+                      <span class="infra-scenarios__abbr" aria-hidden="true">PMBOK</span>
+                      <h3 class="infra-scenarios__title">Рекомендации проектного управления PMBOK</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-bsi" aria-labelledby="std-tab-bsi" data-infra-panel="bsi">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
+                      <span class="infra-scenarios__abbr" aria-hidden="true">BSI</span>
+                      <h3 class="infra-scenarios__title">Разработки института стандартов BSI</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="std-panel-snia" aria-labelledby="std-tab-snia" data-infra-panel="snia">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--standard">
+                      <span class="infra-scenarios__abbr" aria-hidden="true">SNIA</span>
+                      <h3 class="infra-scenarios__title">Рекомендации SNIA</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="page-infra__cycle">
@@ -551,31 +603,83 @@
               <p class="page-about__text">
                 Создание и&nbsp;эксплуатация всей инфраструктуры или отдельных подсистем&nbsp;— по&nbsp;этапам:
               </p>
-              <ol class="page-infra__pipeline" role="list">
-                <li class="page-infra__pipeline-step">
-                  <span class="page-infra__pipeline-num" aria-hidden="true">01</span>
-                  <span class="page-infra__pipeline-label">Обследование</span>
-                </li>
-                <li class="page-infra__pipeline-step">
-                  <span class="page-infra__pipeline-num" aria-hidden="true">02</span>
-                  <span class="page-infra__pipeline-label">Проектирование</span>
-                </li>
-                <li class="page-infra__pipeline-step">
-                  <span class="page-infra__pipeline-num" aria-hidden="true">03</span>
-                  <span class="page-infra__pipeline-label">Поставка</span>
-                </li>
-                <li class="page-infra__pipeline-step">
-                  <span class="page-infra__pipeline-num" aria-hidden="true">04</span>
-                  <span class="page-infra__pipeline-label">Внедрение</span>
-                </li>
-                <li class="page-infra__pipeline-step">
-                  <span class="page-infra__pipeline-num" aria-hidden="true">05</span>
-                  <span class="page-infra__pipeline-label">
-                    Поддержка и&nbsp;эксплуатация
-                    <small class="page-infra__pipeline-sub">(аутсорсинг)</small>
-                  </span>
-                </li>
-              </ol>
+
+              <div class="infra-scenarios infra-scenarios--compact" data-infra-scenarios>
+                <div class="infra-scenarios__chrome">
+                  <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка этапов">
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-prev aria-label="Назад">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M10 12L6 8l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                    <button type="button" class="infra-scenarios__nav-btn" data-infra-tabs-next aria-label="Вперёд">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                  <span class="infra-scenarios__progress-fill"></span>
+                </div>
+                <div
+                  class="infra-scenarios__tabs infra-scenarios__tabs--5"
+                  role="tablist"
+                  aria-label="Этапы полного цикла"
+                  data-infra-tabs-strip
+                >
+                  <button type="button" class="infra-scenarios__tab is-active" role="tab" id="cycle-tab-01" aria-selected="true" aria-controls="cycle-panel-01" data-infra-tab="01">
+                    <span class="infra-scenarios__tab-label">01 Обследование</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-02" aria-selected="false" aria-controls="cycle-panel-02" data-infra-tab="02" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">02 Проектирование</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-03" aria-selected="false" aria-controls="cycle-panel-03" data-infra-tab="03" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">03 Поставка</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-04" aria-selected="false" aria-controls="cycle-panel-04" data-infra-tab="04" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">04 Внедрение</span>
+                  </button>
+                  <button type="button" class="infra-scenarios__tab" role="tab" id="cycle-tab-05" aria-selected="false" aria-controls="cycle-panel-05" data-infra-tab="05" tabindex="-1">
+                    <span class="infra-scenarios__tab-label">05 Поддержка</span>
+                  </button>
+                </div>
+                <div class="infra-scenarios__stage">
+                  <div class="infra-scenarios__panel is-active" role="tabpanel" id="cycle-panel-01" aria-labelledby="cycle-tab-01" data-infra-panel="01">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
+                      <span class="infra-scenarios__stage-num" aria-hidden="true">01</span>
+                      <h3 class="infra-scenarios__title">Обследование</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-02" aria-labelledby="cycle-tab-02" data-infra-panel="02">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
+                      <span class="infra-scenarios__stage-num" aria-hidden="true">02</span>
+                      <h3 class="infra-scenarios__title">Проектирование</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-03" aria-labelledby="cycle-tab-03" data-infra-panel="03">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
+                      <span class="infra-scenarios__stage-num" aria-hidden="true">03</span>
+                      <h3 class="infra-scenarios__title">Поставка</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-04" aria-labelledby="cycle-tab-04" data-infra-panel="04">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
+                      <span class="infra-scenarios__stage-num" aria-hidden="true">04</span>
+                      <h3 class="infra-scenarios__title">Внедрение</h3>
+                    </div>
+                  </div>
+                  <div class="infra-scenarios__panel" role="tabpanel" id="cycle-panel-05" aria-labelledby="cycle-tab-05" data-infra-panel="05">
+                    <div class="infra-scenarios__copy infra-scenarios__copy--cycle">
+                      <span class="infra-scenarios__stage-num" aria-hidden="true">05</span>
+                      <h3 class="infra-scenarios__title">
+                        Поддержка и&nbsp;эксплуатация
+                        <small class="infra-scenarios__title-sub">(аутсорсинг)</small>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -800,7 +904,7 @@
     <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
-    <script defer src="infra-scenarios.js?v=20260720-tab-edge"></script>
+    <script defer src="infra-scenarios.js?v=20260720-method"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>
