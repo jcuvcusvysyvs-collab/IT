@@ -14,7 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260715-nav-drill-swipe2" />
+    <link rel="stylesheet" href="styles.css?v=20260717-infra-hero9" />
+    <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-infra">
@@ -174,38 +175,31 @@
     </header>
 
     <main id="main">
-      <header class="subpage-hero subpage-hero--about page-infra__hero" data-subpage-hero aria-labelledby="infra-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  Инфраструктурные решения
-                </li>
-              </ol>
-            </nav>
-            <h1 id="infra-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">Инфраструктурные</span>
-                  <span class="subpage-hero__title-line about-dce__brand">решения</span>
-            </h1>
-            <p class="subpage-hero__lead">
-              Полный цикл услуг по&nbsp;инфраструктурным решениям на&nbsp;актуальной технологической базе
-            </p>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
-              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infra-examples">Примеры</a>
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex page-infra__hero"
+          data-subpage-hero
+          aria-labelledby="infra-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="infra-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Инфраструктурные</span>
+                <span class="subpage-hero__title-line page-infra__hero-accent">решения</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Полный цикл услуг по&nbsp;инфраструктурным решениям на&nbsp;актуальной технологической базе
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infra-examples">Примеры</a>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       <section class="section about-dce page-infra__showcase" id="infra-intro" aria-labelledby="infra-h-01">
         <div class="about-dce__inner">
@@ -613,6 +607,7 @@
       </div>
     </footer>
 
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>

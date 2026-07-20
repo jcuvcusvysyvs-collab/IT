@@ -17424,15 +17424,325 @@ a.page-projects__item-client:hover {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
-.page-infra .subpage-hero {
-  background-color: #050a14;
-  background-image:
-    linear-gradient(108deg, rgba(5, 12, 28, 0.94) 0%, rgba(8, 18, 40, 0.82) 46%, rgba(12, 24, 52, 0.55) 100%),
-    radial-gradient(ellipse 78% 68% at 72% 38%, rgba(26, 74, 124, 0.42), transparent 58%),
-    url("images/SERVICE_01.png");
-  background-size: cover, cover, cover;
-  background-position: 0 0, 0 0, 68% center;
-  background-repeat: no-repeat;
+/* Hero — как у HUAWEI, но с брендовым синим и SERVICE_01.png */
+.page-infra {
+  --hero-fade-height: clamp(10rem, 22vw, 17rem);
+  --hero-stage-gap: clamp(3.5rem, 8vw, 5rem);
+}
+
+.page-infra .projects-hero-stage {
+  --hero-grid-lit: 60, 130, 190;
+  --hero-grid-lit-a: 0;
+  --hero-grid-glow: 26, 74, 124;
+  --hero-grid-glow-a: 0;
+  --infra-hero-bg: #050a14;
+  --infra-hero-title: #fff;
+  --infra-hero-lead: rgba(255, 255, 255, 0.82);
+  --infra-hero-accent: var(--accent, #1a4a7c);
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  color-scheme: dark;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: var(--hero-header-clearance);
+  padding-bottom: 0;
+  background: var(--infra-hero-bg);
+}
+
+.page-infra #main > .projects-hero-stage:first-child {
+  padding-top: var(--hero-header-clearance);
+}
+
+.page-infra .projects-hero--yandex.subpage-hero {
+  /* Как у HUAWEI: заголовок ~58px под шапкой (там emergent от justify:center) */
+  --projects-hero-pad-top: clamp(3.75rem, 8vh, 5.5rem);
+  --projects-hero-pad-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 0;
+  padding: var(--projects-hero-pad-top) 0 var(--projects-hero-pad-bottom);
+  overflow: visible;
+  background: transparent;
+  color: var(--infra-hero-title);
+}
+
+.page-infra .projects-hero__background {
+  position: absolute;
+  inset: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -4% -6%;
+  z-index: 0;
+  pointer-events: none;
+  background: url("images/SERVICE_01.png") 68% 42% / cover no-repeat;
+  filter: brightness(0.96) saturate(1.02) contrast(1.04);
+  transform: scale(1.05);
+  transform-origin: 68% 42%;
+  opacity: 1;
+}
+
+.page-infra .projects-hero-stage--photo .projects-hero__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 52%,
+      color-mix(in srgb, var(--infra-hero-bg) 18%, transparent) 70%,
+      color-mix(in srgb, var(--infra-hero-bg) 52%, transparent) 82%,
+      color-mix(in srgb, var(--infra-hero-bg) 84%, transparent) 92%,
+      var(--infra-hero-bg) 100%
+    ),
+    radial-gradient(ellipse 68% 88% at 78% 48%, transparent 28%, rgba(5, 10, 20, 0.42) 100%),
+    linear-gradient(
+      105deg,
+      rgba(5, 10, 20, 0.96) 0%,
+      rgba(5, 10, 20, 0.78) 28%,
+      rgba(5, 10, 20, 0.42) 48%,
+      rgba(5, 10, 20, 0.12) 68%,
+      transparent 100%
+    );
+}
+
+.page-infra .projects-hero--photo {
+  pointer-events: auto;
+}
+
+.page-infra .projects-hero-stage[data-hero-grid] {
+  pointer-events: auto;
+  --hero-fade: 0;
+  --hero-shift: 0;
+}
+
+.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__background {
+  z-index: 0;
+}
+
+.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content {
+  position: relative;
+  z-index: 3;
+}
+
+.page-infra .projects-hero--yandex .subpage-hero__inner,
+.page-infra .projects-hero__inner--left {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: 0 var(--layout-gutter);
+  flex: none;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.page-infra .projects-hero__inner--left a {
+  pointer-events: auto;
+}
+
+.page-infra .projects-hero--yandex .projects-hero__content,
+.page-infra .projects-hero--yandex .subpage-hero__content {
+  align-items: flex-start;
+  text-align: left;
+  max-width: min(42rem, 100%);
+  margin-inline: 0;
+  gap: clamp(1.35rem, 2.8vw, 2.15rem);
+}
+
+.page-infra .projects-hero--yandex .subpage-hero__title,
+.page-infra .projects-hero--yandex .projects-hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.2rem, 0.6vw, 0.45rem);
+  margin: 0;
+  font-size: clamp(3.1rem, 8.5vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--infra-hero-title);
+  text-align: left;
+  text-wrap: balance;
+  text-shadow: none;
+}
+
+.page-infra .page-infra__hero-accent {
+  color: color-mix(in srgb, #7eb6e8 42%, #fff 58%);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.page-infra .projects-hero--yandex .subpage-hero__lead,
+.page-infra .projects-hero--yandex .projects-hero__lead {
+  margin: 0;
+  max-width: min(38rem, 100%);
+  font-family: var(--font-text);
+  font-size: clamp(1.375rem, 2.85vw, 1.875rem);
+  font-weight: 450;
+  line-height: 1.62;
+  letter-spacing: 0.016em;
+  color: var(--infra-hero-lead);
+  text-align: left;
+  text-wrap: balance;
+  text-shadow: none;
+}
+
+.page-infra .page-infra__hero .subpage-breadcrumbs {
+  margin: 0;
+}
+
+.page-infra .page-infra__hero .subpage-breadcrumbs__link,
+.page-infra .page-infra__hero .subpage-breadcrumbs__item,
+.page-infra .page-infra__hero .subpage-breadcrumbs__sep {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.page-infra .page-infra__hero .subpage-breadcrumbs__link:hover,
+.page-infra .page-infra__hero .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+}
+
+.page-infra .page-infra__hero .subpage-breadcrumbs__item[aria-current="page"] {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.page-infra .projects-hero-actions {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem 1rem;
+  padding: 0;
+  margin-top: clamp(0.15rem, 0.45vw, 0.35rem);
+  pointer-events: auto;
+}
+
+.page-infra .projects-hero-actions .btn {
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.page-infra .projects-hero-actions .btn--ghost-light {
+  color: color-mix(in srgb, var(--infra-hero-title) 78%, transparent);
+  border-color: color-mix(in srgb, var(--infra-hero-title) 22%, transparent);
+  background: color-mix(in srgb, var(--infra-hero-title) 4%, transparent);
+}
+
+.page-infra .projects-hero-actions .btn--ghost-light:hover {
+  color: var(--infra-hero-title);
+  border-color: color-mix(in srgb, var(--infra-hero-accent) 42%, transparent);
+  background: color-mix(in srgb, var(--infra-hero-accent) 14%, transparent);
+}
+
+.page-infra .projects-hero-actions .btn--ghost-light:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--infra-hero-accent) 45%, transparent);
+}
+
+.page-infra .page-infra__showcase.about-dce {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  border-top: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 48%, transparent) 14%,
+    color-mix(in srgb, var(--bg) 82%, transparent) 30%,
+    var(--bg) 46%,
+    var(--bg) 100%
+  );
+}
+
+@media (max-width: 720px) {
+  .page-infra #main > .projects-hero-stage:first-child {
+    height: auto;
+    min-height: calc(72svh + var(--site-header-height, 5.5rem));
+    min-height: calc(72dvh + var(--site-header-height, 5.5rem));
+    padding-top: calc(var(--site-header-height, 5.5rem) + clamp(1rem, 3vh, 1.5rem));
+  }
+
+  .page-infra .projects-hero-stage--photo .projects-hero__background::before {
+    inset: -2% -8% -6% -8%;
+    background-position: 62% 28%;
+    transform: scale(1.12);
+    transform-origin: 60% 30%;
+    filter: brightness(0.9) saturate(1);
+  }
+
+  .page-infra .projects-hero-stage--photo .projects-hero__background::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 10, 20, 0.72) 0%,
+        rgba(5, 10, 20, 0.42) 24%,
+        rgba(5, 10, 20, 0.28) 48%,
+        rgba(5, 10, 20, 0.72) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(5, 10, 20, 0.55) 0%,
+        rgba(5, 10, 20, 0.25) 40%,
+        rgba(5, 10, 20, 0.55) 100%
+      );
+  }
+
+  .page-infra .projects-hero--yandex.subpage-hero {
+    --projects-hero-pad-top: clamp(2.5rem, 6vh, 3.75rem);
+    --projects-hero-pad-bottom: clamp(1.75rem, 5vw, 2.5rem);
+    justify-content: flex-start;
+  }
+
+  .page-infra .projects-hero--yandex .subpage-hero__title,
+  .page-infra .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(2.65rem, 12vw, 3.5rem);
+  }
+
+  .page-infra .projects-hero--yandex .subpage-hero__lead,
+  .page-infra .projects-hero--yandex .projects-hero__lead {
+    max-width: 100%;
+    font-size: clamp(1.05rem, 4.2vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: normal;
+  }
+
+  .page-infra .projects-hero-actions {
+    width: 100%;
+  }
+
+  .page-infra .projects-hero-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-height: 3rem;
+  }
 }
 
 .page-infra__block-content {
@@ -17458,9 +17768,31 @@ a.page-projects__item-client:hover {
   padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
+.page-infra__showcase .about-dce__header {
+  align-items: start;
+  column-gap: clamp(1.15rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.page-infra__showcase .about-dce__index {
+  line-height: 0.86;
+  padding-top: 0.12em;
+}
+
+.page-infra__showcase .about-dce__intro {
+  padding-top: 0.55em;
+}
+
+.page-infra__showcase .about-dce__lead {
+  margin-top: 0.85rem;
+  max-width: 46rem;
+}
+
 .page-infra__subsystem-grid {
   border-top: 1px solid var(--border);
-  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  padding-top: clamp(1.35rem, 2.8vw, 1.9rem);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  align-items: stretch;
 }
 
 @media (min-width: 1024px) {
@@ -17471,17 +17803,101 @@ a.page-projects__item-client:hover {
 
 .page-infra__subsystem-card {
   height: 100%;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
+  min-height: 100%;
+  gap: 0;
+  padding: clamp(1.15rem, 2vw, 1.4rem) clamp(1.1rem, 2vw, 1.35rem) clamp(1.05rem, 1.8vw, 1.25rem);
+  border-color: color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-elevated) 94%, var(--accent) 6%) 0%,
+      var(--bg-elevated) 42%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.page-infra__subsystem-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.page-infra__subsystem-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent),
+    0 10px 28px color-mix(in srgb, var(--accent) 8%, transparent);
+  transform: translateY(-1px);
+}
+
+.page-infra__subsystem-card:hover::before {
+  opacity: 1;
+}
+
+.page-infra__subsystem-card:hover::after {
+  transform: scaleX(1);
+}
+
+[data-theme="dark"] .page-infra__subsystem-card {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-elevated) 88%, var(--accent) 12%) 0%,
+      var(--bg-elevated) 48%
+    );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .page-infra__subsystem-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.page-infra__subsystem-card .about-dce__card-kicker {
+  margin: 0 0 0.7rem;
+}
+
+.page-infra__subsystem-card .about-dce__card-num {
+  min-width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
 }
 
 .page-infra__subsystem-card .about-dce__card-title {
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
-  line-height: 1.25;
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  font-size: clamp(1.02rem, 1.3vw, 1.14rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
   text-wrap: pretty;
 }
 
 .page-infra__subsystem-card .page-infra__list {
-  margin-top: 0.15rem;
+  margin-top: 0;
+  flex: 0 1 auto;
+  align-content: start;
+  gap: 0;
 }
 
 .page-infra__intro-prose {
@@ -17506,7 +17922,7 @@ a.page-projects__item-client:hover {
   padding-left: 1rem;
   font-family: var(--font-text);
   font-size: clamp(0.875rem, 1.15vw, 0.9375rem);
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text);
 }
 
@@ -17520,6 +17936,48 @@ a.page-projects__item-client:hover {
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.85;
+}
+
+.page-infra__subsystem-card .page-infra__list li {
+  padding: 0.55rem 0 0.55rem 0.95rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  font-size: clamp(0.84rem, 1.05vw, 0.9rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--text) 88%, var(--text-muted));
+}
+
+.page-infra__subsystem-card .page-infra__list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0.15rem;
+}
+
+.page-infra__subsystem-card .page-infra__list li:first-child {
+  padding-top: 0.15rem;
+}
+
+.page-infra__subsystem-card .page-infra__list li::before {
+  top: calc(0.55rem + 0.72em);
+  width: 0.35rem;
+  height: 1px;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--accent) 72%, transparent);
+  opacity: 1;
+}
+
+.page-infra__subsystem-card .page-infra__list li:first-child::before {
+  top: calc(0.15rem + 0.72em);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-infra__subsystem-card,
+  .page-infra__subsystem-card::before {
+    transition: none;
+  }
+
+  .page-infra__subsystem-card:hover {
+    transform: none;
+  }
 }
 
 .page-infra__standards-block {
