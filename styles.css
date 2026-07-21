@@ -20064,6 +20064,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 /* ——— Страница «АСДУ ЦОД» ——— */
 
+.page-asdu.page-infra {
+  overflow-x: clip;
+}
+
 .page-asdu.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background: url("images/hero_03.png") 62% 40% / cover no-repeat;
   transform-origin: 62% 40%;
@@ -20267,9 +20271,15 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 }
 
 .page-asdu__case-tabs.infra-scenarios__tabs {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0.45rem;
   margin: 0 0 0.85rem;
+}
+
+@media (min-width: 901px) {
+  .page-asdu__case-tabs.infra-scenarios__tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .page-asdu__case-tabs .infra-scenarios__tab,
@@ -20771,12 +20781,6 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   }
 }
 
-@media (max-width: 900px) {
-  .page-asdu__case-tabs.infra-scenarios__tabs {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 720px) {
   .page-asdu__case-stage::before {
     opacity: 0.28;
@@ -20855,6 +20859,8 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   position: relative;
   width: min(18rem, 100%);
   height: 4.5rem;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .asdu-partner-banner__logo-img {
@@ -20913,6 +20919,112 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   .asdu-partner-banner {
     padding-left: clamp(1.15rem, 4vw, 1.5rem);
     padding-right: clamp(1.15rem, 4vw, 1.5rem);
+    overflow: hidden;
+  }
+
+  .asdu-partner-banner__logo {
+    width: min(14rem, 100%);
+    height: 3.75rem;
+  }
+
+  .asdu-partner-banner__logo-img {
+    transform: scale(1.25);
+  }
+
+  .page-asdu,
+  .page-asdu .about-dce__inner,
+  .page-asdu .about-dce__block,
+  .page-asdu__case-stage-inner,
+  .page-asdu__case-nav,
+  .page-asdu__case-panels,
+  .page-asdu__case-panel,
+  .page-asdu__object,
+  .page-asdu__object-grid,
+  .page-asdu__gallery,
+  .page-asdu__gallery-grid,
+  .page-asdu__specs {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .page-asdu__case-stage {
+    overflow-x: clip;
+  }
+
+  .page-asdu__case-tabs.infra-scenarios__tabs {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .page-asdu__case-tabs .infra-scenarios__tab {
+    min-width: 0;
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .page-asdu__case-tabs .infra-scenarios__tab-label {
+    font-size: 0.875rem;
+    text-wrap: wrap;
+  }
+
+  .page-asdu__case-panels.infra-scenarios__stage {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .page-asdu__case-panel.infra-scenarios__panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: clamp(1rem, 3.5vw, 1.35rem) clamp(0.9rem, 3vw, 1.15rem);
+    box-sizing: border-box;
+  }
+
+  .page-asdu__case-title,
+  .page-asdu__case-customer-name,
+  .page-asdu__object-card-title,
+  .page-asdu__object-list li,
+  .page-asdu__gallery-caption,
+  .asdu-partner-banner__title,
+  .asdu-partner-banner__text {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .page-asdu__object-card {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-asdu__gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-asdu__lightbox {
+    padding: 0.85rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .page-asdu__lightbox-dialog {
+    max-width: 100%;
+    width: min(100%, 96vw);
+  }
+
+  .page-asdu__lightbox-img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 520px) and (max-width: 899px) {
+  .page-asdu__gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
