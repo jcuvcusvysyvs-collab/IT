@@ -17744,12 +17744,6 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     white-space: nowrap;
   }
 
-  .page-asdu .page-section-subnav__brand-title,
-  .page-asdu .page-section-subnav__brand-accent {
-    white-space: normal;
-    overflow-wrap: break-word;
-  }
-
   .page-infra .page-section-subnav .projects-hero-switcher  {
     display: flex;
     width: 100%;
@@ -18126,25 +18120,6 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   .page-infra .projects-hero--yandex .subpage-hero__title,
   .page-infra .projects-hero--yandex .projects-hero__title  {
     font-size: clamp(2.65rem, 12vw, 3.5rem);
-  }
-
-  .page-asdu .projects-hero--yandex .subpage-hero__title,
-  .page-asdu .projects-hero--yandex .projects-hero__title {
-    font-size: clamp(1.85rem, 8.2vw, 2.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: normal;
-    hyphens: manual;
-  }
-
-  .page-asdu .projects-hero--yandex .subpage-hero__title-line,
-  .page-asdu .projects-hero--yandex .projects-hero__title .subpage-hero__title-line {
-    display: block;
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: break-word;
   }
 
   .page-infra .projects-hero--yandex .subpage-hero__lead,
