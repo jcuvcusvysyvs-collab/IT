@@ -8613,7 +8613,15 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
 .page-infra #infra-examples,
 .page-infosec #infosec-intro,
 .page-infosec #infosec-approach,
-.page-infosec #infosec-examples {
+.page-infosec #infosec-examples,
+.page-scaling #scaling-intro,
+.page-scaling #scaling-results,
+.page-continuity #continuity-intro,
+.page-continuity #continuity-tech,
+.page-continuity #continuity-examples,
+.page-ops #ops-intro,
+.page-ops #ops-tech,
+.page-ops #ops-examples {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
@@ -10851,7 +10859,10 @@ body.cert-lightbox-open {
 .page-huawei #huawei-feedback,
 .page-contacts #contacts-feedback,
 .page-infra #infra-feedback,
-.page-infosec #infosec-feedback {
+.page-infosec #infosec-feedback,
+.page-scaling #scaling-feedback,
+.page-continuity #continuity-feedback,
+.page-ops #ops-feedback {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
@@ -18997,12 +19008,18 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   max-width: none;
 }
 
-#infosec-approach .about-dce__block {
+#infosec-approach .about-dce__block,
+#scaling-intro .about-dce__block,
+#continuity-intro .about-dce__block,
+#ops-tech .about-dce__block {
   overflow: hidden;
 }
 
 /* Процесс: вертикальный таймлайн — линия от кружка к кружку */
-#infosec-approach .infosec-process {
+#infosec-approach .infosec-process,
+#scaling-intro .infosec-process,
+#continuity-intro .infosec-process,
+#ops-tech .infosec-process {
   --infosec-rail-pad-y: 1.05rem;
   --infosec-rail-size: 1.9rem;
   --infosec-rail-inset: 0.15rem;
@@ -19017,7 +19034,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   background: transparent;
 }
 
-#infosec-approach .infosec-process__item {
+#infosec-approach .infosec-process__item,
+#scaling-intro .infosec-process__item,
+#continuity-intro .infosec-process__item,
+#ops-tech .infosec-process__item {
   position: relative;
   display: grid;
   grid-template-columns: 2.5rem minmax(0, 1fr);
@@ -19029,7 +19049,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   box-sizing: border-box;
 }
 
-#infosec-approach .infosec-process__item:not(:last-child)::after {
+#infosec-approach .infosec-process__item:not(:last-child)::after,
+#scaling-intro .infosec-process__item:not(:last-child)::after,
+#continuity-intro .infosec-process__item:not(:last-child)::after,
+#ops-tech .infosec-process__item:not(:last-child)::after {
   content: "";
   position: absolute;
   left: calc(var(--infosec-rail-inset) + (var(--infosec-rail-size) / 2) - 0.5px);
@@ -19040,11 +19063,17 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   pointer-events: none;
 }
 
-#infosec-approach .infosec-process__head {
+#infosec-approach .infosec-process__head,
+#scaling-intro .infosec-process__head,
+#continuity-intro .infosec-process__head,
+#ops-tech .infosec-process__head {
   display: contents;
 }
 
-#infosec-approach .infosec-process__num {
+#infosec-approach .infosec-process__num,
+#scaling-intro .infosec-process__num,
+#continuity-intro .infosec-process__num,
+#ops-tech .infosec-process__num {
   grid-column: 1;
   grid-row: 1;
   position: relative;
@@ -19068,7 +19097,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   color: var(--accent);
 }
 
-#infosec-approach .infosec-process__title {
+#infosec-approach .infosec-process__title,
+#scaling-intro .infosec-process__title,
+#continuity-intro .infosec-process__title,
+#ops-tech .infosec-process__title {
   grid-column: 2;
   grid-row: 1;
   align-self: center;
@@ -19082,7 +19114,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   color: var(--text);
 }
 
-#infosec-approach .infosec-process__text {
+#infosec-approach .infosec-process__text,
+#scaling-intro .infosec-process__text,
+#continuity-intro .infosec-process__text,
+#ops-tech .infosec-process__text {
   grid-column: 2;
   grid-row: 2;
   margin: 0;
@@ -19310,20 +19345,22 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 /* ——— Страница «Масштабирование без закупок» ——— */
 
-.page-scaling .subpage-hero {
-  background-color: #050a14;
-  background-image:
-    linear-gradient(108deg, rgba(5, 12, 28, 0.94) 0%, rgba(8, 18, 40, 0.82) 46%, rgba(12, 24, 52, 0.55) 100%),
-    radial-gradient(ellipse 78% 68% at 72% 38%, rgba(26, 74, 124, 0.42), transparent 58%),
-    url("images/SERVICE_03.png");
-  background-size: cover, cover, cover;
-  background-position: 0 0, 0 0, 68% center;
-  background-repeat: no-repeat;
+.page-scaling.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  background: url("images/SERVICE_03.png") 68% 42% / cover no-repeat;
+  transform-origin: 68% 42%;
+}
+
+@media (max-width: 720px) {
+  .page-scaling.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+    background-position: 62% 28%;
+    transform-origin: 60% 30%;
+    filter: brightness(0.72) saturate(0.92);
+  }
 }
 
 .page-scaling #scaling-intro .page-about__prose-wrap {
   columns: 1;
-  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: clamp(1.25rem, 2.6vw, 1.75rem);
 }
 
 .page-scaling #scaling-intro .page-about__prose-wrap p {
@@ -19331,6 +19368,229 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   color: var(--text);
 }
 
+/* Сцена этапов: чертёжная сетка справа, как у infra-scenarios */
+.scaling-process-stage {
+  position: relative;
+  isolation: isolate;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.scaling-process-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
+      transparent 1px
+    );
+  background-size: 52px 52px;
+  background-position: right top;
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+#scaling-intro .scaling-process-stage .infosec-process {
+  position: relative;
+  z-index: 1;
+  border-top: none;
+  background: transparent;
+}
+
+#scaling-intro .scaling-process-stage .infosec-process__num {
+  background: var(--bg-elevated);
+}
+
+#scaling-intro .scaling-process-stage .infosec-process__item {
+  max-width: min(46rem, 100%);
+}
+
+@media (max-width: 900px) {
+  .scaling-process-stage::before {
+    opacity: 0.45;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.18) 78%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.18) 78%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  #scaling-intro .scaling-process-stage .infosec-process__item {
+    max-width: none;
+  }
+}
+
+[data-theme="dark"] .scaling-process-stage::before {
+  opacity: 0.45;
+}
+
+.page-scaling #scaling-results .about-dce__block {
+  overflow: hidden;
+}
+
+.page-scaling .about-dce__block > .page-scaling__benefits {
+  border-top: 1px solid var(--border);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem);
+  margin: 0;
+}
+
+@media (max-width: 899px) {
+  .page-scaling__benefits {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .page-scaling__benefits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-scaling__benefit-card {
+  min-height: 100%;
+}
+
+.page-scaling__notice-block {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  min-width: 0;
+  max-width: none;
+}
+
+.scaling-notice-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  margin: 0;
+  padding: clamp(1.6rem, 3.4vw, 2.5rem) clamp(1.35rem, 3vw, 2.25rem);
+  border: none;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg) 62%, var(--bg-elevated));
+  overflow: hidden;
+}
+
+.scaling-notice-banner__copy {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 36rem;
+  min-width: 0;
+}
+
+.scaling-notice-banner__title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.scaling-notice-banner__text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--text) 72%, var(--text-muted));
+  text-wrap: pretty;
+}
+
+.scaling-notice-banner__media {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
+  min-width: 0;
+}
+
+.scaling-notice-banner__logo {
+  display: block;
+  width: min(100%, clamp(9.5rem, 18vw, 14rem));
+  height: auto;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
+[data-theme="dark"] .scaling-notice-banner {
+  background: linear-gradient(155deg, #141b26 0%, #121821 55%, #0a0e14 100%);
+}
+
+[data-theme="dark"] .scaling-notice-banner__logo {
+  opacity: 0.88;
+  filter: brightness(1.08);
+}
+
+@media (max-width: 900px) {
+  .scaling-notice-banner {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 1.25rem;
+    padding: clamp(1.35rem, 4vw, 1.75rem) clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .scaling-notice-banner__media {
+    justify-content: flex-start;
+    justify-self: start;
+  }
+
+  .scaling-notice-banner__logo {
+    width: min(100%, 10.5rem);
+  }
+
+  .page-scaling .about-dce__block > .page-scaling__benefits {
+    padding-left: clamp(1rem, 4vw, 1.25rem);
+    padding-right: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  #scaling-intro .infosec-process {
+    padding-left: clamp(1rem, 4vw, 1.25rem);
+    padding-right: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  #scaling-intro .infosec-process__title {
+    font-size: 1rem;
+  }
+}
+
+/* Legacy step styles (unused on scaling after timeline rebuild; keep for safety) */
 .page-scaling__steps.page-infosec__steps {
   gap: 0.75rem;
   padding-bottom: clamp(1.5rem, 3vw, 2rem);
@@ -19403,42 +19663,310 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   line-height: 1.6;
 }
 
-.page-scaling .about-dce__block > .page-scaling__benefits {
+
+/* ——— Страница «Обеспечение непрерывности» ——— */
+
+.page-continuity.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  background: url("images/SERVICE_04.png") 64% 40% / cover no-repeat;
+  transform-origin: 64% 40%;
+}
+
+@media (max-width: 720px) {
+  .page-continuity.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+    background-position: 58% 28%;
+    transform-origin: 58% 30%;
+    filter: brightness(0.72) saturate(0.92);
+  }
+}
+
+#continuity-intro .scaling-process-stage {
+  position: relative;
+  isolation: isolate;
   border-top: 1px solid var(--border);
-  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  overflow: hidden;
+  min-width: 0;
+}
+
+#continuity-intro .scaling-process-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
+      transparent 1px
+    );
+  background-size: 52px 52px;
+  background-position: right top;
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+#continuity-intro .scaling-process-stage .infosec-process {
+  position: relative;
+  z-index: 1;
+  border-top: none;
+  background: transparent;
+}
+
+#continuity-intro .scaling-process-stage .infosec-process__item {
+  max-width: min(46rem, 100%);
+}
+
+#continuity-intro .scaling-process-stage .infosec-process__num {
+  background: var(--bg-elevated);
+}
+
+.page-continuity__exp-block {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  min-width: 0;
+  max-width: none;
+}
+
+.continuity-exp-banner {
+  margin: 0;
+  padding: clamp(1.6rem, 3.4vw, 2.5rem) clamp(1.35rem, 3vw, 2.25rem);
+  border: none;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg) 62%, var(--bg-elevated));
+}
+
+.continuity-exp-banner__copy {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 52rem;
+}
+
+.continuity-exp-banner__title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.continuity-exp-banner__text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--text) 72%, var(--text-muted));
+  text-wrap: pretty;
+}
+
+[data-theme="dark"] .continuity-exp-banner {
+  background: linear-gradient(155deg, #141b26 0%, #121821 55%, #0a0e14 100%);
+}
+
+.page-continuity .about-dce__block > .page-continuity__tech-grid {
+  border-top: 1px solid var(--border);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem);
+  margin: 0;
+}
+
+.page-continuity__tech-card {
+  min-height: 100%;
+}
+
+@media (max-width: 899px) {
+  .page-continuity__tech-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 900px) {
-  .page-scaling__benefits {
+  .page-continuity__tech-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.page-scaling__benefit-card {
+@media (max-width: 900px) {
+  #continuity-intro .scaling-process-stage::before {
+    opacity: 0.45;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.18) 78%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.18) 78%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  #continuity-intro .scaling-process-stage .infosec-process__item {
+    max-width: none;
+  }
+
+  #continuity-intro .infosec-process {
+    padding-left: clamp(1rem, 4vw, 1.25rem);
+    padding-right: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  #continuity-intro .infosec-process__title {
+    font-size: 1rem;
+  }
+
+  .continuity-exp-banner {
+    padding: clamp(1.35rem, 4vw, 1.75rem) clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .page-continuity .about-dce__block > .page-continuity__tech-grid {
+    padding-left: clamp(1rem, 4vw, 1.25rem);
+    padding-right: clamp(1rem, 4vw, 1.25rem);
+  }
+}
+
+[data-theme="dark"] #continuity-intro .scaling-process-stage::before {
+  opacity: 0.45;
+}
+
+
+
+/* ——— Страница «Эксплуатация и сопровождение» ——— */
+
+.page-ops.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  background: url("images/SERVICE_05.png") 66% 42% / cover no-repeat;
+  transform-origin: 66% 42%;
+}
+
+@media (max-width: 720px) {
+  .page-ops.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+    background-position: 58% 28%;
+    transform-origin: 58% 30%;
+    filter: brightness(0.72) saturate(0.92);
+  }
+}
+
+.page-ops .about-dce__block > .page-ops__pillars {
+  border-top: 1px solid var(--border);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem);
+  margin: 0;
+}
+
+.page-ops__pillar-card {
   min-height: 100%;
 }
 
-.page-scaling__notice {
-  border-top: 1px solid var(--border);
-  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem) clamp(1.5rem, 3vw, 2rem);
+@media (max-width: 899px) {
+  .page-ops__pillars {
+    grid-template-columns: 1fr;
+  }
 }
 
-.page-scaling__notice p {
+@media (min-width: 900px) {
+  .page-ops__pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+#ops-tech .about-dce__block {
+  overflow: hidden;
+}
+
+.page-ops #ops-tech .infra-scenarios__panel {
+  width: 100%;
+}
+
+.page-ops #ops-tech .infra-scenarios__copy {
+  max-width: none !important;
+  width: 100%;
+  display: grid;
+  gap: 1.05rem;
+}
+
+.page-ops #ops-tech .infra-scenarios__title {
   margin: 0;
   max-width: none;
-  padding: 1rem 1.15rem;
-  border-radius: 12px;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 7%, var(--bg-elevated));
-  font-family: var(--font-text);
-  font-size: clamp(0.9375rem, 1.15vw, 1rem);
-  line-height: 1.72;
-  color: var(--text-muted);
+  width: 100%;
+  text-wrap: wrap;
 }
 
-[data-theme="dark"] .page-scaling__notice p {
-  background: color-mix(in srgb, var(--accent) 12%, var(--bg-elevated));
+.page-ops #ops-tech .infra-scenarios__prose {
+  margin: 0;
+  max-width: min(42rem, 100%);
 }
+
+.page-ops #ops-tech .infra-scenarios__prose p {
+  max-width: none !important;
+}
+
+.page-ops #ops-tech .infra-scenarios__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin: 0;
+  width: 100%;
+  max-width: min(44rem, 100%);
+}
+
+.page-ops #ops-tech .infra-scenarios__list li {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding-left: 1.15rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ops #ops-tech .infra-scenarios__list li::before {
+  top: 0.55em;
+  left: 0;
+}
+
+.page-ops #ops-tech .infra-scenarios__stage::before {
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .page-ops .about-dce__block > .page-ops__pillars {
+    padding-left: clamp(1rem, 4vw, 1.25rem);
+    padding-right: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .page-ops #ops-tech .infra-scenarios {
+    margin-left: clamp(1rem, 4vw, 1.25rem);
+    margin-right: clamp(1rem, 4vw, 1.25rem);
+  }
+}
+
 
 /* ——— Страница «Контакты» ——— */
 .page-contacts .projects-hero .subpage-breadcrumbs__item {

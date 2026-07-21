@@ -11,7 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260717-infra-composition" />
+    <link rel="stylesheet" href="styles.css?v=20260721-scaling-grid" />
+    <link rel="preload" href="images/SERVICE_03.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-infra page-scaling">
@@ -171,39 +172,71 @@
     </header>
 
     <main id="main">
-      <header class="subpage-hero subpage-hero--about page-scaling__hero" data-subpage-hero aria-labelledby="service-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  Масштабирование без закупок
-                </li>
-              </ol>
-            </nav>
-            <h1 id="service-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">Масштабирование</span>
-              <span class="subpage-hero__title-line about-dce__brand">без закупок</span>
-            </h1>
-            <p class="subpage-hero__lead">
-              Максимальную эффективность использования средств вы&nbsp;достигнете только при проверяемых
-              и&nbsp;состязательных закупочных процедурах.
-            </p>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
-              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#scaling-steps">Мероприятия</a>
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex page-infra__hero page-scaling__hero"
+          data-subpage-hero
+          aria-labelledby="scaling-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="scaling-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Масштабирование</span>
+                <span class="subpage-hero__title-line page-infra__hero-accent">без закупок</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Максимальную эффективность использования средств вы&nbsp;достигнете только при проверяемых
+                и&nbsp;состязательных закупочных процедурах.
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#scaling-feedback">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#scaling-results">Результат</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#scaling-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_03.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Масштабирование</span>
+                <span class="page-section-subnav__brand-accent page-infra__subnav-accent">без закупок</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="scaling-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="scaling-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы масштабирования без закупок">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#scaling-intro">Направление</a>
+                  <a class="projects-hero-switcher__item" href="#scaling-results">Результат</a>
+                </div>
+              </nav>
+              <div class="page-section-subnav__actions">
+                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#scaling-feedback">Связаться</a>
+              </div>
             </div>
           </div>
         </div>
-      </header>
 
       <section class="section about-dce page-infra__showcase" id="scaling-intro" aria-labelledby="scaling-h-01">
         <div class="about-dce__inner">
@@ -215,95 +248,89 @@
                 <h2 id="scaling-h-01" class="about-dce__title">
                   Повышение эффективности <span class="about-dce__brand">использования имеющихся ресурсов</span>
                 </h2>
+                <p class="about-dce__lead">
+                  Нагрузка на&nbsp;информационные сервисы постоянно растёт, что приводит к&nbsp;необходимости добавления
+                  новых ИТ-ресурсов. Вместо расходования средств на&nbsp;закупку нового оборудования, мы&nbsp;поможем вам
+                  исследовать работу существующего и&nbsp;оптимизировать его использование:
+                </p>
               </div>
             </header>
 
-            <div class="page-about__prose-wrap page-infra__section-prose page-scaling__intro-prose">
-              <p>
-                Нагрузка на&nbsp;информационные сервисы постоянно растёт, что приводит к&nbsp;необходимости добавления
-                новых ИТ-ресурсов. Вместо расходования средств на&nbsp;закупку нового оборудования, мы&nbsp;поможем вам
-                исследовать работу существующего и&nbsp;оптимизировать его использование, проведя следующие мероприятия:
-              </p>
+            <div class="scaling-process-stage">
+            <ol class="infosec-process" role="list">
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">01</span>
+                  <h3 class="infosec-process__title">Инвентаризация оборудования ИТ-инфраструктуры</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Серверы, системы хранения данных, системы резервного копирования, коммутаторы, оборудование ИБ
+                  и&nbsp;т.&nbsp;д.
+                </p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">02</span>
+                  <h3 class="infosec-process__title">Разработка или актуализация ресурсно-сервисной модели</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Визуализированное представление состава и&nbsp;взаимосвязи ИТ-ресурсов, которые обеспечивают
+                  предоставление информационных сервисов.
+                </p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">03</span>
+                  <h3 class="infosec-process__title">Установка системы мониторинга использования ИТ-оборудования</h3>
+                </div>
+                <p class="infosec-process__text">
+                  С&nbsp;аналитическими модулями, представляющими в&nbsp;агрегированном виде информацию об&nbsp;утилизации
+                  ИТ-ресурсов и&nbsp;их&nbsp;компонент.
+                </p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">04</span>
+                  <h3 class="infosec-process__title">Выявление «узких мест» и&nbsp;неоптимальных конфигураций</h3>
+                </div>
+                <p class="infosec-process__text">
+                  На&nbsp;основании инвентаризации, ресурсно-сервисной модели и&nbsp;данных системы мониторинга&nbsp;—
+                  подсистемы, создающие повышенную нагрузку на&nbsp;оборудование.
+                </p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">05</span>
+                  <h3 class="infosec-process__title">Устранение выявленных неоптимальностей</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Путём реорганизации взаимодействия существующего оборудования и&nbsp;перераспределения нагрузки.
+                </p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">06</span>
+                  <h3 class="infosec-process__title">Самостоятельные решения Заказчика о&nbsp;перераспределении нагрузки</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Накопив статистически значимые данные об&nbsp;утилизации, система мониторинга определит скрытые резервы
+                  ресурсов, доступные для использования в&nbsp;дальнейшем.
+                </p>
+              </li>
+            </ol>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section about-dce about-dce--alt" id="scaling-steps" aria-labelledby="scaling-h-02">
+      <section class="section about-dce about-dce--alt" id="scaling-results" aria-labelledby="scaling-h-02">
         <div class="about-dce__inner">
           <article class="about-dce__block">
             <header class="about-dce__header">
               <span class="about-dce__index" aria-hidden="true">02</span>
               <div class="about-dce__intro">
-                <p class="about-dce__eyebrow" aria-hidden="true">Методология</p>
-                <h2 id="scaling-h-02" class="about-dce__title">
-                  Этапы <span class="about-dce__brand">работ</span>
-                </h2>
-              </div>
-            </header>
-
-            <ol class="page-infosec__steps page-scaling__steps" role="list">
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">01</span>
-                  <span class="page-scaling__step-label">Инвентаризация оборудования ИТ-инфраструктуры</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">Серверы, системы хранения данных, системы резервного копирования, коммутаторы, оборудование ИБ и&nbsp;т.&nbsp;д.</p>
-              </li>
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">02</span>
-                  <span class="page-scaling__step-label">Разработка или актуализация ресурсно-сервисной модели</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">Визуализированное представление состава и&nbsp;взаимосвязи ИТ-ресурсов, которые обеспечивают предоставление информационных сервисов.</p>
-              </li>
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">03</span>
-                  <span class="page-scaling__step-label">Установка системы мониторинга использования ИТ-оборудования</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">С&nbsp;аналитическими модулями, представляющими в&nbsp;агрегированном виде информацию об&nbsp;утилизации ИТ-ресурсов и&nbsp;их&nbsp;компонент.</p>
-              </li>
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">04</span>
-                  <span class="page-scaling__step-label">Выявление «узких мест» и&nbsp;неоптимальных конфигураций</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">На&nbsp;основании инвентаризации, ресурсно-сервисной модели и&nbsp;данных системы мониторинга&nbsp;— подсистемы, создающие повышенную нагрузку на&nbsp;оборудование.</p>
-              </li>
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">05</span>
-                  <span class="page-scaling__step-label">Устранение выявленных неоптимальностей</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">Путём реорганизации взаимодействия существующего оборудования и&nbsp;перераспределения нагрузки.</p>
-              </li>
-              <li class="page-infosec__step">
-                <div class="page-scaling__step-head">
-                  <span class="page-infosec__step-num" aria-hidden="true">06</span>
-                  <span class="page-scaling__step-label">Самостоятельные решения Заказчика о&nbsp;перераспределении нагрузки</span>
-                </div>
-                <span class="page-scaling__step-divider" aria-hidden="true"></span>
-                <p class="page-scaling__step-detail">Накопив статистически значимые данные об&nbsp;утилизации, система мониторинга определит скрытые резервы ресурсов, доступные для использования в&nbsp;дальнейшем.</p>
-              </li>
-            </ol>
-          </article>
-        </div>
-      </section>
-
-      <section class="section about-dce" id="scaling-results" aria-labelledby="scaling-h-03">
-        <div class="about-dce__inner">
-          <article class="about-dce__block">
-            <header class="about-dce__header">
-              <span class="about-dce__index" aria-hidden="true">03</span>
-              <div class="about-dce__intro">
                 <p class="about-dce__eyebrow" aria-hidden="true">Результат</p>
-                <h2 id="scaling-h-03" class="about-dce__title">
+                <h2 id="scaling-h-02" class="about-dce__title">
                   Что вы <span class="about-dce__brand">получите</span>
                 </h2>
                 <p class="about-dce__lead">
@@ -347,15 +374,150 @@
               </article>
             </div>
 
-            <div class="page-scaling__notice">
-              <p>
-                Программное обеспечение, используемое при оказании услуги, распространяется по&nbsp;открытой лицензии
-                GPL и&nbsp;дорабатывается нашими специалистами согласно специфике вашей инфраструктуры.
-              </p>
+            <div class="page-scaling__notice-block">
+              <aside class="scaling-notice-banner" aria-label="Лицензирование ПО">
+                <div class="scaling-notice-banner__copy">
+                  <h3 class="scaling-notice-banner__title">Открытая лицензия GPL</h3>
+                  <p class="scaling-notice-banner__text">
+                    Программное обеспечение, используемое при оказании услуги, распространяется по&nbsp;открытой лицензии
+                    GPL и&nbsp;дорабатывается нашими специалистами согласно специфике вашей инфраструктуры.
+                  </p>
+                </div>
+                <div class="scaling-notice-banner__media" aria-hidden="true">
+                  <img
+                    class="scaling-notice-banner__logo"
+                    src="images/standard/GPL_05.webp"
+                    alt=""
+                    width="280"
+                    height="120"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </aside>
             </div>
           </article>
         </div>
       </section>
+
+      <section class="section page-infra__form-section" id="scaling-feedback" aria-labelledby="scaling-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="scaling-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="scaling-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="scaling-form-heading"
+              >
+                <div class="huawei-request-form__fields">
+                  <input
+                    class="huawei-request-form__input"
+                    type="text"
+                    name="name"
+                    placeholder="Имя Фамилия"
+                    autocomplete="name"
+                    aria-label="Имя Фамилия"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Почта"
+                    autocomplete="email"
+                    aria-label="Почта"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    aria-label="Телефон"
+                  />
+                  <textarea
+                    class="huawei-request-form__input huawei-request-form__input--area"
+                    name="message"
+                    placeholder="Ваш вопрос"
+                    rows="4"
+                    aria-label="Ваш вопрос"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="huawei-request-form__consent">
+                  <input
+                    class="huawei-request-form__checkbox"
+                    type="checkbox"
+                    name="consent"
+                    value="yes"
+                    required
+                  />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path
+                        d="M3 7h8M8 4l3 3-3 3"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <p
+                  class="huawei-request-form__status"
+                  id="scaling-form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
     </main>
 
                 <footer class="site-footer">
@@ -464,7 +626,11 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>

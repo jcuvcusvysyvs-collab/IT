@@ -30,4 +30,7 @@
   bindForm("contacts-form", "contacts-form-status");
   bindForm("infra-form", "infra-form-status");
   bindForm("infosec-form", "infosec-form-status");
+  bindForm("scaling-form", "scaling-form-status");
+  bindForm("continuity-form", "continuity-form-status");
+  bindForm("ops-form", "ops-form-status");
 })();

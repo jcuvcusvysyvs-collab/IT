@@ -4,17 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Обеспечение непрерывности — DC Engineering</title>
-    <meta name="description" content="Обеспечение непрерывности — услуги DC Engineering." />
+    <meta name="description" content="Обеспечение непрерывности функционирования ИТ-систем: отказоустойчивость, резервирование, планы аварийного восстановления. DC Engineering." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260717-infra-composition" />
+    <link rel="stylesheet" href="styles.css?v=20260721-continuity" />
+    <link rel="preload" href="images/SERVICE_04.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
-  <body class="page-service">
+  <body class="page-infra page-continuity">
     <a class="skip-link" href="#main">К основному содержимому</a>
 
     <header class="site-header">
@@ -171,34 +172,358 @@
     </header>
 
     <main id="main">
-      <header class="subpage-hero subpage-hero--about" data-subpage-hero aria-labelledby="service-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  Обеспечение непрерывности
-                </li>
-              </ol>
-            </nav>
-            <h1 id="service-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">Обеспечение</span>
-              <span class="subpage-hero__title-line about-dce__brand">непрерывности</span>
-            </h1>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex page-infra__hero page-continuity__hero"
+          data-subpage-hero
+          aria-labelledby="continuity-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="continuity-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Обеспечение</span>
+                <span class="subpage-hero__title-line page-infra__hero-accent">непрерывности</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Высокое качество внедрения вам обеспечат двойной контроль в&nbsp;виде предварительных и&nbsp;приемочных
+                испытаний, а&nbsp;также опытная эксплуатация между ними.
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#continuity-feedback">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#continuity-examples">Примеры</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#continuity-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_04.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Обеспечение</span>
+                <span class="page-section-subnav__brand-accent page-infra__subnav-accent">непрерывности</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="continuity-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="continuity-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы обеспечения непрерывности">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#continuity-intro">Направление</a>
+                  <a class="projects-hero-switcher__item" href="#continuity-tech">Технологии</a>
+                  <a class="projects-hero-switcher__item" href="#continuity-examples">Примеры</a>
+                </div>
+              </nav>
+              <div class="page-section-subnav__actions">
+                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#continuity-feedback">Связаться</a>
+              </div>
             </div>
           </div>
         </div>
-      </header>
+
+      <section class="section about-dce page-infra__showcase" id="continuity-intro" aria-labelledby="continuity-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Направление</p>
+                <h2 id="continuity-h-01" class="about-dce__title">
+                  Непрерывность функционирования <span class="about-dce__brand">ИТ-систем</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Простои ИТ-систем грозят прямыми убытками, упущенной прибылью и&nbsp;потерей доверия клиентов
+                  и&nbsp;руководства. Чтобы снизить последствия сбоев и&nbsp;восстановить процессы за&nbsp;приемлемое
+                  время, поможем реализовать комплекс организационно-технических мер:
+                </p>
+              </div>
+            </header>
+
+            <div class="scaling-process-stage">
+            <ol class="infosec-process" role="list">
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">01</span>
+                  <h3 class="infosec-process__title">Классификация ИС по критичности</h3>
+                </div>
+                <p class="infosec-process__text">Поможем классифицировать информационные системы по&nbsp;уровню критичности влияния на&nbsp;деятельность организации.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">02</span>
+                  <h3 class="infosec-process__title">Обследование и&nbsp;зависимости</h3>
+                </div>
+                <p class="infosec-process__text">Обследуем информационные системы, определим взаимозависимости и&nbsp;зависимости от&nbsp;ИТ-ресурсов.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">03</span>
+                  <h3 class="infosec-process__title">Ресурсно-сервисная модель</h3>
+                </div>
+                <p class="infosec-process__text">Разработаем ресурсно-сервисную модель и&nbsp;классифицируем используемые ИТ-ресурсы по&nbsp;уровню влияния на&nbsp;процессы организации.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">04</span>
+                  <h3 class="infosec-process__title">План отказоустойчивости</h3>
+                </div>
+                <p class="infosec-process__text">Разработаем риск-ориентированный план мероприятий по&nbsp;повышению отказоустойчивости ИТ-ресурсов.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">05</span>
+                  <h3 class="infosec-process__title">Техническая документация</h3>
+                </div>
+                <p class="infosec-process__text">Разработаем необходимую техническую документацию.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">06</span>
+                  <h3 class="infosec-process__title">ОРД и&nbsp;аварийное восстановление</h3>
+                </div>
+                <p class="infosec-process__text">Разработаем организационно-распорядительную и&nbsp;эксплуатационную документацию, включая План и&nbsp;Регламент аварийного восстановления.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">07</span>
+                  <h3 class="infosec-process__title">Внедрение технических средств</h3>
+                </div>
+                <p class="infosec-process__text">Внедрим технические средства.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">08</span>
+                  <h3 class="infosec-process__title">Обучение и&nbsp;учения</h3>
+                </div>
+                <p class="infosec-process__text">Обучим персонал, проведем учения.</p>
+              </li>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">09</span>
+                  <h3 class="infosec-process__title">Техническое сопровождение</h3>
+                </div>
+                <p class="infosec-process__text">Обеспечим техническое сопровождение работающих систем.</p>
+              </li>
+            </ol>
+            </div>
+
+            <div class="page-continuity__exp-block">
+              <aside class="continuity-exp-banner" aria-label="Опыт">
+                <div class="continuity-exp-banner__copy">
+                  <h3 class="continuity-exp-banner__title">Опыт в продуктивных контурах</h3>
+                  <p class="continuity-exp-banner__text">
+                    Сопровождаем крупные и&nbsp;сложные инфраструктуры, поэтому работаем в&nbsp;продуктивной среде
+                    с&nbsp;максимальной осторожностью и&nbsp;предварительной проработкой решений. Есть опыт построения
+                    распределённых ЦОД, кампусных и&nbsp;геокластеров, сетей и&nbsp;хранилищ данных для крупнейших
+                    организаций Москвы.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="continuity-tech" aria-labelledby="continuity-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Стек</p>
+                <h2 id="continuity-h-02" class="about-dce__title">
+                  Профильные <span class="about-dce__brand">технологии</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-continuity__tech-grid" role="list">
+              <article class="about-dce__card page-continuity__tech-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                </p>
+                <h3 class="about-dce__card-title">Кластерные системы</h3>
+                <p class="page-about__card-text">HA, метро- и&nbsp;геокластеры для отказоустойчивости критичных сервисов.</p>
+              </article>
+              <article class="about-dce__card page-continuity__tech-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                </p>
+                <h3 class="about-dce__card-title">Резервирование данных</h3>
+                <p class="page-about__card-text">Backup, дедупликация и&nbsp;WAN-оптимизация резервного копирования.</p>
+              </article>
+              <article class="about-dce__card page-continuity__tech-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                </p>
+                <h3 class="about-dce__card-title">Балансировка нагрузки</h3>
+                <p class="page-about__card-text">Системы балансировки нагрузки для устойчивой работы сервисов.</p>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce" id="continuity-examples" aria-labelledby="continuity-h-03">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">03</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Опыт</p>
+                <h2 id="continuity-h-03" class="about-dce__title">
+                  Примеры <span class="about-dce__brand">проектов</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-infra__examples-grid" role="list">
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                  2021 · Москва
+                </p>
+                <h3 class="about-dce__card-title">АО «Банк ДОМ. РФ», АО «ДОМ. РФ»</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2021-м году построили распределённую гиперконвергентную ИТ-инфраструктуру с&nbsp;размещением
+                  компонент информационных систем на&nbsp;двух равнозначных площадках (ЦОД) с&nbsp;обеспечением
+                  функционирования по&nbsp;модели active-active или active-standby.
+                </p>
+                <a class="page-about__card-cta" href="project-domrf-hci.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                  2018–2022 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Крупный банк Российской Федерации</h3>
+                <p class="page-about__card-text">
+                  С&nbsp;2018 по&nbsp;2022-й год реализовали портфель проектов по&nbsp;созданию двух ЦОД, работающих
+                  в&nbsp;катастрофоустойчивом режиме «активный&nbsp;— активный» в&nbsp;г.&nbsp;Москва, и&nbsp;комплекса
+                  ЦОД в&nbsp;других городах.
+                </p>
+                <a class="page-about__card-cta" href="project-bank-private-cloud.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                  2018 · Москва
+                </p>
+                <h3 class="about-dce__card-title">ООО «ИНВИТРО»</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2018-м году создали распределённый центр обработки данных в&nbsp;г.&nbsp;Москва
+                  с&nbsp;федеративным хранением данных.
+                </p>
+                <a class="page-about__card-cta" href="project-invito.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section page-infra__form-section" id="continuity-feedback" aria-labelledby="continuity-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="continuity-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="continuity-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="continuity-form-heading"
+              >
+                <div class="huawei-request-form__fields">
+                  <input class="huawei-request-form__input" type="text" name="name" placeholder="Имя Фамилия" autocomplete="name" aria-label="Имя Фамилия" required />
+                  <input class="huawei-request-form__input" type="email" name="email" placeholder="Почта" autocomplete="email" aria-label="Почта" required />
+                  <input class="huawei-request-form__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel" aria-label="Телефон" />
+                  <textarea class="huawei-request-form__input huawei-request-form__input--area" name="message" placeholder="Ваш вопрос" rows="4" aria-label="Ваш вопрос" required></textarea>
+                </div>
+                <label class="huawei-request-form__consent">
+                  <input class="huawei-request-form__checkbox" type="checkbox" name="consent" value="yes" required />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+                <p class="huawei-request-form__status" id="continuity-form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
     </main>
 
                 <footer class="site-footer">
@@ -307,7 +632,11 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>

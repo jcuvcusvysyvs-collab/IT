@@ -4,17 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Эксплуатация и сопровождение — DC Engineering</title>
-    <meta name="description" content="Эксплуатация и сопровождение — услуги DC Engineering." />
+    <meta name="description" content="Эксплуатация и сопровождение ИТ: управление инцидентами и изменениями, круглосуточная поддержка, мониторинг. DC Engineering." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260717-infra-composition" />
+    <link rel="stylesheet" href="styles.css?v=20260721-ops-tech-tabs2" />
+    <link rel="preload" href="images/SERVICE_05.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
-  <body class="page-service">
+  <body class="page-infra page-ops">
     <a class="skip-link" href="#main">К основному содержимому</a>
 
     <header class="site-header">
@@ -171,34 +172,432 @@
     </header>
 
     <main id="main">
-      <header class="subpage-hero subpage-hero--about" data-subpage-hero aria-labelledby="service-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  Эксплуатация и сопровождение
-                </li>
-              </ol>
-            </nav>
-            <h1 id="service-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">Эксплуатация</span>
-              <span class="subpage-hero__title-line about-dce__brand">и сопровождение</span>
-            </h1>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex page-infra__hero page-ops__hero"
+          data-subpage-hero
+          aria-labelledby="ops-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="ops-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Эксплуатация</span>
+                <span class="subpage-hero__title-line page-infra__hero-accent">и сопровождение</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Отлаженные процессы, эксплуатационная документация и&nbsp;квалифицированные ресурсы&nbsp;— залог
+                непрерывной эксплуатации технических решений.
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#ops-feedback">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#ops-examples">Примеры</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#ops-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_05.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Эксплуатация</span>
+                <span class="page-section-subnav__brand-accent page-infra__subnav-accent">и сопровождение</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ops-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="ops-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы эксплуатации и сопровождения">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#ops-intro">Направление</a>
+                  <a class="projects-hero-switcher__item" href="#ops-tech">Технологии</a>
+                  <a class="projects-hero-switcher__item" href="#ops-examples">Примеры</a>
+                </div>
+              </nav>
+              <div class="page-section-subnav__actions">
+                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#ops-feedback">Связаться</a>
+              </div>
             </div>
           </div>
         </div>
-      </header>
+
+      <section class="section about-dce page-infra__showcase" id="ops-intro" aria-labelledby="ops-h-01">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">01</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Направление</p>
+                <h2 id="ops-h-01" class="about-dce__title">
+                  Управление <span class="about-dce__brand">эксплуатацией</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Предлагаем готовый, выстроенный процесс управления эксплуатацией, включая управление инцидентами
+                  и&nbsp;изменениями.
+                </p>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-ops__pillars" role="list">
+              <article class="about-dce__card page-ops__pillar-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                </p>
+                <h3 class="about-dce__card-title">Процесс эксплуатации</h3>
+                <p class="page-about__card-text">
+                  Готовый процесс управления эксплуатацией с&nbsp;управлением инцидентами и&nbsp;изменениями.
+                </p>
+              </article>
+              <article class="about-dce__card page-ops__pillar-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                </p>
+                <h3 class="about-dce__card-title">Трёхуровневая поддержка</h3>
+                <p class="page-about__card-text">
+                  Классическая модель службы ТП и&nbsp;горизонтальные контакты с&nbsp;поддержкой производителей&nbsp;—
+                  экономически эффективное решение задач эксплуатации.
+                </p>
+              </article>
+              <article class="about-dce__card page-ops__pillar-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                </p>
+                <h3 class="about-dce__card-title">Круглосуточный мониторинг</h3>
+                <p class="page-about__card-text">
+                  Служба ТП&nbsp;24/7 с&nbsp;собственной системой мониторинга сокращает время реакции и&nbsp;восстановления
+                  после сбоя.
+                </p>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce about-dce--alt" id="ops-tech" aria-labelledby="ops-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Стек</p>
+                <h2 id="ops-h-02" class="about-dce__title">
+                  Профильные <span class="about-dce__brand">технологии</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="infra-scenarios" data-infra-scenarios>
+              <div class="infra-scenarios__chrome">
+                <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка технологий">
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-prev
+                    aria-label="Назад"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M10 12L6 8l4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-next
+                    aria-label="Вперёд"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M6 4l4 4-4 4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                <span class="infra-scenarios__progress-fill"></span>
+              </div>
+              <div
+                class="infra-scenarios__tabs"
+                role="tablist"
+                aria-label="Профильные технологии эксплуатации"
+                data-infra-tabs-strip
+              >
+                <button
+                  type="button"
+                  class="infra-scenarios__tab is-active"
+                  role="tab"
+                  id="ops-tab-01"
+                  aria-selected="true"
+                  aria-controls="ops-panel-01"
+                  data-infra-tab="01"
+                >
+                  <span class="infra-scenarios__tab-label">Вычисления и&nbsp;платформы</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="ops-tab-02"
+                  aria-selected="false"
+                  aria-controls="ops-panel-02"
+                  data-infra-tab="02"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Хранение, сети, резерв</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="ops-tab-03"
+                  aria-selected="false"
+                  aria-controls="ops-panel-03"
+                  data-infra-tab="03"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">ПО, сервисы, управление</span>
+                </button>
+              </div>
+
+              <div class="infra-scenarios__stage">
+                <div
+                  class="infra-scenarios__panel is-active"
+                  role="tabpanel"
+                  id="ops-panel-01"
+                  aria-labelledby="ops-tab-01"
+                  data-infra-panel="01"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Вычисления и&nbsp;платформы</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Сопровождаем вычислительный контур&nbsp;— от&nbsp;физических серверов и&nbsp;виртуализации
+                        до&nbsp;облачных платформ и&nbsp;кластерных конфигураций высокой доступности.
+                      </p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Вычислительные платформы: серверы стандартной архитектуры и&nbsp;RISC-архитектуры</li>
+                      <li>Виртуализация: Bare metal, VDI, storage, network</li>
+                      <li>Облачные платформы: IaaS, PaaS, SaaS</li>
+                      <li>Кластерные системы: HA, метро- и&nbsp;геокластеры</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="ops-panel-02"
+                  aria-labelledby="ops-tab-02"
+                  data-infra-panel="02"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Хранение, сети, резерв</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Эксплуатируем системы хранения, сети передачи данных и&nbsp;средства резервного копирования&nbsp;—
+                        с&nbsp;контролем производительности и&nbsp;готовностью к&nbsp;восстановлению.
+                      </p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Системы и&nbsp;сети хранения данных: SAN и&nbsp;NAS</li>
+                      <li>Сети передачи данных: LAN, WAN, WLAN</li>
+                      <li>Резервирование данных: Backup, дедупликация, WAN-оптимизация</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="ops-panel-03"
+                  aria-labelledby="ops-tab-03"
+                  data-infra-panel="03"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">ПО, сервисы, управление</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Поддерживаем системное ПО, базовые инфраструктурные сервисы, мониторинг и&nbsp;коммуникации&nbsp;—
+                        то, на&nbsp;чём ежедневно держится эксплуатация.
+                      </p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Системное и&nbsp;служебное ПО: ОС, инфраструктура Microsoft, Linux</li>
+                      <li>Мониторинг и&nbsp;управление: SNMP, WMI, ITSM</li>
+                      <li>Базовые инфраструктурные сервисы: AD, DNS, DHCP</li>
+                      <li>Коммуникационные сервисы: VoIP, UC</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-dce" id="ops-examples" aria-labelledby="ops-h-03">
+        <div class="about-dce__inner">
+          <article class="about-dce__block">
+            <header class="about-dce__header">
+              <span class="about-dce__index" aria-hidden="true">03</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Опыт</p>
+                <h2 id="ops-h-03" class="about-dce__title">
+                  Примеры <span class="about-dce__brand">проектов</span>
+                </h2>
+              </div>
+            </header>
+
+            <div class="about-dce__grid page-infra__examples-grid" role="list">
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">01</span>
+                  с&nbsp;2016 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Медицинский страховой фонд</h3>
+                <p class="page-about__card-text">
+                  С&nbsp;2016&nbsp;г. по&nbsp;настоящее время&nbsp;— техническая поддержка ядра катастрофоустойчивого ЦОД
+                  в&nbsp;части инфраструктуры хранения данных.
+                </p>
+                <a class="page-about__card-cta" href="project-msf-oms.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">02</span>
+                  2015–2016 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Управление по&nbsp;делам Мэра и&nbsp;Правительства Москвы</h3>
+                <p class="page-about__card-text">
+                  В&nbsp;2015–2016&nbsp;г.&nbsp;— техническая поддержка инфраструктуры хранения данных.
+                </p>
+                <a class="page-about__card-cta" href="project-fhu-nas.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="about-dce__card page-infra__example-card" role="listitem">
+                <p class="about-dce__card-kicker" aria-hidden="true">
+                  <span class="about-dce__card-num">03</span>
+                  2014–2016 · Москва
+                </p>
+                <h3 class="about-dce__card-title">Водная компания</h3>
+                <p class="page-about__card-text">
+                  С&nbsp;2014 по&nbsp;2016&nbsp;гг.&nbsp;— техническая поддержка ЦОД, обеспечивающего
+                  катастрофоустойчивость информационных систем.
+                </p>
+                <a class="page-about__card-cta" href="project-waterco-rcod-support.html">
+                  Подробнее
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section page-infra__form-section" id="ops-feedback" aria-labelledby="ops-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="ops-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="huawei-feedback__panel">
+              <form class="huawei-request-form" id="ops-form" action="#" method="post" novalidate aria-labelledby="ops-form-heading">
+                <div class="huawei-request-form__fields">
+                  <input class="huawei-request-form__input" type="text" name="name" placeholder="Имя Фамилия" autocomplete="name" aria-label="Имя Фамилия" required />
+                  <input class="huawei-request-form__input" type="email" name="email" placeholder="Почта" autocomplete="email" aria-label="Почта" required />
+                  <input class="huawei-request-form__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel" aria-label="Телефон" />
+                  <textarea class="huawei-request-form__input huawei-request-form__input--area" name="message" placeholder="Ваш вопрос" rows="4" aria-label="Ваш вопрос" required></textarea>
+                </div>
+                <label class="huawei-request-form__consent">
+                  <input class="huawei-request-form__checkbox" type="checkbox" name="consent" value="yes" required />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+                <p class="huawei-request-form__status" id="ops-form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
     </main>
 
                 <footer class="site-footer">
@@ -307,7 +706,12 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
+    <script defer src="infra-scenarios.js?v=20260720-method"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>
