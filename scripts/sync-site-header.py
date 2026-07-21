@@ -17,7 +17,7 @@ SERVICE_LINKS = [
     ("business-continuity.html", "Обеспечение непрерывности"),
     ("operations-support.html", "Эксплуатация и сопровождение"),
     ("huawei-service-center.html", "Сервисный центр HUAWEI"),
-    ("asdu-datacenter.html", "АСДУ ЦОД"),
+    ("asdu-datacenter.html", "АСДУ"),
 ]
 
 PROJECT_LINKS = [
