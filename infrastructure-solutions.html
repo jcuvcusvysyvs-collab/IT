@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260720-no-tab-ring" />
+    <link rel="stylesheet" href="styles.css?v=20260720-infra-fullw" />
     <link rel="preload" href="images/SERVICE_01.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -193,7 +193,7 @@
                 Полный цикл услуг по&nbsp;инфраструктурным решениям на&nbsp;актуальной технологической базе
               </p>
               <div class="projects-hero-actions">
-                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#infra-feedback">Связаться</a>
                 <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infra-examples">Примеры</a>
               </div>
             </div>
@@ -234,6 +234,9 @@
                   <a class="projects-hero-switcher__item" href="#infra-examples">Примеры</a>
                 </div>
               </nav>
+              <div class="page-section-subnav__actions">
+                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#infra-feedback">Связаться</a>
+              </div>
             </div>
           </div>
         </div>
@@ -901,6 +904,124 @@
           </article>
         </div>
       </section>
+
+      <section class="section page-infra__form-section" id="infra-feedback" aria-labelledby="infra-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="infra-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="infra-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="infra-form-heading"
+              >
+                <div class="huawei-request-form__fields">
+                  <input
+                    class="huawei-request-form__input"
+                    type="text"
+                    name="name"
+                    placeholder="Имя Фамилия"
+                    autocomplete="name"
+                    aria-label="Имя Фамилия"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Почта"
+                    autocomplete="email"
+                    aria-label="Почта"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    aria-label="Телефон"
+                  />
+                  <textarea
+                    class="huawei-request-form__input huawei-request-form__input--area"
+                    name="message"
+                    placeholder="Ваш вопрос"
+                    rows="4"
+                    aria-label="Ваш вопрос"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="huawei-request-form__consent">
+                  <input
+                    class="huawei-request-form__checkbox"
+                    type="checkbox"
+                    name="consent"
+                    value="yes"
+                    required
+                  />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path
+                        d="M3 7h8M8 4l3 3-3 3"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <p
+                  class="huawei-request-form__status"
+                  id="infra-form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
       </div>
     </main>
 
@@ -1014,6 +1135,8 @@
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="infra-scenarios.js?v=20260720-method"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>

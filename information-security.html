@@ -11,7 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260717-infra-composition" />
+    <link rel="stylesheet" href="styles.css?v=20260721-infosec-timeline3" />
+    <link rel="preload" href="images/SERVICE_02.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
   <body class="page-infra page-infosec">
@@ -171,38 +172,71 @@
     </header>
 
     <main id="main">
-      <header class="subpage-hero subpage-hero--about page-infosec__hero" data-subpage-hero aria-labelledby="service-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  <a class="subpage-breadcrumbs__link" href="index.html#services">Услуги</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  Информационная безопасность
-                </li>
-              </ol>
-            </nav>
-            <h1 id="service-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">Информационная</span>
-              <span class="subpage-hero__title-line about-dce__brand">безопасность</span>
-            </h1>
-            <p class="subpage-hero__lead">
-              Время и&nbsp;деньги, инвестированные в&nbsp;проектирование, возвращаются уже в&nbsp;первый год эксплуатации.
-            </p>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
-              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infosec-examples">Примеры</a>
+      <div class="projects-hero-stage projects-hero-stage--photo" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero projects-hero projects-hero--photo projects-hero--yandex page-infra__hero page-infosec__hero"
+          data-subpage-hero
+          aria-labelledby="infosec-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <h1 id="infosec-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">Информационная</span>
+                <span class="subpage-hero__title-line page-infra__hero-accent">безопасность</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Время и&nbsp;деньги, инвестированные в&nbsp;проектирование, возвращаются уже в&nbsp;первый год эксплуатации.
+              </p>
+              <div class="projects-hero-actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#infosec-feedback">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#infosec-examples">Примеры</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div class="page-sticky-scope">
+        <div class="page-section-subnav" data-section-subnav>
+          <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
+            <a class="page-section-subnav__brand" href="#infosec-page-title">
+              <span class="page-section-subnav__brand-icon" aria-hidden="true">
+                <img src="images/menu_02.png" alt="" width="40" height="40" decoding="async" />
+              </span>
+              <span class="page-section-subnav__brand-text">
+                <span class="page-section-subnav__brand-title">Информационная</span>
+                <span class="page-section-subnav__brand-accent page-infra__subnav-accent">безопасность</span>
+              </span>
+            </a>
+            <button
+              class="page-section-subnav__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="infosec-subnav-panel"
+            >
+              <span class="visually-hidden">Меню разделов</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="4" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="9" r="1.35" fill="currentColor" />
+                <circle cx="9" cy="14" r="1.35" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="page-section-subnav__panel" id="infosec-subnav-panel">
+              <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы информационной безопасности">
+                <div class="projects-hero-switcher__track">
+                  <a class="projects-hero-switcher__item" href="#infosec-intro">Направление</a>
+                  <a class="projects-hero-switcher__item" href="#infosec-approach">Подход</a>
+                  <a class="projects-hero-switcher__item" href="#infosec-examples">Примеры</a>
+                </div>
+              </nav>
+              <div class="page-section-subnav__actions">
+                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#infosec-feedback">Связаться</a>
+              </div>
             </div>
           </div>
         </div>
-      </header>
 
       <section class="section about-dce page-infra__showcase" id="infosec-intro" aria-labelledby="infosec-h-01">
         <div class="about-dce__inner">
@@ -214,23 +248,226 @@
                 <h2 id="infosec-h-01" class="about-dce__title">
                   Обеспечение <span class="about-dce__brand">информационной безопасности</span>
                 </h2>
+                <p class="about-dce__lead">
+                  Проектируем защищённые сегментированные ИТ-контуры с&nbsp;учётом требований к&nbsp;конфиденциальной
+                  информации, КИИ и&nbsp;персональным данным&nbsp;— для банков, страховых и&nbsp;медицинских организаций,
+                  государственных заказчиков.
+                </p>
               </div>
             </header>
 
-            <div class="page-about__prose-wrap page-infra__section-prose">
-              <p>
-                Сохранность данных и&nbsp;защищённая работа информационных систем требуют комплекса
-                организационно-технических мер&nbsp;— с&nbsp;учётом законодательства, подзаконных актов
-                и&nbsp;рекомендаций регуляторов в&nbsp;области ИБ. ИТ-инфраструктура&nbsp;— стратегический актив
-                компании; без продуманной системы безопасности на&nbsp;всех уровнях её нельзя считать надёжной,
-                особенно в&nbsp;условиях сложных гетерогенных сетей и&nbsp;постоянных изменений.
-              </p>
-              <p>
-                Мы проектируем защищённые и&nbsp;сегментированные ИТ-контуры с&nbsp;повышенными требованиями
-                к&nbsp;конфиденциальной информации, КИИ и&nbsp;персональным данным&nbsp;— для банков, страховых
-                и&nbsp;медицинских организаций, государственных заказчиков с&nbsp;различными требованиями
-                в&nbsp;каждом контуре обработки данных.
-              </p>
+            <div class="infra-scenarios" data-infra-scenarios>
+              <div class="infra-scenarios__chrome">
+                <div class="infra-scenarios__nav" role="group" aria-label="Прокрутка технологий">
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-prev
+                    aria-label="Назад"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M10 12L6 8l4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    class="infra-scenarios__nav-btn"
+                    data-infra-tabs-next
+                    aria-label="Вперёд"
+                  >
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                      <path
+                        d="M6 4l4 4-4 4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="infra-scenarios__progress" aria-hidden="true" data-infra-tabs-progress>
+                <span class="infra-scenarios__progress-fill"></span>
+              </div>
+              <div
+                class="infra-scenarios__tabs"
+                role="tablist"
+                aria-label="Профильные технологии информационной безопасности"
+                data-infra-tabs-strip
+              >
+                <button
+                  type="button"
+                  class="infra-scenarios__tab is-active"
+                  role="tab"
+                  id="infosec-tab-01"
+                  aria-selected="true"
+                  aria-controls="infosec-panel-01"
+                  data-infra-tab="01"
+                >
+                  <span class="infra-scenarios__tab-label">Сетевая безопасность</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infosec-tab-02"
+                  aria-selected="false"
+                  aria-controls="infosec-panel-02"
+                  data-infra-tab="02"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Управление доступом и&nbsp;контроль действий пользователей</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="infosec-tab-03"
+                  aria-selected="false"
+                  aria-controls="infosec-panel-03"
+                  data-infra-tab="03"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</span>
+                </button>
+              </div>
+
+              <div class="infra-scenarios__stage">
+                <div
+                  class="infra-scenarios__panel is-active"
+                  role="tabpanel"
+                  id="infosec-panel-01"
+                  aria-labelledby="infosec-tab-01"
+                  data-infra-panel="01"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Сетевая безопасность</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Решения по&nbsp;сетевой безопасности являются фундаментом системы ИБ любой организации. Грамотно
+                        подобранное решение, тщательные настройки и&nbsp;проработанная архитектура&nbsp;— залог стабильной
+                        и&nbsp;непрерывной работы компании. Данный класс решений обеспечивает защищенный доступ к&nbsp;ресурсам
+                        и&nbsp;информационным системам предприятия, контролируемый внутренний и&nbsp;внешний обмен данными,
+                        защиту от&nbsp;несанкционированного проникновения и&nbsp;кражи информации.
+                      </p>
+                      <p>В&nbsp;качестве решений по&nbsp;обеспечению безопасности сетей мы&nbsp;предлагаем следующие:</p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Межсетевое экранирование (NGFW)</li>
+                      <li>Защита от&nbsp;направленных атак (APT) и&nbsp;обнаружение и&nbsp;предотвращение вторжений (IPS/sandbox)</li>
+                      <li>Виртуальные частные сети (VPN), защита данных при их&nbsp;передаче по&nbsp;каналам связи и&nbsp;защита удаленного доступа</li>
+                      <li>Защита Web-ресурсов и&nbsp;приложений (WAF/DBFW)</li>
+                      <li>Системы анализа трафика (NTA)</li>
+                      <li>Защита от&nbsp;DDoS-атак</li>
+                      <li>Защита беспроводных сетей</li>
+                    </ul>
+                    <div class="infra-scenarios__prose">
+                      <p>Дополнительно могут применяться технологии сетевой безопасности узкого назначения, такие как:</p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Управление доступом в&nbsp;сеть и&nbsp;контроль состояния подключаемых устройств</li>
+                      <li>Защита данных при их&nbsp;передаче внутри виртуальных сред</li>
+                      <li>Защита от&nbsp;угроз на&nbsp;основе анализа сетевого трафика (NTA)</li>
+                      <li>Агрегирование, фильтрация и&nbsp;репликация сетевого трафика</li>
+                      <li>Разбор и&nbsp;анализ SSL/TLS-трафика</li>
+                    </ul>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        В&nbsp;зависимости от&nbsp;нужд и&nbsp;потребностей мы&nbsp;можем сформировать, как комплексное решение,
+                        так и&nbsp;подобрать варианты реализации локальных и&nbsp;узкоспециализированных задач.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infosec-panel-02"
+                  aria-labelledby="infosec-tab-02"
+                  data-infra-panel="02"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Управление доступом и&nbsp;контроль действий пользователей</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Минимизация полномочий и&nbsp;предоставление только тех прав доступа, которые требуются пользователям
+                        для выполнения их&nbsp;должностных обязанностей, являются одним из&nbsp;главных принципов обеспечения
+                        информационной безопасности. Однако довольно часто организации этим принципом пренебрегают,
+                        сосредотачивая свое внимание преимущественно на&nbsp;защите от&nbsp;внешних угроз, тогда как
+                        в&nbsp;действительности наиболее распространенными и&nbsp;критичными с&nbsp;точки зрения ущерба
+                        являются угрозы внутренние.
+                      </p>
+                      <p>
+                        Для нейтрализации угроз несанкционированного доступа, разграничения полномочий и&nbsp;прав пользователей,
+                        повышения осведомленности о&nbsp;действиях пользователей и&nbsp;администраторов мы&nbsp;можем предложить
+                        комплекс решений, который позволяет реализовать данные задачи на&nbsp;различных уровнях: на&nbsp;уровне
+                        сети, на&nbsp;уровне операционной системы и&nbsp;на&nbsp;уровне приложений.
+                      </p>
+                      <p>В&nbsp;качестве основных решений в&nbsp;рамках по&nbsp;управлению доступом мы&nbsp;предлагаем следующие:</p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Защита от&nbsp;несанкционированного доступа (на&nbsp;уровне ОС и&nbsp;приложений)</li>
+                      <li>Контроль доступа в&nbsp;сеть на&nbsp;основе контекстной информации (кто, когда, откуда, с&nbsp;какого устройства производит подключение)</li>
+                      <li>Защита рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
+                      <li>Профилирование и&nbsp;оценка соответствия состояния подключаемых устройств</li>
+                      <li>Решения по&nbsp;идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM), управления учетными записями и&nbsp;их&nbsp;жизненными циклом</li>
+                      <li>Обеспечение доверенной загрузки</li>
+                      <li>Управление мобильными устройствами</li>
+                      <li>Обеспечение усиленной аутентификации</li>
+                      <li>Контроль доступа к&nbsp;системам управления виртуальными инфраструктурами</li>
+                      <li>Защита от&nbsp;утечек конфиденциальной информации (DLP)</li>
+                      <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
+                      <li>Аудит поведения персонала и&nbsp;использования инфраструктуры компании</li>
+                      <li>Контроль действий привилегированных пользователей и&nbsp;администраторов</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div
+                  class="infra-scenarios__panel"
+                  role="tabpanel"
+                  id="infosec-panel-03"
+                  aria-labelledby="infosec-tab-03"
+                  data-infra-panel="03"
+                >
+                  <div class="infra-scenarios__copy">
+                    <h3 class="infra-scenarios__title">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</h3>
+                    <div class="infra-scenarios__prose">
+                      <p>
+                        Большое количество разрозненных средств защиты информации, сложная сетевая архитектура, отсутствие
+                        ясной картины о&nbsp;том, что в&nbsp;действительности происходит в&nbsp;сети организации&nbsp;— все
+                        это снижает эффективность применяемых мер ИБ, усложняет процедуры администрирования, эксплуатации
+                        и&nbsp;мониторинга систем безопасности, увеличивает расходы на&nbsp;ИТ- и&nbsp;ИБ-персонал. Как следствие,
+                        это приводит к&nbsp;понижению реального уровня защищенности компании, значительно повышает вероятность
+                        утечек информации и&nbsp;возникновения сбоев, как в&nbsp;результате деятельности злоумышленников,
+                        так и&nbsp;из-за непреднамеренных действий пользователей.
+                      </p>
+                      <p>
+                        Для автоматизации процессов сбора и&nbsp;анализа событий, создания единой, продуманной системы
+                        мониторинга и&nbsp;управления инцидентами ИБ мы&nbsp;предлагаем следующие решения:
+                      </p>
+                    </div>
+                    <ul class="infra-scenarios__list">
+                      <li>Системы мониторинга событий и&nbsp;управления инцидентами (SIEM, IRP)</li>
+                      <li>Решения по&nbsp;поиску и&nbsp;обнаружению атак (Threat Intelligence, EDR)</li>
+                      <li>Анализ уязвимостей и&nbsp;контроль обновлений (Vulnerability Management)</li>
+                      <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
+                      <li>Аудит и&nbsp;контроль действий привилегированных пользователей и&nbsp;администраторов</li>
+                      <li>Контроль конфигураций, управление изменениями и&nbsp;системы резервного копирования</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -247,187 +484,92 @@
                   Системный <span class="about-dce__brand">подход</span>
                 </h2>
                 <p class="about-dce__lead">
-                  Используя системный подход, мы&nbsp;обеспечиваем организацию процессов по&nbsp;поддержанию
-                  конфиденциальности, целостности, доступности информации с&nbsp;использованием современных технических
-                  средств защиты и&nbsp;программных решений:
+                  Обеспечиваем конфиденциальность, целостность и&nbsp;доступность информации современными средствами
+                  защиты и&nbsp;ПО:
                 </p>
               </div>
             </header>
 
-            <ol class="page-infosec__steps" role="list">
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">01</span>
-                <span class="page-infosec__step-text">Проведём обследование, выявим уязвимости и&nbsp;оценим защищенность информации</span>
+            <ol class="infosec-process" role="list">
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">01</span>
+                  <h3 class="infosec-process__title">Обследование</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Проведём обследование, выявим уязвимости и&nbsp;оценим защищенность информации
+                </p>
               </li>
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">02</span>
-                <span class="page-infosec__step-text">Согласуем план действий по&nbsp;уменьшению рисков и&nbsp;угроз</span>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">02</span>
+                  <h3 class="infosec-process__title">План рисков</h3>
+                </div>
+                <p class="infosec-process__text">Согласуем план действий по&nbsp;уменьшению рисков и&nbsp;угроз</p>
               </li>
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">03</span>
-                <span class="page-infosec__step-text">Разработаем нормативно-техническую документацию</span>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">03</span>
+                  <h3 class="infosec-process__title">Документация</h3>
+                </div>
+                <p class="infosec-process__text">Разработаем нормативно-техническую документацию</p>
               </li>
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">04</span>
-                <span class="page-infosec__step-text">Осуществим проектирование решения и&nbsp;внедрим технические средства защиты</span>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">04</span>
+                  <h3 class="infosec-process__title">Проектирование</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Осуществим проектирование решения и&nbsp;внедрим технические средства защиты
+                </p>
               </li>
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">05</span>
-                <span class="page-infosec__step-text">Подготовим персонал к&nbsp;реагированию на&nbsp;актуальные угрозы и&nbsp;атаки, проведем практические тренинги и&nbsp;киберучения</span>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">05</span>
+                  <h3 class="infosec-process__title">Тренинги</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Подготовим персонал к&nbsp;реагированию на&nbsp;актуальные угрозы и&nbsp;атаки, проведем практические
+                  тренинги и&nbsp;киберучения
+                </p>
               </li>
-              <li class="page-infosec__step">
-                <span class="page-infosec__step-num" aria-hidden="true">06</span>
-                <span class="page-infosec__step-text">Обеспечим техническое сопровождение и&nbsp;поддержку средств ИБ</span>
+              <li class="infosec-process__item">
+                <div class="infosec-process__head">
+                  <span class="infosec-process__num" aria-hidden="true">06</span>
+                  <h3 class="infosec-process__title">Сопровождение</h3>
+                </div>
+                <p class="infosec-process__text">
+                  Обеспечим техническое сопровождение и&nbsp;поддержку средств ИБ
+                </p>
               </li>
             </ol>
 
-            <div class="page-infosec__experience page-about__prose-wrap page-infra__section-prose">
-              <p>
-                У&nbsp;нас есть опыт построения ИТ-инфраструктур и&nbsp;многоуровневых сегментированных сетей
-                в&nbsp;жесточайших условиях защиты информации ДСП, конфиденциальной информации и&nbsp;персональных данных
-                для крупнейших банков, страховых, медицинских организаций и&nbsp;государственных заказчиков
-                с&nbsp;различными требованиями к&nbsp;контурам безопасности.
-              </p>
+            <div class="page-infosec__exp-block">
+              <aside class="infosec-exp-banner" aria-label="Опыт">
+                <div class="infosec-exp-banner__copy">
+                  <h3 class="infosec-exp-banner__title">Опыт в защищённых контурах</h3>
+                  <p class="infosec-exp-banner__text">
+                    У&nbsp;нас есть опыт построения ИТ-инфраструктур и&nbsp;многоуровневых сегментированных сетей
+                    в&nbsp;жесточайших условиях защиты информации ДСП, конфиденциальной информации и&nbsp;персональных данных
+                    для крупнейших банков, страховых, медицинских организаций и&nbsp;государственных заказчиков
+                    с&nbsp;различными требованиями к&nbsp;контурам безопасности.
+                  </p>
+                </div>
+              </aside>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section about-dce" id="infosec-tech" aria-labelledby="infosec-h-03">
+      <section class="section about-dce" id="infosec-examples" aria-labelledby="infosec-h-03">
         <div class="about-dce__inner">
           <article class="about-dce__block">
             <header class="about-dce__header">
               <span class="about-dce__index" aria-hidden="true">03</span>
               <div class="about-dce__intro">
-                <p class="about-dce__eyebrow" aria-hidden="true">Компетенции</p>
-                <h2 id="infosec-h-03" class="about-dce__title">
-                  Профильные <span class="about-dce__brand">технологии</span>
-                </h2>
-              </div>
-            </header>
-
-            <nav class="page-infosec__tech-nav" aria-label="Разделы профильных технологий">
-              <a class="page-infosec__tech-nav-link" href="#infosec-network">Сетевая безопасность</a>
-              <a class="page-infosec__tech-nav-link" href="#infosec-access">Управление доступом и&nbsp;контроль действий пользователей</a>
-              <a class="page-infosec__tech-nav-link" href="#infosec-monitoring">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</a>
-            </nav>
-
-            <article class="page-infosec__tech-block" id="infosec-network" aria-labelledby="infosec-network-title">
-              <div class="page-infosec__tech-head">
-                <h3 id="infosec-network-title" class="page-infosec__tech-title">Сетевая безопасность</h3>
-              </div>
-              <div class="page-infosec__tech-body">
-                <p>
-                  Решения по&nbsp;сетевой безопасности являются фундаментом системы ИБ любой организации. Грамотно
-                  подобранное решение, тщательные настройки и&nbsp;проработанная архитектура&nbsp;— залог стабильной
-                  и&nbsp;непрерывной работы компании. Данный класс решений обеспечивает защищенный доступ к&nbsp;ресурсам
-                  и&nbsp;информационным системам предприятия, контролируемый внутренний и&nbsp;внешний обмен данными,
-                  защиту от&nbsp;несанкционированного проникновения и&nbsp;кражи информации.
-                </p>
-                <p>В&nbsp;качестве решений по&nbsp;обеспечению безопасности сетей мы&nbsp;предлагаем следующие:</p>
-                <ul class="page-infra__list">
-                  <li>Межсетевое экранирование (NGFW)</li>
-                  <li>Защита от&nbsp;направленных атак (APT) и&nbsp;обнаружение и&nbsp;предотвращение вторжений (IPS/sandbox)</li>
-                  <li>Виртуальные частные сети (VPN), защита данных при их&nbsp;передаче по&nbsp;каналам связи и&nbsp;защита удаленного доступа</li>
-                  <li>Защита Web-ресурсов и&nbsp;приложений (WAF/DBFW)</li>
-                  <li>Системы анализа трафика (NTA)</li>
-                  <li>Защита от&nbsp;DDoS-атак</li>
-                  <li>Защита беспроводных сетей</li>
-                </ul>
-                <p>Дополнительно могут применяться технологии сетевой безопасности узкого назначения, такие как:</p>
-                <ul class="page-infra__list">
-                  <li>Управление доступом в&nbsp;сеть и&nbsp;контроль состояния подключаемых устройств</li>
-                  <li>Защита данных при их&nbsp;передаче внутри виртуальных сред</li>
-                  <li>Защита от&nbsp;угроз на&nbsp;основе анализа сетевого трафика (NTA)</li>
-                  <li>Агрегирование, фильтрация и&nbsp;репликация сетевого трафика</li>
-                  <li>Разбор и&nbsp;анализ SSL/TLS-трафика</li>
-                </ul>
-                <p>
-                  В&nbsp;зависимости от&nbsp;нужд и&nbsp;потребностей мы&nbsp;можем сформировать, как комплексное решение,
-                  так и&nbsp;подобрать варианты реализации локальных и&nbsp;узкоспециализированных задач.
-                </p>
-              </div>
-            </article>
-
-            <article class="page-infosec__tech-block" id="infosec-access" aria-labelledby="infosec-access-title">
-              <div class="page-infosec__tech-head">
-                <h3 id="infosec-access-title" class="page-infosec__tech-title">Управление доступом и&nbsp;контроль действий пользователей</h3>
-              </div>
-              <div class="page-infosec__tech-body">
-                <p>
-                  Минимизация полномочий и&nbsp;предоставление только тех прав доступа, которые требуются пользователям
-                  для выполнения их&nbsp;должностных обязанностей, являются одним из&nbsp;главных принципов обеспечения
-                  информационной безопасности. Однако довольно часто организации этим принципом пренебрегают,
-                  сосредотачивая свое внимание преимущественно на&nbsp;защите от&nbsp;внешних угроз, тогда как
-                  в&nbsp;действительности наиболее распространенными и&nbsp;критичными с&nbsp;точки зрения ущерба
-                  являются угрозы внутренние.
-                </p>
-                <p>
-                  Для нейтрализации угроз несанкционированного доступа, разграничения полномочий и&nbsp;прав пользователей,
-                  повышения осведомленности о&nbsp;действиях пользователей и&nbsp;администраторов мы&nbsp;можем предложить
-                  комплекс решений, который позволяет реализовать данные задачи на&nbsp;различных уровнях: на&nbsp;уровне
-                  сети, на&nbsp;уровне операционной системы и&nbsp;на&nbsp;уровне приложений.
-                </p>
-                <p>В&nbsp;качестве основных решений в&nbsp;рамках по&nbsp;управлению доступом мы&nbsp;предлагаем следующие:</p>
-                <ul class="page-infra__list">
-                  <li>Защита от&nbsp;несанкционированного доступа (на&nbsp;уровне ОС и&nbsp;приложений)</li>
-                  <li>Контроль доступа в&nbsp;сеть на&nbsp;основе контекстной информации (кто, когда, откуда, с&nbsp;какого устройства производит подключение)</li>
-                  <li>Защита рабочих мест (антивирусная защита, контроль приложений и&nbsp;подключаемых устройств)</li>
-                  <li>Профилирование и&nbsp;оценка соответствия состояния подключаемых устройств</li>
-                  <li>Решения по&nbsp;идентификации и&nbsp;аутентификации пользователей (IdM/IAM SSO, MFA/PKI, PAM/PIM/PUM), управления учетными записями и&nbsp;их&nbsp;жизненными циклом</li>
-                  <li>Обеспечение доверенной загрузки</li>
-                  <li>Управление мобильными устройствами</li>
-                  <li>Обеспечение усиленной аутентификации</li>
-                  <li>Контроль доступа к&nbsp;системам управления виртуальными инфраструктурами</li>
-                  <li>Защита от&nbsp;утечек конфиденциальной информации (DLP)</li>
-                  <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
-                  <li>Аудит поведения персонала и&nbsp;использования инфраструктуры компании</li>
-                  <li>Контроль действий привилегированных пользователей и&nbsp;администраторов</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="page-infosec__tech-block" id="infosec-monitoring" aria-labelledby="infosec-monitoring-title">
-              <div class="page-infosec__tech-head">
-                <h3 id="infosec-monitoring-title" class="page-infosec__tech-title">Мониторинг, управление ИБ и&nbsp;реагирование на&nbsp;инциденты</h3>
-              </div>
-              <div class="page-infosec__tech-body">
-                <p>
-                  Большое количество разрозненных средств защиты информации, сложная сетевая архитектура, отсутствие
-                  ясной картины о&nbsp;том, что в&nbsp;действительности происходит в&nbsp;сети организации&nbsp;— все
-                  это снижает эффективность применяемых мер ИБ, усложняет процедуры администрирования, эксплуатации
-                  и&nbsp;мониторинга систем безопасности, увеличивает расходы на&nbsp;ИТ- и&nbsp;ИБ-персонал. Как следствие,
-                  это приводит к&nbsp;понижению реального уровня защищенности компании, значительно повышает вероятность
-                  утечек информации и&nbsp;возникновения сбоев, как в&nbsp;результате деятельности злоумышленников,
-                  так и&nbsp;из-за непреднамеренных действий пользователей.
-                </p>
-                <p>
-                  Для автоматизации процессов сбора и&nbsp;анализа событий, создания единой, продуманной системы
-                  мониторинга и&nbsp;управления инцидентами ИБ мы&nbsp;предлагаем следующие решения:
-                </p>
-                <ul class="page-infra__list">
-                  <li>Системы мониторинга событий и&nbsp;управления инцидентами (SIEM, IRP)</li>
-                  <li>Решения по&nbsp;поиску и&nbsp;обнаружению атак (Threat Intelligence, EDR)</li>
-                  <li>Анализ уязвимостей и&nbsp;контроль обновлений (Vulnerability Management)</li>
-                  <li>Мониторинг действий и&nbsp;рабочей активности пользователей</li>
-                  <li>Аудит и&nbsp;контроль действий привилегированных пользователей и&nbsp;администраторов</li>
-                  <li>Контроль конфигураций, управление изменениями и&nbsp;системы резервного копирования</li>
-                </ul>
-              </div>
-            </article>
-          </article>
-        </div>
-      </section>
-
-      <section class="section about-dce about-dce--alt" id="infosec-examples" aria-labelledby="infosec-h-04">
-        <div class="about-dce__inner">
-          <article class="about-dce__block">
-            <header class="about-dce__header">
-              <span class="about-dce__index" aria-hidden="true">04</span>
-              <div class="about-dce__intro">
                 <p class="about-dce__eyebrow" aria-hidden="true">Опыт</p>
-                <h2 id="infosec-h-04" class="about-dce__title">
-                  Примеры <span class="about-dce__brand">реализованных проектов</span>
+                <h2 id="infosec-h-03" class="about-dce__title">
+                  Примеры <span class="about-dce__brand">проектов</span>
                 </h2>
               </div>
             </header>
@@ -489,6 +631,125 @@
           </article>
         </div>
       </section>
+
+      <section class="section page-infra__form-section" id="infosec-feedback" aria-labelledby="infosec-form-heading">
+        <div class="huawei-clients__form-wrap">
+          <div class="huawei-feedback" data-feature-reveal>
+            <div class="huawei-feedback__intro">
+              <p class="huawei-feedback__eyebrow">Обратная связь</p>
+              <h2 class="huawei-feedback__title" id="infosec-form-heading">
+                <span class="huawei-feedback__title-line">Остались</span>
+                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+              </h2>
+              <p class="huawei-feedback__lead">
+                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+              </p>
+              <div class="huawei-feedback__contacts">
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Телефон</span>
+                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Email</span>
+                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                </div>
+                <div class="huawei-feedback__contact">
+                  <span class="huawei-feedback__contact-label">Адрес</span>
+                  <span class="huawei-feedback__contact-value"
+                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="huawei-feedback__panel">
+              <form
+                class="huawei-request-form"
+                id="infosec-form"
+                action="#"
+                method="post"
+                novalidate
+                aria-labelledby="infosec-form-heading"
+              >
+                <div class="huawei-request-form__fields">
+                  <input
+                    class="huawei-request-form__input"
+                    type="text"
+                    name="name"
+                    placeholder="Имя Фамилия"
+                    autocomplete="name"
+                    aria-label="Имя Фамилия"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Почта"
+                    autocomplete="email"
+                    aria-label="Почта"
+                    required
+                  />
+                  <input
+                    class="huawei-request-form__input"
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    aria-label="Телефон"
+                  />
+                  <textarea
+                    class="huawei-request-form__input huawei-request-form__input--area"
+                    name="message"
+                    placeholder="Ваш вопрос"
+                    rows="4"
+                    aria-label="Ваш вопрос"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="huawei-request-form__consent">
+                  <input
+                    class="huawei-request-form__checkbox"
+                    type="checkbox"
+                    name="consent"
+                    value="yes"
+                    required
+                  />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
+
+                <button type="submit" class="huawei-request-form__submit">
+                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path
+                        d="M3 7h8M8 4l3 3-3 3"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <p
+                  class="huawei-request-form__status"
+                  id="infosec-form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
     </main>
 
                 <footer class="site-footer">
@@ -597,7 +858,12 @@
       </div>
     </footer>
 
+    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
+    <script defer src="infra-scenarios.js?v=20260720-method"></script>
+    <script defer src="feature-reveal.js"></script>
+    <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260715-nav-panel-align"></script>
   </body>
 </html>

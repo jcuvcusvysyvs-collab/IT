@@ -7830,7 +7830,7 @@ a.footer-contact-item__value:hover {
 .page-projects .projects-hero-switcher,
 .page-huawei .projects-hero-switcher,
 .page-about .projects-hero-switcher,
-.page-infra .projects-hero-switcher {
+.page-infra .projects-hero-switcher  {
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -8156,7 +8156,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav:not(.page-section-subnav--menu-open),
   .page-projects .page-section-subnav:not(.page-section-subnav--menu-open),
   .page-about .page-section-subnav:not(.page-section-subnav--menu-open),
-  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open) {
+  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open)  {
     padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
   }
 
@@ -8194,7 +8194,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav__brand-icon,
   .page-projects .page-section-subnav__brand-icon,
   .page-about .page-section-subnav__brand-icon,
-  .page-infra .page-section-subnav__brand-icon {
+  .page-infra .page-section-subnav__brand-icon  {
     width: auto;
     height: auto;
     border-radius: 0;
@@ -8203,7 +8203,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav__brand-icon img,
   .page-projects .page-section-subnav__brand-icon img,
   .page-about .page-section-subnav__brand-icon img,
-  .page-infra .page-section-subnav__brand-icon img {
+  .page-infra .page-section-subnav__brand-icon img  {
     width: auto;
     height: clamp(1.95rem, 4.4vw, 2.35rem);
     max-width: min(260px, 54vw);
@@ -8287,7 +8287,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav .projects-hero-switcher,
   .page-projects .page-section-subnav .projects-hero-switcher,
   .page-about .page-section-subnav .projects-hero-switcher,
-  .page-infra .page-section-subnav .projects-hero-switcher {
+  .page-infra .page-section-subnav .projects-hero-switcher  {
     width: 100%;
     justify-content: center;
   }
@@ -8295,7 +8295,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav .projects-hero-switcher__track,
   .page-projects .page-section-subnav .projects-hero-switcher__track,
   .page-about .page-section-subnav .projects-hero-switcher__track,
-  .page-infra .page-section-subnav .projects-hero-switcher__track {
+  .page-infra .page-section-subnav .projects-hero-switcher__track  {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -8306,7 +8306,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-huawei .page-section-subnav .projects-hero-switcher__item,
   .page-projects .page-section-subnav .projects-hero-switcher__item,
   .page-about .page-section-subnav .projects-hero-switcher__item,
-  .page-infra .page-section-subnav .projects-hero-switcher__item {
+  .page-infra .page-section-subnav .projects-hero-switcher__item  {
     padding: 0.1rem 0;
     font-size: 1rem;
     font-weight: 500;
@@ -8327,14 +8327,14 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   .page-about .page-section-subnav .projects-hero-switcher__item.is-active,
   .page-infra .page-section-subnav .projects-hero-switcher__item:hover,
   .page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible,
-  .page-infra .page-section-subnav .projects-hero-switcher__item.is-active {
+  .page-infra .page-section-subnav .projects-hero-switcher__item.is-active  {
     color: #fff;
   }
 
   .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active  {
     border-radius: 999px;
     padding: 0.55rem 1.35rem;
   }
@@ -8342,7 +8342,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active  {
     color: var(--text);
     background: #fff;
     box-shadow:
@@ -8353,7 +8353,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   [data-theme="dark"] .page-huawei .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   [data-theme="dark"] .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   [data-theme="dark"] .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
-  [data-theme="dark"] .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  [data-theme="dark"] .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active  {
     color: #fff;
     background: rgba(255, 255, 255, 0.14);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -8422,7 +8422,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav__panel .projects-hero-switcher__item,
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item,
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item,
-  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item {
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item  {
     color: color-mix(in srgb, var(--text) 86%, transparent);
   }
 
@@ -8437,7 +8437,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
   html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:hover,
   html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active  {
     color: var(--text);
   }
 
@@ -8458,7 +8458,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 .page-huawei .page-section-subnav .projects-hero-switcher__item,
 .page-projects .page-section-subnav .projects-hero-switcher__item,
 .page-about .page-section-subnav .projects-hero-switcher__item,
-.page-infra .page-section-subnav .projects-hero-switcher__item {
+.page-infra .page-section-subnav .projects-hero-switcher__item  {
   color: var(--subnav-link);
   background: transparent;
   text-decoration: none;
@@ -8475,7 +8475,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 .page-huawei .page-section-subnav .projects-hero-switcher__item.is-active,
 .page-projects .page-section-subnav .projects-hero-switcher__item.is-active,
 .page-about .page-section-subnav .projects-hero-switcher__item.is-active,
-.page-infra .page-section-subnav .projects-hero-switcher__item.is-active {
+.page-infra .page-section-subnav .projects-hero-switcher__item.is-active  {
   color: var(--subnav-link-hover);
   background: transparent;
   box-shadow: none;
@@ -8484,7 +8484,7 @@ html:not([data-theme="dark"]) .page-section-subnav__btn--ghost:focus-visible {
 .page-huawei .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-projects .page-section-subnav .projects-hero-switcher__item:focus-visible,
 .page-about .page-section-subnav .projects-hero-switcher__item:focus-visible,
-.page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible {
+.page-infra .page-section-subnav .projects-hero-switcher__item:focus-visible  {
   outline: none;
   box-shadow: var(--focus-ring);
 }
@@ -8610,7 +8610,10 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
 .page-about #career,
 .page-infra #infra-intro,
 .page-infra #infra-approach,
-.page-infra #infra-examples {
+.page-infra #infra-examples,
+.page-infosec #infosec-intro,
+.page-infosec #infosec-approach,
+.page-infosec #infosec-examples {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
@@ -10846,12 +10849,15 @@ body.cert-lightbox-open {
 
 /* Обратная связь в блоке клиентов (двухколоночный макет) */
 .page-huawei #huawei-feedback,
-.page-contacts #contacts-feedback {
+.page-contacts #contacts-feedback,
+.page-infra #infra-feedback,
+.page-infosec #infosec-feedback {
   scroll-margin-top: calc(var(--site-header-height, 4.5rem) + var(--section-subnav-height, 4.75rem));
 }
 
 .page-huawei .huawei-clients__form-wrap,
-.page-contacts .huawei-clients__form-wrap {
+.page-contacts .huawei-clients__form-wrap,
+.page-infra .huawei-clients__form-wrap {
   position: relative;
   z-index: 1;
   max-width: var(--layout-max);
@@ -10862,7 +10868,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback,
-.page-contacts .huawei-feedback {
+.page-contacts .huawei-feedback,
+.page-infra .huawei-feedback {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(2rem, 4.5vw, 4.5rem);
@@ -10870,7 +10877,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__intro,
-.page-contacts .huawei-feedback__intro {
+.page-contacts .huawei-feedback__intro,
+.page-infra .huawei-feedback__intro {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -10878,7 +10886,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__eyebrow,
-.page-contacts .huawei-feedback__eyebrow {
+.page-contacts .huawei-feedback__eyebrow,
+.page-infra .huawei-feedback__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -10891,7 +10900,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__eyebrow::before,
-.page-contacts .huawei-feedback__eyebrow::before {
+.page-contacts .huawei-feedback__eyebrow::before,
+.page-infra .huawei-feedback__eyebrow::before {
   content: "";
   display: block;
   width: 1.25rem;
@@ -10900,7 +10910,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__title,
-.page-contacts .huawei-feedback__title {
+.page-contacts .huawei-feedback__title,
+.page-infra .huawei-feedback__title {
   margin: 0;
   font-family: "Bebas Neue", sans-serif;
   font-size: clamp(3rem, 6.5vw, 4.75rem);
@@ -10911,18 +10922,21 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__title-line,
-.page-contacts .huawei-feedback__title-line {
+.page-contacts .huawei-feedback__title-line,
+.page-infra .huawei-feedback__title-line {
   display: block;
   color: var(--hc-white);
 }
 
 .page-huawei .huawei-feedback__title-line--accent,
-.page-contacts .huawei-feedback__title-line--accent {
+.page-contacts .huawei-feedback__title-line--accent,
+.page-infra .huawei-feedback__title-line--accent {
   color: var(--hc-red);
 }
 
 .page-huawei .huawei-feedback__lead,
-.page-contacts .huawei-feedback__lead {
+.page-contacts .huawei-feedback__lead,
+.page-infra .huawei-feedback__lead {
   margin: 1.1rem 0 0;
   max-width: 22rem;
   font-family: var(--font-text);
@@ -10933,7 +10947,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__contacts,
-.page-contacts .huawei-feedback__contacts {
+.page-contacts .huawei-feedback__contacts,
+.page-infra .huawei-feedback__contacts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 2rem);
@@ -10943,7 +10958,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__contact,
-.page-contacts .huawei-feedback__contact {
+.page-contacts .huawei-feedback__contact,
+.page-infra .huawei-feedback__contact {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -10951,7 +10967,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__contact-label,
-.page-contacts .huawei-feedback__contact-label {
+.page-contacts .huawei-feedback__contact-label,
+.page-infra .huawei-feedback__contact-label {
   font-family: var(--font-text);
   font-size: 0.5625rem;
   font-weight: 500;
@@ -10961,7 +10978,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-feedback__contact-value,
-.page-contacts .huawei-feedback__contact-value {
+.page-contacts .huawei-feedback__contact-value,
+.page-infra .huawei-feedback__contact-value {
   font-family: var(--font-text);
   font-size: clamp(0.875rem, 1.4vw, 1rem);
   font-weight: 400;
@@ -10972,12 +10990,14 @@ body.cert-lightbox-open {
 }
 
 .page-huawei a.huawei-feedback__contact-value:hover,
-.page-contacts a.huawei-feedback__contact-value:hover {
+.page-contacts a.huawei-feedback__contact-value:hover,
+.page-infra a.huawei-feedback__contact-value:hover {
   color: var(--hc-link-hover);
 }
 
 .page-huawei .huawei-feedback__panel,
-.page-contacts .huawei-feedback__panel {
+.page-contacts .huawei-feedback__panel,
+.page-infra .huawei-feedback__panel {
   min-width: 0;
   padding: clamp(1.75rem, 3vw, 2.35rem) clamp(1.5rem, 3vw, 2.25rem);
   background: var(--hc-panel);
@@ -10986,14 +11006,16 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form,
-.page-contacts .huawei-request-form {
+.page-contacts .huawei-request-form,
+.page-infra .huawei-request-form {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
 
 .page-huawei .huawei-request-form__type,
-.page-contacts .huawei-request-form__type {
+.page-contacts .huawei-request-form__type,
+.page-infra .huawei-request-form__type {
   margin: 0 0 1.5rem;
   padding: 0;
   border: none;
@@ -11001,7 +11023,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-legend,
-.page-contacts .huawei-request-form__type-legend {
+.page-contacts .huawei-request-form__type-legend,
+.page-infra .huawei-request-form__type-legend {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -11014,7 +11037,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-grid,
-.page-contacts .huawei-request-form__type-grid {
+.page-contacts .huawei-request-form__type-grid,
+.page-infra .huawei-request-form__type-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   border-radius: 12px;
@@ -11024,7 +11048,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card,
-.page-contacts .huawei-request-form__type-card {
+.page-contacts .huawei-request-form__type-card,
+.page-infra .huawei-request-form__type-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11043,23 +11068,27 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card + .huawei-request-form__type-card,
-.page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card {
+.page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card,
+.page-infra .huawei-request-form__type-card + .huawei-request-form__type-card {
   border-left: 0.5px solid var(--hc-border);
 }
 
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked),
-.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) {
+.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked),
+.page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) {
   border-bottom-color: var(--hc-red);
   background: var(--hc-type-card-selected);
 }
 
 .page-huawei .huawei-request-form__type-card:hover:not(:has(.huawei-request-form__type-input:checked)),
-.page-contacts .huawei-request-form__type-card:hover:not(:has(.huawei-request-form__type-input:checked)) {
+.page-contacts .huawei-request-form__type-card:hover:not(:has(.huawei-request-form__type-input:checked)),
+.page-infra .huawei-request-form__type-card:hover:not(:has(.huawei-request-form__type-input:checked)) {
   background: var(--hc-type-card-hover);
 }
 
 .page-huawei .huawei-request-form__type-input,
-.page-contacts .huawei-request-form__type-input {
+.page-contacts .huawei-request-form__type-input,
+.page-infra .huawei-request-form__type-input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -11071,7 +11100,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-check,
-.page-contacts .huawei-request-form__type-check {
+.page-contacts .huawei-request-form__type-check,
+.page-infra .huawei-request-form__type-check {
   position: absolute;
   top: 0.95rem;
   right: 0.95rem;
@@ -11087,7 +11117,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check,
-.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check {
+.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check,
+.page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-check {
   border-color: var(--hc-red);
   background-color: var(--hc-type-check-active-bg);
   background-image: radial-gradient(
@@ -11099,7 +11130,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-icon,
-.page-contacts .huawei-request-form__type-icon {
+.page-contacts .huawei-request-form__type-icon,
+.page-infra .huawei-request-form__type-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11116,14 +11148,16 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-icon,
-.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-icon {
+.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-icon,
+.page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-icon {
   color: var(--hc-red);
   border-color: var(--hc-type-icon-border-active);
   background: var(--hc-type-icon-bg-active);
 }
 
 .page-huawei .huawei-request-form__type-body,
-.page-contacts .huawei-request-form__type-body {
+.page-contacts .huawei-request-form__type-body,
+.page-infra .huawei-request-form__type-body {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -11131,7 +11165,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-title,
-.page-contacts .huawei-request-form__type-title {
+.page-contacts .huawei-request-form__type-title,
+.page-infra .huawei-request-form__type-title {
   font-family: var(--font-text);
   font-size: 0.9375rem;
   font-weight: 600;
@@ -11141,12 +11176,14 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-title,
-.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-title {
+.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-title,
+.page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-title {
   color: var(--hc-white);
 }
 
 .page-huawei .huawei-request-form__type-desc,
-.page-contacts .huawei-request-form__type-desc {
+.page-contacts .huawei-request-form__type-desc,
+.page-infra .huawei-request-form__type-desc {
   font-family: var(--font-text);
   font-size: 0.75rem;
   font-weight: 400;
@@ -11156,17 +11193,20 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-desc,
-.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-desc {
+.page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-desc,
+.page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) .huawei-request-form__type-desc {
   color: var(--hc-type-desc-active);
 }
 
 .page-huawei .huawei-request-form__type-input:focus-visible + .huawei-request-form__type-check,
-.page-contacts .huawei-request-form__type-input:focus-visible + .huawei-request-form__type-check {
+.page-contacts .huawei-request-form__type-input:focus-visible + .huawei-request-form__type-check,
+.page-infra .huawei-request-form__type-input:focus-visible + .huawei-request-form__type-check {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--hc-red) 40%, transparent);
 }
 
 .page-huawei .huawei-request-form__fields,
-.page-contacts .huawei-request-form__fields {
+.page-contacts .huawei-request-form__fields,
+.page-infra .huawei-request-form__fields {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -11174,7 +11214,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__input,
-.page-contacts .huawei-request-form__input {
+.page-contacts .huawei-request-form__input,
+.page-infra .huawei-request-form__input {
   width: 100%;
   margin: 0;
   padding: 1.05rem 0;
@@ -11194,32 +11235,37 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__input::placeholder,
-.page-contacts .huawei-request-form__input::placeholder {
+.page-contacts .huawei-request-form__input::placeholder,
+.page-infra .huawei-request-form__input::placeholder {
   color: var(--hc-placeholder);
   opacity: 1;
 }
 
 .page-huawei .huawei-request-form__input:hover,
-.page-contacts .huawei-request-form__input:hover {
+.page-contacts .huawei-request-form__input:hover,
+.page-infra .huawei-request-form__input:hover {
   border-bottom-color: var(--hc-input-border-hover);
 }
 
 .page-huawei .huawei-request-form__input:focus,
-.page-contacts .huawei-request-form__input:focus {
+.page-contacts .huawei-request-form__input:focus,
+.page-infra .huawei-request-form__input:focus {
   outline: none;
   border-bottom-color: var(--hc-input-border-focus);
   box-shadow: none;
 }
 
 .page-huawei .huawei-request-form__input--area,
-.page-contacts .huawei-request-form__input--area {
+.page-contacts .huawei-request-form__input--area,
+.page-infra .huawei-request-form__input--area {
   min-height: 5.5rem;
   resize: vertical;
   padding-top: 1.25rem;
 }
 
 .page-huawei .huawei-request-form__consent,
-.page-contacts .huawei-request-form__consent {
+.page-contacts .huawei-request-form__consent,
+.page-infra .huawei-request-form__consent {
   position: relative;
   display: flex;
   gap: 0.85rem;
@@ -11230,7 +11276,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__checkbox,
-.page-contacts .huawei-request-form__checkbox {
+.page-contacts .huawei-request-form__checkbox,
+.page-infra .huawei-request-form__checkbox {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -11242,7 +11289,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__consent-box,
-.page-contacts .huawei-request-form__consent-box {
+.page-contacts .huawei-request-form__consent-box,
+.page-infra .huawei-request-form__consent-box {
   position: relative;
   display: block;
   flex: 0 0 1.125rem;
@@ -11266,7 +11314,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__consent-text,
-.page-contacts .huawei-request-form__consent-text {
+.page-contacts .huawei-request-form__consent-text,
+.page-infra .huawei-request-form__consent-text {
   font-family: var(--font-text);
   font-size: 0.8125rem;
   line-height: 1.55;
@@ -11274,20 +11323,23 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__checkbox:focus-visible + .huawei-request-form__consent-box,
-.page-contacts .huawei-request-form__checkbox:focus-visible + .huawei-request-form__consent-box {
+.page-contacts .huawei-request-form__checkbox:focus-visible + .huawei-request-form__consent-box,
+.page-infra .huawei-request-form__checkbox:focus-visible + .huawei-request-form__consent-box {
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--hc-red) 35%, transparent);
 }
 
 .page-huawei .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box,
-.page-contacts .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box {
+.page-contacts .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box,
+.page-infra .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box {
   border-color: var(--hc-red);
   background: color-mix(in srgb, var(--hc-red) 88%, #000 12%);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .page-huawei .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after,
-.page-contacts .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after {
+.page-contacts .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after,
+.page-infra .huawei-request-form__checkbox:checked + .huawei-request-form__consent-box::after {
   content: "";
   position: absolute;
   top: 42%;
@@ -11302,7 +11354,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__submit,
-.page-contacts .huawei-request-form__submit {
+.page-contacts .huawei-request-form__submit,
+.page-infra .huawei-request-form__submit {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11328,12 +11381,14 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__submit-text,
-.page-contacts .huawei-request-form__submit-text {
+.page-contacts .huawei-request-form__submit-text,
+.page-infra .huawei-request-form__submit-text {
   text-align: left;
 }
 
 .page-huawei .huawei-request-form__submit-icon,
-.page-contacts .huawei-request-form__submit-icon {
+.page-contacts .huawei-request-form__submit-icon,
+.page-infra .huawei-request-form__submit-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11346,31 +11401,36 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__submit:hover,
-.page-contacts .huawei-request-form__submit:hover {
+.page-contacts .huawei-request-form__submit:hover,
+.page-infra .huawei-request-form__submit:hover {
   background: color-mix(in srgb, var(--hc-red) 82%, #000 18%);
   border-color: color-mix(in srgb, var(--hc-red) 78%, rgba(255, 255, 255, 0.18));
   box-shadow: 0 12px 32px color-mix(in srgb, var(--hc-red) 32%, transparent);
 }
 
 .page-huawei .huawei-request-form__submit:hover .huawei-request-form__submit-icon,
-.page-contacts .huawei-request-form__submit:hover .huawei-request-form__submit-icon {
+.page-contacts .huawei-request-form__submit:hover .huawei-request-form__submit-icon,
+.page-infra .huawei-request-form__submit:hover .huawei-request-form__submit-icon {
   background: rgba(255, 255, 255, 0.2);
   transform: translateX(2px);
 }
 
 .page-huawei .huawei-request-form__submit:active,
-.page-contacts .huawei-request-form__submit:active {
+.page-contacts .huawei-request-form__submit:active,
+.page-infra .huawei-request-form__submit:active {
   transform: translateY(1px);
 }
 
 .page-huawei .huawei-request-form__submit:focus-visible,
-.page-contacts .huawei-request-form__submit:focus-visible {
+.page-contacts .huawei-request-form__submit:focus-visible,
+.page-infra .huawei-request-form__submit:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--hc-red) 45%, transparent);
 }
 
 .page-huawei .huawei-request-form__submit:disabled,
-.page-contacts .huawei-request-form__submit:disabled {
+.page-contacts .huawei-request-form__submit:disabled,
+.page-infra .huawei-request-form__submit:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
@@ -11378,7 +11438,8 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__status,
-.page-contacts .huawei-request-form__status {
+.page-contacts .huawei-request-form__status,
+.page-infra .huawei-request-form__status {
   min-height: 1.25rem;
   margin: 0.85rem 0 0;
   font-size: 0.875rem;
@@ -11387,29 +11448,34 @@ body.cert-lightbox-open {
 }
 
 .page-huawei .huawei-request-form__status.is-success,
-.page-contacts .huawei-request-form__status.is-success {
+.page-contacts .huawei-request-form__status.is-success,
+.page-infra .huawei-request-form__status.is-success {
   color: var(--hc-status-success);
 }
 
 .page-huawei .huawei-request-form__status.is-error,
-.page-contacts .huawei-request-form__status.is-error {
+.page-contacts .huawei-request-form__status.is-error,
+.page-infra .huawei-request-form__status.is-error {
   color: var(--hc-status-error);
 }
 
 .page-huawei .huawei-request-form__input:user-invalid:not(:placeholder-shown),
-.page-contacts .huawei-request-form__input:user-invalid:not(:placeholder-shown) {
+.page-contacts .huawei-request-form__input:user-invalid:not(:placeholder-shown),
+.page-infra .huawei-request-form__input:user-invalid:not(:placeholder-shown) {
   border-bottom-color: var(--hc-invalid-border);
 }
 
 @media (max-width: 520px) {
   .page-huawei .huawei-request-form__type-grid,
-  .page-contacts .huawei-request-form__type-grid {
+  .page-contacts .huawei-request-form__type-grid,
+  .page-infra .huawei-request-form__type-grid {
     grid-template-columns: 1fr;
     border-radius: 10px;
   }
 
   .page-huawei .huawei-request-form__type-card,
-  .page-contacts .huawei-request-form__type-card {
+  .page-contacts .huawei-request-form__type-card,
+  .page-infra .huawei-request-form__type-card {
     display: grid;
     grid-template-columns: 2.125rem minmax(0, 1fr) 1.125rem;
     grid-template-areas: "icon body check";
@@ -11420,19 +11486,22 @@ body.cert-lightbox-open {
   }
 
   .page-huawei .huawei-request-form__type-card + .huawei-request-form__type-card,
-  .page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card {
+  .page-contacts .huawei-request-form__type-card + .huawei-request-form__type-card,
+  .page-infra .huawei-request-form__type-card + .huawei-request-form__type-card {
     border-left: none;
     border-top: 0.5px solid var(--hc-border);
   }
 
   .page-huawei .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked),
-  .page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) {
+  .page-contacts .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked),
+  .page-infra .huawei-request-form__type-card:has(.huawei-request-form__type-input:checked) {
     border-bottom-color: transparent;
     box-shadow: none;
   }
 
   .page-huawei .huawei-request-form__type-check,
-  .page-contacts .huawei-request-form__type-check {
+  .page-contacts .huawei-request-form__type-check,
+  .page-infra .huawei-request-form__type-check {
     grid-area: check;
     position: static;
     width: 1.125rem;
@@ -11441,7 +11510,8 @@ body.cert-lightbox-open {
   }
 
   .page-huawei .huawei-request-form__type-icon,
-  .page-contacts .huawei-request-form__type-icon {
+  .page-contacts .huawei-request-form__type-icon,
+  .page-infra .huawei-request-form__type-icon {
     grid-area: icon;
     width: 2.125rem;
     height: 2.125rem;
@@ -11449,13 +11519,15 @@ body.cert-lightbox-open {
   }
 
   .page-huawei .huawei-request-form__type-icon svg,
-  .page-contacts .huawei-request-form__type-icon svg {
+  .page-contacts .huawei-request-form__type-icon svg,
+  .page-infra .huawei-request-form__type-icon svg {
     width: 17px;
     height: 17px;
   }
 
   .page-huawei .huawei-request-form__type-body,
-  .page-contacts .huawei-request-form__type-body {
+  .page-contacts .huawei-request-form__type-body,
+  .page-infra .huawei-request-form__type-body {
     grid-area: body;
     min-width: 0;
     padding-right: 0;
@@ -11463,13 +11535,15 @@ body.cert-lightbox-open {
   }
 
   .page-huawei .huawei-request-form__type-title,
-  .page-contacts .huawei-request-form__type-title {
+  .page-contacts .huawei-request-form__type-title,
+  .page-infra .huawei-request-form__type-title {
     font-size: 0.875rem;
     line-height: 1.25;
   }
 
   .page-huawei .huawei-request-form__type-desc,
-  .page-contacts .huawei-request-form__type-desc {
+  .page-contacts .huawei-request-form__type-desc,
+  .page-infra .huawei-request-form__type-desc {
     font-size: 0.6875rem;
     line-height: 1.35;
   }
@@ -11477,7 +11551,8 @@ body.cert-lightbox-open {
 
 @media (max-width: 1024px) {
 .page-huawei .huawei-feedback,
-.page-contacts .huawei-feedback {
+.page-contacts .huawei-feedback,
+.page-infra .huawei-feedback {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -11487,14 +11562,16 @@ body.cert-lightbox-open {
   }
 
 .page-huawei .huawei-feedback__contacts,
-.page-contacts .huawei-feedback__contacts {
+.page-contacts .huawei-feedback__contacts,
+.page-infra .huawei-feedback__contacts {
     grid-template-columns: 1fr;
     gap: 1.25rem;
     margin-top: 2rem;
   }
 
 .page-huawei .huawei-feedback__intro,
-.page-contacts .huawei-feedback__intro {
+.page-contacts .huawei-feedback__intro,
+.page-infra .huawei-feedback__intro {
     padding-top: 0;
   }
 }
@@ -16388,7 +16465,7 @@ a.page-projects__item-client:hover {
 
 .page-projects .projects-hero-switcher__track,
 .page-about .projects-hero-switcher__track,
-.page-infra .projects-hero-switcher__track {
+.page-infra .projects-hero-switcher__track  {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17431,7 +17508,7 @@ a.page-projects__item-client:hover {
 /* ——— Страница «Инфраструктурные решения» ——— */
 
 /* Липкая лента — как на «О компании» */
-.page-infra .page-section-subnav .projects-hero-switcher {
+.page-infra .page-section-subnav .projects-hero-switcher  {
   display: flex;
   flex-shrink: 0;
   width: auto;
@@ -17442,7 +17519,7 @@ a.page-projects__item-client:hover {
   background: transparent;
 }
 
-.page-infra .page-section-subnav .projects-hero-switcher__track {
+.page-infra .page-section-subnav .projects-hero-switcher__track  {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17457,7 +17534,7 @@ a.page-projects__item-client:hover {
   box-shadow: none;
 }
 
-.page-infra .page-section-subnav .projects-hero-switcher__item {
+.page-infra .page-section-subnav .projects-hero-switcher__item  {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -17474,7 +17551,7 @@ a.page-projects__item-client:hover {
   background: transparent;
 }
 
-.page-infra .page-section-subnav__brand-icon {
+.page-infra .page-section-subnav__brand-icon  {
   width: auto;
   height: auto;
   border-radius: 0;
@@ -17483,31 +17560,46 @@ a.page-projects__item-client:hover {
   overflow: visible;
 }
 
-.page-infra .page-section-subnav__brand-icon img {
+.page-infra .page-section-subnav__brand-icon img  {
   display: block;
   width: 2.5rem;
   height: 2.5rem;
   object-fit: contain;
 }
 
-html:not([data-theme="dark"]) .page-infra .page-section-subnav__brand-icon {
+html:not([data-theme="dark"]) .page-infra .page-section-subnav__brand-icon  {
   background: transparent;
   box-shadow: none;
 }
 
+.page-infra .page-section-subnav__btn--primary {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.page-infra .page-section-subnav__btn--primary:hover,
+.page-infra .page-section-subnav__btn--primary:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 86%, #000 14%);
+  background: color-mix(in srgb, var(--accent) 86%, #000 14%);
+}
+
+.page-infra .page-section-subnav__btn:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
 .page-infra .page-section-subnav__toggle:hover,
-.page-infra .page-section-subnav__toggle:focus-visible {
+.page-infra .page-section-subnav__toggle:focus-visible  {
   border-color: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 28%, transparent);
   background: color-mix(in srgb, var(--subnav-link-hover, var(--text)) 8%, transparent);
 }
 
-.page-infra .page-section-subnav__toggle:focus-visible {
+.page-infra .page-section-subnav__toggle:focus-visible  {
   outline: none;
   box-shadow: var(--focus-ring);
 }
 
 html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:hover,
-html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-visible {
+html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-visible  {
   color: var(--text);
   border-color: color-mix(in srgb, var(--text) 28%, var(--border));
   background: color-mix(in srgb, var(--text) 6%, var(--bg-elevated));
@@ -17521,17 +17613,17 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 @media (max-width: 900px) {
-  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open) {
+  .page-infra .page-section-subnav:not(.page-section-subnav--menu-open)  {
     padding-bottom: clamp(0.65rem, 2vw, 0.85rem);
   }
 
-  .page-infra .page-section-subnav__brand {
+  .page-infra .page-section-subnav__brand  {
     min-width: 0;
     flex: 1 1 auto;
     max-width: calc(100% - 3.4rem);
   }
 
-  .page-infra .page-section-subnav__brand-text {
+  .page-infra .page-section-subnav__brand-text  {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -17543,17 +17635,17 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   }
 
   .page-infra .page-section-subnav__brand-title,
-  .page-infra .page-section-subnav__brand-accent {
+  .page-infra .page-section-subnav__brand-accent  {
     white-space: nowrap;
   }
 
-  .page-infra .page-section-subnav .projects-hero-switcher {
+  .page-infra .page-section-subnav .projects-hero-switcher  {
     display: flex;
     width: 100%;
     justify-content: center;
   }
 
-  .page-infra .page-section-subnav .projects-hero-switcher__track {
+  .page-infra .page-section-subnav .projects-hero-switcher__track  {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -17563,7 +17655,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     width: 100%;
   }
 
-  .page-infra .page-section-subnav .projects-hero-switcher__item {
+  .page-infra .page-section-subnav .projects-hero-switcher__item  {
     display: inline-flex;
     padding: 0.1rem 0;
     font-size: 1rem;
@@ -17574,13 +17666,13 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     white-space: normal;
   }
 
-  .page-infra .page-section-subnav__brand-icon {
+  .page-infra .page-section-subnav__brand-icon  {
     width: auto;
     height: auto;
     border-radius: 0;
   }
 
-  .page-infra .page-section-subnav__brand-icon img {
+  .page-infra .page-section-subnav__brand-icon img  {
     width: auto;
     height: clamp(1.95rem, 4.4vw, 2.35rem);
     max-width: min(260px, 54vw);
@@ -17588,12 +17680,12 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     object-position: left center;
   }
 
-  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item {
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item  {
     color: var(--text);
   }
 
   html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
+  html:not([data-theme="dark"]) .page-infra .page-section-subnav__panel .projects-hero-switcher__item:focus-visible  {
     color: var(--text);
     background: transparent;
   }
@@ -17605,21 +17697,21 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   border-top: none;
 }
 
-.page-infra .about-dce + .about-dce {
+.page-infra .about-dce + .about-dce  {
   border-top: none;
 }
 
-.page-infra .hero-pt__cta {
+.page-infra .hero-pt__cta  {
   background: var(--accent);
   border-color: var(--accent);
 }
 
-.page-infra .hero-pt__cta:hover {
+.page-infra .hero-pt__cta:hover  {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
 }
 
-.page-infra .hero-pt__cta:focus-visible {
+.page-infra .hero-pt__cta:focus-visible  {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
@@ -17629,7 +17721,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   --hero-stage-gap: clamp(3.5rem, 8vw, 5rem);
 }
 
-.page-infra .projects-hero-stage {
+.page-infra .projects-hero-stage  {
   --hero-grid-lit: 60, 130, 190;
   --hero-grid-lit-a: 0;
   --hero-grid-glow: 26, 74, 124;
@@ -17650,11 +17742,11 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   background: var(--infra-hero-bg);
 }
 
-.page-infra #main > .projects-hero-stage:first-child {
+.page-infra #main > .projects-hero-stage:first-child  {
   padding-top: var(--hero-header-clearance);
 }
 
-.page-infra .projects-hero--yandex.subpage-hero {
+.page-infra .projects-hero--yandex.subpage-hero  {
   /* Как у HUAWEI: заголовок ~58px под шапкой (там emergent от justify:center) */
   --projects-hero-pad-top: clamp(3.75rem, 8vh, 5.5rem);
   --projects-hero-pad-bottom: clamp(1.5rem, 3vw, 2.5rem);
@@ -17671,7 +17763,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   color: var(--infra-hero-title);
 }
 
-.page-infra .projects-hero__background {
+.page-infra .projects-hero__background  {
   position: absolute;
   inset: 0;
   left: calc(50% - 50vw);
@@ -17682,7 +17774,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   background: transparent;
 }
 
-.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+.page-infra .projects-hero-stage--photo .projects-hero__background::before  {
   content: "";
   position: absolute;
   inset: -8% -6% -4% -6%;
@@ -17695,7 +17787,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   opacity: 1;
 }
 
-.page-infra .projects-hero-stage--photo .projects-hero__background::after {
+.page-infra .projects-hero-stage--photo .projects-hero__background::after  {
   content: "";
   position: absolute;
   inset: 0;
@@ -17722,27 +17814,27 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     );
 }
 
-.page-infra .projects-hero--photo {
+.page-infra .projects-hero--photo  {
   pointer-events: auto;
 }
 
-.page-infra .projects-hero-stage[data-hero-grid] {
+.page-infra .projects-hero-stage[data-hero-grid]  {
   pointer-events: auto;
   --hero-fade: 0;
   --hero-shift: 0;
 }
 
-.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__background {
+.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__background  {
   z-index: 0;
 }
 
-.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content {
+.page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content  {
   position: relative;
   z-index: 3;
 }
 
 .page-infra .projects-hero--yandex .subpage-hero__inner,
-.page-infra .projects-hero__inner--left {
+.page-infra .projects-hero__inner--left  {
   position: relative;
   z-index: 3;
   display: flex;
@@ -17757,12 +17849,12 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   pointer-events: none;
 }
 
-.page-infra .projects-hero__inner--left a {
+.page-infra .projects-hero__inner--left a  {
   pointer-events: auto;
 }
 
 .page-infra .projects-hero--yandex .projects-hero__content,
-.page-infra .projects-hero--yandex .subpage-hero__content {
+.page-infra .projects-hero--yandex .subpage-hero__content  {
   align-items: flex-start;
   text-align: left;
   max-width: min(42rem, 100%);
@@ -17771,7 +17863,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 .page-infra .projects-hero--yandex .subpage-hero__title,
-.page-infra .projects-hero--yandex .projects-hero__title {
+.page-infra .projects-hero--yandex .projects-hero__title  {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17787,14 +17879,14 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   text-shadow: none;
 }
 
-.page-infra .page-infra__hero-accent {
+.page-infra .page-infra__hero-accent  {
   color: color-mix(in srgb, #7eb6e8 42%, #fff 58%);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .page-infra .projects-hero--yandex .subpage-hero__lead,
-.page-infra .projects-hero--yandex .projects-hero__lead {
+.page-infra .projects-hero--yandex .projects-hero__lead  {
   margin: 0;
   max-width: min(38rem, 100%);
   font-family: var(--font-text);
@@ -17808,26 +17900,26 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   text-shadow: none;
 }
 
-.page-infra .page-infra__hero .subpage-breadcrumbs {
+.page-infra .page-infra__hero .subpage-breadcrumbs  {
   margin: 0;
 }
 
 .page-infra .page-infra__hero .subpage-breadcrumbs__link,
 .page-infra .page-infra__hero .subpage-breadcrumbs__item,
-.page-infra .page-infra__hero .subpage-breadcrumbs__sep {
+.page-infra .page-infra__hero .subpage-breadcrumbs__sep  {
   color: rgba(255, 255, 255, 0.62);
 }
 
 .page-infra .page-infra__hero .subpage-breadcrumbs__link:hover,
-.page-infra .page-infra__hero .subpage-breadcrumbs__link:focus-visible {
+.page-infra .page-infra__hero .subpage-breadcrumbs__link:focus-visible  {
   color: #fff;
 }
 
-.page-infra .page-infra__hero .subpage-breadcrumbs__item[aria-current="page"] {
+.page-infra .page-infra__hero .subpage-breadcrumbs__item[aria-current="page"]  {
   color: rgba(255, 255, 255, 0.88);
 }
 
-.page-infra .projects-hero-actions {
+.page-infra .projects-hero-actions  {
   position: relative;
   z-index: 3;
   display: flex;
@@ -17840,7 +17932,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   pointer-events: auto;
 }
 
-.page-infra .projects-hero-actions .btn {
+.page-infra .projects-hero-actions .btn  {
   font-family: "Onest", var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
@@ -17851,24 +17943,24 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   padding: 0.875rem 1.75rem;
 }
 
-.page-infra .projects-hero-actions .btn--ghost-light {
+.page-infra .projects-hero-actions .btn--ghost-light  {
   font-weight: 500;
   color: color-mix(in srgb, var(--infra-hero-title) 78%, transparent);
   border-color: color-mix(in srgb, var(--infra-hero-title) 22%, transparent);
   background: color-mix(in srgb, var(--infra-hero-title) 4%, transparent);
 }
 
-.page-infra .projects-hero-actions .btn--ghost-light:hover {
+.page-infra .projects-hero-actions .btn--ghost-light:hover  {
   color: var(--infra-hero-title);
   border-color: color-mix(in srgb, var(--infra-hero-accent) 42%, transparent);
   background: color-mix(in srgb, var(--infra-hero-accent) 14%, transparent);
 }
 
-.page-infra .projects-hero-actions .btn--ghost-light:focus-visible {
+.page-infra .projects-hero-actions .btn--ghost-light:focus-visible  {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--infra-hero-accent) 45%, transparent);
 }
 
-.page-infra .page-infra__showcase.about-dce {
+.page-infra .page-infra__showcase.about-dce  {
   position: relative;
   z-index: 1;
   margin-top: 0;
@@ -17884,14 +17976,14 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 }
 
 @media (max-width: 720px) {
-  .page-infra #main > .projects-hero-stage:first-child {
+  .page-infra #main > .projects-hero-stage:first-child  {
     height: auto;
     min-height: calc(72svh + var(--site-header-height, 5.5rem));
     min-height: calc(72dvh + var(--site-header-height, 5.5rem));
     padding-top: calc(var(--site-header-height, 5.5rem) + clamp(1rem, 3vh, 1.5rem));
   }
 
-  .page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  .page-infra .projects-hero-stage--photo .projects-hero__background::before  {
     inset: -2% -8% -6% -8%;
     background-position: 62% 28%;
     transform: scale(1.12);
@@ -17899,7 +17991,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     filter: brightness(0.7) saturate(0.9);
   }
 
-  .page-infra .projects-hero-stage--photo .projects-hero__background::after {
+  .page-infra .projects-hero-stage--photo .projects-hero__background::after  {
     inset: 0;
     height: auto;
     background:
@@ -17914,19 +18006,19 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
       linear-gradient(to right, rgba(5, 10, 20, 0.92) 0%, rgba(5, 10, 20, 0.55) 50%, transparent 100%);
   }
 
-  .page-infra .projects-hero--yandex.subpage-hero {
+  .page-infra .projects-hero--yandex.subpage-hero  {
     --projects-hero-pad-top: clamp(2.5rem, 6vh, 3.75rem);
     --projects-hero-pad-bottom: clamp(1.75rem, 5vw, 2.5rem);
     justify-content: flex-start;
   }
 
   .page-infra .projects-hero--yandex .subpage-hero__title,
-  .page-infra .projects-hero--yandex .projects-hero__title {
+  .page-infra .projects-hero--yandex .projects-hero__title  {
     font-size: clamp(2.65rem, 12vw, 3.5rem);
   }
 
   .page-infra .projects-hero--yandex .subpage-hero__lead,
-  .page-infra .projects-hero--yandex .projects-hero__lead {
+  .page-infra .projects-hero--yandex .projects-hero__lead  {
     max-width: 100%;
     font-size: clamp(1.05rem, 4.2vw, 1.2rem);
     font-weight: 400;
@@ -17934,7 +18026,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     letter-spacing: normal;
   }
 
-  .page-infra .projects-hero-actions {
+  .page-infra .projects-hero-actions  {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
@@ -17942,7 +18034,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     margin-top: 1.35rem;
   }
 
-  .page-infra .projects-hero-actions .btn {
+  .page-infra .projects-hero-actions .btn  {
     width: 100%;
     justify-content: center;
     min-height: 3rem;
@@ -17952,7 +18044,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     border-width: 0.5px;
   }
 
-  .page-infra .projects-hero-actions .btn--ghost-light {
+  .page-infra .projects-hero-actions .btn--ghost-light  {
     font-weight: 500;
   }
 }
@@ -17964,7 +18056,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2.4vw, 1.5rem);
 }
 
-.page-infra .about-dce__block {
+.page-infra .about-dce__block  {
   min-width: 0;
   max-width: 100%;
 }
@@ -17974,7 +18066,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   padding-bottom: 0;
 }
 
-.page-infra .about-dce__block > .about-dce__grid {
+.page-infra .about-dce__block > .about-dce__grid  {
   border-top: 1px solid var(--border);
   padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
@@ -18250,7 +18342,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 .infra-scenarios__copy {
   position: relative;
   z-index: 1;
-  max-width: 42rem;
+  max-width: none;
   min-width: 0;
   width: 100%;
 }
@@ -18263,7 +18355,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--sc-ink);
-  text-wrap: balance;
+  text-wrap: wrap;
 }
 
 .infra-scenarios__prose {
@@ -18712,6 +18804,16 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.infra-scenarios__tabs--6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .infra-scenarios__tabs--6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .infra-scenarios--compact {
   margin: 0;
 }
@@ -18728,7 +18830,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 .infra-scenarios__copy--cycle {
   display: grid;
   gap: 0.65rem;
-  max-width: 40rem;
+  max-width: none;
   align-content: center;
 }
 
@@ -18792,26 +18894,255 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 /* ——— Страница «Информационная безопасность» ——— */
 
-.page-infosec .subpage-hero {
-  background-color: #050a14;
-  background-image:
-    linear-gradient(108deg, rgba(5, 12, 28, 0.94) 0%, rgba(8, 18, 40, 0.82) 46%, rgba(12, 24, 52, 0.55) 100%),
-    radial-gradient(ellipse 78% 68% at 72% 38%, rgba(26, 74, 124, 0.42), transparent 58%),
-    url("images/SERVICE_02.png");
-  background-size: cover, cover, cover;
-  background-position: 0 0, 0 0, 68% center;
-  background-repeat: no-repeat;
+.page-infosec.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+  background: url("images/SERVICE_02.png") 62% 40% / cover no-repeat;
+  transform-origin: 62% 40%;
+}
+
+@media (max-width: 720px) {
+  .page-infosec.page-infra .projects-hero-stage--photo .projects-hero__background::before {
+    background-position: 58% 28%;
+    transform-origin: 58% 30%;
+  }
 }
 
 .page-infosec #infosec-intro .page-about__prose-wrap {
   columns: 1;
-  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: clamp(0.85rem, 2vw, 1.25rem);
 }
 
 .page-infosec #infosec-intro .page-about__prose-wrap p {
   max-width: none;
 }
 
+/* Панели технологий: текст на всю ширину, обычный список без «пилюль» */
+.page-infosec #infosec-intro .infra-scenarios__panel {
+  width: 100%;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__copy {
+  max-width: none !important;
+  width: 100%;
+  display: grid;
+  gap: 1.05rem;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__title {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  text-wrap: wrap;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__prose {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__prose p {
+  max-width: none !important;
+  width: 100%;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__list li {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding-left: 1.15rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__list li::before {
+  top: 0.55em;
+  left: 0;
+}
+
+.page-infosec #infosec-intro .infra-scenarios__stage::before {
+  opacity: 0.35;
+  -webkit-mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 58%,
+    rgba(0, 0, 0, 0.18) 78%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 58%,
+    rgba(0, 0, 0, 0.18) 78%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+.page-infosec__exp-block {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  min-width: 0;
+  max-width: none;
+}
+
+#infosec-approach .about-dce__block {
+  overflow: hidden;
+}
+
+/* Процесс: вертикальный таймлайн — линия от кружка к кружку */
+#infosec-approach .infosec-process {
+  --infosec-rail-pad-y: 1.05rem;
+  --infosec-rail-size: 1.9rem;
+  --infosec-rail-inset: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: clamp(0.35rem, 1.2vw, 0.6rem) clamp(1.15rem, 2.6vw, 1.75rem)
+    clamp(1.35rem, 2.8vw, 1.85rem);
+  list-style: none;
+  border-top: 1px solid var(--border);
+  background: transparent;
+}
+
+#infosec-approach .infosec-process__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 1rem;
+  row-gap: 0.35rem;
+  margin: 0;
+  padding: var(--infosec-rail-pad-y) 0 var(--infosec-rail-pad-y) var(--infosec-rail-inset);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+#infosec-approach .infosec-process__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--infosec-rail-inset) + (var(--infosec-rail-size) / 2) - 0.5px);
+  top: calc(var(--infosec-rail-pad-y) + var(--infosec-rail-size));
+  bottom: calc(var(--infosec-rail-pad-y) * -1);
+  width: 1px;
+  background: color-mix(in srgb, var(--border) 88%, var(--accent) 12%);
+  pointer-events: none;
+}
+
+#infosec-approach .infosec-process__head {
+  display: contents;
+}
+
+#infosec-approach .infosec-process__num {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--infosec-rail-size);
+  height: var(--infosec-rail-size);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: var(--bg-elevated);
+  font-family: var(--font-display, var(--font-text));
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--accent);
+}
+
+#infosec-approach .infosec-process__title {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-text);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+#infosec-approach .infosec-process__text {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  padding: 0;
+  max-width: 40rem;
+  border: none;
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--text) 68%, var(--text-muted));
+  text-wrap: pretty;
+}
+
+.infosec-exp-banner {
+  margin: 0;
+  padding: clamp(1.6rem, 3.4vw, 2.5rem) clamp(1.35rem, 3vw, 2.25rem);
+  border: none;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg) 62%, var(--bg-elevated));
+}
+
+.infosec-exp-banner__copy {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 48rem;
+}
+
+.infosec-exp-banner__title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-text));
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.infosec-exp-banner__text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--text) 72%, var(--text-muted));
+  text-wrap: pretty;
+}
+
+[data-theme="dark"] .infosec-exp-banner {
+  background: linear-gradient(155deg, #141b26 0%, #121821 55%, #0a0e14 100%);
+}
+
+@media (max-width: 900px) {
+  .infosec-exp-banner {
+    padding: clamp(1.35rem, 4vw, 1.75rem) clamp(1.15rem, 4vw, 1.5rem);
+  }
+}
+
+/* Legacy step/tech styles — still used by scaling page via .page-infosec__steps */
 .page-infosec__steps {
   margin: 0;
   padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem) 0;
@@ -19610,7 +19941,8 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   }
 }
 
-.page-contacts .page-contacts__form-section {
+.page-contacts .page-contacts__form-section,
+.page-infra .page-infra__form-section  {
   --hc-red: var(--accent);
   --hc-eyebrow: color-mix(in srgb, var(--accent) 65%, var(--text) 35%);
   --hc-white: var(--text);
@@ -19649,18 +19981,45 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   --hc-invalid-border: color-mix(in srgb, var(--accent) 50%, var(--border) 50%);
 }
 
-.page-contacts .page-contacts__form-section .huawei-clients__form-wrap {
+.page-contacts .page-contacts__form-section .huawei-clients__form-wrap,
+.page-infra .page-infra__form-section .huawei-clients__form-wrap  {
   position: relative;
   z-index: 1;
   border-top: none;
 }
 
-.page-contacts .page-contacts__form-section .huawei-feedback__title-line--accent {
+.page-contacts .page-contacts__form-section .huawei-feedback__title-line--accent,
+.page-infra .page-infra__form-section .huawei-feedback__title-line--accent  {
   color: var(--accent);
 }
 
-[data-theme="dark"] .page-contacts .page-contacts__form-section {
+[data-theme="dark"] .page-contacts .page-contacts__form-section,
+[data-theme="dark"] .page-infra .page-infra__form-section  {
   --hc-panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 1024px) {
+  .page-infra .page-infra__form-section .huawei-clients__form-wrap  {
+    padding-block: clamp(2rem, 6vw, 2.75rem) clamp(2.35rem, 7vw, 3.25rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .page-infra .page-infra__form-section .huawei-feedback__panel  {
+    padding: 1.35rem 1.1rem 1.5rem;
+  }
+
+  .page-infra .page-infra__form-section .huawei-feedback__title  {
+    font-size: clamp(2.55rem, 13vw, 3.35rem);
+  }
+
+  .page-infra .page-infra__form-section .huawei-feedback__lead  {
+    max-width: none;
+  }
+
+  .page-infra .page-infra__form-section .huawei-request-form__consent-text  {
+    font-size: 0.75rem;
+  }
 }
 
 [data-theme="dark"] .page-project-case {
