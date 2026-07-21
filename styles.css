@@ -18122,6 +18122,26 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
     font-size: clamp(2.65rem, 12vw, 3.5rem);
   }
 
+  /* ASDU: «Автоматизированные» длиннее «Инфраструктурные» на ~1 букву —
+     вмещаем за счёт трекинга и полей, без уменьшения кегля и без переноса */
+  .page-asdu .projects-hero__inner--left,
+  .page-asdu .projects-hero--yandex .subpage-hero__inner {
+    padding-left: max(0.85rem, calc(var(--layout-gutter) - 0.35rem));
+    padding-right: max(0.85rem, calc(var(--layout-gutter) - 0.35rem));
+  }
+
+  .page-asdu .projects-hero--yandex .subpage-hero__title,
+  .page-asdu .projects-hero--yandex .projects-hero__title {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .page-asdu .projects-hero--yandex .subpage-hero__title-line:first-child {
+    white-space: nowrap;
+    letter-spacing: -0.06em;
+    max-width: 100%;
+  }
+
   .page-infra .projects-hero--yandex .subpage-hero__lead,
   .page-infra .projects-hero--yandex .projects-hero__lead  {
     max-width: 100%;
