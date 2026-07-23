@@ -316,6 +316,7 @@
 
     var header = document.querySelector(".site-header");
     var ticking = false;
+    var lastSubnavHeight = 0;
 
     function headerOffset() {
       if (header && header.classList.contains("site-header--hidden")) {
@@ -330,8 +331,9 @@
     }
 
     function syncSubnavHeight() {
-      var h = sticky.getBoundingClientRect().height;
-      if (h > 0) {
+      var h = Math.round(sticky.getBoundingClientRect().height);
+      if (h > 0 && h !== lastSubnavHeight) {
+        lastSubnavHeight = h;
         document.documentElement.style.setProperty("--section-subnav-height", h + "px");
       }
     }
@@ -342,7 +344,10 @@
       var scopeTop = scope.getBoundingClientRect().top;
       var stickyTop = sticky.getBoundingClientRect().top;
       var isStuck = scopeTop <= top + 0.5 && stickyTop <= top + 1;
-      sticky.classList.toggle("is-stuck", isStuck);
+      var wasStuck = sticky.classList.contains("is-stuck");
+      if (wasStuck !== isStuck) {
+        sticky.classList.toggle("is-stuck", isStuck);
+      }
       syncSubnavHeight();
     }
 

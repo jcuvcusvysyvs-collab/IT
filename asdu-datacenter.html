@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260723-asdu-swipe" />
+    <link rel="stylesheet" href="styles.css?v=20260724-asdu-b2b-form" />
     <link rel="preload" href="images/hero_03.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -194,8 +194,16 @@
                 На&nbsp;базе российской платформы SCADA+
               </p>
               <div class="projects-hero-actions">
-                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="#asdu-feedback">Связаться</a>
-                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="#asdu-platform">Платформа</a>
+                <a
+                  class="btn btn--lg hero-pt__cta subpage-hero__cta"
+                  href="#asdu-feedback"
+                  data-asdu-request-type="pilot"
+                >Пилот</a>
+                <a
+                  class="btn btn--lg btn--ghost-light subpage-hero__cta"
+                  href="#asdu-feedback"
+                  data-asdu-request-type="consultation"
+                >Консультация</a>
               </div>
             </div>
           </div>
@@ -231,12 +239,22 @@
               <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы АСДУ">
                 <div class="projects-hero-switcher__track">
                   <a class="projects-hero-switcher__item" href="#asdu-intro">Направление</a>
+                  <a class="projects-hero-switcher__item" href="#asdu-video">Обзор</a>
                   <a class="projects-hero-switcher__item" href="#asdu-platform">Платформа</a>
-                  <a class="projects-hero-switcher__item" href="#asdu-case">Пример</a>
+                  <a class="projects-hero-switcher__item" href="#asdu-case">Внедрение</a>
                 </div>
               </nav>
               <div class="page-section-subnav__actions">
-                <a class="page-section-subnav__btn page-section-subnav__btn--primary" href="#asdu-feedback">Связаться</a>
+                <a
+                  class="page-section-subnav__btn page-section-subnav__btn--primary"
+                  href="#asdu-feedback"
+                  data-asdu-request-type="pilot"
+                >Пилот</a>
+                <a
+                  class="page-section-subnav__btn page-section-subnav__btn--ghost"
+                  href="#asdu-feedback"
+                  data-asdu-request-type="consultation"
+                >Консультация</a>
               </div>
             </div>
           </div>
@@ -253,9 +271,9 @@
                     Диспетчеризация <span class="about-dce__brand">инженерных систем</span>
                   </h2>
                   <p class="about-dce__lead">
-                    АСДУ обеспечивает круглосуточный мониторинг и&nbsp;управление инженерной инфраструктурой:
-                    электроснабжение, охлаждение, безопасность и&nbsp;смежные подсистемы&nbsp;—
-                    в&nbsp;едином контуре диспетчерского управления.
+                    АСДУ обеспечивает круглосуточный мониторинг и&nbsp;управление инженерной инфраструктурой
+                    объекта&nbsp;— независимо от&nbsp;его типа: электроснабжение, климат, безопасность,
+                    технологические и&nbsp;смежные подсистемы в&nbsp;едином контуре диспетчерского управления.
                   </p>
                 </div>
               </header>
@@ -273,7 +291,7 @@
                   <h3 class="about-dce__card-title">Мониторинг в&nbsp;реальном времени</h3>
                   <p class="page-about__card-text">
                     Сбор и&nbsp;визуализация параметров инженерных систем, контроль отклонений и&nbsp;раннее
-                    предупреждение о&nbsp;рисках для технологических процессов.
+                    предупреждение о&nbsp;рисках для работы объекта.
                   </p>
                 </article>
                 <article class="about-dce__card page-asdu__pillar-card" role="listitem">
@@ -292,8 +310,9 @@
                   </p>
                   <h3 class="about-dce__card-title">Интеграция подсистем</h3>
                   <p class="page-about__card-text">
-                    Объединение электроснабжения, вентиляции и&nbsp;кондиционирования, СКУД, пожаротушения
-                    и&nbsp;смежных систем в&nbsp;единую диспетчерскую модель.
+                    Объединение электроснабжения, климата, СКУД, пожаротушения, технологических
+                    и&nbsp;смежных систем в&nbsp;единую диспетчерскую модель&nbsp;— под состав инфраструктуры
+                    конкретного объекта.
                   </p>
                 </article>
                 <article class="about-dce__card page-asdu__pillar-card" role="listitem">
@@ -331,6 +350,66 @@
           </div>
         </section>
 
+        <section class="page-asdu__watch" id="asdu-video" aria-labelledby="asdu-video-title">
+          <div class="page-asdu__watch-inner">
+            <header class="page-asdu__watch-header">
+              <p class="about-dce__eyebrow">Обзор</p>
+              <h2 id="asdu-video-title" class="about-dce__title page-asdu__watch-heading">
+                Узнайте больше <span class="about-dce__brand">в&nbsp;видео</span>
+              </h2>
+            </header>
+            <div class="page-asdu__video-frame" data-asdu-video>
+              <video
+                class="page-asdu__video"
+                playsinline
+                preload="none"
+                controlslist="nodownload"
+                aria-label="Обзор платформы SCADA+ и АСДУ"
+              >
+                <source
+                  src="https://scadaplus.ru/wp-content/uploads/2025/03/SCADA_fin.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <button
+                type="button"
+                class="page-asdu__video-poster"
+                data-asdu-video-play
+                aria-label="Смотреть обзорное видео SCADA+ и АСДУ"
+              >
+                <span class="page-asdu__video-poster-media" aria-hidden="true">
+                  <img
+                    src="images/hero_03.png"
+                    alt=""
+                    width="1600"
+                    height="900"
+                    decoding="async"
+                    fetchpriority="low"
+                  />
+                </span>
+                <span class="page-asdu__video-poster-bg" aria-hidden="true"></span>
+                <span class="page-asdu__video-poster-stage" aria-hidden="true">
+                  <span class="page-asdu__video-poster-title">
+                    <span class="page-asdu__video-poster-title-line">Работа АСДУ</span>
+                    <span class="page-asdu__video-poster-title-line">на&nbsp;базе</span>
+                    <span class="page-asdu__video-poster-title-line page-asdu__video-poster-title-line--brand">
+                      <span class="page-asdu__video-poster-brand-name">SCADA</span><span class="page-asdu__video-poster-brand-plus">+</span>
+                    </span>
+                  </span>
+                  <span class="page-asdu__video-poster-play">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+                      <path d="M5.2 2.8v10.4L14 8 5.2 2.8Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="page-asdu__video-poster-foot">
+                  <span class="page-asdu__video-poster-foot-label">Обзорное видео</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
         <section class="section about-dce about-dce--alt" id="asdu-platform" aria-labelledby="asdu-h-02">
           <div class="about-dce__inner">
             <article class="about-dce__block">
@@ -339,7 +418,7 @@
                 <div class="about-dce__intro">
                   <p class="about-dce__eyebrow" aria-hidden="true">Платформа</p>
                   <h2 id="asdu-h-02" class="about-dce__title">
-                    Решения на&nbsp;базе <span class="about-dce__brand">SCADA+</span>
+                    Решения на&nbsp;базе <span class="about-dce__brand page-asdu__scada-brand"><span class="page-asdu__scada-name">SCADA</span><span class="page-asdu__scada-plus">+</span></span>
                   </h2>
                   <p class="about-dce__lead">
                     Российское ПО для автоматизированных систем диспетчерского управления.
@@ -348,7 +427,7 @@
                       href="https://reestr.digital.gov.ru/reestr/1613356/?sphrase_id=15465111"
                       target="_blank"
                       rel="noopener noreferrer"
-                    >Решения включены в&nbsp;реестр Минцифры России</a>.
+                    >Решения включены в&nbsp;реестр Минцифры России</a>
                   </p>
                 </div>
               </header>
@@ -418,7 +497,7 @@
               <div class="page-asdu__partner-block">
                 <aside class="asdu-partner-banner" aria-label="Партнёр SCADA+">
                   <div class="asdu-partner-banner__copy">
-                    <h3 class="asdu-partner-banner__title">Партнёрство со SCADA+</h3>
+                    <h3 class="asdu-partner-banner__title">Партнёрство со <span class="page-asdu__scada-brand"><span class="page-asdu__scada-name">SCADA</span><span class="page-asdu__scada-plus">+</span></span></h3>
                     <p class="asdu-partner-banner__text">
                       Внедряем и&nbsp;сопровождаем АСДУ на&nbsp;отечественной платформе SCADA+
                       с&nbsp;учётом требований импортозамещения и&nbsp;эксплуатации критичной инфраструктуры.
@@ -470,12 +549,6 @@
                 Автоматизированная система диспетчерского управления центром обработки данных
                 <span class="page-asdu__case-abbr">(АСДУ&nbsp;ЦОД)</span>
               </h2>
-              <p class="page-asdu__case-customer">
-                <span class="page-asdu__case-customer-label">Заказчик</span>
-                <span class="page-asdu__case-customer-name"
-                  >Челябинский Центр информационно-технического обслуживания (ЦИТО)</span
-                >
-              </p>
             </header>
 
             <div class="infra-scenarios page-asdu__case-nav" data-infra-scenarios>
@@ -607,23 +680,23 @@
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система бесперебойного питания</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Модульный ИБП СИП380А300&nbsp;— 1&nbsp;шт</li>
-                          <li>ИБП APC Symmetra PX 160kW SY160K160H&nbsp;— 4&nbsp;шт</li>
-                          <li>ИБП APC MGE Galaxy 3500 40kVA G35T40KH4B4S&nbsp;— 2&nbsp;шт</li>
+                          <li>Модульный ИБП СИП380А300</li>
+                          <li>ИБП APC Symmetra PX 160kW SY160K160H</li>
+                          <li>ИБП APC MGE Galaxy 3500 40kVA G35T40KH4B4S</li>
                         </ol>
                       </article>
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система гарантированного электропитания</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Дизель-генераторная установка ЭД-150-Т400-2РН&nbsp;— 1&nbsp;шт</li>
+                          <li>Дизель-генераторная установка ЭД-150-Т400-2РН</li>
                         </ol>
                       </article>
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система кондиционирования</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Кондиционер воздушного охлаждения InRow RD 10KW Air Cooled 50Hz&nbsp;— 3&nbsp;шт</li>
-                          <li>Кондиционер InRow RP DX Air Cooled 380-415V 50Hz ACRP102&nbsp;— 2&nbsp;шт</li>
-                          <li>Кондиционер воздушного охлаждения APC InRow DX 300mm ACRD301&nbsp;— 2&nbsp;шт</li>
+                          <li>Кондиционер воздушного охлаждения InRow RD 10KW Air Cooled 50Hz</li>
+                          <li>Кондиционер InRow RP DX Air Cooled 380-415V 50Hz ACRP102</li>
+                          <li>Кондиционер воздушного охлаждения APC InRow DX 300mm ACRD301</li>
                         </ol>
                       </article>
                       <article class="page-asdu__object-card" role="listitem">
@@ -635,16 +708,16 @@
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система распределения питания</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Модуль распределения питания APC Rack PDU AP8981 2G 0U&nbsp;— 56&nbsp;шт</li>
-                          <li>Модуль распределения питания Netra NP9314L&nbsp;— 8&nbsp;шт</li>
-                          <li>Модуль распределения питания APC PDPm277H&nbsp;— 4&nbsp;шт</li>
+                          <li>Модуль распределения питания APC Rack PDU AP8981 2G 0U</li>
+                          <li>Модуль распределения питания Netra NP9314L</li>
+                          <li>Модуль распределения питания APC PDPm277H</li>
                         </ol>
                       </article>
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система мониторинга качества электропитания</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Многофункциональный измерительный прибор SATEC 135EH&nbsp;— 6&nbsp;шт</li>
-                          <li>Сервер последовательных устройств ЛАНТАН CS-3104&nbsp;— 1&nbsp;шт</li>
+                          <li>Многофункциональный измерительный прибор SATEC 135EH</li>
+                          <li>Сервер последовательных устройств ЛАНТАН CS-3104</li>
                         </ol>
                       </article>
                     </div>
@@ -664,11 +737,11 @@
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Состав АСДУ</h4>
                         <ol class="page-asdu__object-list">
-                          <li>Сервер сбора и&nbsp;обработки данных&nbsp;— 1&nbsp;шт</li>
-                          <li>АРМ диспетчеров&nbsp;— 2&nbsp;шт</li>
-                          <li>АРМ администратора&nbsp;— 1&nbsp;шт</li>
-                          <li>Веб-сервер&nbsp;— 1&nbsp;шт</li>
-                          <li>СУБД с&nbsp;модулем отчётности&nbsp;— 1&nbsp;шт</li>
+                          <li>Сервер сбора и&nbsp;обработки данных</li>
+                          <li>АРМ диспетчеров</li>
+                          <li>АРМ администратора</li>
+                          <li>Веб-сервер</li>
+                          <li>СУБД с&nbsp;модулем отчётности</li>
                         </ol>
                       </article>
                       <article class="page-asdu__object-card" role="listitem">
@@ -904,13 +977,14 @@
           <div class="huawei-clients__form-wrap">
             <div class="huawei-feedback" data-feature-reveal>
               <div class="huawei-feedback__intro">
-                <p class="huawei-feedback__eyebrow">Обратная связь</p>
+                <p class="huawei-feedback__eyebrow">Заявка на&nbsp;АСДУ</p>
                 <h2 class="huawei-feedback__title" id="asdu-form-heading">
-                  <span class="huawei-feedback__title-line">Остались</span>
-                  <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
+                  <span class="huawei-feedback__title-line">Обсудим ваш</span>
+                  <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">объект</span>
                 </h2>
                 <p class="huawei-feedback__lead">
-                  Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
+                  Ответим за&nbsp;1&nbsp;рабочий день. Подготовим консультацию, оценку внедрения
+                  или&nbsp;пилот SCADA+ под&nbsp;ваш сценарий.
                 </p>
                 <div class="huawei-feedback__contacts">
                   <div class="huawei-feedback__contact">
@@ -924,36 +998,194 @@
                   <div class="huawei-feedback__contact">
                     <span class="huawei-feedback__contact-label">Адрес</span>
                     <span class="huawei-feedback__contact-value"
-                      >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
+                      >г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, 2, корп.&nbsp;12</span
                     >
                   </div>
                 </div>
               </div>
               <div class="huawei-feedback__panel">
                 <form
-                  class="huawei-request-form"
+                  class="huawei-request-form page-asdu__request-form"
                   id="asdu-form"
                   action="#"
                   method="post"
                   novalidate
                   aria-labelledby="asdu-form-heading"
                 >
-                  <div class="huawei-request-form__fields">
-                    <input class="huawei-request-form__input" type="text" name="name" placeholder="Имя Фамилия" autocomplete="name" aria-label="Имя Фамилия" required />
-                    <input class="huawei-request-form__input" type="email" name="email" placeholder="Почта" autocomplete="email" aria-label="Почта" required />
-                    <input class="huawei-request-form__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel" aria-label="Телефон" />
-                    <textarea class="huawei-request-form__input huawei-request-form__input--area" name="message" placeholder="Ваш вопрос" rows="4" aria-label="Ваш вопрос" required></textarea>
+                  <fieldset class="huawei-request-form__type">
+                    <legend class="huawei-request-form__type-legend">Тип заявки</legend>
+                    <div class="huawei-request-form__type-grid page-asdu__request-type-grid" role="presentation">
+                      <label class="huawei-request-form__type-card">
+                        <input
+                          class="huawei-request-form__type-input"
+                          type="radio"
+                          name="request_type"
+                          value="consultation"
+                          checked
+                        />
+                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                        <span class="huawei-request-form__type-icon" aria-hidden="true">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M6 6.5h12a1.5 1.5 0 0 1 1.5 1.5v7.25a1.5 1.5 0 0 1-1.5 1.5H10l-3.75 2.5V8a1.5 1.5 0 0 1 1.5-1.5Z"
+                              stroke="currentColor"
+                              stroke-width="1.35"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M8.25 10.25h7.5M8.25 13h4.5"
+                              stroke="currentColor"
+                              stroke-width="1.35"
+                              stroke-linecap="round"
+                            />
+                          </svg>
+                        </span>
+                        <span class="huawei-request-form__type-body">
+                          <span class="huawei-request-form__type-title">Консультация</span>
+                          <span class="huawei-request-form__type-desc">Обсудим задачу и&nbsp;объект</span>
+                        </span>
+                      </label>
+                      <label class="huawei-request-form__type-card">
+                        <input
+                          class="huawei-request-form__type-input"
+                          type="radio"
+                          name="request_type"
+                          value="proposal"
+                        />
+                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                        <span class="huawei-request-form__type-icon" aria-hidden="true">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M7.25 5.5h9.5A1.75 1.75 0 0 1 18.5 7.25v9.5A1.75 1.75 0 0 1 16.75 18.5h-9.5A1.75 1.75 0 0 1 5.5 16.75v-9.5A1.75 1.75 0 0 1 7.25 5.5Z"
+                              stroke="currentColor"
+                              stroke-width="1.35"
+                            />
+                            <path
+                              d="M8.25 9.25h7.5M8.25 12h7.5M8.25 14.75h4.5"
+                              stroke="currentColor"
+                              stroke-width="1.35"
+                              stroke-linecap="round"
+                            />
+                          </svg>
+                        </span>
+                        <span class="huawei-request-form__type-body">
+                          <span class="huawei-request-form__type-title">КП</span>
+                          <span class="huawei-request-form__type-desc">Оценка внедрения АСДУ</span>
+                        </span>
+                      </label>
+                      <label class="huawei-request-form__type-card">
+                        <input
+                          class="huawei-request-form__type-input"
+                          type="radio"
+                          name="request_type"
+                          value="pilot"
+                        />
+                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
+                        <span class="huawei-request-form__type-icon" aria-hidden="true">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M8.2 5.8 18 12 8.2 18.2V5.8Z"
+                              stroke="currentColor"
+                              stroke-width="1.35"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </span>
+                        <span class="huawei-request-form__type-body">
+                          <span class="huawei-request-form__type-title">Пилот / демо</span>
+                          <span class="huawei-request-form__type-desc">SCADA+ на&nbsp;вашем сценарии</span>
+                        </span>
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  <div class="huawei-request-form__fields page-asdu__request-fields">
+                    <div class="page-asdu__request-row">
+                      <input
+                        class="huawei-request-form__input"
+                        type="text"
+                        name="name"
+                        placeholder="Контактное лицо"
+                        autocomplete="name"
+                        aria-label="Контактное лицо"
+                        required
+                      />
+                      <input
+                        class="huawei-request-form__input"
+                        type="text"
+                        name="company"
+                        placeholder="Компания"
+                        autocomplete="organization"
+                        aria-label="Компания"
+                        required
+                      />
+                    </div>
+                    <div class="page-asdu__request-row">
+                      <input
+                        class="huawei-request-form__input"
+                        type="email"
+                        name="email"
+                        placeholder="Рабочая почта"
+                        autocomplete="email"
+                        aria-label="Рабочая почта"
+                        required
+                      />
+                      <input
+                        class="huawei-request-form__input"
+                        type="tel"
+                        name="phone"
+                        placeholder="Телефон"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        aria-label="Телефон"
+                        required
+                      />
+                    </div>
+                    <div class="page-asdu__request-row">
+                      <input
+                        class="huawei-request-form__input"
+                        type="text"
+                        name="position"
+                        placeholder="Должность (необязательно)"
+                        autocomplete="organization-title"
+                        aria-label="Должность"
+                      />
+                      <label class="page-asdu__request-select-wrap">
+                        <span class="visually-hidden">Тип объекта</span>
+                        <select
+                          class="huawei-request-form__input page-asdu__request-select"
+                          name="object_type"
+                          aria-label="Тип объекта"
+                        >
+                          <option value="" selected disabled>Тип объекта</option>
+                          <option value="datacenter">ЦОД / серверная</option>
+                          <option value="industry">Производство</option>
+                          <option value="building">Здание / комплекс</option>
+                          <option value="energy">ТЭК / энергетика</option>
+                          <option value="other">Другое</option>
+                        </select>
+                      </label>
+                    </div>
+                    <textarea
+                      class="huawei-request-form__input huawei-request-form__input--area"
+                      id="asdu-request-message"
+                      name="message"
+                      placeholder="Кратко опишите задачу"
+                      rows="3"
+                      aria-label="Кратко опишите задачу"
+                      required
+                    ></textarea>
                   </div>
                   <label class="huawei-request-form__consent">
                     <input class="huawei-request-form__checkbox" type="checkbox" name="consent" value="yes" required />
                     <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
                     <span class="huawei-request-form__consent-text">
-                      Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
-                      мою заявку.
+                      Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на&nbsp;обработку моих персональных данных для&nbsp;цели
+                      ответа на&nbsp;мою заявку.
                     </span>
                   </label>
                   <button type="submit" class="huawei-request-form__submit">
-                    <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                    <span class="huawei-request-form__submit-text" data-asdu-submit-text>Получить консультацию</span>
                     <span class="huawei-request-form__submit-icon" aria-hidden="true">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
@@ -1129,13 +1361,14 @@
       </figure>
     </div>
 
-    <script defer src="huawei-subnav.js?v=20260723-click-submenu"></script>
-    <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
+    <script defer src="huawei-subnav.js?v=20260723-subnav-header-fix"></script>
+    <script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="infra-scenarios.js?v=20260723-swipe-fix"></script>
     <script defer src="asdu-gallery-lightbox.js?v=20260721-gallery-all"></script>
-    <script defer src="contacts-form.js"></script>
+    <script defer src="asdu-video-poster.js?v=20260723-poster-min"></script>
+    <script defer src="asdu-request-form.js?v=20260724-subnav-ctas"></script>
     <script defer src="nav.js?v=20260723-click-submenu"></script>
   </body>
 </html>

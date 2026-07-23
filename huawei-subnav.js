@@ -112,32 +112,20 @@
 
 
 
+  var lastSubnavHeight = 0;
+
   function syncSubnavHeight() {
-
     var h = Math.round(subnav.getBoundingClientRect().height);
-
-    if (h > 0) {
-
-      document.documentElement.style.setProperty("--section-subnav-height", h + "px");
-
-    }
-
-    window.dispatchEvent(new Event("resize"));
-
+    if (h <= 0 || h === lastSubnavHeight) return;
+    lastSubnavHeight = h;
+    document.documentElement.style.setProperty("--section-subnav-height", h + "px");
   }
 
-
-
   var spyLinks = Array.prototype.slice.call(
-
     panel.querySelectorAll(".projects-hero-switcher__item[href^='#']")
-
   ).filter(function (link) {
-
     var id = link.getAttribute("href").slice(1);
-
     return id && document.getElementById(id);
-
   });
 
 
@@ -201,19 +189,15 @@
 
 
   function syncStickyState() {
-
     stickyTicking = false;
-
     if (!isOpen) {
-
-      subnav.classList.toggle("is-stuck", isSubnavStuck());
-
+      var stuck = isSubnavStuck();
+      if (subnav.classList.contains("is-stuck") !== stuck) {
+        subnav.classList.toggle("is-stuck", stuck);
+      }
     }
-
     syncSubnavHeight();
-
     updateActiveSectionLink();
-
   }
 
 
@@ -634,7 +618,12 @@
 
 
 
-    showSiteHeader();
+    // Пока липкое меню уже «залипло», шапку сайта не показываем:
+    // повторный клик по якорю почти не скроллит, и header иначе остаётся видимым.
+    var wasStuck = isSubnavStuck();
+    if (!wasStuck) {
+      showSiteHeader();
+    }
 
     var targetY = getElementScrollTop(element);
 
@@ -651,6 +640,10 @@
 
 
     return waitForScrollEnd(targetY).then(function () {
+
+      if (wasStuck || isSubnavStuck()) {
+        hideSiteHeader();
+      }
 
       syncStickyState();
 
