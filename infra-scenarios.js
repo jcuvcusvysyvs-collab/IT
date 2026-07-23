@@ -139,20 +139,47 @@
     const stage = root.querySelector(".infra-scenarios__stage");
     if (stage) {
       let touchX = null;
+      let ignoreSwipe = false;
+
+      const isInsideHorizontalScroller = (target) => {
+        let node = target;
+        while (node && node !== stage) {
+          if (node.nodeType === 1) {
+            const style = window.getComputedStyle(node);
+            const ox = style.overflowX;
+            if (
+              (ox === "auto" || ox === "scroll" || ox === "overlay") &&
+              node.scrollWidth > node.clientWidth + 2
+            ) {
+              return true;
+            }
+          }
+          node = node.parentElement;
+        }
+        return false;
+      };
+
       stage.addEventListener(
         "touchstart",
         (event) => {
           if (!mobileMq.matches) return;
-          touchX = event.changedTouches[0].clientX;
+          /* Не переключать вкладки, если жест по горизонтальному каруселю внутри панели */
+          ignoreSwipe = isInsideHorizontalScroller(event.target);
+          touchX = ignoreSwipe ? null : event.changedTouches[0].clientX;
         },
         { passive: true }
       );
       stage.addEventListener(
         "touchend",
         (event) => {
-          if (!mobileMq.matches || touchX === null) return;
+          if (!mobileMq.matches || touchX === null || ignoreSwipe) {
+            touchX = null;
+            ignoreSwipe = false;
+            return;
+          }
           const dx = event.changedTouches[0].clientX - touchX;
           touchX = null;
+          ignoreSwipe = false;
           if (Math.abs(dx) < 56) return;
           step(dx < 0 ? 1 : -1);
         },

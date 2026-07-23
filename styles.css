@@ -759,7 +759,7 @@ html:not([data-theme="dark"]) .nav-toggle {
   box-shadow: var(--focus-ring);
 }
 
-/* Компактная панель «О компании» — те же принципы, что у колонки ссылок в mega */
+/* Компактная панель «Проекты» / «О компании» — те же принципы, что у колонки ссылок в mega */
 .nav-submenu--panel {
   display: flex;
   flex-direction: column;
@@ -770,6 +770,21 @@ html:not([data-theme="dark"]) .nav-toggle {
   --border: #dde3ed;
   --focus-ring: 0 0 0 3px color-mix(in srgb, #1a4a7c 32%, transparent);
   background: #ffffff;
+}
+
+[data-theme="dark"] .nav-submenu--panel,
+[data-theme="dark"] #submenu-projects .nav-submenu-panel,
+[data-theme="dark"] #submenu-about .nav-submenu-panel,
+[data-theme="dark"] #submenu-projects .nav-submenu-links,
+[data-theme="dark"] #submenu-about .nav-submenu-links {
+  --text: #eef2f8;
+  --text-muted: #94a3b8;
+  --accent: #5b9bd4;
+  --accent-hover: #7db3e0;
+  --border: #243044;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, #5b9bd4 32%, transparent);
+  background: #121a24;
+  color: #eef2f8;
 }
 
 .nav-submenu--panel li {
@@ -7479,12 +7494,23 @@ a.footer-contact-item__value:hover {
       0 16px 40px rgba(0, 0, 0, 0.45);
   }
 
+  [data-theme="dark"] .nav-submenu--panel {
+    background: #121a24;
+    box-shadow:
+      0 0 0 1px #243044,
+      0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
   [data-theme="dark"] .nav-submenu-panel {
     background: var(--bg-elevated);
   }
 
   [data-theme="dark"] #submenu-services .nav-submenu-panel,
-  [data-theme="dark"] #submenu-services .nav-submenu-links--rich {
+  [data-theme="dark"] #submenu-services .nav-submenu-links--rich,
+  [data-theme="dark"] #submenu-projects .nav-submenu-panel,
+  [data-theme="dark"] #submenu-about .nav-submenu-panel,
+  [data-theme="dark"] #submenu-projects .nav-submenu-links,
+  [data-theme="dark"] #submenu-about .nav-submenu-links {
     background: var(--svc-menu-bg, #121a24);
   }
 
@@ -21285,6 +21311,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 0.15rem;
     scroll-behavior: smooth;
