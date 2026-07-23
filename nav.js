@@ -425,10 +425,7 @@
     }
 
     function isSubmenuActive(item) {
-      if (!item) return false;
-      if (item.classList.contains("is-open")) return true;
-      if (!mq.matches) return item.matches(":hover");
-      return false;
+      return !!(item && item.classList.contains("is-open"));
     }
 
     function syncMegaBackdrop() {
@@ -561,15 +558,26 @@
       startDrill(item);
     }
 
+    function toggleDesktopSubmenu(item, trigger) {
+      var open = !item.classList.contains("is-open");
+      closeAllSubmenus(open ? item : null);
+      item.classList.toggle("is-open", open);
+      trigger.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) {
+        syncNavDropdowns();
+      }
+      syncMegaBackdrop();
+    }
+
     submenuItems.forEach(function (item) {
       var trigger = item.querySelector(".nav-submenu-trigger");
       if (!trigger) return;
 
       trigger.addEventListener("click", function (e) {
-        if (mq.matches) {
-          e.preventDefault();
-          e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
 
+        if (mq.matches) {
           if (item.classList.contains("nav-item-drill")) {
             if (menu && menu.classList.contains("nav-menu--drill") && item.classList.contains("is-open")) {
               closeAllSubmenusRef();
@@ -585,20 +593,11 @@
           item.classList.toggle("is-open", open);
           trigger.setAttribute("aria-expanded", open ? "true" : "false");
           syncMegaBackdrop();
+          return;
         }
-      });
-    });
 
-    [servicesItem, projectsItem, aboutItem].forEach(function (item) {
-      if (!item) return;
-
-      item.addEventListener("mouseenter", syncMegaBackdrop);
-      item.addEventListener("mouseleave", function () {
-        window.requestAnimationFrame(syncMegaBackdrop);
-      });
-      item.addEventListener("focusin", syncMegaBackdrop);
-      item.addEventListener("focusout", function () {
-        window.requestAnimationFrame(syncMegaBackdrop);
+        /* ПК: только по клику */
+        toggleDesktopSubmenu(item, trigger);
       });
     });
 
@@ -630,7 +629,12 @@
       syncMegaBackdrop();
     });
 
-    mq.addEventListener("change", syncMegaBackdrop);
+    mq.addEventListener("change", function () {
+      if (!mq.matches) {
+        closeAllSubmenus(null);
+      }
+      syncMegaBackdrop();
+    });
     syncNavDropdowns();
     window.addEventListener("resize", syncNavDropdowns);
   }

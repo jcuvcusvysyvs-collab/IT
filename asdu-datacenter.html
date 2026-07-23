@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260721-asdu-lb-counter" />
+    <link rel="stylesheet" href="styles.css?v=20260723-click-submenu" />
     <link rel="preload" href="images/hero_03.png" as="image" fetchpriority="high" />
     <script defer src="theme.js"></script>
   </head>
@@ -260,7 +260,12 @@
                 </div>
               </header>
 
-              <div class="about-dce__grid page-asdu__pillars" role="list">
+              <div
+                class="about-dce__grid page-asdu__pillars"
+                role="list"
+                tabindex="0"
+                aria-label="Возможности АСДУ"
+              >
                 <article class="about-dce__card page-asdu__pillar-card" role="listitem">
                   <p class="about-dce__card-kicker" aria-hidden="true">
                     <span class="about-dce__card-num">01</span>
@@ -348,7 +353,12 @@
                 </div>
               </header>
 
-              <div class="about-dce__grid page-asdu__platform-grid" role="list">
+              <div
+                class="about-dce__grid page-asdu__platform-grid"
+                role="list"
+                tabindex="0"
+                aria-label="Возможности платформы SCADA+"
+              >
                 <article class="about-dce__card page-asdu__platform-card" role="listitem">
                   <p class="about-dce__card-kicker" aria-hidden="true">
                     <span class="about-dce__card-num">01</span>
@@ -483,7 +493,7 @@
                   aria-controls="asdu-case-panel-01"
                   data-infra-tab="01"
                 >
-                  <span class="infra-scenarios__tab-label">Описание объекта управления</span>
+                  <span class="infra-scenarios__tab-label">Цели создания</span>
                 </button>
                 <button
                   type="button"
@@ -495,7 +505,7 @@
                   data-infra-tab="02"
                   tabindex="-1"
                 >
-                  <span class="infra-scenarios__tab-label">Характеристики АСДУ</span>
+                  <span class="infra-scenarios__tab-label">Описание объекта управления</span>
                 </button>
                 <button
                   type="button"
@@ -505,6 +515,18 @@
                   aria-selected="false"
                   aria-controls="asdu-case-panel-03"
                   data-infra-tab="03"
+                  tabindex="-1"
+                >
+                  <span class="infra-scenarios__tab-label">Характеристики АСДУ</span>
+                </button>
+                <button
+                  type="button"
+                  class="infra-scenarios__tab"
+                  role="tab"
+                  id="asdu-case-tab-04"
+                  aria-selected="false"
+                  aria-controls="asdu-case-panel-04"
+                  data-infra-tab="04"
                   tabindex="-1"
                 >
                   <span class="infra-scenarios__tab-label">Галерея проекта</span>
@@ -519,12 +541,69 @@
                   aria-labelledby="asdu-case-tab-01"
                   data-infra-panel="01"
                 >
+                  <div class="infra-scenarios__copy page-asdu__goals">
+                    <h3 class="infra-scenarios__title">Цели создания АСДУ&nbsp;ЦОД</h3>
+                    <div
+                      class="page-asdu__object-grid"
+                      role="list"
+                      tabindex="0"
+                      aria-label="Цели создания АСДУ ЦОД"
+                    >
+                      <article class="page-asdu__object-card" role="listitem">
+                        <h4 class="page-asdu__object-card-title">Повышение надёжности</h4>
+                        <ol class="page-asdu__object-list">
+                          <li>Обеспечение непрерывного мониторинга инженерной инфраструктуры ЦОД</li>
+                          <li>Сокращение времени обнаружения и&nbsp;локализации аварийных ситуаций</li>
+                          <li>Повышение предсказуемости работы инфраструктуры</li>
+                        </ol>
+                      </article>
+                      <article class="page-asdu__object-card" role="listitem">
+                        <h4 class="page-asdu__object-card-title">Централизованное управление инженерными системами</h4>
+                        <ol class="page-asdu__object-list">
+                          <li>
+                            Создание единой точки контроля и&nbsp;управления всеми инженерными подсистемами
+                            в&nbsp;едином диспетчерском интерфейсе
+                          </li>
+                          <li>
+                            Гранулярный контроль вплоть до&nbsp;конкретного подключения потребителя
+                            к&nbsp;электрической сети
+                          </li>
+                          <li>Минимизация человеческого фактора при управлении критическими системами</li>
+                        </ol>
+                      </article>
+                      <article class="page-asdu__object-card" role="listitem">
+                        <h4 class="page-asdu__object-card-title">Поддержка предиктивного обслуживания</h4>
+                        <ol class="page-asdu__object-list">
+                          <li>Сбор и&nbsp;хранение исторических данных о&nbsp;параметрах работы оборудования</li>
+                          <li>Анализ трендов и&nbsp;выявление предпосылок отказов</li>
+                          <li>Снижение количества инцидентов, влияющих на&nbsp;ИТ-сервисы</li>
+                        </ol>
+                      </article>
+                      <article class="page-asdu__object-card" role="listitem">
+                        <h4 class="page-asdu__object-card-title">Повышение прозрачности для руководства</h4>
+                        <ol class="page-asdu__object-list">
+                          <li>Предоставление дашбордов с&nbsp;ключевыми показателями работы ЦОД</li>
+                          <li>Возможность доступа через web и&nbsp;через Android-приложение</li>
+                          <li>Подсистема отчётности и&nbsp;аналитики</li>
+                        </ol>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="infra-scenarios__panel page-asdu__case-panel"
+                  role="tabpanel"
+                  id="asdu-case-panel-02"
+                  aria-labelledby="asdu-case-tab-02"
+                  data-infra-panel="02"
+                  aria-hidden="true"
+                >
                   <div class="infra-scenarios__copy page-asdu__object">
                     <h3 class="infra-scenarios__title">Описание объекта управления</h3>
                     <p class="page-asdu__object-lead">
                       Для целей мониторинга и&nbsp;управления к&nbsp;АСДУ&nbsp;ЦОД подключены:
                     </p>
-                    <div class="page-asdu__object-grid" role="list">
+                    <div class="page-asdu__object-grid" role="list" tabindex="0" aria-label="Системы объекта управления">
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Система бесперебойного питания</h4>
                         <ol class="page-asdu__object-list">
@@ -574,14 +653,14 @@
                 <div
                   class="infra-scenarios__panel page-asdu__case-panel"
                   role="tabpanel"
-                  id="asdu-case-panel-02"
-                  aria-labelledby="asdu-case-tab-02"
-                  data-infra-panel="02"
+                  id="asdu-case-panel-03"
+                  aria-labelledby="asdu-case-tab-03"
+                  data-infra-panel="03"
                   aria-hidden="true"
                 >
                   <div class="infra-scenarios__copy page-asdu__specs">
                     <h3 class="infra-scenarios__title">Характеристики АСДУ</h3>
-                    <div class="page-asdu__object-grid" role="list">
+                    <div class="page-asdu__object-grid" role="list" tabindex="0" aria-label="Характеристики АСДУ">
                       <article class="page-asdu__object-card" role="listitem">
                         <h4 class="page-asdu__object-card-title">Состав АСДУ</h4>
                         <ol class="page-asdu__object-list">
@@ -620,14 +699,31 @@
                 <div
                   class="infra-scenarios__panel page-asdu__case-panel"
                   role="tabpanel"
-                  id="asdu-case-panel-03"
-                  aria-labelledby="asdu-case-tab-03"
-                  data-infra-panel="03"
+                  id="asdu-case-panel-04"
+                  aria-labelledby="asdu-case-tab-04"
+                  data-infra-panel="04"
                   aria-hidden="true"
                 >
                   <div class="infra-scenarios__copy page-asdu__gallery">
-                    <h3 class="infra-scenarios__title">Галерея проекта</h3>
-                    <div class="page-asdu__gallery-grid" data-lightbox-gallery>
+                    <div class="page-asdu__gallery-head">
+                      <h3 class="infra-scenarios__title">Галерея проекта</h3>
+                      <button
+                        type="button"
+                        class="page-asdu__gallery-all"
+                        data-asdu-gallery-open-all
+                        aria-haspopup="dialog"
+                        aria-controls="asdu-gallery-lightbox"
+                      >
+                        Смотреть все
+                        <span class="page-asdu__gallery-all-count" data-asdu-gallery-count></span>
+                      </button>
+                    </div>
+                    <div
+                      class="page-asdu__gallery-grid"
+                      data-lightbox-gallery
+                      tabindex="0"
+                      aria-label="Галерея проекта"
+                    >
                       <figure class="page-asdu__gallery-item">
                         <button
                           type="button"
@@ -1033,13 +1129,13 @@
       </figure>
     </div>
 
-    <script defer src="huawei-subnav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="huawei-subnav.js?v=20260723-click-submenu"></script>
     <script defer src="projects-hero-grid.js?v=20260710-subnav-light"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="infra-scenarios.js"></script>
-    <script defer src="asdu-gallery-lightbox.js?v=20260721-about-style"></script>
+    <script defer src="asdu-gallery-lightbox.js?v=20260721-gallery-all"></script>
     <script defer src="contacts-form.js"></script>
-    <script defer src="nav.js?v=20260715-nav-panel-align"></script>
+    <script defer src="nav.js?v=20260723-click-submenu"></script>
   </body>
 </html>

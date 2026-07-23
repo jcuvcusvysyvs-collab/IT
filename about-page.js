@@ -154,7 +154,7 @@
       lightbox.classList.add("is-open");
     });
     pagesRoot.scrollTop = 0;
-    lightbox.querySelector(".page-about__cert-lightbox-close").focus();
+    lightbox.querySelector(".page-about__cert-lightbox-close").focus({ preventScroll: true });
   }
 
   function closeLightbox() {

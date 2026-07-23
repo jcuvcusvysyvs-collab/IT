@@ -8,6 +8,8 @@
   var prevBtn = lightbox.querySelector("[data-asdu-lightbox-prev]");
   var nextBtn = lightbox.querySelector("[data-asdu-lightbox-next]");
   var closeTargets = lightbox.querySelectorAll("[data-asdu-lightbox-close]");
+  var openAllBtn = document.querySelector("[data-asdu-gallery-open-all]");
+  var countEl = document.querySelector("[data-asdu-gallery-count]");
   var triggers = Array.prototype.slice.call(
     document.querySelectorAll("[data-asdu-gallery-zoom]")
   );
@@ -18,6 +20,16 @@
   var index = 0;
   var touchX = null;
   var openCount = 0;
+
+  if (countEl) {
+    countEl.textContent = String(triggers.length);
+  }
+  if (openAllBtn) {
+    openAllBtn.setAttribute(
+      "aria-label",
+      "Смотреть все фото галереи, " + triggers.length + " шт."
+    );
+  }
 
   function lockScroll() {
     if (openCount === 0) {
@@ -108,6 +120,12 @@
       openAt(triggerIndex);
     });
   });
+
+  if (openAllBtn) {
+    openAllBtn.addEventListener("click", function () {
+      openAt(0);
+    });
+  }
 
   closeTargets.forEach(function (node) {
     node.addEventListener("click", closeLightbox);

@@ -231,6 +231,77 @@ body {
   font-feature-settings: "ss01", "cv11";
 }
 
+/* ——— 2K+ экраны (например ~2560×1140). Full HD 1920×1080 без изменений. ——— */
+@media (min-width: 2048px) {
+  :root {
+    --layout-max: 1880px;
+    --layout-gutter: clamp(1.75rem, 2.6vw, 3.35rem);
+    --hero-header-gap: clamp(0.85rem, 1.6vh, 1.35rem);
+  }
+}
+
+@media (min-width: 2300px) {
+  :root {
+    --layout-max: 2100px;
+    --layout-gutter: clamp(2rem, 2.9vw, 3.85rem);
+    --projects-shell-radius: 22px;
+  }
+
+  html {
+    font-size: 105%;
+  }
+
+  .services-slide {
+    width: clamp(20.5rem, 17vw, 27rem);
+    min-width: clamp(20.5rem, 17vw, 27rem);
+    min-height: clamp(24rem, 24vw, 29.5rem);
+  }
+
+  .project-split {
+    min-height: 480px;
+  }
+
+  .project-split__panel-inner {
+    min-height: max(480px, var(--project-showcase-panel-min, 0px));
+  }
+
+  .about-dce__header {
+    padding: clamp(1.75rem, 2.6vw, 2.45rem) clamp(1.45rem, 2.4vw, 2.1rem) clamp(1.45rem, 2.2vw, 1.95rem);
+  }
+
+  .about-dce__title {
+    font-size: clamp(2.45rem, 2.8vw, 3.55rem);
+  }
+
+  .page-asdu__object-grid,
+  .page-asdu__gallery-grid {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 2480px) {
+  :root {
+    --layout-max: 2280px;
+    --layout-gutter: clamp(2.25rem, 3.1vw, 4.25rem);
+  }
+
+  html {
+    font-size: 107.5%;
+  }
+}
+
+/* Короткий широкий экран: чуть компактнее по вертикали */
+@media (min-width: 2048px) and (max-height: 1240px) {
+  :root {
+    --hero-header-gap: clamp(0.55rem, 1.1vh, 0.95rem);
+  }
+
+  .page-huawei .projects-hero--yandex.subpage-hero,
+  .page-infra .projects-hero--yandex.subpage-hero {
+    --projects-hero-pad-top: clamp(1.75rem, 3.5vh, 2.75rem);
+  }
+}
+
 .page-anchor {
   display: block;
   width: 100%;
@@ -7197,15 +7268,14 @@ a.footer-contact-item__value:hover {
 }
 
 @media (min-width: 769px) {
-  .nav-item-has-submenu:hover .nav-submenu:not(.nav-submenu--mega),
-  .nav-item-has-submenu:focus-within .nav-submenu:not(.nav-submenu--mega) {
+  /* Подменю на ПК только по клику (.is-open), не по hover */
+  .nav-item-has-submenu.is-open .nav-submenu:not(.nav-submenu--mega):not(.nav-submenu--panel) {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  .nav-item-has-submenu:hover .nav-submenu-trigger .chevron,
-  .nav-item-has-submenu:focus-within .nav-submenu-trigger .chevron {
+  .nav-item-has-submenu.is-open .nav-submenu-trigger .chevron {
     transform: rotate(180deg);
   }
 
@@ -7290,19 +7360,13 @@ a.footer-contact-item__value:hover {
     pointer-events: auto;
   }
 
-  .nav-item-about:hover .nav-submenu--panel,
-  .nav-item-about:focus-within .nav-submenu--panel,
   .nav-item-about.is-open .nav-submenu--panel,
-  .nav-item-projects:hover .nav-submenu--panel,
-  .nav-item-projects:focus-within .nav-submenu--panel,
   .nav-item-projects.is-open .nav-submenu--panel {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  .nav-item-services:hover .nav-submenu--mega,
-  .nav-item-services:focus-within .nav-submenu--mega,
   .nav-item-services.is-open .nav-submenu--mega {
     opacity: 1;
     visibility: visible;
@@ -7573,19 +7637,17 @@ a.footer-contact-item__value:hover {
 }
 
 .page-huawei .projects-hero--yandex.subpage-hero {
-  --projects-hero-pad-top: 0;
+  /* Как на page-infra: контент сверху с отступом, не по вертикальному центру */
+  --projects-hero-pad-top: clamp(3.75rem, 8vh, 5.5rem);
   --projects-hero-pad-bottom: clamp(1.5rem, 3vw, 2.5rem);
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
   min-height: 0;
-  padding:
-    0
-    0
-    var(--projects-hero-pad-bottom);
+  padding: var(--projects-hero-pad-top) 0 var(--projects-hero-pad-bottom);
   overflow: visible;
   background: transparent;
   color: var(--huawei-hero-title);
@@ -8783,10 +8845,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   }
 
   .page-huawei .projects-hero--yandex.subpage-hero {
-    --projects-hero-pad-top: 0;
+    --projects-hero-pad-top: clamp(2.5rem, 6vh, 3.75rem);
     --projects-hero-pad-bottom: clamp(1.75rem, 5vw, 2.5rem);
-    justify-content: center;
-    padding-top: 0;
+    justify-content: flex-start;
+    padding-top: var(--projects-hero-pad-top);
     padding-bottom: var(--projects-hero-pad-bottom);
   }
 
@@ -17977,7 +18039,8 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
   font-size: clamp(3.1rem, 8.5vw, 5.5rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.035em;
+  /* Кириллица в Oswald: -0.035em склеивает «Инфраструктурные» */
+  letter-spacing: 0.012em;
   color: var(--infra-hero-title);
   text-align: left;
   text-wrap: balance;
@@ -17987,7 +18050,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav__toggle:focus-vis
 .page-infra .page-infra__hero-accent  {
   color: color-mix(in srgb, #7eb6e8 42%, #fff 58%);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.008em;
 }
 
 .page-infra .projects-hero--yandex .subpage-hero__lead,
@@ -20122,10 +20185,10 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   color: color-mix(in srgb, var(--accent) 82%, var(--text));
 }
 
-@media (max-width: 899px) {
+@media (max-width: 899px) and (min-width: 800px) {
   .page-asdu__pillars,
   .page-asdu__platform-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -20296,7 +20359,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 @media (min-width: 901px) {
   .page-asdu__case-tabs.infra-scenarios__tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -20325,6 +20388,12 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   gap: 0.85rem;
 }
 
+.page-asdu__goals {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.page-asdu__goals .infra-scenarios__title,
 .page-asdu__object .infra-scenarios__title {
   margin: 0;
 }
@@ -20669,8 +20738,73 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   gap: 0.85rem;
 }
 
+.page-asdu__gallery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
 .page-asdu__gallery .infra-scenarios__title {
   margin: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.page-asdu__gallery-all {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.48rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--bg) 55%, var(--bg-elevated));
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.page-asdu__gallery-all:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-elevated));
+}
+
+.page-asdu__gallery-all:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 42%, transparent);
+}
+
+.page-asdu__gallery-all-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  padding: 0.18rem 0.38rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.page-asdu__gallery-all-count:empty {
+  display: none;
 }
 
 .page-asdu__gallery-grid {
@@ -20793,34 +20927,37 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.55rem;
+  align-content: start;
   counter-reset: asdu-object;
 }
 
 .page-asdu__object-list li {
-  display: grid;
-  grid-template-columns: 1.35rem minmax(0, 1fr);
-  column-gap: 0.35rem;
-  align-items: baseline;
+  position: relative;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 1.35rem;
   font-family: var(--font-text);
-  font-size: clamp(0.84rem, 1.1vw, 0.94rem);
-  font-weight: 400;
-  line-height: 1.55;
+  font-size: clamp(0.88rem, 1.15vw, 0.98rem);
+  font-weight: 500;
+  line-height: 1.45;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-break: normal;
   counter-increment: asdu-object;
 }
 
 .page-asdu__object-list li::before {
   content: counter(asdu-object) ".";
-  grid-column: 1;
-  justify-self: start;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.15rem;
   font-size: inherit;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: inherit;
   color: var(--text-muted);
+  text-align: left;
 }
 
 .page-asdu__case-panel-stub {
@@ -20927,7 +21064,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   height: 100%;
   object-fit: contain;
   object-position: left center;
-  transform: scale(1.55);
+  transform: scale(1.35);
   transform-origin: left center;
 }
 
@@ -20951,18 +21088,19 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   .asdu-partner-banner {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 2rem;
+    align-items: center;
   }
 
   .asdu-partner-banner__logo {
-    width: 22rem;
-    height: 5.5rem;
+    width: 26rem;
+    height: 7rem;
     justify-self: end;
   }
 
   .asdu-partner-banner__logo-img {
     object-position: right center;
     transform-origin: right center;
-    transform: scale(1.7);
+    transform: scale(1.95);
   }
 }
 
@@ -20977,15 +21115,24 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
     padding-left: clamp(1.15rem, 4vw, 1.5rem);
     padding-right: clamp(1.15rem, 4vw, 1.5rem);
     overflow: hidden;
+    gap: 1.45rem;
+    align-items: start;
+    justify-items: stretch;
   }
 
   .asdu-partner-banner__logo {
-    width: min(14rem, 100%);
-    height: 3.75rem;
+    justify-self: center;
+    width: min(100%, 22rem);
+    height: 6.25rem;
+    margin-top: 0.35rem;
+    overflow: hidden;
   }
 
   .asdu-partner-banner__logo-img {
-    transform: scale(1.25);
+    transform: scale(1.72);
+    transform-origin: center center;
+    object-fit: contain;
+    object-position: center center;
   }
 
   .page-asdu,
@@ -20999,7 +21146,8 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   .page-asdu__object-grid,
   .page-asdu__gallery,
   .page-asdu__gallery-grid,
-  .page-asdu__specs {
+  .page-asdu__specs,
+  .page-asdu__goals {
     min-width: 0;
     max-width: 100%;
   }
@@ -21043,7 +21191,6 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   .page-asdu__case-title,
   .page-asdu__case-customer-name,
   .page-asdu__object-card-title,
-  .page-asdu__object-list li,
   .page-asdu__gallery-caption,
   .asdu-partner-banner__title,
   .asdu-partner-banner__text {
@@ -21051,14 +21198,15 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
     word-break: break-word;
   }
 
+  .page-asdu__object-list li {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
   .page-asdu__object-card {
     min-width: 0;
     max-width: 100%;
     box-sizing: border-box;
-  }
-
-  .page-asdu__gallery-grid {
-    grid-template-columns: 1fr;
   }
 
   .page-asdu__lightbox {
@@ -21079,7 +21227,221 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   }
 }
 
-@media (min-width: 520px) and (max-width: 899px) {
+/* Мобилка: карточки объекта / характеристик — горизонтальный скролл */
+@media (max-width: 799px) {
+  .page-asdu .about-dce__block > .page-asdu__pillars,
+  .page-asdu .about-dce__block > .page-asdu__platform-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 1.15rem 1rem 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x pan-y;
+    grid-template-columns: none;
+  }
+
+  .page-asdu .about-dce__block > .page-asdu__pillars::-webkit-scrollbar,
+  .page-asdu .about-dce__block > .page-asdu__platform-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-asdu .about-dce__block > .page-asdu__pillars:focus-visible,
+  .page-asdu .about-dce__block > .page-asdu__platform-grid:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 32%, transparent);
+  }
+
+  .page-asdu__pillar-card,
+  .page-asdu__platform-card {
+    flex: 0 0 min(19.75rem, 82vw);
+    width: min(19.75rem, 82vw);
+    max-width: min(19.75rem, 82vw);
+    min-width: min(19.75rem, 82vw);
+    min-height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    box-sizing: border-box;
+  }
+
+  .page-asdu__object-lead {
+    margin-bottom: 0.85rem;
+  }
+
+  .page-asdu__object-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0.2rem 0.15rem 0.65rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.15rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x pan-y;
+    border: none;
+    background: transparent;
+  }
+
+  .page-asdu__object-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-asdu__object-grid:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 32%, transparent);
+    border-radius: 14px;
+  }
+
+  .page-asdu__object-card {
+    position: relative;
+    isolation: isolate;
+    flex: 0 0 min(19.75rem, 82vw);
+    width: min(19.75rem, 82vw);
+    max-width: min(19.75rem, 82vw);
+    min-width: min(19.75rem, 82vw);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 1.2rem 1.15rem 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    border-radius: 14px;
+    background: var(--bg-elevated);
+    box-shadow: none;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .page-asdu__object-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 55%, transparent) 42%,
+      transparent 100%
+    );
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .page-asdu__object-card-title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.02rem, 4.2vw, 1.14rem);
+    line-height: 1.28;
+  }
+
+  .page-asdu__object-list {
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    align-content: start;
+  }
+
+  .page-asdu__object-list li {
+    padding-left: 1.3rem;
+  }
+
+  .page-asdu__gallery-head {
+    margin-bottom: 0.1rem;
+    gap: 0.65rem;
+  }
+
+  .page-asdu__gallery-all {
+    display: inline-flex;
+    padding: 0.44rem 0.7rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.07em;
+  }
+
+  .page-asdu__gallery-all-count {
+    min-width: 1.2rem;
+    padding: 0.16rem 0.32rem;
+    font-size: 0.625rem;
+  }
+
+  .page-asdu__gallery-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0.2rem 0.15rem 0.55rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.15rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x pan-y;
+  }
+
+  .page-asdu__gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-asdu__gallery-grid:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 32%, transparent);
+    border-radius: 14px;
+  }
+
+  .page-asdu__gallery-item {
+    flex: 0 0 min(20.5rem, 84vw);
+    width: min(20.5rem, 84vw);
+    max-width: min(20.5rem, 84vw);
+    min-width: min(20.5rem, 84vw);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .page-asdu__gallery-zoom {
+    border-radius: 14px;
+    flex: 0 0 auto;
+  }
+
+  .page-asdu__gallery-img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .page-asdu__gallery-caption {
+    padding: 0 0.15rem;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+  }
+}
+
+@media (min-width: 800px) and (max-width: 899px) {
   .page-asdu__gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -21893,8 +22255,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   inset: 0;
   z-index: 1200;
   display: grid;
-  place-items: center;
+  place-items: safe center;
+  align-content: safe center;
+  justify-content: safe center;
   padding: clamp(1rem, 3vw, 2rem);
+  box-sizing: border-box;
+  overflow: auto;
+  overscroll-behavior: contain;
   pointer-events: none;
 }
 
@@ -21903,7 +22270,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 }
 
 .page-about__cert-lightbox-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: color-mix(in srgb, #050a12 68%, transparent);
   opacity: 0;
@@ -21919,12 +22286,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.75rem;
   width: fit-content;
   max-width: min(96vw, 48rem);
-  max-height: min(92vh, 56rem);
-  margin: 0;
+  max-height: min(90dvh, 90vh);
+  margin: auto;
+  min-height: 0;
   opacity: 0;
   transform: translateY(0.75rem) scale(0.985);
   transition:
@@ -21933,7 +22301,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 }
 
 .page-about__cert-lightbox--multi .page-about__cert-lightbox-dialog {
-  max-height: 92vh;
+  max-height: min(92dvh, 92vh);
 }
 
 .page-about__cert-lightbox-pages {
@@ -21941,18 +22309,21 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-  max-height: calc(92vh - 3.5rem);
-}
-
-.page-about__cert-lightbox--multi .page-about__cert-lightbox-pages {
-  overflow-y: auto;
-  padding-right: 0.2rem;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  max-height: none;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
 }
 
+.page-about__cert-lightbox--multi .page-about__cert-lightbox-pages {
+  padding-right: 0.2rem;
+}
+
 .page-about__cert-lightbox-page {
   margin: 0;
+  min-width: 0;
 }
 
 .page-about__cert-lightbox-page-label {
@@ -21973,7 +22344,8 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 .page-about__cert-lightbox-caption {
   margin: 0;
   width: 100%;
-  padding-right: 2.5rem;
+  flex: 0 0 auto;
+  padding-right: 2.75rem;
   text-align: left;
   font-family: var(--font-display);
   font-size: 1.0625rem;
@@ -21983,10 +22355,15 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-about__cert-lightbox-img {
   display: block;
-  width: min(96vw, 48rem, calc((92vh - 5rem) * var(--cert-w, 1000) / var(--cert-h, 1420)));
+  width: min(
+    96vw,
+    48rem,
+    calc((min(90dvh, 90vh) - 4.75rem) * var(--cert-w, 1000) / var(--cert-h, 1420))
+  );
   max-width: 100%;
   height: auto;
-  max-height: calc(92vh - 5rem);
+  max-height: calc(min(90dvh, 90vh) - 4.75rem);
+  aspect-ratio: var(--cert-w, 1000) / var(--cert-h, 1420);
   object-fit: contain;
   background: #fff;
   border-radius: 10px;
@@ -21998,6 +22375,8 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-about__cert-lightbox--multi .page-about__cert-lightbox-img {
   max-height: none;
+  width: min(96vw, 42rem);
+  aspect-ratio: var(--cert-w, 1000) / var(--cert-h, 1420);
 }
 
 .page-about__cert-lightbox-close {
@@ -22030,5 +22409,454 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   .page-about__cert-lightbox-backdrop,
   .page-about__cert-lightbox-dialog {
     transition: none;
+  }
+}
+
+/* 2K / короткий широкий экран: не давать rem-потолку выталкивать диалог вверх */
+@media (min-width: 2048px) {
+  .page-about__cert-lightbox {
+    padding: clamp(1.25rem, 2.4vh, 2rem);
+  }
+
+  .page-about__cert-lightbox-dialog {
+    max-width: min(94vw, 52rem);
+    max-height: min(88dvh, 88vh);
+  }
+
+  .page-about__cert-lightbox-caption {
+    font-size: 1.2rem;
+  }
+
+  .page-about__cert-lightbox-img {
+    width: min(
+      94vw,
+      52rem,
+      calc((min(88dvh, 88vh) - 5.25rem) * var(--cert-w, 1000) / var(--cert-h, 1420))
+    );
+    max-height: calc(min(88dvh, 88vh) - 5.25rem);
+  }
+
+  .page-about__cert-lightbox-close {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (min-width: 2048px) and (max-height: 1240px) {
+  .page-about__cert-lightbox-dialog {
+    max-height: min(86dvh, 86vh);
+    gap: 0.65rem;
+  }
+
+  .page-about__cert-lightbox-img {
+    width: min(
+      92vw,
+      46rem,
+      calc((min(86dvh, 86vh) - 4.75rem) * var(--cert-w, 1000) / var(--cert-h, 1420))
+    );
+    max-height: calc(min(86dvh, 86vh) - 4.75rem);
+  }
+}
+
+/* ——— 2K hero typography (в конце файла: иначе page-huawei/page-infra ниже по каскаду перебивают) ———
+   От 2048px: учитывает Windows 125% на 2560 (CSS width ≈ 2048). 1920 Full HD не затрагивается. */
+@media (min-width: 2048px) {
+  .hero-pt__title {
+    font-size: clamp(4.75rem, 6vw, 7.75rem);
+  }
+
+  .hero-pt__lead {
+    max-width: 36rem;
+    font-size: clamp(1.02rem, 1.1vw, 1.15rem);
+  }
+
+  .hero-pt__lead-headline {
+    font-size: clamp(1.3rem, 1.4vw, 1.55rem);
+  }
+
+  .hero-pt__content {
+    max-width: min(54rem, 100%);
+    /* Не копим clearance + огромный padding-top — иначе на 2K пустота под шапкой */
+    padding-top: clamp(0.85rem, 2.2vh, 1.75rem);
+    padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
+  }
+
+  .page-huawei .projects-hero--yandex.subpage-hero,
+  .page-infra .projects-hero--yandex.subpage-hero {
+    --projects-hero-pad-top: clamp(2.25rem, 4.5vh, 3.5rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title,
+  .page-infra .projects-hero--yandex .subpage-hero__title,
+  .page-infra .projects-hero--yandex .projects-hero__title,
+  .page-projects .projects-hero--yandex .subpage-hero__title,
+  .page-projects .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(4rem, 5.2vw, 6.5rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__lead,
+  .page-huawei .projects-hero--yandex .projects-hero__lead,
+  .page-infra .projects-hero--yandex .subpage-hero__lead,
+  .page-infra .projects-hero--yandex .projects-hero__lead,
+  .page-projects .projects-hero--yandex .subpage-hero__lead,
+  .page-projects .projects-hero--yandex .projects-hero__lead {
+    max-width: min(44rem, 100%);
+    font-size: clamp(1.5rem, 1.45vw, 2.05rem);
+  }
+
+  .page-huawei .projects-hero--yandex .projects-hero__content,
+  .page-huawei .projects-hero--yandex .subpage-hero__content,
+  .page-infra .projects-hero--yandex .projects-hero__content,
+  .page-infra .projects-hero--yandex .subpage-hero__content,
+  .page-projects .projects-hero--yandex .projects-hero__content,
+  .page-projects .projects-hero--yandex .subpage-hero__content {
+    max-width: min(48rem, 100%);
+    gap: clamp(1.5rem, 1.9vw, 2.35rem);
+  }
+
+  /* Hero CTA: крупнее и в балансе с title/lead (главная = .hero-pt__btn) */
+  .hero-pt__ctas {
+    gap: 1.15rem;
+    margin-top: 2.35rem;
+  }
+
+  .hero-pt__btn {
+    min-height: 3.35rem;
+    padding: 1.05rem 2.15rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    gap: 0.75rem;
+    border-radius: 5px;
+  }
+
+  .hero-pt__btn svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .page-huawei .projects-hero-actions,
+  .page-infra .projects-hero-actions,
+  .page-projects .projects-hero-actions {
+    gap: 0.95rem 1.2rem;
+  }
+
+  .page-huawei .projects-hero-actions .btn,
+  .page-infra .projects-hero-actions .btn,
+  .page-projects .projects-hero-actions .btn,
+  .hero-pt__ctas .btn,
+  .page-huawei .subpage-hero__cta,
+  .page-infra .subpage-hero__cta,
+  .page-projects .subpage-hero__cta {
+    min-height: 3.35rem;
+    padding: 1.05rem 2.15rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 2300px) {
+  .hero-pt__title {
+    font-size: clamp(5rem, 6.4vw, 8.25rem);
+  }
+
+  .hero-pt__lead {
+    max-width: 38rem;
+    font-size: clamp(1.05rem, 1.15vw, 1.2rem);
+  }
+
+  .hero-pt__lead-headline {
+    font-size: clamp(1.35rem, 1.45vw, 1.65rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title,
+  .page-infra .projects-hero--yandex .subpage-hero__title,
+  .page-infra .projects-hero--yandex .projects-hero__title,
+  .page-projects .projects-hero--yandex .subpage-hero__title,
+  .page-projects .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(4.25rem, 5.6vw, 7rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__lead,
+  .page-huawei .projects-hero--yandex .projects-hero__lead,
+  .page-infra .projects-hero--yandex .subpage-hero__lead,
+  .page-infra .projects-hero--yandex .projects-hero__lead,
+  .page-projects .projects-hero--yandex .subpage-hero__lead,
+  .page-projects .projects-hero--yandex .projects-hero__lead {
+    font-size: clamp(1.55rem, 1.55vw, 2.15rem);
+  }
+
+  .hero-pt__ctas {
+    gap: 1.25rem;
+    margin-top: 2.55rem;
+  }
+
+  .hero-pt__btn {
+    min-height: 3.55rem;
+    padding: 1.15rem 2.35rem;
+    font-size: 0.9375rem;
+  }
+
+  .page-huawei .projects-hero-actions .btn,
+  .page-infra .projects-hero-actions .btn,
+  .page-projects .projects-hero-actions .btn,
+  .page-huawei .subpage-hero__cta,
+  .page-infra .subpage-hero__cta,
+  .page-projects .subpage-hero__cta {
+    min-height: 3.55rem;
+    padding: 1.15rem 2.35rem;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (min-width: 2480px) {
+  .hero-pt__title {
+    font-size: clamp(5.5rem, 6.6vw, 8.75rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title,
+  .page-infra .projects-hero--yandex .subpage-hero__title,
+  .page-infra .projects-hero--yandex .projects-hero__title,
+  .page-projects .projects-hero--yandex .subpage-hero__title,
+  .page-projects .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(4.75rem, 5.8vw, 7.5rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__lead,
+  .page-huawei .projects-hero--yandex .projects-hero__lead,
+  .page-infra .projects-hero--yandex .subpage-hero__lead,
+  .page-infra .projects-hero--yandex .projects-hero__lead,
+  .page-projects .projects-hero--yandex .subpage-hero__lead,
+  .page-projects .projects-hero--yandex .projects-hero__lead {
+    font-size: clamp(1.65rem, 1.6vw, 2.25rem);
+  }
+
+  .hero-pt__btn {
+    min-height: 3.75rem;
+    padding: 1.2rem 2.55rem;
+    font-size: 1rem;
+  }
+
+  .page-huawei .projects-hero-actions .btn,
+  .page-infra .projects-hero-actions .btn,
+  .page-projects .projects-hero-actions .btn,
+  .page-huawei .subpage-hero__cta,
+  .page-infra .subpage-hero__cta,
+  .page-projects .subpage-hero__cta {
+    min-height: 3.75rem;
+    padding: 1.2rem 2.55rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 2048px) and (max-height: 1240px) {
+  .hero-pt__title {
+    font-size: clamp(4.5rem, 5.4vw, 7.5rem);
+  }
+
+  .hero-pt__content {
+    padding-top: clamp(0.45rem, 1.4vh, 1.1rem);
+    padding-bottom: clamp(0.5rem, 1.5vh, 1.15rem);
+  }
+
+  .hero-pt__ctas {
+    margin-top: 1.85rem;
+  }
+
+  .page-huawei .projects-hero--yandex.subpage-hero,
+  .page-infra .projects-hero--yandex.subpage-hero {
+    --projects-hero-pad-top: clamp(1.5rem, 3vh, 2.35rem);
+  }
+
+  .page-huawei .projects-hero--yandex .subpage-hero__title,
+  .page-huawei .projects-hero--yandex .projects-hero__title,
+  .page-infra .projects-hero--yandex .subpage-hero__title,
+  .page-infra .projects-hero--yandex .projects-hero__title,
+  .page-projects .projects-hero--yandex .subpage-hero__title,
+  .page-projects .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(3.85rem, 4.9vw, 6.5rem);
+  }
+}
+
+/* ——— 2K: липкие ленты (page-section-subnav) чуть крупнее ——— */
+@media (min-width: 2048px) {
+  .page-section-subnav {
+    padding:
+      clamp(0.95rem, 1.35vw, 1.2rem)
+      0
+      clamp(1rem, 1.45vw, 1.3rem);
+  }
+
+  .page-section-subnav__inner--huawei {
+    min-height: 3.65rem;
+    column-gap: clamp(1.15rem, 2.2vw, 2.35rem);
+  }
+
+  .page-section-subnav__brand {
+    gap: 0.85rem;
+  }
+
+  .page-section-subnav__brand-icon {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 10px;
+  }
+
+  .page-section-subnav__brand-icon img {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .page-huawei .page-section-subnav__brand-icon img,
+  .page-infra .page-section-subnav__brand-icon img,
+  .page-projects .page-section-subnav__brand-icon img,
+  .page-about .page-section-subnav__brand-icon img {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .page-section-subnav__brand-text {
+    font-size: 1.05rem;
+  }
+
+  .page-huawei .page-section-subnav .projects-hero-switcher__track,
+  .page-infra .page-section-subnav .projects-hero-switcher__track,
+  .page-projects .page-section-subnav .projects-hero-switcher__track,
+  .page-about .page-section-subnav .projects-hero-switcher__track {
+    gap: clamp(1.25rem, 2.2vw, 2.35rem);
+  }
+
+  .page-huawei .page-section-subnav .projects-hero-switcher__item,
+  .page-infra .page-section-subnav .projects-hero-switcher__item,
+  .page-projects .page-section-subnav .projects-hero-switcher__item,
+  .page-about .page-section-subnav .projects-hero-switcher__item {
+    font-size: 0.975rem;
+    padding: 0.3rem 0;
+  }
+
+  .page-section-subnav__actions {
+    gap: 0.65rem;
+  }
+
+  .page-section-subnav__btn {
+    min-height: 2.45rem;
+    padding: 0.6rem 1.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.13em;
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 2300px) {
+  .page-section-subnav {
+    padding:
+      clamp(1.05rem, 1.4vw, 1.3rem)
+      0
+      clamp(1.1rem, 1.5vw, 1.4rem);
+  }
+
+  .page-section-subnav__inner--huawei {
+    min-height: 3.9rem;
+  }
+
+  .page-section-subnav__brand-text {
+    font-size: 1.1rem;
+  }
+
+  .page-huawei .page-section-subnav .projects-hero-switcher__item,
+  .page-infra .page-section-subnav .projects-hero-switcher__item,
+  .page-projects .page-section-subnav .projects-hero-switcher__item,
+  .page-about .page-section-subnav .projects-hero-switcher__item {
+    font-size: 1.025rem;
+  }
+
+  .page-section-subnav__btn {
+    min-height: 2.6rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .page-huawei .page-section-subnav__brand-icon img,
+  .page-infra .page-section-subnav__brand-icon img,
+  .page-projects .page-section-subnav__brand-icon img,
+  .page-about .page-section-subnav__brand-icon img {
+    width: 3.05rem;
+    height: 3.05rem;
+  }
+}
+
+/* ——— 2K: шапка сайта чуть крупнее (как липкие ленты) ——— */
+@media (min-width: 2048px) {
+  .header-inner {
+    padding: 0.8rem var(--layout-gutter);
+    min-height: 4rem;
+    column-gap: clamp(1rem, 2vw, 1.85rem);
+  }
+
+  .logo__img {
+    height: clamp(2rem, 2.4vw, 2.65rem);
+    max-width: min(280px, 42vw);
+  }
+
+  .nav {
+    padding-right: clamp(0.45rem, 1.2vw, 1rem);
+  }
+
+  .nav-menu {
+    gap: 0.3rem;
+  }
+
+  .nav-menu > li > a,
+  .nav-submenu-trigger {
+    padding: 0.58rem 1.05rem;
+    font-size: 1rem;
+  }
+
+  .header-actions {
+    gap: 0.7rem;
+    --header-control-h: 1.95rem;
+  }
+
+  .header-actions .theme-switch {
+    --switch-w: 3.55rem;
+  }
+
+  .header-cta {
+    padding: 0 1.15rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 2300px) {
+  .header-inner {
+    padding: 0.9rem var(--layout-gutter);
+    min-height: 4.35rem;
+  }
+
+  .logo__img {
+    height: clamp(2.2rem, 2.5vw, 2.85rem);
+    max-width: min(300px, 40vw);
+  }
+
+  .nav-menu > li > a,
+  .nav-submenu-trigger {
+    padding: 0.62rem 1.15rem;
+    font-size: 1.05rem;
+  }
+
+  .header-actions {
+    --header-control-h: 2.1rem;
+  }
+
+  .header-actions .theme-switch {
+    --switch-w: 3.75rem;
+  }
+
+  .header-cta {
+    padding: 0 1.25rem;
+    font-size: 0.9375rem;
   }
 }
