@@ -1,5 +1,69 @@
 /* Страница «О компании» — липкая лента (как на «Проекты») */
 
+/*
+  Исключение: на «О компании» лента не принудительно тёмная поверх hero.
+  Цвет полностью следует теме пользователя (светлая / тёмная).
+*/
+html:not([data-theme="dark"]) .page-about .page-section-subnav {
+  --subnav-link: color-mix(in srgb, var(--text) 68%, transparent);
+  --subnav-link-hover: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav::before {
+  background: color-mix(in srgb, var(--bg) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(15, 18, 24, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck::before {
+  background: color-mix(in srgb, var(--bg) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(15, 18, 24, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__brand {
+  color: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__toggle {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
+  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subnav--menu-open::before {
+  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 6px 24px rgba(15, 18, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel {
+  background: var(--bg-elevated);
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  box-shadow:
+    0 20px 48px rgba(15, 18, 24, 0.11),
+    0 8px 22px rgba(15, 18, 24, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+@media (max-width: 900px) {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item {
+    color: color-mix(in srgb, var(--text) 72%, transparent);
+  }
+
+  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+    color: var(--text);
+  }
+}
+
 .page-about .page-section-subnav .projects-hero-switcher {
   width: auto;
   flex: 0 1 auto;

@@ -8841,7 +8841,13 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     height: auto;
     min-height: calc(72svh + var(--site-header-height, 5.5rem));
     min-height: calc(72dvh + var(--site-header-height, 5.5rem));
-    padding-top: calc(var(--site-header-height, 5.5rem) + clamp(1rem, 3vh, 1.5rem));
+    /* Запас под шапку + safe-area: иначе заголовок заезжает под header */
+    padding-top: max(
+      var(--hero-header-clearance),
+      calc(
+        var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px) + clamp(1.75rem, 4.5vh, 2.75rem)
+      )
+    );
   }
 
   .page-huawei .projects-hero-stage--photo .projects-hero__background::before {
@@ -8869,7 +8875,8 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
   .page-huawei .projects-hero--yandex.subpage-hero {
     --hero-subnav-overlap: 4.75rem;
-    --projects-hero-pad-top: clamp(2.5rem, 6vh, 3.75rem);
+    /* Основной отступ уже на stage — здесь только небольшой зазор до заголовка */
+    --projects-hero-pad-top: clamp(0.35rem, 1.2vh, 0.75rem);
     --projects-hero-pad-bottom: calc(
       var(--hero-subnav-overlap) + clamp(1.15rem, 3.5vw, 1.75rem)
     );
@@ -8946,6 +8953,11 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 
   .page-huawei .projects-hero-actions .btn--ghost-light {
     font-weight: 500;
+  }
+
+  /* На мобильных не поднимаем контент transform-ом скролла — иначе текст уезжает под шапку */
+  .page-huawei .projects-hero-stage[data-hero-grid] .projects-hero__content {
+    transform: none;
   }
 }
 
@@ -14623,30 +14635,17 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 
 .projects-filter__row {
   display: grid;
-  grid-template-columns: auto minmax(12rem, 1fr) auto;
+  grid-template-columns: minmax(12rem, 1fr) auto;
   align-items: center;
   gap: 0.65rem 0.85rem;
-  max-width: 42rem;
+  max-width: 28rem;
+  width: min(100%, 28rem);
+  margin-left: auto;
 }
 
 @media (max-width: 520px) {
   .projects-filter__row {
     grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "label label"
-      "select clear";
-  }
-
-  .projects-filter__label {
-    grid-area: label;
-  }
-
-  .projects-filter__combo {
-    grid-area: select;
-  }
-
-  .projects-filter__clear {
-    grid-area: clear;
   }
 }
 
@@ -18183,7 +18182,12 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
     height: auto;
     min-height: calc(72svh + var(--site-header-height, 5.5rem));
     min-height: calc(72dvh + var(--site-header-height, 5.5rem));
-    padding-top: calc(var(--site-header-height, 5.5rem) + clamp(1rem, 3vh, 1.5rem));
+    padding-top: max(
+      var(--hero-header-clearance),
+      calc(
+        var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px) + clamp(1.75rem, 4.5vh, 2.75rem)
+      )
+    );
   }
 
   .page-infra .projects-hero-stage--photo .projects-hero__background::before  {
@@ -18211,7 +18215,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
   .page-infra .projects-hero--yandex.subpage-hero  {
     --hero-subnav-overlap: 4.75rem;
-    --projects-hero-pad-top: clamp(2.5rem, 6vh, 3.75rem);
+    --projects-hero-pad-top: clamp(0.35rem, 1.2vh, 0.75rem);
     --projects-hero-pad-bottom: calc(
       var(--hero-subnav-overlap) + clamp(1.15rem, 3.5vw, 1.75rem)
     );
@@ -18227,7 +18231,14 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
   .page-infra .projects-hero--yandex .subpage-hero__title,
   .page-infra .projects-hero--yandex .projects-hero__title  {
-    font-size: clamp(2.65rem, 12vw, 3.5rem);
+    /* Длинные слова вроде «Инфраструктурные» должны умещаться в ширину экрана */
+    font-size: clamp(1.8rem, 7.6vw, 2.25rem);
+    letter-spacing: 0.002em;
+    max-width: 100%;
+  }
+
+  .page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content {
+    transform: none;
   }
 
   .page-infra .projects-hero--yandex .subpage-hero__lead,
@@ -19881,65 +19892,28 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   }
 }
 
-#continuity-intro .scaling-process-stage {
-  position: relative;
-  isolation: isolate;
+#continuity-intro .about-dce__block > .page-continuity__process {
   border-top: 1px solid var(--border);
-  overflow: hidden;
-  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2.4vw, 1.5rem);
+  margin: 0;
+  grid-template-columns: 1fr;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
 }
 
-#continuity-intro .scaling-process-stage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--accent) 18%, var(--border)) 1px,
-      transparent 1px
-    );
-  background-size: 52px 52px;
-  background-position: right top;
-  opacity: 0.75;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 36%,
-    rgba(0, 0, 0, 0.18) 52%,
-    rgba(0, 0, 0, 0.55) 72%,
-    rgba(0, 0, 0, 0.92) 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 36%,
-    rgba(0, 0, 0, 0.18) 52%,
-    rgba(0, 0, 0, 0.55) 72%,
-    rgba(0, 0, 0, 0.92) 100%
-  );
+.page-continuity__process-card {
+  min-height: 100%;
 }
 
-#continuity-intro .scaling-process-stage .infosec-process {
-  position: relative;
-  z-index: 1;
-  border-top: none;
-  background: transparent;
+@media (min-width: 700px) {
+  #continuity-intro .about-dce__block > .page-continuity__process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-#continuity-intro .scaling-process-stage .infosec-process__item {
-  max-width: min(46rem, 100%);
-}
-
-#continuity-intro .scaling-process-stage .infosec-process__num {
-  background: var(--bg-elevated);
+@media (min-width: 1080px) {
+  #continuity-intro .about-dce__block > .page-continuity__process {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .page-continuity__exp-block {
