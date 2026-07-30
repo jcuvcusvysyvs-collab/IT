@@ -21000,12 +21000,24 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
+  margin: 0;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   background: color-mix(in srgb, #050a12 55%, transparent);
   color: #fff;
   cursor: pointer;
+  line-height: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.page-asdu__lightbox-close svg {
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 /* Крестик по правому краю фото, а не за стрелкой «вперёд» */
@@ -22838,12 +22850,24 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
+  margin: 0;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   background: color-mix(in srgb, #050a12 55%, transparent);
   color: #fff;
   cursor: pointer;
+  line-height: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.page-about__cert-lightbox-close svg {
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .page-about__cert-lightbox-close:hover {
