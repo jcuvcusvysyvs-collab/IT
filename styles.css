@@ -18499,6 +18499,12 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
   box-shadow: none;
   overflow: hidden;
   min-height: 0;
+  touch-action: pan-y;
+}
+
+.page-infra__standards-block,
+.infra-std-banner {
+  touch-action: pan-y;
 }
 
 /* Right-side blueprint grid — fades out toward the text */

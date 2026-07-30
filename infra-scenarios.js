@@ -136,56 +136,77 @@
     if (prev) prev.addEventListener("click", () => step(-1));
     if (next) next.addEventListener("click", () => step(1));
 
-    const stage = root.querySelector(".infra-scenarios__stage");
-    if (stage) {
+    /* Свайп по всему виджету; баннер стандартов рядом — тоже (он вне stage) */
+    const block = root.closest(".about-dce__block");
+    const standards =
+      (block && block.querySelector(".page-infra__standards-block")) ||
+      (block && block.querySelector(".infra-std-banner"));
+    const swipeSurfaces = [root, standards].filter(Boolean);
+
+    const isInsideHorizontalScroller = (target, boundary) => {
+      let node = target;
+      while (node && node !== boundary) {
+        if (node.nodeType === 1) {
+          const style = window.getComputedStyle(node);
+          const ox = style.overflowX;
+          if (
+            (ox === "auto" || ox === "scroll" || ox === "overlay") &&
+            node.scrollWidth > node.clientWidth + 2
+          ) {
+            return true;
+          }
+        }
+        node = node.parentElement;
+      }
+      return false;
+    };
+
+    const bindSwipe = (surface) => {
       let touchX = null;
+      let touchY = null;
       let ignoreSwipe = false;
 
-      const isInsideHorizontalScroller = (target) => {
-        let node = target;
-        while (node && node !== stage) {
-          if (node.nodeType === 1) {
-            const style = window.getComputedStyle(node);
-            const ox = style.overflowX;
-            if (
-              (ox === "auto" || ox === "scroll" || ox === "overlay") &&
-              node.scrollWidth > node.clientWidth + 2
-            ) {
-              return true;
-            }
-          }
-          node = node.parentElement;
-        }
-        return false;
-      };
-
-      stage.addEventListener(
+      surface.addEventListener(
         "touchstart",
         (event) => {
           if (!mobileMq.matches) return;
-          /* Не переключать вкладки, если жест по горизонтальному каруселю внутри панели */
-          ignoreSwipe = isInsideHorizontalScroller(event.target);
-          touchX = ignoreSwipe ? null : event.changedTouches[0].clientX;
+          /* Не переключать вкладки, если жест по горизонтальному скроллу (полоса табов) */
+          ignoreSwipe = isInsideHorizontalScroller(event.target, surface);
+          if (ignoreSwipe) {
+            touchX = null;
+            touchY = null;
+            return;
+          }
+          const t = event.changedTouches[0];
+          touchX = t.clientX;
+          touchY = t.clientY;
         },
         { passive: true }
       );
-      stage.addEventListener(
+      surface.addEventListener(
         "touchend",
         (event) => {
           if (!mobileMq.matches || touchX === null || ignoreSwipe) {
             touchX = null;
+            touchY = null;
             ignoreSwipe = false;
             return;
           }
-          const dx = event.changedTouches[0].clientX - touchX;
+          const t = event.changedTouches[0];
+          const dx = t.clientX - touchX;
+          const dy = t.clientY - touchY;
           touchX = null;
+          touchY = null;
           ignoreSwipe = false;
-          if (Math.abs(dx) < 56) return;
+          /* Вертикальный скролл страницы не считаем свайпом вкладок */
+          if (Math.abs(dx) < 56 || Math.abs(dx) < Math.abs(dy) * 1.15) return;
           step(dx < 0 ? 1 : -1);
         },
         { passive: true }
       );
-    }
+    };
+
+    swipeSurfaces.forEach(bindSwipe);
 
     const initial = Math.max(0, activeIndex());
     setProgressByIndex(initial);
