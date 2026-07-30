@@ -20946,20 +20946,24 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 }
 
 .page-asdu__lightbox-caption {
+  display: flex;
+  align-items: center;
   margin: 0;
   width: 100%;
-  padding-right: 2.5rem;
+  min-height: 2.25rem;
+  padding-right: 2.75rem;
   text-align: left;
   font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 700;
+  line-height: 1.25;
   color: #fff;
   box-sizing: border-box;
 }
 
 .page-asdu__lightbox-dialog:has(.page-asdu__lightbox-nav:not([hidden])) .page-asdu__lightbox-caption {
   padding-left: calc(2.25rem + 0.75rem);
-  padding-right: calc(2.25rem + 0.75rem + 2.5rem);
+  padding-right: calc(2.25rem + 0.75rem + 2.75rem);
 }
 
 .page-asdu__lightbox-stage {
@@ -20992,7 +20996,7 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 
 .page-asdu__lightbox-close {
   position: absolute;
-  top: -0.15rem;
+  top: 0;
   right: 0;
   z-index: 3;
   display: inline-flex;
@@ -21012,17 +21016,37 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   appearance: none;
 }
 
+/* Крест из двух полос — оптически ровно в круге */
 .page-asdu__lightbox-close svg {
-  display: block;
-  width: 0.95rem;
-  height: 0.95rem;
-  flex-shrink: 0;
-  overflow: visible;
+  display: none;
 }
 
-/* Крестик по правому краю фото, а не за стрелкой «вперёд» */
-.page-asdu__lightbox-dialog:has(.page-asdu__lightbox-nav:not([hidden])) .page-asdu__lightbox-close {
-  right: calc(2.25rem + 0.75rem);
+.page-asdu__lightbox-close::before,
+.page-asdu__lightbox-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.9rem;
+  height: 1.5px;
+  margin: 0;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.page-asdu__lightbox-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.page-asdu__lightbox-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Десктоп: крестик по правому краю фото, не над стрелкой «вперёд» */
+@media (min-width: 721px) {
+  .page-asdu__lightbox-dialog:has(.page-asdu__lightbox-nav:not([hidden])) .page-asdu__lightbox-close {
+    right: calc(2.25rem + 0.75rem);
+  }
 }
 
 .page-asdu__lightbox-close:hover {
@@ -21105,9 +21129,23 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 }
 
 @media (max-width: 720px) {
+  .page-asdu__lightbox {
+    padding: max(0.75rem, env(safe-area-inset-top, 0px))
+      max(0.75rem, env(safe-area-inset-right, 0px))
+      max(0.75rem, env(safe-area-inset-bottom, 0px))
+      max(0.75rem, env(safe-area-inset-left, 0px));
+  }
+
   .page-asdu__lightbox-dialog:has(.page-asdu__lightbox-nav:not([hidden])) .page-asdu__lightbox-caption {
     padding-left: 0;
-    padding-right: 2.5rem;
+    padding-right: 2.75rem;
+  }
+
+  /* На мобилке стрелки снизу — крестик строго по правому краю фото/диалога */
+  .page-asdu__lightbox-dialog:has(.page-asdu__lightbox-nav:not([hidden])) .page-asdu__lightbox-close,
+  .page-asdu__lightbox-close {
+    top: 0;
+    right: 0;
   }
 
   .page-asdu__lightbox-stage {
