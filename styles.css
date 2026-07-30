@@ -18185,7 +18185,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
     padding-top: max(
       var(--hero-header-clearance),
       calc(
-        var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px) + clamp(1.75rem, 4.5vh, 2.75rem)
+        var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px) + clamp(2.75rem, 6vh, 3.75rem)
       )
     );
   }
@@ -18215,11 +18215,12 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
   .page-infra .projects-hero--yandex.subpage-hero  {
     --hero-subnav-overlap: 4.75rem;
-    --projects-hero-pad-top: clamp(0.35rem, 1.2vh, 0.75rem);
+    --projects-hero-pad-top: clamp(1.15rem, 3vh, 1.75rem);
     --projects-hero-pad-bottom: calc(
       var(--hero-subnav-overlap) + clamp(1.15rem, 3.5vw, 1.75rem)
     );
     justify-content: flex-start;
+    padding-top: var(--projects-hero-pad-top);
   }
 
   .page-huawei .projects-hero--yandex.subpage-hero {
@@ -18231,9 +18232,9 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
   .page-infra .projects-hero--yandex .subpage-hero__title,
   .page-infra .projects-hero--yandex .projects-hero__title  {
-    /* Длинные слова вроде «Инфраструктурные» должны умещаться в ширину экрана */
-    font-size: clamp(1.8rem, 7.6vw, 2.25rem);
-    letter-spacing: 0.002em;
+    /* Крупный hero, но «Инфраструктурные» ещё умещается в ширину */
+    font-size: clamp(2.2rem, 9.6vw, 2.75rem);
+    letter-spacing: 0.006em;
     max-width: 100%;
   }
 
