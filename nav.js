@@ -158,8 +158,8 @@
     if (!open && closeAllSubmenusRef) {
       if (menu && menu.classList.contains("nav-menu--drill")) {
         menu.classList.remove("nav-menu--drill");
-        menu.querySelectorAll(".nav-item-drill.is-open").forEach(function (drillItem) {
-          drillItem.classList.remove("is-open");
+        menu.querySelectorAll(".nav-item-drill.is-open, .nav-item-drill.is-closing").forEach(function (drillItem) {
+          drillItem.classList.remove("is-open", "is-closing", "is-closing-out");
           var drillTrigger = drillItem.querySelector(".nav-submenu-trigger");
           if (drillTrigger) {
             drillTrigger.setAttribute("aria-expanded", "false");
@@ -306,6 +306,7 @@
       }
 
       if (!menu.classList.contains("nav-menu--drill") || !item.classList.contains("is-open")) {
+        item.classList.remove("is-closing", "is-closing-out");
         closeSubmenu(item);
         if (callback) callback();
         return;
@@ -313,16 +314,42 @@
 
       if (drillClosing) return;
       drillClosing = true;
-      menu.classList.remove("nav-menu--drill");
 
-      waitForDrillTransition(item, function () {
-        var trigger = item.querySelector(".nav-submenu-trigger");
-        item.classList.remove("is-open");
-        if (trigger) {
-          trigger.setAttribute("aria-expanded", "false");
-        }
+      var trigger = item.querySelector(".nav-submenu-trigger");
+      var submenu = item.querySelector(".nav-submenu");
+
+      /*
+        Сначала фиксируем оверлей (is-closing) и восстанавливаем корневой список под ним,
+        затем уезжаем панелью. Так высота пунктов не меняется «на глазах» — без вертикального дёрганья.
+      */
+      item.classList.add("is-closing");
+      item.classList.remove("is-closing-out");
+      if (submenu) {
+        void submenu.offsetWidth;
+      }
+
+      menu.classList.remove("nav-menu--drill");
+      item.classList.remove("is-open");
+      if (trigger) {
+        trigger.setAttribute("aria-expanded", "false");
+      }
+
+      function finishClose() {
+        item.classList.remove("is-closing", "is-closing-out");
         drillClosing = false;
         if (callback) callback();
+      }
+
+      if (drillMotionQuery.matches || !submenu) {
+        finishClose();
+        return;
+      }
+
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          item.classList.add("is-closing-out");
+          waitForDrillTransition(item, finishClose);
+        });
       });
     }
 
@@ -515,6 +542,7 @@
     function startDrill(item) {
       if (!menu || !item) return;
 
+      item.classList.remove("is-closing", "is-closing-out");
       ensureDrillBack(item);
 
       submenuItems.forEach(function (other) {

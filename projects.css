@@ -283,7 +283,71 @@ html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--ab
   color: #fff;
 }
 
-/* ——— Липкая лента на странице «Проекты» (как HUAWEI, без красного акцента) ——— */
+/* ——— Липкая лента на странице «Проекты» (как на «О компании») ——— */
+
+/*
+  Как на «О компании»: лента не принудительно тёмная поверх hero.
+  Цвет полностью следует теме пользователя (светлая / тёмная).
+*/
+html:not([data-theme="dark"]) .page-projects .page-section-subnav {
+  --subnav-link: color-mix(in srgb, var(--text) 68%, transparent);
+  --subnav-link-hover: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav::before {
+  background: color-mix(in srgb, var(--bg) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(15, 18, 24, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav.is-stuck::before {
+  background: color-mix(in srgb, var(--bg) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(15, 18, 24, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__brand {
+  color: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__toggle {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
+  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav.page-section-subnav--menu-open::before {
+  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 6px 24px rgba(15, 18, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+html:not([data-theme="dark"]) .page-projects .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel {
+  background: var(--bg-elevated);
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  box-shadow:
+    0 20px 48px rgba(15, 18, 24, 0.11),
+    0 8px 22px rgba(15, 18, 24, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+@media (max-width: 900px) {
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item {
+    color: color-mix(in srgb, var(--text) 72%, transparent);
+  }
+
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+    color: var(--text);
+  }
+}
 
 .page-projects .page-section-subnav .projects-hero-switcher {
   width: auto;
@@ -302,6 +366,7 @@ html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--ab
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.2;
+  text-decoration: none;
 }
 
 .page-projects .page-section-subnav__brand-icon {
@@ -367,6 +432,7 @@ html:not([data-theme="dark"]) .page-projects .page-section-subnav__toggle:focus-
     font-weight: 500;
     line-height: 1.35;
     text-align: center;
+    text-decoration: none;
   }
 
   .page-projects .page-section-subnav__brand-icon {
@@ -388,9 +454,85 @@ html:not([data-theme="dark"]) .page-projects .page-section-subnav__toggle:focus-
   }
 
   html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
     color: var(--text);
     background: transparent;
+  }
+}
+
+/* 2K: projects.css грузится после styles.css и иначе перебивает размеры ленты */
+@media (min-width: 2048px) {
+  .page-projects .page-section-subnav {
+    padding:
+      clamp(0.95rem, 1.35vw, 1.2rem)
+      0
+      clamp(1rem, 1.45vw, 1.3rem);
+  }
+
+  .page-projects .page-section-subnav__inner--huawei {
+    min-height: 3.65rem;
+    column-gap: clamp(1.15rem, 2.2vw, 2.35rem);
+  }
+
+  .page-projects .page-section-subnav__brand {
+    gap: 0.85rem;
+  }
+
+  .page-projects .page-section-subnav__brand-text {
+    font-size: 1.05rem;
+  }
+
+  .page-projects .page-section-subnav__brand-icon img {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .page-projects .page-section-subnav .projects-hero-switcher__track {
+    gap: clamp(1.25rem, 2.2vw, 2.35rem);
+  }
+
+  .page-projects .page-section-subnav .projects-hero-switcher__item {
+    font-size: 0.975rem;
+    padding: 0.3rem 0;
+  }
+
+  .page-projects .page-section-subnav__btn {
+    min-height: 2.45rem;
+    padding: 0.6rem 1.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.13em;
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 2300px) {
+  .page-projects .page-section-subnav {
+    padding:
+      clamp(1.05rem, 1.4vw, 1.3rem)
+      0
+      clamp(1.1rem, 1.5vw, 1.4rem);
+  }
+
+  .page-projects .page-section-subnav__inner--huawei {
+    min-height: 3.9rem;
+  }
+
+  .page-projects .page-section-subnav__brand-text {
+    font-size: 1.1rem;
+  }
+
+  .page-projects .page-section-subnav__brand-icon img {
+    width: 3.05rem;
+    height: 3.05rem;
+  }
+
+  .page-projects .page-section-subnav .projects-hero-switcher__item {
+    font-size: 1.025rem;
+  }
+
+  .page-projects .page-section-subnav__btn {
+    min-height: 2.6rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.8125rem;
   }
 }
