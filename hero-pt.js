@@ -283,7 +283,7 @@
   function pickHeroVideoSrc() {
     return desktopMq.matches
       ? "video/data-center-hero.mp4"
-      : "video/data-center-hero-mobile.mp4?v=20260818-m1080";
+      : "video/data-center-hero-mobile.mp4?v=20260818-m720p";
   }
 
   function isVideoFullyBuffered(video) {
@@ -317,7 +317,7 @@
 
   function hasEnoughHeroBuffer(video) {
     if (isVideoFullyBuffered(video) || video.readyState >= 4) return true;
-    var need = desktopMq.matches ? 0.9 : 1.6;
+    var need = desktopMq.matches ? 0.9 : 0.7;
     return video.readyState >= 3 && bufferedLead(video) >= need;
   }
 

@@ -2436,12 +2436,15 @@ body.nav-mega-open .nav-mega-backdrop {
 
   .hero-pt__bg--dce {
     background-position: 72% 22%;
-    transform: scale(1.18);
+    transform: scale(1.06);
     transform-origin: 70% 28%;
-    filter: brightness(0.72) saturate(0.92);
+    filter: brightness(0.78) saturate(0.96);
   }
 
-  .hero-pt__bg--dce .hero-pt__video,
+  .hero-pt__bg--dce .hero-pt__video {
+    object-position: 50% 32%;
+  }
+
   .hero-pt__bg--dce .hero-pt__poster {
     object-position: 72% 22%;
   }
