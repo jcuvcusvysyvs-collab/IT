@@ -3,7 +3,7 @@
  * Brand palette; lazy-init; respects prefers-reduced-motion.
  */
 (() => {
-  const FRAME_MS = 1000 / 24;
+  const FRAME_MS = 1000 / 30;
 
   const VERT = `#version 300 es
 in vec2 aPos;
@@ -70,10 +70,13 @@ float snoise(vec3 v) {
 void main() {
   vec2 uv = gl_FragCoord.xy / max(uResolution, vec2(1.0));
   float aspect = uResolution.x / max(uResolution.y, 1.0);
-  uv = (uv - 0.5) * vec2(aspect, 1.0) + 0.5;
-  float n = abs(snoise(vec3(uv * uFrequency, uTime * uSpeed)));
-  float soft = smoothstep(0.02, 0.92, n);
-  fragColor = vec4(vec3(soft), 1.0);
+  vec2 p = (uv - 0.5) * vec2(aspect, 1.0) + 0.5;
+  float t = uTime * uSpeed;
+  float n1 = snoise(vec3(p.x * uFrequency * 1.85, p.y * uFrequency * 0.72, t));
+  float n2 = snoise(vec3(p.x * uFrequency * 0.55 + 2.1, p.y * uFrequency * 0.4 - 1.3, t * 0.65 + 4.0));
+  float field = 0.52 + 0.34 * n1 + 0.22 * n2;
+  field = clamp(field, 0.0, 1.0);
+  fragColor = vec4(vec3(field), 1.0);
 }`;
 
   const DOT_FRAG = `#version 300 es
@@ -94,14 +97,14 @@ void main() {
   vec2 cellCenter = (cellIdx + 0.5) * cell;
   vec3 col = texture(uTexture, cellCenter / uResolution.xy).rgb;
   float gray = 0.3 * col.r + 0.59 * col.g + 0.11 * col.b;
-  gray = pow(clamp(gray, 0.0001, 1.0), uGamma);
+  gray = pow(clamp(gray, 0.0, 1.0), uGamma);
 
   vec2 cellUV = fract(pix / cell) - 0.5;
   float dist = length(cellUV);
-  float radius = clamp(gray + uPaletteBias, 0.0, 1.0) * 0.42;
+  float radius = mix(0.07, 0.48, clamp(gray + uPaletteBias, 0.0, 1.0));
   float aa = fwidth(dist) + 1e-4;
   float mark = 1.0 - smoothstep(radius - aa, radius + aa, dist);
-  float alpha = mark * uDotAlpha * (0.35 + 0.65 * gray);
+  float alpha = mark * uDotAlpha;
   fragColor = vec4(uDotColor * alpha, alpha);
 }`;
 
@@ -133,13 +136,13 @@ void main() {
   function themeConfig() {
     const dark = document.documentElement.getAttribute("data-theme") === "dark";
     return {
-      frequency: 1.6,
-      speed: 0.22,
-      cellSize: 18,
-      gamma: 2.4,
-      paletteBias: 0.12,
-      color: dark ? "#7eb4e0" : "#1a4a7c",
-      alpha: dark ? 0.85 : 0.9,
+      frequency: 2.15,
+      speed: 0.95,
+      cellSize: 16,
+      gamma: 1.05,
+      paletteBias: 0.02,
+      color: dark ? "#3d74c4" : "#3a6ea8",
+      alpha: dark ? 1 : 0.58,
     };
   }
 
