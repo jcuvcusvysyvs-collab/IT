@@ -23918,6 +23918,7 @@ html[data-theme="dark"] .page-loader {
 html:has(body.page-404) {
   height: 100%;
   overflow: hidden;
+  scrollbar-gutter: auto;
   background: #000;
 }
 
@@ -23934,6 +23935,8 @@ html:has(body.page-404) {
 .page-404-stage {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100dvh;
   overflow: hidden;
   box-sizing: border-box;
   text-align: center;
@@ -23958,7 +23961,7 @@ html:has(body.page-404) {
   transform: translate(-50%, -50%) translateZ(0);
   transform-style: preserve-3d;
   font-family: "Anton", Arial, sans-serif;
-  font-size: 74vw;
+  font-size: 80vw;
   font-weight: 400;
   line-height: 0.8;
   letter-spacing: 0;
@@ -24034,7 +24037,7 @@ html:has(body.page-404) {
 
 @media (min-width: 640px) {
   .page-404__code {
-    font-size: 77vw;
+    font-size: 84vw;
   }
 }
 
@@ -24058,7 +24061,7 @@ html:has(body.page-404) {
 .page-404__foot {
   margin: 0;
   font-size: clamp(0.875rem, 1.22rem, 1.375rem);
-  line-height: 0.9;
+  line-height: 1.15;
   letter-spacing: 0.02em;
 }
 
@@ -24071,11 +24074,12 @@ html:has(body.page-404) {
 
 .page-404__sorry {
   font-size: clamp(1rem, 1.67rem, 1.875rem);
-  line-height: 0.9;
+  line-height: 1.15;
 }
 
 .page-404__sorry span {
-  display: inline;
+  display: block;
+  margin-top: 0.18em;
 }
 
 .page-404__back {
