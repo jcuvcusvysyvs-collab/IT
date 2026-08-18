@@ -57,8 +57,14 @@
   var dismissed = false;
   var startedAt = Date.now();
   var pageReady = document.readyState !== "loading";
+  var videoReady = true;
   var MIN_MS = reduced && !force ? 420 : firstVisit ? 2280 : 1140;
   var FADE_MS = reduced && !force ? 280 : firstVisit ? 640 : 380;
+  var VIDEO_WAIT_MS = 8000;
+
+  if (firstVisit && !reduced) {
+    videoReady = false;
+  }
 
   var MARKUP =
     '<span class="visually-hidden">Загрузка DC Engineering</span>' +
@@ -130,6 +136,7 @@
   function tryDismiss() {
     if (dismissed) return;
     if (!pageReady) return;
+    if (!videoReady) return;
     var elapsed = Date.now() - startedAt;
     if (elapsed < MIN_MS) {
       window.setTimeout(tryDismiss, MIN_MS - elapsed);
@@ -138,9 +145,25 @@
     dismiss();
   }
 
+  function markVideoReady() {
+    if (videoReady) return;
+    videoReady = true;
+    tryDismiss();
+  }
+
   function onReady() {
     pageReady = true;
     tryDismiss();
+  }
+
+  if (!videoReady) {
+    document.addEventListener("dce-hero-video-ready", markVideoReady, { once: true });
+    if (window.__dceHeroVideoReady) markVideoReady();
+    window.setTimeout(function () {
+      if (document.querySelector("video.hero-pt__video")) return;
+      markVideoReady();
+    }, 80);
+    window.setTimeout(markVideoReady, VIDEO_WAIT_MS);
   }
 
   if (document.readyState === "loading") {

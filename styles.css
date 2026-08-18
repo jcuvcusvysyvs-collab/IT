@@ -1726,6 +1726,12 @@ body.nav-mega-open .nav-mega-backdrop {
   object-fit: cover;
   object-position: 88% 40%;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.hero-pt__video.is-ready {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1756,7 +1762,7 @@ body.nav-mega-open .nav-mega-backdrop {
 
 .hero-pt__bg--scada {
   background-image: image-set(
-    url("images/hero_03.webp") type("image/webp"),
+    url("images/hero_03.webp?v=20260818-hq") type("image/webp"),
     url("images/hero_03.png") type("image/png")
   );
   background-position: 68% 42%;
@@ -7881,7 +7887,7 @@ a.footer-contact-item__value:hover {
 .page-huawei .projects-hero-stage--photo .projects-hero__background::before {
   inset: -8% -6% -4% -6%;
   background-image: image-set(
-    url("images/service_huawei.webp") type("image/webp"),
+    url("images/service_huawei.webp?v=20260818-hq") type("image/webp"),
     url("images/service_huawei.png") type("image/png")
   );
   background-position: 72% 40%;
@@ -9474,7 +9480,7 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     linear-gradient(105deg, rgba(4, 8, 18, 0.93) 0%, rgba(6, 10, 22, 0.72) 42%, rgba(8, 12, 26, 0.38) 100%),
     radial-gradient(ellipse 85% 75% at 78% 45%, rgba(228, 30, 38, 0.12), transparent 52%),
     image-set(
-      url("images/service_huawei.webp") type("image/webp"),
+      url("images/service_huawei.webp?v=20260818-hq") type("image/webp"),
       url("images/service_huawei.png") type("image/png")
     );
   background-size: cover, cover, cover;
@@ -16448,7 +16454,7 @@ a.page-projects__item-client:hover {
     linear-gradient(108deg, rgba(4, 8, 18, 0.90) 0%, rgba(5, 9, 20, 0.68) 40%, rgba(7, 11, 22, 0.38) 100%),
     radial-gradient(ellipse 68% 58% at 72% 50%, rgba(26, 74, 124, 0.18), transparent 56%),
     image-set(
-      url("images/SERVICE_04.webp") type("image/webp"),
+      url("images/SERVICE_04.webp?v=20260818-hq") type("image/webp"),
       url("images/SERVICE_04.png") type("image/png")
     );
   background-size: cover, cover, cover;
@@ -18152,7 +18158,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
   z-index: 0;
   pointer-events: none;
   background-image: image-set(
-    url("images/SERVICE_01.webp") type("image/webp"),
+    url("images/SERVICE_01.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_01.png") type("image/png")
   );
   background-position: 68% 42%;
@@ -19303,7 +19309,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-infosec.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background-image: image-set(
-    url("images/SERVICE_02.webp") type("image/webp"),
+    url("images/SERVICE_02.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_02.png") type("image/png")
   );
   background-position: 62% 40%;
@@ -19749,7 +19755,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-scaling.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background-image: image-set(
-    url("images/SERVICE_03.webp") type("image/webp"),
+    url("images/SERVICE_03.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_03.png") type("image/png")
   );
   background-position: 68% 42%;
@@ -20076,7 +20082,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-continuity.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background-image: image-set(
-    url("images/SERVICE_04.webp") type("image/webp"),
+    url("images/SERVICE_04.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_04.png") type("image/png")
   );
   background-position: 64% 40%;
@@ -20238,7 +20244,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-ops.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background-image: image-set(
-    url("images/SERVICE_05.webp") type("image/webp"),
+    url("images/SERVICE_05.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_05.png") type("image/png")
   );
   background-position: 66% 42%;
@@ -20366,7 +20372,7 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-asdu.page-infra .projects-hero-stage--photo .projects-hero__background::before {
   background-image: image-set(
-    url("images/hero_03.webp") type("image/webp"),
+    url("images/hero_03.webp?v=20260818-hq") type("image/webp"),
     url("images/hero_03.png") type("image/png")
   );
   background-position: 62% 40%;
@@ -22335,7 +22341,7 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   position: absolute;
   inset: 0;
   background-image: image-set(
-    url("images/SERVICE_04.webp") type("image/webp"),
+    url("images/SERVICE_04.webp?v=20260818-hq") type("image/webp"),
     url("images/SERVICE_04.png") type("image/png")
   );
   background-size: cover;
