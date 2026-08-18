@@ -91,24 +91,30 @@
     );
   }
 
+  var revealToken = 0;
+
   function restartReveal() {
+    var token = ++revealToken;
     slides.forEach(function (slide) {
       slide.classList.remove("is-revealing");
     });
 
-    var activeSlide = slides[idx];
-    if (!activeSlide) return;
+    whenHeroVisible(function () {
+      if (token !== revealToken) return;
+      var activeSlide = slides[idx];
+      if (!activeSlide) return;
 
-    void activeSlide.offsetWidth;
+      void activeSlide.offsetWidth;
 
-    window.requestAnimationFrame(function () {
-      activeSlide.classList.add("is-revealing");
-      scheduleStatCount(activeSlide);
+      window.requestAnimationFrame(function () {
+        if (token !== revealToken) return;
+        activeSlide.classList.add("is-revealing");
+        scheduleStatCount(activeSlide);
+      });
     });
   }
 
   var statsToken = 0;
-  var loaderObserver = null;
 
   function setStatValue(el, n) {
     var text = String(Math.round(n));
@@ -189,23 +195,40 @@
     });
   }
 
+  function isLoaderGone() {
+    if (window.__dcePageLoaderDone) return true;
+    if (document.documentElement.classList.contains("is-loading")) return false;
+    return !document.querySelector(".page-loader");
+  }
+
   function whenHeroVisible(cb) {
-    if (!document.documentElement.classList.contains("is-loading")) {
+    var done = false;
+    var observer = null;
+
+    function run() {
+      if (done) return;
+      done = true;
+      if (observer) observer.disconnect();
       cb();
+    }
+
+    if (isLoaderGone()) {
+      run();
       return;
     }
-    if (loaderObserver) loaderObserver.disconnect();
-    loaderObserver = new MutationObserver(function () {
-      if (!document.documentElement.classList.contains("is-loading")) {
-        loaderObserver.disconnect();
-        loaderObserver = null;
-        window.setTimeout(cb, 120);
-      }
+
+    document.addEventListener("dce-page-loader-done", run, { once: true });
+    observer = new MutationObserver(function () {
+      if (isLoaderGone()) run();
     });
-    loaderObserver.observe(document.documentElement, {
+    observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
+    if (document.body) {
+      observer.observe(document.body, { childList: true });
+    }
+    window.setTimeout(run, 10000);
   }
 
   function scheduleStatCount(slide) {
@@ -639,8 +662,10 @@
 
   applyActiveState();
   restartReveal();
-  restartActiveFill();
-  scheduleAutoplay();
+  whenHeroVisible(function () {
+    restartActiveFill();
+    scheduleAutoplay();
+  });
 
   if (desktopMq.addEventListener) {
     desktopMq.addEventListener("change", function () {

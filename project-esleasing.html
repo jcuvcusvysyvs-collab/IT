@@ -20,17 +20,20 @@
       (function () {
         var r = document.documentElement;
         try {
-          var t = localStorage.getItem("dc-site-theme");
+          var mobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+          var t = localStorage.getItem(mobile ? "dc-site-theme-mobile" : "dc-site-theme");
           if (t === "dark" || (t !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
             r.setAttribute("data-theme", "dark");
+          } else {
+            r.removeAttribute("data-theme");
           }
         } catch (e) {}
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-perf-v1"></script>
-    <script defer src="theme.js"></script>
+    <script defer src="page-loader.js?v=20260818-theme-v1"></script>
+    <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-project-case page-project-esleasing">
     <a class="skip-link" href="#main">К основному содержимому</a>

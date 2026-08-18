@@ -1846,6 +1846,15 @@ body.nav-mega-open .nav-mega-backdrop {
   }
 }
 
+/* Пока лоадер на экране, текст hero скрыт — анимация стартует только с is-revealing. */
+.hero-pt__slide:not(.is-revealing) .hero-pt__eyebrow,
+.hero-pt__slide:not(.is-revealing) .hero-pt__title > *,
+.hero-pt__slide:not(.is-revealing) .hero-pt__lead,
+.hero-pt__slide:not(.is-revealing) .hero-pt__stats,
+.hero-pt__slide:not(.is-revealing) .hero-pt__ctas {
+  opacity: 0;
+}
+
 /* Подъезд контента — играем при каждой смене активного слайда (класс is-revealing ставится JS-ом).
    Заголовок «подается» построчно: каждая прямая группа в .hero-pt__title едет отдельно. */
 .hero-pt__slide.is-revealing .hero-pt__eyebrow {
@@ -2775,6 +2784,11 @@ body.nav-mega-open .nav-mega-backdrop {
     transform: none;
   }
 
+  .hero-pt__slide:not(.is-revealing) .hero-pt__eyebrow,
+  .hero-pt__slide:not(.is-revealing) .hero-pt__title > *,
+  .hero-pt__slide:not(.is-revealing) .hero-pt__lead,
+  .hero-pt__slide:not(.is-revealing) .hero-pt__stats,
+  .hero-pt__slide:not(.is-revealing) .hero-pt__ctas,
   .hero-pt__slide.is-revealing .hero-pt__eyebrow,
   .hero-pt__slide.is-revealing .hero-pt__title > *,
   .hero-pt__slide.is-revealing .hero-pt__lead,
@@ -9815,7 +9829,14 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 /* Подъём контента hero внутренней страницы — та же логика, что у .hero-pt__slide.is-revealing на главной */
 .page-huawei .subpage-hero:not(.is-revealing) .subpage-hero__title > *,
 .page-huawei .subpage-hero:not(.is-revealing) .subpage-hero__lead,
-.page-huawei .subpage-hero:not(.is-revealing) .projects-hero-actions {
+.page-huawei .subpage-hero:not(.is-revealing) .projects-hero-actions,
+.subpage-hero:not(.is-revealing) .subpage-breadcrumbs,
+.subpage-hero:not(.is-revealing) .case-hero__eyebrow,
+.subpage-hero:not(.is-revealing) .subpage-hero__title > *,
+.subpage-hero:not(.is-revealing) .case-hero__facts,
+.subpage-hero:not(.is-revealing) .subpage-hero__lead,
+.subpage-hero:not(.is-revealing) .subpage-hero__actions,
+.subpage-hero:not(.is-revealing) .projects-hero-actions {
   opacity: 0;
 }
 
@@ -9859,7 +9880,14 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 @media (prefers-reduced-motion: reduce) {
   .page-huawei .subpage-hero:not(.is-revealing) .subpage-hero__title > *,
   .page-huawei .subpage-hero:not(.is-revealing) .subpage-hero__lead,
-  .page-huawei .subpage-hero:not(.is-revealing) .projects-hero-actions {
+  .page-huawei .subpage-hero:not(.is-revealing) .projects-hero-actions,
+  .subpage-hero:not(.is-revealing) .subpage-breadcrumbs,
+  .subpage-hero:not(.is-revealing) .case-hero__eyebrow,
+  .subpage-hero:not(.is-revealing) .subpage-hero__title > *,
+  .subpage-hero:not(.is-revealing) .case-hero__facts,
+  .subpage-hero:not(.is-revealing) .subpage-hero__lead,
+  .subpage-hero:not(.is-revealing) .subpage-hero__actions,
+  .subpage-hero:not(.is-revealing) .projects-hero-actions {
     opacity: 1;
   }
 

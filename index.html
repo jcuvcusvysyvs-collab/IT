@@ -10,23 +10,26 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260818-hero-hq-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260818-hero-reveal-v1" />
     <link rel="preload" href="images/hero_section/01_hero_section.webp" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
         var r = document.documentElement;
         try {
-          var t = localStorage.getItem("dc-site-theme");
+          var mobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+          var t = localStorage.getItem(mobile ? "dc-site-theme-mobile" : "dc-site-theme");
           if (t === "dark" || (t !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
             r.setAttribute("data-theme", "dark");
+          } else {
+            r.removeAttribute("data-theme");
           }
         } catch (e) {}
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-hero-video-v3"></script>
-    <script defer src="theme.js"></script>
+    <script defer src="page-loader.js?v=20260818-theme-v1"></script>
+    <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-home">
     <a class="skip-link" href="#main">К основному содержимому</a>
@@ -1088,7 +1091,7 @@
       </div>
     </footer>
 
-    <script defer src="hero-pt.js?v=20260818-hero-video-v3"></script>
+    <script defer src="hero-pt.js?v=20260818-hero-reveal-v1"></script>
     <script defer src="projects-showcase.js?v=20260713-projects-25s"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
