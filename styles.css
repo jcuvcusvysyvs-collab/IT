@@ -23904,3 +23904,190 @@ html[data-theme="dark"] .page-loader {
     filter: none;
   }
 }
+
+/* ——— Страница 404 ——— */
+.page-404 {
+  min-height: 100dvh;
+  background: #000;
+  color: #f4f4f4;
+}
+
+.page-404 .theme-switch {
+  display: none;
+}
+
+.page-404-stage {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 100dvh;
+  padding: calc(var(--hero-header-clearance) + 0.25rem) var(--layout-gutter) 2.5rem;
+  box-sizing: border-box;
+}
+
+.page-404-stage::before {
+  content: "";
+  position: absolute;
+  top: var(--hero-header-clearance);
+  left: var(--layout-gutter);
+  right: var(--layout-gutter);
+  height: 1px;
+  background: #1a1a1a;
+}
+
+.page-404-stage__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
+  max-width: min(96vw, var(--layout-max));
+  margin: 0 auto;
+  min-height: 0;
+}
+
+.page-404__intro {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  padding-top: clamp(1.5rem, 4vh, 2.75rem);
+}
+
+.page-404__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 clamp(1.15rem, 2.4vh, 1.75rem);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+.page-404__status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #ff5722;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.18);
+}
+
+.page-404__title {
+  margin: 0;
+  font-family: "Onest", var(--font-sans);
+  font-size: clamp(2.05rem, 4.4vw, 3.65rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: #f7f7f7;
+}
+
+.page-404__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: clamp(1.35rem, 3vh, 2rem);
+  padding: 0.78rem 1.15rem 0.78rem 1.2rem;
+  border-radius: 4px;
+  background: #fff;
+  color: #111;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.page-404__cta:hover {
+  background: #ebebeb;
+}
+
+.page-404__cta:focus-visible {
+  outline: 2px solid #ff5722;
+  outline-offset: 3px;
+}
+
+.page-404__cta:hover .page-404__cta-arrow {
+  transform: translateX(3px);
+}
+
+.page-404__cta-arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.page-404__matrix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: clamp(1.5rem, 6vh, 4rem);
+}
+
+.page-404__matrix img {
+  display: block;
+  width: min(100%, 72rem);
+  height: auto;
+}
+
+.page-404-stage:not(.is-revealing) .page-404__status,
+.page-404-stage:not(.is-revealing) .page-404__title,
+.page-404-stage:not(.is-revealing) .page-404__cta,
+.page-404-stage:not(.is-revealing) .page-404__matrix {
+  opacity: 0;
+}
+
+.page-404-stage.is-revealing .page-404__status {
+  animation: hero-pt-fade-up 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-404-stage.is-revealing .page-404__title {
+  animation: hero-pt-fade-up 0.8s 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-404-stage.is-revealing .page-404__cta {
+  animation: hero-pt-fade-up 0.75s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-404-stage.is-revealing .page-404__matrix {
+  animation: hero-pt-fade-up 0.95s 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (max-width: 720px) {
+  .page-404-stage {
+    padding-bottom: 2.25rem;
+  }
+
+  .page-404__intro {
+    max-width: 100%;
+  }
+
+  .page-404__title {
+    font-size: clamp(1.85rem, 8.4vw, 2.45rem);
+  }
+
+  .page-404__matrix {
+    margin-top: 2.25rem;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-404-stage:not(.is-revealing) .page-404__status,
+  .page-404-stage:not(.is-revealing) .page-404__title,
+  .page-404-stage:not(.is-revealing) .page-404__cta,
+  .page-404-stage:not(.is-revealing) .page-404__matrix,
+  .page-404-stage.is-revealing .page-404__status,
+  .page-404-stage.is-revealing .page-404__title,
+  .page-404-stage.is-revealing .page-404__cta,
+  .page-404-stage.is-revealing .page-404__matrix {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -5,6 +5,7 @@
   var html = document.documentElement;
 
   function applyThemeEarly() {
+    if (html.getAttribute("data-404-lock-theme") === "1") return;
     try {
       var mobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
       var stored = localStorage.getItem(mobile ? "dc-site-theme-mobile" : THEME_KEY);
