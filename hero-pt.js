@@ -235,17 +235,39 @@
     });
   }
 
+  function saveDataOrSlowNet() {
+    try {
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (!conn) return false;
+      if (conn.saveData) return true;
+      var type = conn.effectiveType;
+      return type === "slow-2g" || type === "2g";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function pickHeroVideoSrc() {
+    return desktopMq.matches ? "video/data-center-hero.mp4" : "video/data-center-hero-mobile.mp4";
+  }
+
   function syncSlideMedia() {
     slides.forEach(function (slide, i) {
       var video = slide.querySelector("video.hero-pt__video");
       if (!video) return;
-      if (i === idx && !reduceMotion && !document.hidden) {
-        if (video.paused) {
+      var skip = reduceMotion || saveDataOrSlowNet() || document.hidden;
+      if (i === idx && !skip) {
+        whenHeroVisible(function () {
+          if (idx !== i || document.hidden || reduceMotion || saveDataOrSlowNet()) return;
+          if (video.getAttribute("data-src-ready") !== "1") {
+            video.src = pickHeroVideoSrc();
+            video.setAttribute("data-src-ready", "1");
+          }
           var playPromise = video.play();
           if (playPromise && playPromise.catch) {
             playPromise.catch(function () { /* autoplay blocked */ });
           }
-        }
+        });
       } else if (!video.paused) {
         video.pause();
       }

@@ -11,12 +11,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260818-loader-v7" />
+    <link rel="stylesheet" href="styles.css?v=20260818-perf-v1" />
     <link rel="preload" href="images/service_huawei.png" as="image" fetchpriority="high" />
-    <script src="page-loader.js?v=20260818-loader-v7"></script>
+    <script>
+      (function () {
+        var r = document.documentElement;
+        try {
+          var t = localStorage.getItem("dc-site-theme");
+          if (t === "dark" || (t !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            r.setAttribute("data-theme", "dark");
+          }
+        } catch (e) {}
+        r.classList.add("is-loading");
+        r.setAttribute("aria-busy", "true");
+      })();
+    </script>
+    <script defer src="page-loader.js?v=20260818-perf-v1"></script>
     <script defer src="theme.js"></script>
   </head>
   <body class="page-huawei">
@@ -322,6 +335,8 @@
             <div class="subpage-feature-grid subpage-feature-grid--huawei" role="list">
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_01.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_01.png"
@@ -331,6 +346,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -341,6 +357,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_02.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_02.png"
@@ -350,6 +368,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -360,6 +379,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_03.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_03.png"
@@ -369,6 +390,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -379,6 +401,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_04.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_04.png"
@@ -388,6 +412,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -398,6 +423,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_05.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_05.png"
@@ -407,6 +434,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -417,6 +445,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_06.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_06.png"
@@ -426,6 +456,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -436,6 +467,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_07.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_07.png"
@@ -445,6 +478,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">
@@ -455,6 +489,8 @@
             </article>
             <article class="subpage-feature-card" role="listitem">
               <div class="subpage-feature-card__visual">
+                <picture>
+                <source srcset="images/Huawei_08.webp" type="image/webp" />
                 <img
                   class="subpage-feature-card__img"
                   src="images/Huawei_08.png"
@@ -464,6 +500,7 @@
                   loading="lazy"
                   decoding="async"
                 />
+              </picture>
               </div>
               <div class="subpage-feature-card__body">
                 <p class="subpage-feature-card__caption">

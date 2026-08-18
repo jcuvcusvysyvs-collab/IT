@@ -1685,7 +1685,6 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .hero-pt__bg--dce {
-  background-image: url("images/hero_section/01_hero_section.png");
   background-position: 88% 40%;
   transform: scale(1.08);
   transform-origin: 82% 42%;
@@ -1693,9 +1692,35 @@ body.nav-mega-open .nav-mega-backdrop {
   overflow: hidden;
 }
 
+.hero-pt__bg picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.hero-pt__poster {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 88% 40%;
+  pointer-events: none;
+}
+
+.hero-pt__bg--huawei .hero-pt__poster {
+  object-position: 72% 40%;
+}
+
+.hero-pt__bg--scada .hero-pt__poster {
+  object-position: 68% 42%;
+}
+
 .hero-pt__video {
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1716,11 +1741,11 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .hero-pt__bg--huawei {
-  background-image: url("images/service_huawei.png");
   background-position: 72% 40%;
   transform: scale(1.06);
   transform-origin: 70% 42%;
   filter: brightness(1) saturate(1);
+  overflow: hidden;
 }
 
 .hero-pt__slide--huawei::after {
@@ -1730,7 +1755,10 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .hero-pt__bg--scada {
-  background-image: url("images/hero_03.png");
+  background-image: image-set(
+    url("images/hero_03.webp") type("image/webp"),
+    url("images/hero_03.png") type("image/png")
+  );
   background-position: 68% 42%;
   transform: scale(1.06);
   transform-origin: 66% 44%;
@@ -2398,7 +2426,8 @@ body.nav-mega-open .nav-mega-backdrop {
     filter: brightness(0.72) saturate(0.92);
   }
 
-  .hero-pt__bg--dce .hero-pt__video {
+  .hero-pt__bg--dce .hero-pt__video,
+  .hero-pt__bg--dce .hero-pt__poster {
     object-position: 72% 22%;
   }
 
@@ -7851,7 +7880,13 @@ a.footer-contact-item__value:hover {
 
 .page-huawei .projects-hero-stage--photo .projects-hero__background::before {
   inset: -8% -6% -4% -6%;
-  background: url("images/service_huawei.png") 72% 40% / cover no-repeat;
+  background-image: image-set(
+    url("images/service_huawei.webp") type("image/webp"),
+    url("images/service_huawei.png") type("image/png")
+  );
+  background-position: 72% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: brightness(0.88) saturate(0.92);
   transform: scale(1.06);
   transform-origin: 70% 42%;
@@ -9438,7 +9473,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   background-image:
     linear-gradient(105deg, rgba(4, 8, 18, 0.93) 0%, rgba(6, 10, 22, 0.72) 42%, rgba(8, 12, 26, 0.38) 100%),
     radial-gradient(ellipse 85% 75% at 78% 45%, rgba(228, 30, 38, 0.12), transparent 52%),
-    url("images/service_huawei.png");
+    image-set(
+      url("images/service_huawei.webp") type("image/webp"),
+      url("images/service_huawei.png") type("image/png")
+    );
   background-size: cover, cover, cover;
   background-position: 0 0, 0 0, 58% center;
   background-repeat: no-repeat;
@@ -14199,7 +14237,10 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
       rgba(255, 255, 255, 0.24) 34%,
       transparent 68%
     ),
-    url("images/OKO.png");
+    image-set(
+      url("images/OKO.webp") type("image/webp"),
+      url("images/OKO.png") type("image/png")
+    );
 }
 
 html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--hero-photo .about-dce__card-kicker {
@@ -14268,7 +14309,10 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
       rgba(2, 4, 10, 0.32) 34%,
       transparent 68%
     ),
-    url("images/OKO.png");
+    image-set(
+      url("images/OKO.webp") type("image/webp"),
+      url("images/OKO.png") type("image/png")
+    );
 }
 
 [data-theme="dark"] .page-projects .about-dce__card.about-dce__card--hero-photo .about-dce__card-kicker {
@@ -16403,7 +16447,10 @@ a.page-projects__item-client:hover {
   background-image:
     linear-gradient(108deg, rgba(4, 8, 18, 0.90) 0%, rgba(5, 9, 20, 0.68) 40%, rgba(7, 11, 22, 0.38) 100%),
     radial-gradient(ellipse 68% 58% at 72% 50%, rgba(26, 74, 124, 0.18), transparent 56%),
-    url("images/SERVICE_04.png");
+    image-set(
+      url("images/SERVICE_04.webp") type("image/webp"),
+      url("images/SERVICE_04.png") type("image/png")
+    );
   background-size: cover, cover, cover;
   background-position: 0 0, 0 0, 60% center;
   background-repeat: no-repeat;
@@ -16607,7 +16654,13 @@ a.page-projects__item-client:hover {
 
 .page-projects .projects-hero-stage--photo .projects-hero__background::before {
   inset: -8% -6% -4% -6%;
-  background: url("images/Project_hero.png") center 42% / cover no-repeat;
+  background-image: image-set(
+    url("images/Project_hero.webp") type("image/webp"),
+    url("images/Project_hero.png") type("image/png")
+  );
+  background-position: center 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: brightness(0.92) saturate(0.96);
   transform: scale(1.05);
   transform-origin: 72% 44%;
@@ -18098,7 +18151,13 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
   inset: -8% -6% -4% -6%;
   z-index: 0;
   pointer-events: none;
-  background: url("images/SERVICE_01.png") 68% 42% / cover no-repeat;
+  background-image: image-set(
+    url("images/SERVICE_01.webp") type("image/webp"),
+    url("images/SERVICE_01.png") type("image/png")
+  );
+  background-position: 68% 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: brightness(0.96) saturate(1.02) contrast(1.04);
   transform: scale(1.05);
   transform-origin: 68% 42%;
@@ -19243,7 +19302,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 /* ——— Страница «Информационная безопасность» ——— */
 
 .page-infosec.page-infra .projects-hero-stage--photo .projects-hero__background::before {
-  background: url("images/SERVICE_02.png") 62% 40% / cover no-repeat;
+  background-image: image-set(
+    url("images/SERVICE_02.webp") type("image/webp"),
+    url("images/SERVICE_02.png") type("image/png")
+  );
+  background-position: 62% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform-origin: 62% 40%;
 }
 
@@ -19683,7 +19748,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 /* ——— Страница «Масштабирование без закупок» ——— */
 
 .page-scaling.page-infra .projects-hero-stage--photo .projects-hero__background::before {
-  background: url("images/SERVICE_03.png") 68% 42% / cover no-repeat;
+  background-image: image-set(
+    url("images/SERVICE_03.webp") type("image/webp"),
+    url("images/SERVICE_03.png") type("image/png")
+  );
+  background-position: 68% 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform-origin: 68% 42%;
 }
 
@@ -20004,7 +20075,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 /* ——— Страница «Обеспечение непрерывности» ——— */
 
 .page-continuity.page-infra .projects-hero-stage--photo .projects-hero__background::before {
-  background: url("images/SERVICE_04.png") 64% 40% / cover no-repeat;
+  background-image: image-set(
+    url("images/SERVICE_04.webp") type("image/webp"),
+    url("images/SERVICE_04.png") type("image/png")
+  );
+  background-position: 64% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform-origin: 64% 40%;
 }
 
@@ -20160,7 +20237,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 /* ——— Страница «Эксплуатация и сопровождение» ——— */
 
 .page-ops.page-infra .projects-hero-stage--photo .projects-hero__background::before {
-  background: url("images/SERVICE_05.png") 66% 42% / cover no-repeat;
+  background-image: image-set(
+    url("images/SERVICE_05.webp") type("image/webp"),
+    url("images/SERVICE_05.png") type("image/png")
+  );
+  background-position: 66% 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform-origin: 66% 42%;
 }
 
@@ -20282,7 +20365,13 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 }
 
 .page-asdu.page-infra .projects-hero-stage--photo .projects-hero__background::before {
-  background: url("images/hero_03.png") 62% 40% / cover no-repeat;
+  background-image: image-set(
+    url("images/hero_03.webp") type("image/webp"),
+    url("images/hero_03.png") type("image/png")
+  );
+  background-position: 62% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform-origin: 62% 40%;
 }
 
@@ -22245,7 +22334,10 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("images/SERVICE_04.png");
+  background-image: image-set(
+    url("images/SERVICE_04.webp") type("image/webp"),
+    url("images/SERVICE_04.png") type("image/png")
+  );
   background-size: cover;
   background-position: center 38%;
   opacity: 0.42;

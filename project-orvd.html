@@ -11,13 +11,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260818-loader-v7" />
+    <link rel="stylesheet" href="styles.css?v=20260818-perf-v1" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
-    <link rel="preload" href="images/hero_section/orvd_hero_section_project.png" as="image" fetchpriority="high" />
-    <script src="page-loader.js?v=20260818-loader-v7"></script>
+    <script>
+      (function () {
+        var r = document.documentElement;
+        try {
+          var t = localStorage.getItem("dc-site-theme");
+          if (t === "dark" || (t !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            r.setAttribute("data-theme", "dark");
+          }
+        } catch (e) {}
+        r.classList.add("is-loading");
+        r.setAttribute("aria-busy", "true");
+      })();
+    </script>
+    <script defer src="page-loader.js?v=20260818-perf-v1"></script>
     <script defer src="theme.js"></script>
   </head>
   <body class="page-project-case page-project-orvd">
