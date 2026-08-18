@@ -106,6 +106,23 @@
     });
   }
 
+  function syncSlideMedia() {
+    slides.forEach(function (slide, i) {
+      var video = slide.querySelector("video.hero-pt__video");
+      if (!video) return;
+      if (i === idx && !reduceMotion && !document.hidden) {
+        if (video.paused) {
+          var playPromise = video.play();
+          if (playPromise && playPromise.catch) {
+            playPromise.catch(function () { /* autoplay blocked */ });
+          }
+        }
+      } else if (!video.paused) {
+        video.pause();
+      }
+    });
+  }
+
   function applyActiveState() {
     slides.forEach(function (slide, i) {
       var isActive = i === idx;
@@ -123,6 +140,7 @@
       }
     });
     if (counterEl) counterEl.textContent = formatIndex(idx + 1);
+    syncSlideMedia();
   }
 
   function show(nextIdx) {
@@ -243,8 +261,10 @@
       if (activeAnim && activeAnim.pause) {
         try { activeAnim.pause(); } catch (e) { /* noop */ }
       }
+      syncSlideMedia();
     } else if (!manualPause) {
       scheduleRestartPlayback();
+      syncSlideMedia();
     }
   });
 

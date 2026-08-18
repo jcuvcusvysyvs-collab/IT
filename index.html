@@ -10,9 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600&family=Oswald:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260818-glass-v8" />
+    <link rel="stylesheet" href="styles.css?v=20260818-hero-video-v1" />
     <link rel="preload" href="images/hero_section/01_hero_section.png" as="image" />
     <link rel="preload" href="images/service_huawei.png" as="image" />
+    <script src="page-loader.js?v=20260818-loader-v7"></script>
     <script defer src="theme.js"></script>
   </head>
   <body class="page-home">
@@ -219,7 +220,19 @@
             aria-hidden="false"
           >
             <div class="hero-pt__accent-bar" aria-hidden="true"></div>
-            <div class="hero-pt__bg hero-pt__bg--dce" aria-hidden="true"></div>
+            <div class="hero-pt__bg hero-pt__bg--dce" aria-hidden="true">
+              <video
+                class="hero-pt__video"
+                muted
+                loop
+                playsinline
+                autoplay
+                preload="auto"
+                poster="images/hero_section/01_hero_section.png"
+              >
+                <source src="video/data-center-Q3B4L7N.mp4" type="video/mp4" />
+              </video>
+            </div>
             <div class="hero-pt__grid">
               <div class="hero-pt__content">
                 <h1 id="hero-title" class="hero-pt__title">
@@ -1027,7 +1040,7 @@
       </div>
     </footer>
 
-    <script defer src="hero-pt.js?v=20260713-hero-18s"></script>
+    <script defer src="hero-pt.js?v=20260818-hero-video-v1"></script>
     <script defer src="projects-showcase.js?v=20260713-projects-25s"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
