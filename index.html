@@ -12,6 +12,13 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260818-hero-reveal-v1" />
     <link rel="preload" href="images/hero_section/01_hero_section.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link
+      rel="preload"
+      href="video/data-center-hero-mobile.mp4?v=20260818-m1080"
+      as="video"
+      type="video/mp4"
+      media="(max-width: 720px)"
+    />
     <script>
       (function () {
         var r = document.documentElement;
@@ -28,7 +35,7 @@
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-theme-v1"></script>
+    <script defer src="page-loader.js?v=20260818-mvideo-v1"></script>
     <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-home">
@@ -248,7 +255,7 @@
                   fetchpriority="high"
                 />
               </picture>
-              <video class="hero-pt__video" muted playsinline preload="auto"></video>
+              <video class="hero-pt__video" muted playsinline webkit-playsinline preload="auto"></video>
             </div>
             <div class="hero-pt__grid">
               <div class="hero-pt__content">
@@ -1091,7 +1098,7 @@
       </div>
     </footer>
 
-    <script defer src="hero-pt.js?v=20260818-hero-reveal-v1"></script>
+    <script defer src="hero-pt.js?v=20260818-mvideo-v1"></script>
     <script defer src="projects-showcase.js?v=20260713-projects-25s"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>

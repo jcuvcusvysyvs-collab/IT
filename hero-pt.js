@@ -281,7 +281,9 @@
   }
 
   function pickHeroVideoSrc() {
-    return desktopMq.matches ? "video/data-center-hero.mp4" : "video/data-center-hero-mobile.mp4";
+    return desktopMq.matches
+      ? "video/data-center-hero.mp4"
+      : "video/data-center-hero-mobile.mp4?v=20260818-m1080";
   }
 
   function isVideoFullyBuffered(video) {
@@ -297,9 +299,35 @@
     }
   }
 
+  function bufferedLead(video) {
+    try {
+      if (!video.buffered.length) return 0;
+      var t = video.currentTime || 0;
+      var end = 0;
+      for (var i = 0; i < video.buffered.length; i++) {
+        if (video.buffered.start(i) <= t + 0.15) {
+          end = Math.max(end, video.buffered.end(i));
+        }
+      }
+      return Math.max(0, end - t);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  function hasEnoughHeroBuffer(video) {
+    if (isVideoFullyBuffered(video) || video.readyState >= 4) return true;
+    var need = desktopMq.matches ? 0.9 : 1.6;
+    return video.readyState >= 3 && bufferedLead(video) >= need;
+  }
+
   function ensureHeroVideoSrc(video) {
     if (video.getAttribute("data-src-ready") === "1") return;
     video.preload = "auto";
+    video.muted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
     video.loop = false;
     video.src = pickHeroVideoSrc();
     video.setAttribute("data-src-ready", "1");
@@ -341,6 +369,42 @@
     });
   }
 
+  function rewindHeroVideo(video) {
+    try {
+      video.pause();
+    } catch (e) {
+      /* noop */
+    }
+    try {
+      if (video.currentTime > 0.05) video.currentTime = 0;
+    } catch (e) {
+      /* noop */
+    }
+  }
+
+  function waitForHeroBuffer(video, cb) {
+    if (hasEnoughHeroBuffer(video)) {
+      cb();
+      return;
+    }
+    var settled = false;
+    var timer = window.setInterval(onReady, 200);
+    function onReady() {
+      if (settled || !hasEnoughHeroBuffer(video)) return;
+      settled = true;
+      window.clearInterval(timer);
+      video.removeEventListener("progress", onReady);
+      video.removeEventListener("canplaythrough", onReady);
+      video.removeEventListener("loadeddata", onReady);
+      video.removeEventListener("canplay", onReady);
+      cb();
+    }
+    video.addEventListener("progress", onReady);
+    video.addEventListener("canplaythrough", onReady);
+    video.addEventListener("loadeddata", onReady);
+    video.addEventListener("canplay", onReady);
+  }
+
   function playHeroVideoWhenReady(video) {
     if (reduceMotion || saveDataOrSlowNet() || document.hidden) return;
     var slide = video.closest("[data-hero-slide]");
@@ -356,30 +420,15 @@
           .then(function () {
             video.classList.add("is-ready");
           })
-          .catch(function () {});
+          .catch(function () {
+            video.classList.add("is-ready");
+          });
       } else {
         video.classList.add("is-ready");
       }
     }
 
-    if (video.readyState >= 4 || isVideoFullyBuffered(video)) {
-      tryPlay();
-      return;
-    }
-
-    var settled = false;
-    function onReady() {
-      if (settled) return;
-      settled = true;
-      video.removeEventListener("canplaythrough", onReady);
-      video.removeEventListener("progress", onProgress);
-      tryPlay();
-    }
-    function onProgress() {
-      if (isVideoFullyBuffered(video) || video.readyState >= 4) onReady();
-    }
-    video.addEventListener("canplaythrough", onReady);
-    video.addEventListener("progress", onProgress);
+    waitForHeroBuffer(video, tryPlay);
   }
 
   function beginHeroVideoLoad() {
@@ -394,6 +443,12 @@
       hasVideo = true;
       ensureHeroVideoSrc(video);
       attachHeroVideoGuards(video);
+      var playPromise = video.play();
+      if (playPromise && playPromise.catch) playPromise.catch(function () {});
+      waitForHeroBuffer(video, function () {
+        rewindHeroVideo(video);
+        notifyHeroVideoReady();
+      });
     });
     if (!hasVideo) notifyHeroVideoReady();
   }
