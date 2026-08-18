@@ -1991,6 +1991,7 @@ body.nav-mega-open .nav-mega-backdrop {
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
+  font-variant-numeric: tabular-nums;
   line-height: 1;
   color: var(--hero-pt-white);
 }

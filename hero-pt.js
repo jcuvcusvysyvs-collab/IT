@@ -103,6 +103,135 @@
 
     window.requestAnimationFrame(function () {
       activeSlide.classList.add("is-revealing");
+      scheduleStatCount(activeSlide);
+    });
+  }
+
+  var statsToken = 0;
+  var loaderObserver = null;
+
+  function setStatValue(el, n) {
+    var text = String(Math.round(n));
+    var node = el.firstChild;
+    if (node && node.nodeType === 3) {
+      node.textContent = text;
+    } else {
+      el.insertBefore(document.createTextNode(text), el.firstChild);
+    }
+  }
+
+  function cancelStat(el) {
+    if (el._statTimer) {
+      clearTimeout(el._statTimer);
+      el._statTimer = null;
+    }
+    if (el._statRaf) {
+      cancelAnimationFrame(el._statRaf);
+      el._statRaf = null;
+    }
+  }
+
+  function finishSlideStats(slide) {
+    var els = slide.querySelectorAll(".hero-pt__stat-num[data-count]");
+    els.forEach(function (el) {
+      cancelStat(el);
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (isFinite(target)) setStatValue(el, target);
+    });
+    slide.setAttribute("data-stats-done", "true");
+    slide.removeAttribute("data-stats-started");
+  }
+
+  function easeInOutSine(t) {
+    return -(Math.cos(Math.PI * t) - 1) / 2;
+  }
+
+  function animateSlideStats(slide) {
+    var token = ++statsToken;
+    var els = slide.querySelectorAll(".hero-pt__stat-num[data-count]");
+    var pending = els.length;
+    if (!pending) {
+      slide.setAttribute("data-stats-done", "true");
+      return;
+    }
+
+    els.forEach(function (el, i) {
+      cancelStat(el);
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (!isFinite(target)) {
+        pending -= 1;
+        return;
+      }
+      setStatValue(el, 0);
+      el._statTimer = window.setTimeout(function () {
+        if (token !== statsToken) return;
+        var started = null;
+        var duration = 2200 + Math.min(target, 300) * 0.6;
+        function frame(now) {
+          if (token !== statsToken) return;
+          if (started === null) started = now;
+          var t = Math.min(1, (now - started) / duration);
+          setStatValue(el, target * easeInOutSine(t));
+          if (t < 1) {
+            el._statRaf = window.requestAnimationFrame(frame);
+          } else {
+            setStatValue(el, target);
+            el._statRaf = null;
+            pending -= 1;
+            if (pending <= 0 && slide.getAttribute("data-stats-started") === "true") {
+              slide.setAttribute("data-stats-done", "true");
+              slide.removeAttribute("data-stats-started");
+            }
+          }
+        }
+        el._statRaf = window.requestAnimationFrame(frame);
+      }, 140 * i);
+    });
+  }
+
+  function whenHeroVisible(cb) {
+    if (!document.documentElement.classList.contains("is-loading")) {
+      cb();
+      return;
+    }
+    if (loaderObserver) loaderObserver.disconnect();
+    loaderObserver = new MutationObserver(function () {
+      if (!document.documentElement.classList.contains("is-loading")) {
+        loaderObserver.disconnect();
+        loaderObserver = null;
+        window.setTimeout(cb, 120);
+      }
+    });
+    loaderObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
+  function scheduleStatCount(slide) {
+    if (reduceMotion) return;
+    if (slide.getAttribute("data-stats-done") === "true") return;
+
+    slides.forEach(function (other) {
+      if (other !== slide && other.getAttribute("data-stats-started") === "true") {
+        finishSlideStats(other);
+      }
+    });
+
+    slide.setAttribute("data-stats-started", "true");
+    var els = slide.querySelectorAll(".hero-pt__stat-num[data-count]");
+    els.forEach(function (el) {
+      cancelStat(el);
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (isFinite(target)) setStatValue(el, 0);
+    });
+    whenHeroVisible(function () {
+      if (!slide.classList.contains("is-active")) {
+        finishSlideStats(slide);
+        return;
+      }
+      if (slide.getAttribute("data-stats-done") === "true") return;
+      animateSlideStats(slide);
     });
   }
 
