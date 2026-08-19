@@ -961,11 +961,13 @@
             <div class="infra-form-layout__contacts">
               <div class="infra-form-layout__contact">
                 <span class="infra-form-layout__contact-label">Телефон</span>
-                <a class="infra-form-layout__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+                <span class="infra-form-layout__contact-value infra-form-layout__contact-value--plain">8&nbsp;495&nbsp;108-61-56</span>
+                <a class="infra-form-layout__contact-value infra-form-layout__contact-value--link" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
               </div>
               <div class="infra-form-layout__contact">
                 <span class="infra-form-layout__contact-label">Email</span>
-                <a class="infra-form-layout__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+                <span class="infra-form-layout__contact-value infra-form-layout__contact-value--plain">info@dce.su</span>
+                <a class="infra-form-layout__contact-value infra-form-layout__contact-value--link" href="mailto:info@dce.su">info@dce.su</a>
               </div>
               <div class="infra-form-layout__contact">
                 <span class="infra-form-layout__contact-label">Адрес</span>
@@ -1007,16 +1009,79 @@
                     required
                   />
                 </label>
-                <label class="infra-form-field">
+                <label class="infra-form-field infra-form-field--phone">
                   <span class="infra-form-field__label">Телефон</span>
-                  <input
-                    class="infra-form-field__input"
-                    type="tel"
-                    name="phone"
-                    placeholder="+7 (___) ___-__-__"
-                    autocomplete="tel"
-                    inputmode="tel"
-                  />
+                  <div class="infra-phone-field" data-phone-country>
+                    <div class="infra-phone-field__country">
+                      <button
+                        type="button"
+                        class="infra-phone-field__trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Выбор страны"
+                      >
+                        <span class="infra-phone-field__flag" aria-hidden="true">
+                          <img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" />
+                        </span>
+                        <svg class="infra-phone-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <ul class="infra-phone-field__dropdown" role="listbox" hidden>
+                        <li
+                          class="infra-phone-field__option is-selected"
+                          role="option"
+                          data-country="ru"
+                          data-code="+7"
+                          data-flag="images/form/Flag1.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="true"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Россия</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="by"
+                          data-code="+375"
+                          data-flag="images/form/Flag2.svg"
+                          data-placeholder="(__) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag2.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Беларусь</span>
+                          <span class="infra-phone-field__option-code">+375</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="kz"
+                          data-code="+7"
+                          data-flag="images/form/Flag3.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag3.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Казахстан</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                      </ul>
+                      <input type="hidden" name="phone_country" value="ru" />
+                    </div>
+                    <div class="infra-phone-field__number">
+                      <span class="infra-phone-field__code" aria-hidden="true">+7</span>
+                      <input
+                        class="infra-form-field__input infra-phone-field__input"
+                        type="tel"
+                        name="phone"
+                        placeholder="(___) ___ - __ - __"
+                        autocomplete="tel"
+                        inputmode="numeric"
+                      />
+                    </div>
+                  </div>
                 </label>
                 <label class="infra-form-field">
                   <span class="infra-form-field__label">Ваш вопрос</span>
@@ -1172,6 +1237,7 @@
     <script defer src="infra-scenarios.js?v=20260731-swipe-standards"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="infra-form-video.js?v=20260819-v1"></script>
+    <script defer src="infra-phone-country.js?v=20260819-v3"></script>
     <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260801-nav-drill-v2"></script>
     <script defer src="footer-dot-matrix.js?v=20260817-halftone-v10"></script>
