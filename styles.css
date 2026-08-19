@@ -22814,16 +22814,6 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   background: var(--hc-dark, #0c1220);
 }
 
-.infra-form-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 2.5vw, 2rem);
-  max-width: calc(var(--layout-max) - (var(--layout-gutter) + var(--layout-gutter)));
-  margin: 0 auto;
-  align-items: stretch;
-}
-
-/* ═══════════════════════════════════════════
    Infra — форма обратной связи (split layout)
    ═══════════════════════════════════════════ */
 .page-infra .page-infra__form-section {
@@ -22834,6 +22824,7 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 .infra-form-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: "media form";
   max-width: calc(var(--layout-max) - (var(--layout-gutter) + var(--layout-gutter)));
   margin: 0 auto;
   border-radius: 20px;
@@ -22850,10 +22841,12 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 
 /* ── Медиа (видео hero): левая часть ── */
 .infra-form-layout__photo {
+  grid-area: media;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background: #050a14;
+  min-height: 0;
 }
 
 .infra-form-layout__media {
@@ -22906,37 +22899,44 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   z-index: 1;
 }
 
-/* Мягкий стекломорфизм под текстом */
-.infra-form-layout__photo-content::before {
+/* Текст поверх видео (десктоп) / в начале формы (мобила) */
+.infra-form-layout__intro {
+  grid-area: media;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: stretch;
+  min-height: 0;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.infra-form-layout__intro a {
+  pointer-events: auto;
+}
+
+.infra-form-layout__intro::before {
   content: "";
   position: absolute;
   inset: 0;
   top: auto;
-  height: 60%;
+  height: 62%;
   background: linear-gradient(
     to top,
-    rgba(6, 14, 50, 0.28) 0%,
-    rgba(6, 14, 50, 0.12) 50%,
+    rgba(6, 14, 50, 0.32) 0%,
+    rgba(6, 14, 50, 0.14) 50%,
     transparent 100%
   );
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  mask-image: linear-gradient(to top, black 0%, black 25%, rgba(0,0,0,0.5) 55%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 0%, black 25%, rgba(0,0,0,0.5) 55%, transparent 100%);
+  mask-image: linear-gradient(to top, black 0%, black 28%, rgba(0, 0, 0, 0.45) 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 28%, rgba(0, 0, 0, 0.45) 58%, transparent 100%);
   border-radius: 0 0 12px 12px;
   z-index: -1;
   pointer-events: none;
-}
-
-.infra-form-layout__photo-content {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(1.75rem, 3vw, 2.5rem);
-  isolation: isolate;
 }
 
 .infra-form-layout__eyebrow {
@@ -23015,13 +23015,15 @@ a.infra-form-layout__contact-value:hover {
   color: rgba(255,255,255,0.65);
 }
 
-/* ── Форма: правая часть (без карточки) ── */
+/* ── Форма: правая часть ── */
 .infra-form-layout__form {
+  grid-area: form;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: clamp(1.5rem, 3vw, 2.5rem);
   background: var(--bg-elevated);
+  min-width: 0;
 }
 
 .infra-form-layout__form .huawei-request-form {
@@ -23128,29 +23130,232 @@ a.infra-form-layout__contact-value:hover {
 }
 
 
-/* ── Адаптив ── */
+/* ── Адаптив: мобила — видео фон, текст сверху, форма карточкой ── */
 @media (max-width: 900px) {
+  .page-infra .page-infra__form-section {
+    padding: clamp(2rem, 5vw, 3rem) var(--layout-gutter);
+  }
+
   .infra-form-layout {
     grid-template-columns: 1fr;
-    min-height: auto;
+    grid-template-areas:
+      "intro"
+      "form";
+    position: relative;
+    min-height: min(92vh, 920px);
+    padding: 0;
+    gap: 0;
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #050a14;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      0 24px 56px rgba(0, 0, 0, 0.22);
   }
+
+  /* Видео — на весь блок */
   .infra-form-layout__photo {
-    min-height: 360px;
+    position: absolute;
+    inset: 0;
+    grid-area: unset;
+    border-radius: 0;
+    min-height: 100%;
   }
-  .infra-form-layout__form {
-    padding-top: 0;
+
+  .infra-form-layout__photo-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(4, 10, 35, 0.94) 0%,
+      rgba(4, 10, 35, 0.82) 18%,
+      rgba(4, 10, 35, 0.52) 42%,
+      rgba(4, 10, 35, 0.38) 68%,
+      rgba(4, 10, 35, 0.72) 100%
+    );
   }
+
+  .infra-form-layout__poster,
+  .infra-form-layout__video {
+    object-position: 68% 38%;
+  }
+
+  /* Текст — в начале, затемнение сверху */
+  .infra-form-layout__intro {
+    grid-area: intro;
+    position: relative;
+    z-index: 2;
+    justify-content: flex-start;
+    padding: clamp(1.75rem, 5vw, 2.25rem) clamp(1.25rem, 4vw, 1.75rem) clamp(1.25rem, 4vw, 1.5rem);
+    pointer-events: auto;
+  }
+
+  .infra-form-layout__intro::before {
+    inset: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(4, 10, 35, 0.78) 0%,
+      rgba(4, 10, 35, 0.55) 35%,
+      rgba(4, 10, 35, 0.18) 70%,
+      transparent 100%
+    );
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0, 0, 0, 0.35) 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0, 0, 0, 0.35) 82%, transparent 100%);
+    border-radius: 0;
+  }
+
+  .infra-form-layout__title {
+    font-size: clamp(2.6rem, 10vw, 3.5rem);
+  }
+
+  .infra-form-layout__lead {
+    margin-bottom: 1.15rem;
+    max-width: none;
+  }
+
   .infra-form-layout__contacts {
     grid-template-columns: 1fr 1fr;
+    padding-top: 1rem;
+    gap: 0.85rem 1rem;
+  }
+
+  .infra-form-layout__contacts .infra-form-layout__contact:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Форма — эффект матового стекла поверх видео */
+  .infra-form-layout__form {
+    position: relative;
+    z-index: 2;
+    grid-area: form;
+    margin-top: auto;
+    padding: clamp(1.35rem, 4vw, 1.75rem) clamp(1.15rem, 4vw, 1.5rem) clamp(1.5rem, 4.5vw, 2rem);
+    isolation: isolate;
+    background: linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.28) 48%,
+      rgba(255, 255, 255, 0.34) 100%
+    );
+    backdrop-filter: blur(28px) saturate(1.65);
+    -webkit-backdrop-filter: blur(28px) saturate(1.65);
+    border-top: 1px solid rgba(255, 255, 255, 0.72);
+    border-left: 1px solid rgba(255, 255, 255, 0.28);
+    border-right: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 20px 20px 0 0;
+    box-shadow:
+      0 -12px 40px rgba(0, 0, 0, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .infra-form-layout__form::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.38) 0%,
+      rgba(255, 255, 255, 0.06) 38%,
+      transparent 72%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  [data-theme="dark"] .infra-form-layout__form {
+    background: linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.06) 48%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.22);
+    border-left-color: rgba(255, 255, 255, 0.1);
+    border-right-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 -12px 40px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  [data-theme="dark"] .infra-form-layout__form::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      transparent 72%
+    );
+  }
+
+  .infra-form-layout__form .infra-form-field__label {
+    color: color-mix(in srgb, var(--text) 88%, #fff 12%);
+  }
+
+  .infra-form-layout__form .infra-form-field__input {
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .infra-form-layout__form .infra-form-field__input:focus {
+    background: rgba(255, 255, 255, 0.48);
+    border-color: color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, 0.7));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+
+  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.18);
+  }
+
+  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input:focus {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .page-infra .page-infra__form-section .infra-form-layout__form .huawei-request-form__consent-text {
+    color: color-mix(in srgb, var(--text) 72%, transparent);
+  }
+
+  .page-infra .page-infra__form-section .infra-form-layout__form .huawei-request-form__consent-box {
+    background: rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  [data-theme="dark"] .page-infra .page-infra__form-section .infra-form-layout__form .huawei-request-form__consent-box {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .infra-form-layout__form .huawei-request-form {
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 600px) {
-  .infra-form-layout__photo {
-    min-height: 280px;
-  }
   .infra-form-layout__contacts {
     grid-template-columns: 1fr;
+  }
+
+  .infra-form-layout__contacts .infra-form-layout__contact:last-child {
+    grid-column: auto;
   }
 }
 

@@ -927,7 +927,7 @@
         <!-- Общий контейнер-карточка -->
         <div class="infra-form-layout" data-feature-reveal>
 
-          <!-- Видео из hero главной — внутри своего блока -->
+          <!-- Видео из hero главной — фон -->
           <div class="infra-form-layout__photo">
             <div class="infra-form-layout__media" aria-hidden="true">
               <picture>
@@ -951,28 +951,30 @@
               ></video>
             </div>
             <div class="infra-form-layout__photo-overlay"></div>
-            <div class="infra-form-layout__photo-content">
-              <p class="infra-form-layout__eyebrow">Обратная связь</p>
-              <h2 class="infra-form-layout__title" id="infra-form-heading">Остались<br>вопросы?</h2>
-              <p class="infra-form-layout__lead">Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.</p>
-              <div class="infra-form-layout__contacts">
-                <div class="infra-form-layout__contact">
-                  <span class="infra-form-layout__contact-label">Телефон</span>
-                  <a class="infra-form-layout__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
-                </div>
-                <div class="infra-form-layout__contact">
-                  <span class="infra-form-layout__contact-label">Email</span>
-                  <a class="infra-form-layout__contact-value" href="mailto:info@dce.su">info@dce.su</a>
-                </div>
-                <div class="infra-form-layout__contact">
-                  <span class="infra-form-layout__contact-label">Адрес</span>
-                  <span class="infra-form-layout__contact-value">125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, д.&nbsp;2/12</span>
-                </div>
+          </div>
+
+          <!-- Текст: на десктопе поверх видео, на мобиле — в начале формы -->
+          <div class="infra-form-layout__intro">
+            <p class="infra-form-layout__eyebrow">Обратная связь</p>
+            <h2 class="infra-form-layout__title" id="infra-form-heading">Остались<br>вопросы?</h2>
+            <p class="infra-form-layout__lead">Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.</p>
+            <div class="infra-form-layout__contacts">
+              <div class="infra-form-layout__contact">
+                <span class="infra-form-layout__contact-label">Телефон</span>
+                <a class="infra-form-layout__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
+              </div>
+              <div class="infra-form-layout__contact">
+                <span class="infra-form-layout__contact-label">Email</span>
+                <a class="infra-form-layout__contact-value" href="mailto:info@dce.su">info@dce.su</a>
+              </div>
+              <div class="infra-form-layout__contact">
+                <span class="infra-form-layout__contact-label">Адрес</span>
+                <span class="infra-form-layout__contact-value">125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, д.&nbsp;2/12</span>
               </div>
             </div>
           </div>
 
-          <!-- Форма — без своего контейнера, прямо в общем -->
+          <!-- Форма -->
           <div class="infra-form-layout__form">
             <form
               class="huawei-request-form"
