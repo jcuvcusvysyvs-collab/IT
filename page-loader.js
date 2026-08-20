@@ -62,9 +62,10 @@
   var startedAt = Date.now();
   var pageReady = document.readyState !== "loading";
   var videoReady = !!(reduced && !force);
-  var MIN_MS = reduced && !force ? 420 : firstVisit ? 2280 : 1140;
-  var FADE_MS = reduced && !force ? 280 : firstVisit ? 640 : 380;
-  var VIDEO_WAIT_MS = 10000;
+  /* Video-first: short brand beat, unlock as soon as hero video is primed */
+  var MIN_MS = reduced && !force ? 420 : firstVisit ? 1100 : 720;
+  var FADE_MS = reduced && !force ? 280 : firstVisit ? 420 : 320;
+  var VIDEO_WAIT_MS = 4500;
 
   var MARKUP =
     '<span class="visually-hidden">Загрузка DC Engineering</span>' +

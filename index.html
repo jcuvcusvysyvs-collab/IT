@@ -7,17 +7,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Onest:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260819-blue2-v1" />
-    <link rel="preload" href="images/hero_section/01_hero_section.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link rel="stylesheet" href="styles.css?v=20260820-vf1" />
     <link
       rel="preload"
       href="video/data-center-hero-mobile.mp4?v=20260818-m720p"
       as="video"
       type="video/mp4"
       media="(max-width: 720px)"
+    />
+    <link
+      rel="preload"
+      href="video/data-center-hero.mp4"
+      as="video"
+      type="video/mp4"
+      media="(min-width: 721px)"
     />
     <script>
       (function () {
@@ -35,7 +53,7 @@
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-m720p"></script>
+    <script defer src="page-loader.js?v=20260820-vf1"></script>
     <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-home">
@@ -252,7 +270,8 @@
                   width="1920"
                   height="1080"
                   decoding="async"
-                  fetchpriority="high"
+                  loading="lazy"
+                  fetchpriority="low"
                 />
               </picture>
               <video class="hero-pt__video" muted playsinline webkit-playsinline preload="auto"></video>
@@ -859,7 +878,7 @@
                       alt=""
                       width="320"
                       height="200"
-                      fetchpriority="high"
+                      loading="lazy"
                       decoding="async"
                     />
                   </div>
@@ -1099,7 +1118,7 @@
       </div>
     </footer>
 
-    <script defer src="hero-pt.js?v=20260820-huawei-v2"></script>
+    <script defer src="hero-pt.js?v=20260820-vf1"></script>
     <script defer src="projects-showcase.js?v=20260713-projects-25s"></script>
     <script defer src="services-carousel.js?v=20260710-services-progress"></script>
     <script defer src="clients-marquee.js?v=2"></script>
