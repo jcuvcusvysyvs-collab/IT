@@ -1707,6 +1707,7 @@ body.nav-mega-open .nav-mega-backdrop {
   object-fit: cover;
   object-position: 88% 40%;
   pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
 .hero-pt__bg--huawei .hero-pt__poster {
@@ -1736,6 +1737,10 @@ body.nav-mega-open .nav-mega-backdrop {
 
 .hero-pt__video.is-ready {
   opacity: 1;
+}
+
+.hero-pt__bg:has(.hero-pt__video.is-ready) .hero-pt__poster {
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

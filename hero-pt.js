@@ -411,6 +411,61 @@
     video.addEventListener("canplay", onReady);
   }
 
+  function paintHeroVideoFrame(video, cb) {
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      video.removeEventListener("seeked", onSeeked);
+      cb();
+    }
+    function onSeeked() {
+      finish();
+    }
+    video.addEventListener("seeked", onSeeked);
+    try {
+      var target = 0.001;
+      if (video.readyState >= 2) {
+        if (Math.abs((video.currentTime || 0) - target) < 0.0005 && video.readyState >= 2) {
+          finish();
+          return;
+        }
+        video.currentTime = target;
+        window.setTimeout(finish, 400);
+        return;
+      }
+    } catch (e) {
+      /* fall through */
+    }
+    window.setTimeout(finish, 400);
+  }
+
+  function markHeroVideoPrimed(video) {
+    video.setAttribute("data-primed", "1");
+    video.classList.add("is-ready");
+  }
+
+  function primeHeroVideo(video, cb) {
+    cb = cb || function () {};
+    if (reduceMotion || saveDataOrSlowNet()) {
+      cb();
+      return;
+    }
+    ensureHeroVideoSrc(video);
+    attachHeroVideoGuards(video);
+    waitForHeroBuffer(video, function () {
+      try {
+        video.pause();
+      } catch (e) {
+        /* noop */
+      }
+      paintHeroVideoFrame(video, function () {
+        markHeroVideoPrimed(video);
+        cb();
+      });
+    });
+  }
+
   function playHeroVideoWhenReady(video) {
     if (reduceMotion || saveDataOrSlowNet() || document.hidden) return;
     var slide = video.closest("[data-hero-slide]");
@@ -420,21 +475,37 @@
       if (document.hidden || reduceMotion || saveDataOrSlowNet()) return;
       if (slide && !slide.classList.contains("is-active")) return;
       notifyHeroVideoReady();
+      markHeroVideoPrimed(video);
       var playPromise = video.play();
-      if (playPromise && playPromise.then) {
-        playPromise
-          .then(function () {
-            video.classList.add("is-ready");
-          })
-          .catch(function () {
-            video.classList.add("is-ready");
-          });
-      } else {
-        video.classList.add("is-ready");
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function () {
+          markHeroVideoPrimed(video);
+        });
       }
     }
 
-    waitForHeroBuffer(video, tryPlay);
+    if (video.getAttribute("data-primed") === "1" && hasEnoughHeroBuffer(video)) {
+      tryPlay();
+      return;
+    }
+
+    ensureHeroVideoSrc(video);
+    attachHeroVideoGuards(video);
+    waitForHeroBuffer(video, function () {
+      paintHeroVideoFrame(video, tryPlay);
+    });
+  }
+
+  function warmSecondaryHeroVideos() {
+    if (reduceMotion || saveDataOrSlowNet()) return;
+    slides.forEach(function (slide, i) {
+      if (i === 0) return;
+      var video = slide.querySelector("video.hero-pt__video");
+      if (!video) return;
+      window.setTimeout(function () {
+        primeHeroVideo(video);
+      }, 80 + i * 120);
+    });
   }
 
   function beginHeroVideoLoad() {
@@ -459,8 +530,12 @@
     var playPromise = primary.play();
     if (playPromise && playPromise.catch) playPromise.catch(function () {});
     waitForHeroBuffer(primary, function () {
-      rewindHeroVideo(primary);
       notifyHeroVideoReady();
+      warmSecondaryHeroVideos();
+      paintHeroVideoFrame(primary, function () {
+        markHeroVideoPrimed(primary);
+        rewindHeroVideo(primary);
+      });
     });
   }
 
@@ -474,13 +549,16 @@
         attachHeroVideoGuards(video);
         playHeroVideoWhenReady(video);
       } else {
-        video.classList.remove("is-ready");
         if (!video.paused) {
           try {
             video.pause();
           } catch (e) {
             /* noop */
           }
+        }
+        /* Keep primed frame visible so poster never flashes on slide switch */
+        if (video.getAttribute("data-primed") !== "1") {
+          video.classList.remove("is-ready");
         }
       }
     });
@@ -740,6 +818,7 @@
         var video = slide.querySelector("video.hero-pt__video");
         if (!video) return;
         video.removeAttribute("data-src-ready");
+        video.removeAttribute("data-primed");
         video.classList.remove("is-ready");
         try {
           video.pause();
