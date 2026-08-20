@@ -289,9 +289,9 @@ body {
   }
 
   .services-slide {
-    width: clamp(20.5rem, 17vw, 27rem);
-    min-width: clamp(20.5rem, 17vw, 27rem);
-    min-height: clamp(24rem, 24vw, 29.5rem);
+    width: clamp(23.5rem, 18.5vw, 30.5rem);
+    min-width: clamp(23.5rem, 18.5vw, 30.5rem);
+    min-height: clamp(27.5rem, 26vw, 33.5rem);
   }
 
   .project-split {
@@ -3039,7 +3039,7 @@ body.nav-mega-open .nav-mega-backdrop {
 
 .services-showcase__grid {
   display: flex;
-  gap: clamp(0.85rem, 1.6vw, 1.1rem);
+  gap: clamp(1rem, 1.9vw, 1.35rem);
   margin: 0;
   padding: 0.25rem 0.15rem;
   overflow-x: auto;
@@ -3108,14 +3108,14 @@ body.nav-mega-open .nav-mega-backdrop {
   position: relative;
   isolation: isolate;
   flex: 0 0 auto;
-  width: clamp(18rem, 30vw, 24rem);
-  min-width: clamp(18rem, 30vw, 24rem);
+  width: clamp(20.5rem, 34vw, 28rem);
+  min-width: clamp(20.5rem, 34vw, 28rem);
   display: flex;
   flex-direction: column;
-  min-height: clamp(22rem, 36vw, 27rem);
+  min-height: clamp(25.5rem, 42vw, 32rem);
   background: var(--services-slide-surface);
   border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
-  border-radius: clamp(14px, 1.6vw, 18px);
+  border-radius: clamp(18px, 2vw, 24px);
   box-shadow: none;
   overflow: hidden;
   scroll-snap-align: start;
@@ -3123,28 +3123,83 @@ body.nav-mega-open .nav-mega-backdrop {
     box-shadow 0.28s ease;
 }
 
-.services-slide:hover {
-  background: color-mix(in srgb, var(--services-slide-surface) 90%, var(--text) 10%);
-  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
-  box-shadow: none;
+/* ПК: весь блок кликабелен через растянутый cover-link */
+.services-slide__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  text-indent: -9999px;
+  overflow: hidden;
+  color: transparent;
 }
 
-[data-theme="dark"] .services-slide:hover {
-  box-shadow: none;
+@media (hover: hover) and (pointer: fine) {
+  .services-slide {
+    cursor: pointer;
+  }
+
+  .services-slide:hover {
+    background: color-mix(in srgb, var(--services-slide-surface) 90%, var(--text) 10%);
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+  }
 }
 
 @media (max-width: 720px) {
   .services-slide {
-    width: min(20rem, 84vw);
-    min-width: min(20rem, 84vw);
-    min-height: 23rem;
+    width: min(22.5rem, 88vw);
+    min-width: min(22.5rem, 88vw);
+    min-height: 26rem;
+    cursor: default;
+  }
+
+  /* Мобилка: кликабельны только фото и кнопка «Подробнее» */
+  .services-slide__cover {
+    inset: 0.7rem 0.7rem auto;
+    height: clamp(13.5rem, 26vw, 17.5rem);
+    border-radius: clamp(12px, 1.5vw, 16px);
+  }
+
+  .services-slide.is-active {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--services-slide-surface) 88%, var(--accent) 12%);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent),
+      0 14px 36px color-mix(in srgb, var(--accent) 16%, transparent);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="dark"] .services-slide.is-active {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    background: color-mix(in srgb, var(--services-slide-surface) 82%, var(--accent) 18%);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 34%, transparent),
+      0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .services-slide.is-active .services-slide__link,
+  .services-slide:has(.services-slide__cover:active) .services-slide__link,
+  .services-slide:has(.services-slide__link:active) .services-slide__link {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent);
+  }
+
+  .services-slide:has(.services-slide__cover:active),
+  .services-slide:has(.services-slide__link:active) {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    background: color-mix(in srgb, var(--services-slide-surface) 86%, var(--accent) 14%);
+    transform: scale(0.985);
   }
 }
 
 .services-slide__media-wrap {
   position: relative;
+  z-index: 0;
   flex-shrink: 0;
-  height: clamp(11rem, 22vw, 14rem);
+  height: clamp(13.5rem, 26vw, 17.5rem);
+  margin: 0.7rem 0.7rem 0;
+  border-radius: clamp(12px, 1.5vw, 16px);
   overflow: hidden;
   background: var(--services-slide-visual-bg);
 }
@@ -3200,7 +3255,7 @@ body.nav-mega-open .nav-mega-backdrop {
   aspect-ratio: unset;
   padding: 0;
   border: none;
-  border-radius: 0;
+  border-radius: inherit;
   background: transparent;
   isolation: isolate;
   overflow: hidden;
@@ -3249,17 +3304,19 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .services-slide__content {
+  position: relative;
+  z-index: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: clamp(1rem, 2.2vw, 1.25rem) clamp(1rem, 2.2vw, 1.35rem) clamp(1.15rem, 2.4vw, 1.5rem);
+  gap: 0.6rem;
+  padding: clamp(1.15rem, 2.4vw, 1.45rem) clamp(1.15rem, 2.4vw, 1.5rem) clamp(1.3rem, 2.6vw, 1.7rem);
 }
 
 .services-slide__title {
   margin: 0;
   font-family: "Onest", var(--font-sans);
-  font-size: clamp(0.95rem, 1.35vw, 1.05rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
   font-weight: 600;
   line-height: 1.28;
   letter-spacing: -0.015em;
@@ -3269,7 +3326,7 @@ body.nav-mega-open .nav-mega-backdrop {
 .services-slide__desc {
   margin: 0;
   font-family: "Onest", var(--font-sans);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.58;
   color: var(--services-slide-desc-color);
   display: -webkit-box;
@@ -3280,39 +3337,53 @@ body.nav-mega-open .nav-mega-backdrop {
 }
 
 .services-slide__link {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  box-sizing: border-box;
   margin-top: auto;
-  padding-top: 0.25rem;
+  min-height: 2.4rem;
+  padding: 0.65rem 1.15rem;
+  border: 0.5px solid color-mix(in srgb, var(--border) 55%, var(--text) 28%);
+  border-radius: 4px;
+  background: transparent;
   font-family: "Onest", var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, gap 0.2s ease;
 }
 
 .services-slide__link svg {
   flex-shrink: 0;
+  width: 12px;
+  height: 12px;
   transition: transform 0.2s ease;
 }
 
+.services-slide__link:hover,
 .services-slide:hover .services-slide__link {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
   color: var(--accent);
-  gap: 0.5rem;
+  gap: 0.65rem;
 }
 
+.services-slide__link:hover svg,
 .services-slide:hover .services-slide__link svg {
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
 .services-slide__link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
-  border-radius: 2px;
 }
 
 .hero-pt__dock--hidden {
@@ -3463,15 +3534,29 @@ html:not([data-theme="dark"]) .services-slide--huawei .services-slide__desc {
 
 .services-slide--huawei .services-slide__link {
   color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 html:not([data-theme="dark"]) .services-slide--huawei .services-slide__link {
   color: color-mix(in srgb, var(--text) 88%, transparent);
+  border-color: color-mix(in srgb, var(--border) 55%, var(--text) 28%);
+  background: transparent;
 }
 
+.services-slide--huawei .services-slide__link:hover,
 .services-slide--huawei:hover .services-slide__link {
+  color: #ffffff;
+  border-color: color-mix(in srgb, var(--huawei-card-red) 70%, rgba(255, 255, 255, 0.35));
+  background: color-mix(in srgb, var(--huawei-card-red) 16%, transparent);
+  gap: 0.65rem;
+}
+
+html:not([data-theme="dark"]) .services-slide--huawei .services-slide__link:hover,
+html:not([data-theme="dark"]) .services-slide--huawei:hover .services-slide__link {
   color: var(--huawei-card-red);
-  gap: 0.5rem;
+  border-color: color-mix(in srgb, var(--huawei-card-red) 48%, var(--border));
+  background: color-mix(in srgb, var(--huawei-card-red) 8%, transparent);
 }
 
 .services-slide--huawei .services-slide__link:focus-visible {
@@ -3628,15 +3713,29 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__desc {
 
 .services-slide--asdu .services-slide__link {
   color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   color: color-mix(in srgb, var(--text) 88%, transparent);
+  border-color: color-mix(in srgb, var(--border) 55%, var(--text) 28%);
+  background: transparent;
 }
 
+.services-slide--asdu .services-slide__link:hover,
 .services-slide--asdu:hover .services-slide__link {
+  color: #ffffff;
+  border-color: color-mix(in srgb, var(--asdu-card-blue) 70%, rgba(255, 255, 255, 0.35));
+  background: color-mix(in srgb, var(--asdu-card-blue) 16%, transparent);
+  gap: 0.65rem;
+}
+
+html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link:hover,
+html:not([data-theme="dark"]) .services-slide--asdu:hover .services-slide__link {
   color: var(--asdu-card-blue);
-  gap: 0.5rem;
+  border-color: color-mix(in srgb, var(--asdu-card-blue) 48%, var(--border));
+  background: color-mix(in srgb, var(--asdu-card-blue) 8%, transparent);
 }
 
 .services-slide--asdu .services-slide__link:focus-visible {
@@ -3662,6 +3761,12 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
 
   .services-slide__link svg {
     transition: none;
+  }
+
+  .services-slide.is-active,
+  .services-slide:has(.services-slide__cover:active),
+  .services-slide:has(.services-slide__link:active) {
+    transform: none;
   }
 }
 

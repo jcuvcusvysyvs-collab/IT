@@ -8,6 +8,8 @@
   var progressFill = progress && progress.querySelector(".services-showcase__divider-fill");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var scrollRaf = null;
+  var activeRaf = null;
+  var slides = Array.prototype.slice.call(strip.querySelectorAll(".services-slide"));
 
   function slideStep() {
     var slide = strip.querySelector(".services-slide");
@@ -40,6 +42,35 @@
     if (progressFill) progressFill.style.transform = "scaleX(" + value + ")";
   }
 
+  function updateActiveSlide() {
+    if (!slides.length) return;
+    var stripRect = strip.getBoundingClientRect();
+    var target = stripRect.left + Math.min(24, stripRect.width * 0.08);
+    var best = null;
+    var bestDist = Infinity;
+
+    for (var i = 0; i < slides.length; i++) {
+      var rect = slides[i].getBoundingClientRect();
+      var dist = Math.abs(rect.left - target);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = slides[i];
+      }
+    }
+
+    for (var j = 0; j < slides.length; j++) {
+      slides[j].classList.toggle("is-active", slides[j] === best);
+    }
+  }
+
+  function scheduleActiveSlide() {
+    if (activeRaf !== null) return;
+    activeRaf = window.requestAnimationFrame(function () {
+      activeRaf = null;
+      updateActiveSlide();
+    });
+  }
+
   function updateState() {
     var max = strip.scrollWidth - strip.clientWidth;
     var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, strip.scrollLeft / max));
@@ -51,6 +82,7 @@
     var atEnd = max <= 0 || strip.scrollLeft >= max - 1;
     if (prev) prev.disabled = atStart;
     if (next) next.disabled = atEnd;
+    scheduleActiveSlide();
   }
 
   function scheduleUpdateState() {
