@@ -4792,10 +4792,6 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   animation-duration: 34s;
 }
 
-.clients-showcase__marquee:hover .clients-showcase__track {
-  animation-play-state: paused;
-}
-
 .clients-showcase__logo {
   position: relative;
   display: flex;
@@ -4807,11 +4803,9 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   border-right: 0.5px solid var(--hc-border);
   background: var(--hc-dark);
   cursor: default;
-  transition: background 0.25s ease;
-}
-
-.clients-showcase__logo:hover {
-  background: var(--hc-logo-hover-bg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .clients-showcase__logo-inner {
@@ -4828,11 +4822,6 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   line-height: 1;
   color: var(--hc-logo-name);
   white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-.clients-showcase__logo:hover .clients-showcase__logo-name {
-  color: var(--hc-logo-name-hover);
 }
 
 .clients-showcase__logo-sub {
@@ -4843,28 +4832,6 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   line-height: 1;
   color: var(--hc-logo-sub);
   white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-.clients-showcase__logo:hover .clients-showcase__logo-sub {
-  color: var(--hc-hover-sub);
-}
-
-.clients-showcase__logo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: var(--hc-hover-line);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.clients-showcase__logo:hover::after {
-  transform: scaleX(1);
 }
 
 .clients-showcase__logo-divider {
@@ -4883,6 +4850,19 @@ html:not([data-theme="dark"]) .services-slide--asdu .services-slide__link {
   height: 3px;
   border-radius: 50%;
   background: var(--hc-divider-dot);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .clients-showcase__logo,
+  .clients-showcase__logo-divider {
+    pointer-events: none;
+  }
+
+  .clients-showcase__track,
+  .clients-showcase__marquee:hover .clients-showcase__track,
+  .clients-showcase__marquee:active .clients-showcase__track {
+    animation-play-state: running !important;
+  }
 }
 
 @keyframes clients-showcase-go-left {
