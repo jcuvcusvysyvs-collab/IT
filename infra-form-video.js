@@ -7,8 +7,14 @@
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   var desktopMq = window.matchMedia("(min-width: 768px)");
+  var kind = video.getAttribute("data-form-video") || "infra";
 
   function pickSrc() {
+    if (kind === "huawei") {
+      return desktopMq.matches
+        ? "video/huawei-hero.mp4?v=20260820-v1"
+        : "video/huawei-hero-mobile.mp4?v=20260820-v1";
+    }
     return desktopMq.matches
       ? "video/data-center-hero.mp4"
       : "video/data-center-hero-mobile.mp4?v=20260818-m720p";

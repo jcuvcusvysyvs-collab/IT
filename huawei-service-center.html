@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260819-blue2-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260820-huawei-form-v1" />
     <link rel="preload" href="images/service_huawei.webp?v=20260818-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -744,35 +744,45 @@
         </div>
 
         <div class="huawei-clients__form-wrap" id="huawei-feedback">
-          <div class="huawei-feedback">
-            <div class="huawei-feedback__intro">
-              <p class="huawei-feedback__eyebrow">Обратная связь</p>
-              <h2 class="huawei-feedback__title" id="huawei-feedback-heading">
-                <span class="huawei-feedback__title-line">Задайте</span>
-                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">нам вопрос</span>
-              </h2>
-              <p class="huawei-feedback__lead">
-                Ответим в течение одного рабочего дня. Для срочных вопросов — звоните напрямую.
-              </p>
-              <div class="huawei-feedback__contacts">
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Телефон</span>
-                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">+7 (495) 108-61-56</a>
-                </div>
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Email</span>
-                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.ru">info@dce.ru</a>
-                </div>
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Адрес</span>
-                  <span class="huawei-feedback__contact-value"
-                    >г. Москва, 3‑я ул. Ямского Поля, дом 2, корпус 12, офис № 314</span
-                  >
-                </div>
+          <div class="infra-form-layout" data-feature-reveal>
+
+            <div class="infra-form-layout__photo">
+              <div class="infra-form-layout__media" aria-hidden="true">
+                <picture>
+                  <source srcset="images/service_huawei.webp?v=20260818-hq" type="image/webp" />
+                  <img
+                    class="infra-form-layout__poster"
+                    src="images/service_huawei.png"
+                    alt=""
+                    width="2752"
+                    height="1536"
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </picture>
+                <video
+                  class="infra-form-layout__video"
+                  data-form-video="huawei"
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  preload="auto"
+                ></video>
               </div>
+              <div class="infra-form-layout__photo-overlay"></div>
             </div>
 
-            <div class="huawei-feedback__panel">
+            <div class="infra-form-layout__intro">
+              <p class="infra-form-layout__eyebrow">Обратная связь</p>
+              <h2 class="infra-form-layout__title" id="huawei-feedback-heading">
+                Задайте<br /><span class="infra-form-layout__title-accent">нам вопрос</span>
+              </h2>
+              <p class="infra-form-layout__lead">
+                Ответим в течение одного рабочего дня. Оставьте заявку&nbsp;— инженер сервисного центра свяжется с&nbsp;вами.
+              </p>
+            </div>
+
+            <div class="infra-form-layout__form">
               <form
                 class="huawei-request-form"
                 id="huawei-request-form"
@@ -847,60 +857,142 @@
                   </div>
                 </fieldset>
 
-                <div class="huawei-request-form__fields">
-              <input
-                class="huawei-request-form__input"
-                type="text"
-                name="name"
-                placeholder="Имя Фамилия"
-                autocomplete="name"
-                aria-label="Имя Фамилия"
-                required
-              />
-              <input
-                class="huawei-request-form__input"
-                type="email"
-                name="email"
-                placeholder="Почта"
-                autocomplete="email"
-                aria-label="Почта"
-                required
-              />
-              <input
-                class="huawei-request-form__input"
-                type="text"
-                name="inn"
-                placeholder="ИНН"
-                inputmode="numeric"
-                pattern="[0-9]{10}|[0-9]{12}"
-                maxlength="12"
-                aria-label="ИНН"
-              />
-              <textarea
-                class="huawei-request-form__input huawei-request-form__input--area"
-                id="huawei-request-message"
-                name="message"
-                placeholder="Ваш вопрос"
-                rows="4"
-                aria-label="Ваш вопрос"
-                required
-              ></textarea>
-            </div>
+                <div class="infra-form-fields">
+                  <label class="infra-form-field">
+                    <span class="infra-form-field__label">Имя Фамилия</span>
+                    <input
+                      class="infra-form-field__input"
+                      type="text"
+                      name="name"
+                      placeholder="Иван Иванов"
+                      autocomplete="name"
+                      required
+                    />
+                  </label>
+                  <label class="infra-form-field">
+                    <span class="infra-form-field__label">Почта</span>
+                    <input
+                      class="infra-form-field__input"
+                      type="email"
+                      name="email"
+                      placeholder="mail@company.ru"
+                      autocomplete="email"
+                      required
+                    />
+                  </label>
+                  <label class="infra-form-field infra-form-field--phone">
+                    <span class="infra-form-field__label">Телефон</span>
+                    <div class="infra-phone-field" data-phone-country>
+                      <div class="infra-phone-field__country">
+                        <button
+                          type="button"
+                          class="infra-phone-field__trigger"
+                          aria-haspopup="listbox"
+                          aria-expanded="false"
+                          aria-label="Выбор страны"
+                        >
+                          <span class="infra-phone-field__flag" aria-hidden="true">
+                            <img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" />
+                          </span>
+                          <svg class="infra-phone-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                        <ul class="infra-phone-field__dropdown" role="listbox" hidden>
+                          <li
+                            class="infra-phone-field__option is-selected"
+                            role="option"
+                            data-country="ru"
+                            data-code="+7"
+                            data-flag="images/form/Flag1.svg"
+                            data-placeholder="(___) ___ - __ - __"
+                            aria-selected="true"
+                          >
+                            <span class="infra-phone-field__option-flag"><img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" /></span>
+                            <span class="infra-phone-field__option-name">Россия</span>
+                            <span class="infra-phone-field__option-code">+7</span>
+                          </li>
+                          <li
+                            class="infra-phone-field__option"
+                            role="option"
+                            data-country="by"
+                            data-code="+375"
+                            data-flag="images/form/Flag2.svg"
+                            data-placeholder="(__) ___ - __ - __"
+                            aria-selected="false"
+                          >
+                            <span class="infra-phone-field__option-flag"><img src="images/form/Flag2.svg" alt="" width="36" height="24" decoding="async" /></span>
+                            <span class="infra-phone-field__option-name">Беларусь</span>
+                            <span class="infra-phone-field__option-code">+375</span>
+                          </li>
+                          <li
+                            class="infra-phone-field__option"
+                            role="option"
+                            data-country="kz"
+                            data-code="+7"
+                            data-flag="images/form/Flag3.svg"
+                            data-placeholder="(___) ___ - __ - __"
+                            aria-selected="false"
+                          >
+                            <span class="infra-phone-field__option-flag"><img src="images/form/Flag3.svg" alt="" width="36" height="24" decoding="async" /></span>
+                            <span class="infra-phone-field__option-name">Казахстан</span>
+                            <span class="infra-phone-field__option-code">+7</span>
+                          </li>
+                        </ul>
+                        <input type="hidden" name="phone_country" value="ru" />
+                      </div>
+                      <div class="infra-phone-field__number">
+                        <span class="infra-phone-field__code" aria-hidden="true">+7</span>
+                        <input
+                          class="infra-form-field__input infra-phone-field__input"
+                          type="tel"
+                          name="phone"
+                          placeholder="(___) ___ - __ - __"
+                          autocomplete="tel"
+                          inputmode="numeric"
+                        />
+                      </div>
+                    </div>
+                  </label>
+                  <label class="infra-form-field">
+                    <span class="infra-form-field__label">ИНН</span>
+                    <input
+                      class="infra-form-field__input"
+                      type="text"
+                      name="inn"
+                      placeholder="10 или 12 цифр"
+                      inputmode="numeric"
+                      pattern="[0-9]{10}|[0-9]{12}"
+                      maxlength="12"
+                    />
+                  </label>
+                  <label class="infra-form-field">
+                    <span class="infra-form-field__label">Комментарий</span>
+                    <textarea
+                      class="infra-form-field__input infra-form-field__input--area"
+                      id="huawei-request-message"
+                      name="message"
+                      placeholder="Комментарий (необязательно)"
+                      rows="3"
+                      aria-label="Комментарий"
+                    ></textarea>
+                  </label>
+                </div>
 
-            <label class="huawei-request-form__consent">
-              <input
-                class="huawei-request-form__checkbox"
-                type="checkbox"
-                name="consent"
-                value="yes"
-                required
-              />
-              <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
-              <span class="huawei-request-form__consent-text">
-                Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
-                мою заявку.
-              </span>
-            </label>
+                <label class="huawei-request-form__consent">
+                  <input
+                    class="huawei-request-form__checkbox"
+                    type="checkbox"
+                    name="consent"
+                    value="yes"
+                    required
+                  />
+                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                  <span class="huawei-request-form__consent-text">
+                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
+                    мою заявку.
+                  </span>
+                </label>
 
                 <button type="submit" class="huawei-request-form__submit">
                   <span class="huawei-request-form__submit-text">Отправить заявку</span>
@@ -924,6 +1016,7 @@
                 ></p>
               </form>
             </div>
+
           </div>
         </div>
       </section>
@@ -1068,7 +1161,9 @@
     <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="clients-marquee.js?v=2"></script>
-    <script defer src="huawei-request-form.js?v=20260715-subnav-scroll"></script>
+    <script defer src="huawei-request-form.js?v=20260820-form-layout-v1"></script>
+    <script defer src="infra-phone-country.js?v=20260820-v1"></script>
+    <script defer src="infra-form-video.js?v=20260820-huawei-v1"></script>
     <script defer src="huawei-cert-lightbox.js?v=20260714-scroll-lock"></script>
     <script defer src="nav.js?v=20260801-nav-drill-v2"></script>
     <script defer src="footer-dot-matrix.js?v=20260817-halftone-v10"></script>

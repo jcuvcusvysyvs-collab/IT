@@ -23,6 +23,11 @@
       messageField.placeholder = messagePlaceholders[type] || messagePlaceholders.consultation;
       messageField.required = !isPricelist;
       messageField.setAttribute("aria-label", isPricelist ? "Комментарий" : "Ваш вопрос");
+      var label = messageField.closest("label");
+      var labelText = label && label.querySelector(".infra-form-field__label");
+      if (labelText) {
+        labelText.textContent = isPricelist ? "Комментарий" : "Ваш вопрос";
+      }
     }
   }
 
