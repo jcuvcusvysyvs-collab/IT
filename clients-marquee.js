@@ -112,5 +112,35 @@
       return client.name;
     });
     marquee.setAttribute("aria-label", "Заказчики: " + names.join(", "));
+
+    if (!reduceMotion) {
+      bindMarqueeHoverSlowdown(marquee, "." + config.prefix + "__track");
+    }
   });
+
+  function bindMarqueeHoverSlowdown(marquee, trackSelector) {
+    var tracks = marquee.querySelectorAll(trackSelector);
+    if (!tracks.length) return;
+
+    var finePointer =
+      window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)");
+    var slowRate = 0.32;
+
+    function setRate(rate) {
+      Array.prototype.forEach.call(tracks, function (track) {
+        if (!track.getAnimations) return;
+        track.getAnimations().forEach(function (anim) {
+          anim.playbackRate = rate;
+        });
+      });
+    }
+
+    marquee.addEventListener("pointerenter", function () {
+      if (finePointer && !finePointer.matches) return;
+      setRate(slowRate);
+    });
+    marquee.addEventListener("pointerleave", function () {
+      setRate(1);
+    });
+  }
 })();

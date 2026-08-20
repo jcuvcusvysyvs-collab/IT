@@ -11142,10 +11142,6 @@ body.cert-lightbox-open {
   animation-duration: 34s;
 }
 
-.page-huawei .huawei-clients__marquee:hover .huawei-clients__track {
-  animation-play-state: paused;
-}
-
 .page-huawei .huawei-clients__logo {
   position: relative;
   display: flex;
@@ -11157,11 +11153,9 @@ body.cert-lightbox-open {
   border-right: 0.5px solid var(--hc-border);
   background: var(--hc-dark);
   cursor: default;
-  transition: background 0.25s ease;
-}
-
-.page-huawei .huawei-clients__logo:hover {
-  background: var(--hc-logo-hover-bg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .page-huawei .huawei-clients__logo-inner {
@@ -11178,11 +11172,6 @@ body.cert-lightbox-open {
   line-height: 1;
   color: var(--hc-logo-name);
   white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-.page-huawei .huawei-clients__logo:hover .huawei-clients__logo-name {
-  color: var(--hc-logo-name-hover);
 }
 
 .page-huawei .huawei-clients__logo-sub {
@@ -11193,28 +11182,6 @@ body.cert-lightbox-open {
   line-height: 1;
   color: var(--hc-logo-sub);
   white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-.page-huawei .huawei-clients__logo:hover .huawei-clients__logo-sub {
-  color: var(--hc-red);
-}
-
-.page-huawei .huawei-clients__logo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: var(--hc-red);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.page-huawei .huawei-clients__logo:hover::after {
-  transform: scaleX(1);
 }
 
 .page-huawei .huawei-clients__logo-divider {
@@ -11226,6 +11193,19 @@ body.cert-lightbox-open {
   height: 11.5rem;
   background: var(--hc-dark);
   border-right: 0.5px solid var(--hc-border);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .page-huawei .huawei-clients__logo,
+  .page-huawei .huawei-clients__logo-divider {
+    pointer-events: none;
+  }
+
+  .page-huawei .huawei-clients__track,
+  .page-huawei .huawei-clients__marquee:hover .huawei-clients__track,
+  .page-huawei .huawei-clients__marquee:active .huawei-clients__track {
+    animation-play-state: running !important;
+  }
 }
 
 .page-huawei .huawei-clients__logo-divider span {
