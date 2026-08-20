@@ -1,4 +1,44 @@
 (function () {
+  function preventConsentTextSelection() {
+    document.querySelectorAll(".huawei-request-form__consent").forEach(function (label) {
+      var touchStartX = 0;
+      var touchStartY = 0;
+
+      label.addEventListener("selectstart", function (event) {
+        event.preventDefault();
+      });
+
+      label.addEventListener(
+        "touchstart",
+        function (event) {
+          if (!event.touches || !event.touches.length) return;
+          touchStartX = event.touches[0].clientX;
+          touchStartY = event.touches[0].clientY;
+        },
+        { passive: true }
+      );
+
+      label.addEventListener(
+        "touchend",
+        function (event) {
+          if (!event.changedTouches || !event.changedTouches.length) return;
+
+          var dx = Math.abs(event.changedTouches[0].clientX - touchStartX);
+          var dy = Math.abs(event.changedTouches[0].clientY - touchStartY);
+          if (dx > 10 || dy > 10) return;
+
+          var selection = window.getSelection && window.getSelection();
+          if (selection && selection.removeAllRanges) {
+            requestAnimationFrame(function () {
+              selection.removeAllRanges();
+            });
+          }
+        },
+        { passive: true }
+      );
+    });
+  }
+
   function bindForm(formId, statusId) {
     var form = document.getElementById(formId);
     var statusEl = document.getElementById(statusId);
@@ -33,4 +73,5 @@
   bindForm("scaling-form", "scaling-form-status");
   bindForm("continuity-form", "continuity-form-status");
   bindForm("ops-form", "ops-form-status");
+  preventConsentTextSelection();
 })();
