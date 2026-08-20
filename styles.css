@@ -23252,6 +23252,16 @@ a.infra-form-layout__contact-value:hover {
   box-shadow: none !important;
 }
 
+.infra-phone-field__input:-webkit-autofill,
+.infra-phone-field__input:-webkit-autofill:hover,
+.infra-phone-field__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  transition: background-color 99999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
 .infra-phone-field__dropdown {
   position: absolute;
   top: calc(100% + 0.35rem);
@@ -23654,7 +23664,7 @@ a.infra-form-layout__contact-value:hover {
     font-weight: 600;
   }
 
-  .infra-form-layout__form .infra-form-field__input {
+  .infra-form-layout__form .infra-form-field__input:not(.infra-phone-field__input) {
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -23665,16 +23675,25 @@ a.infra-form-layout__contact-value:hover {
     color: var(--text);
   }
 
-  .infra-form-layout__form .infra-form-field__input::placeholder {
+  .infra-form-layout__form .infra-form-field__input:not(.infra-phone-field__input)::placeholder {
     color: color-mix(in srgb, var(--text) 42%, transparent);
   }
 
-  .infra-form-layout__form .infra-form-field__input:focus {
+  .infra-form-layout__form .infra-form-field__input:not(.infra-phone-field__input):focus {
     background: rgba(255, 255, 255, 0.94);
     border-color: var(--accent);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 1),
       0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+
+  .infra-form-layout__form .infra-phone-field .infra-phone-field__input,
+  .infra-form-layout__form .infra-phone-field .infra-phone-field__input:focus {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .infra-form-layout__form .infra-phone-field {
@@ -23792,7 +23811,7 @@ a.infra-form-layout__contact-value:hover {
     font-weight: 500;
   }
 
-  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input {
+  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input:not(.infra-phone-field__input) {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
@@ -23802,12 +23821,21 @@ a.infra-form-layout__contact-value:hover {
       0 1px 2px rgba(0, 0, 0, 0.18);
   }
 
-  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input:focus {
+  [data-theme="dark"] .infra-form-layout__form .infra-form-field__input:not(.infra-phone-field__input):focus {
     background: rgba(255, 255, 255, 0.12);
     border-color: color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, 0.7));
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.75),
       0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+
+  [data-theme="dark"] .infra-form-layout__form .infra-phone-field .infra-phone-field__input,
+  [data-theme="dark"] .infra-form-layout__form .infra-phone-field .infra-phone-field__input:focus {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   [data-theme="dark"] .infra-form-layout__form .infra-phone-field {
