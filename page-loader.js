@@ -65,7 +65,10 @@
   /* Video-first: short brand beat, unlock as soon as hero video is primed */
   var MIN_MS = reduced && !force ? 420 : firstVisit ? 1100 : 720;
   var FADE_MS = reduced && !force ? 280 : firstVisit ? 420 : 320;
-  var VIDEO_WAIT_MS = 4500;
+  var isDesktop =
+    window.matchMedia && window.matchMedia("(min-width: 721px)").matches;
+  /* Mobile needs longer buffer before unlock; don't force play on a single frame */
+  var VIDEO_WAIT_MS = isDesktop ? 5500 : 7000;
 
   var MARKUP =
     '<span class="visually-hidden">Загрузка DC Engineering</span>' +

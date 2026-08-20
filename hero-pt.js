@@ -323,8 +323,14 @@
 
   function hasEnoughHeroBuffer(video) {
     if (isVideoFullyBuffered(video) || video.readyState >= 4) return true;
-    var need = desktopMq.matches ? 0.9 : 0.7;
+    /* Mobile needs a deeper lead to avoid ~1s play then stall */
+    var need = desktopMq.matches ? 1.4 : 2.8;
     return video.readyState >= 3 && bufferedLead(video) >= need;
+  }
+
+  function hasMinimalPlayableBuffer(video) {
+    if (isVideoFullyBuffered(video) || video.readyState >= 4) return true;
+    return video.readyState >= 3 && bufferedLead(video) >= 1.0;
   }
 
   function ensureHeroVideoSrc(video) {
@@ -366,8 +372,37 @@
     });
 
     video.addEventListener("error", function () {
-      root.classList.remove("hero-pt--motion");
       notifyHeroVideoReady();
+    });
+
+    /* Underrun recovery: wait for lead, then resume — dark bg only, no poster */
+    video.addEventListener("waiting", function () {
+      if (document.hidden || reduceMotion || saveDataOrSlowNet()) return;
+      var slide = video.closest("[data-hero-slide]");
+      if (slide && !slide.classList.contains("is-active")) return;
+      if (video.getAttribute("data-recovering") === "1") return;
+      video.setAttribute("data-recovering", "1");
+
+      function tryResume() {
+        if (document.hidden || reduceMotion || saveDataOrSlowNet()) {
+          video.removeAttribute("data-recovering");
+          return;
+        }
+        if (slide && !slide.classList.contains("is-active")) {
+          video.removeAttribute("data-recovering");
+          return;
+        }
+        if (!hasMinimalPlayableBuffer(video) && !isVideoFullyBuffered(video)) return;
+        video.removeEventListener("progress", tryResume);
+        video.removeEventListener("canplay", tryResume);
+        video.removeAttribute("data-recovering");
+        var playPromise = video.play();
+        if (playPromise && playPromise.catch) playPromise.catch(function () {});
+      }
+
+      video.addEventListener("progress", tryResume);
+      video.addEventListener("canplay", tryResume);
+      window.setTimeout(tryResume, 120);
     });
 
     video.addEventListener("ended", function () {
@@ -385,34 +420,53 @@
     });
   }
 
-  function rewindHeroVideo(video) {
-    try {
-      video.pause();
-    } catch (e) {
-      /* noop */
-    }
-    try {
-      if (video.currentTime > 0.05) video.currentTime = 0;
-    } catch (e) {
-      /* noop */
-    }
-  }
+  function waitForHeroBuffer(video, cb, opts) {
+    opts = opts || {};
+    var check = opts.soft
+      ? function () {
+          return hasEnoughHeroBuffer(video) || hasMinimalPlayableBuffer(video);
+        }
+      : function () {
+          return hasEnoughHeroBuffer(video);
+        };
 
-  function waitForHeroBuffer(video, cb) {
-    if (hasEnoughHeroBuffer(video)) {
+    if (check()) {
       cb();
       return;
     }
     var settled = false;
     var timer = window.setInterval(onReady, 200);
-    function onReady() {
-      if (settled || !hasEnoughHeroBuffer(video)) return;
+    var softMs = opts.timeoutMs || (desktopMq.matches ? 5500 : 7000);
+    var softTimer = window.setTimeout(function () {
+      if (settled) return;
+      /* Soft ceiling: unlock with whatever is decoded — never on a blank element only */
+      if (video.readyState >= 2) {
+        settled = true;
+        cleanup();
+        cb();
+      }
+    }, softMs);
+    var hardTimer = window.setTimeout(function () {
+      if (settled) return;
       settled = true;
+      cleanup();
+      cb();
+    }, softMs + 2500);
+
+    function cleanup() {
       window.clearInterval(timer);
+      window.clearTimeout(softTimer);
+      window.clearTimeout(hardTimer);
       video.removeEventListener("progress", onReady);
       video.removeEventListener("canplaythrough", onReady);
       video.removeEventListener("loadeddata", onReady);
       video.removeEventListener("canplay", onReady);
+    }
+
+    function onReady() {
+      if (settled || !check()) return;
+      settled = true;
+      cleanup();
       cb();
     }
     video.addEventListener("progress", onReady);
@@ -484,7 +538,6 @@
     function tryPlay() {
       if (document.hidden || reduceMotion || saveDataOrSlowNet()) return;
       if (slide && !slide.classList.contains("is-active")) return;
-      notifyHeroVideoReady();
       markHeroVideoPrimed(video);
       var playPromise = video.play();
       if (playPromise && playPromise.catch) {
@@ -494,16 +547,20 @@
       }
     }
 
-    if (video.getAttribute("data-primed") === "1" && hasEnoughHeroBuffer(video)) {
+    if (video.getAttribute("data-primed") === "1" && hasMinimalPlayableBuffer(video)) {
       tryPlay();
       return;
     }
 
     ensureHeroVideoSrc(video);
     attachHeroVideoGuards(video);
-    waitForHeroBuffer(video, function () {
-      paintHeroVideoFrame(video, tryPlay);
-    });
+    waitForHeroBuffer(
+      video,
+      function () {
+        paintHeroVideoFrame(video, tryPlay);
+      },
+      { soft: true }
+    );
   }
 
   function whenPageLoaderDone(cb) {
@@ -568,18 +625,21 @@
     }
     primary.setAttribute("data-ready-notified", "1");
     markHeroVideoPrimed(primary);
-    rewindHeroVideo(primary);
+    /* Stay paused at frame 0 until loader dismiss — one clean play after */
+    try {
+      primary.pause();
+    } catch (e) {
+      /* noop */
+    }
     notifyHeroVideoReady();
     scheduleSmartSecondaryWarm(primary);
   }
 
   function beginHeroVideoLoad() {
     if (reduceMotion || saveDataOrSlowNet()) {
-      root.classList.remove("hero-pt--motion");
       notifyHeroVideoReady();
       return;
     }
-    root.classList.add("hero-pt--motion");
 
     var primary = null;
     slides.forEach(function (slide, i) {
@@ -596,28 +656,9 @@
     ensureHeroVideoSrc(primary);
     attachHeroVideoGuards(primary);
 
-    /* Nudge download; rewind before unlock so first visible frame is t=0 */
-    var playPromise = primary.play();
-    if (playPromise && playPromise.catch) playPromise.catch(function () {});
-
-    var softDone = false;
-    window.setTimeout(function () {
-      if (softDone || primary.getAttribute("data-ready-notified") === "1") return;
-      softDone = true;
-      if (primary.readyState >= 2) {
-        paintHeroVideoFrame(primary, function () {
-          finishPrimaryReady(primary);
-        });
-      } else {
-        root.classList.remove("hero-pt--motion");
-        notifyHeroVideoReady();
-        scheduleSmartSecondaryWarm(primary);
-      }
-    }, 4200);
-
+    /* Buffer only — no early play (avoids mobile underrun after rewind) */
     waitForHeroBuffer(primary, function () {
-      if (softDone || primary.getAttribute("data-ready-notified") === "1") return;
-      softDone = true;
+      if (primary.getAttribute("data-ready-notified") === "1") return;
       paintHeroVideoFrame(primary, function () {
         finishPrimaryReady(primary);
       });
@@ -632,7 +673,10 @@
       if (i === idx && !skip) {
         ensureHeroVideoSrc(video);
         attachHeroVideoGuards(video);
-        playHeroVideoWhenReady(video);
+        /* Play only after loader is gone so buffer isn't burned under the overlay */
+        if (isLoaderGone()) {
+          playHeroVideoWhenReady(video);
+        }
       } else {
         if (!video.paused) {
           try {
@@ -641,7 +685,6 @@
             /* noop */
           }
         }
-        /* Keep primed frame visible so poster never flashes on slide switch */
         if (video.getAttribute("data-primed") !== "1") {
           video.classList.remove("is-ready");
         }
@@ -650,6 +693,13 @@
   }
 
   beginHeroVideoLoad();
+
+  whenPageLoaderDone(function () {
+    var active = slides[idx];
+    if (!active) return;
+    var video = active.querySelector("video.hero-pt__video");
+    if (video) playHeroVideoWhenReady(video);
+  });
 
   function applyActiveState() {
     slides.forEach(function (slide, i) {
@@ -671,18 +721,57 @@
     syncSlideMedia();
   }
 
+  var switchHoldTimer = null;
+
   function show(nextIdx) {
     var n = slides.length;
     var target = ((nextIdx % n) + n) % n;
-    warmSlideVideo(slides[target]);
-    idx = target;
-    manualPause = false;
-    pausedByFocus = false;
-    root.classList.remove("is-paused");
-    applyActiveState();
-    restartReveal();
-    restartActiveFill();
-    scheduleAutoplay();
+    if (target === idx) return;
+
+    var targetSlide = slides[target];
+    var targetVideo = targetSlide && targetSlide.querySelector("video.hero-pt__video");
+    warmSlideVideo(targetSlide);
+
+    function commitSwitch() {
+      switchHoldTimer = null;
+      idx = target;
+      manualPause = false;
+      pausedByFocus = false;
+      root.classList.remove("is-paused");
+      applyActiveState();
+      restartReveal();
+      restartActiveFill();
+      scheduleAutoplay();
+    }
+
+    if (
+      !reduceMotion &&
+      !saveDataOrSlowNet() &&
+      targetVideo &&
+      targetVideo.getAttribute("data-primed") !== "1"
+    ) {
+      if (switchHoldTimer) {
+        window.clearTimeout(switchHoldTimer);
+        switchHoldTimer = null;
+      }
+      var holdMs = desktopMq.matches ? 500 : 900;
+      var started = Date.now();
+      function pollPrimed() {
+        if (targetVideo.getAttribute("data-primed") === "1") {
+          commitSwitch();
+          return;
+        }
+        if (Date.now() - started >= holdMs) {
+          commitSwitch();
+          return;
+        }
+        switchHoldTimer = window.setTimeout(pollPrimed, 80);
+      }
+      pollPrimed();
+      return;
+    }
+
+    commitSwitch();
   }
 
   function pauseAutoplay() {
