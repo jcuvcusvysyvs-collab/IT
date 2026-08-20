@@ -280,7 +280,13 @@
     }
   }
 
-  function pickHeroVideoSrc() {
+  function pickHeroVideoSrc(video) {
+    var slide = video && video.closest("[data-hero-slide]");
+    if (slide && slide.classList.contains("hero-pt__slide--huawei")) {
+      return desktopMq.matches
+        ? "video/huawei-hero.mp4?v=20260820-v1"
+        : "video/huawei-hero-mobile.mp4?v=20260820-v1";
+    }
     return desktopMq.matches
       ? "video/data-center-hero.mp4"
       : "video/data-center-hero-mobile.mp4?v=20260818-m720p";
@@ -329,7 +335,7 @@
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
     video.loop = false;
-    video.src = pickHeroVideoSrc();
+    video.src = pickHeroVideoSrc(video);
     video.setAttribute("data-src-ready", "1");
     try {
       video.load();
@@ -436,21 +442,26 @@
       notifyHeroVideoReady();
       return;
     }
-    var hasVideo = false;
-    slides.forEach(function (slide) {
+    var primary = null;
+    slides.forEach(function (slide, i) {
       var video = slide.querySelector("video.hero-pt__video");
       if (!video) return;
-      hasVideo = true;
-      ensureHeroVideoSrc(video);
-      attachHeroVideoGuards(video);
-      var playPromise = video.play();
-      if (playPromise && playPromise.catch) playPromise.catch(function () {});
-      waitForHeroBuffer(video, function () {
-        rewindHeroVideo(video);
-        notifyHeroVideoReady();
-      });
+      if (i === 0 || slide.classList.contains("is-active")) {
+        primary = video;
+      }
     });
-    if (!hasVideo) notifyHeroVideoReady();
+    if (!primary) {
+      notifyHeroVideoReady();
+      return;
+    }
+    ensureHeroVideoSrc(primary);
+    attachHeroVideoGuards(primary);
+    var playPromise = primary.play();
+    if (playPromise && playPromise.catch) playPromise.catch(function () {});
+    waitForHeroBuffer(primary, function () {
+      rewindHeroVideo(primary);
+      notifyHeroVideoReady();
+    });
   }
 
   function syncSlideMedia() {
@@ -725,8 +736,23 @@
   if (desktopMq.addEventListener) {
     desktopMq.addEventListener("change", function () {
       syncAutoplayCssVar();
+      slides.forEach(function (slide) {
+        var video = slide.querySelector("video.hero-pt__video");
+        if (!video) return;
+        video.removeAttribute("data-src-ready");
+        video.classList.remove("is-ready");
+        try {
+          video.pause();
+          video.removeAttribute("src");
+          video.load();
+        } catch (e) {
+          /* noop */
+        }
+      });
       if (!manualPause && !document.hidden) {
         restartPlayback();
+      } else {
+        syncSlideMedia();
       }
     });
   }

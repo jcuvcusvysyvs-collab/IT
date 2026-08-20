@@ -1713,6 +1713,10 @@ body.nav-mega-open .nav-mega-backdrop {
   object-position: 72% 40%;
 }
 
+.hero-pt__bg--huawei .hero-pt__video {
+  object-position: 72% 40%;
+}
+
 .hero-pt__bg--scada .hero-pt__poster {
   object-position: 68% 42%;
 }
@@ -2454,6 +2458,10 @@ body.nav-mega-open .nav-mega-backdrop {
     transform: scale(1.14);
     transform-origin: 62% 30%;
     filter: brightness(0.7) saturate(0.9);
+  }
+
+  .hero-pt__bg--huawei .hero-pt__video {
+    object-position: 58% 30%;
   }
 
   .hero-pt__bg--scada {
