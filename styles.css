@@ -1091,7 +1091,7 @@ body.nav-mega-open .nav-mega-backdrop {
   width: 2.65rem;
   height: 2.65rem;
   margin-top: 0;
-  border-radius: 8px;
+  border-radius: 4px;
   background: var(--svc-menu-icon-bg, linear-gradient(145deg, #f5f8fc 0%, #eef3f9 100%));
   box-shadow: inset 0 0 0 1px var(--svc-menu-icon-ring, #e2e9f2);
   overflow: hidden;
@@ -7102,7 +7102,7 @@ a.footer-contact-item__value:hover {
     width: 2.75rem;
     height: 2.75rem;
     margin-top: 0.05rem;
-    border-radius: 10px;
+    border-radius: 5px;
     background: var(--nav-mobile-icon-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -7297,7 +7297,7 @@ a.footer-contact-item__value:hover {
   .nav-submenu-links--rich .nav-submenu-card__media {
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 8px;
+    border-radius: 4px;
   }
 
   .nav-submenu-links--rich .nav-submenu-card__title {
@@ -7600,7 +7600,7 @@ a.footer-contact-item__value:hover {
   .nav-submenu-links--rich .nav-submenu-card__media {
     width: 2.85rem;
     height: 2.85rem;
-    border-radius: 9px;
+    border-radius: 4px;
   }
 
   .nav-submenu-links--rich .nav-submenu-card {
@@ -9184,10 +9184,6 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
   --huawei-cap-accent: var(--huawei-red, #b03840);
 }
 
-.page-huawei [data-feature-reveal] .huawei-module__index {
-  font-size: clamp(3.25rem, 6.5vw, 5rem);
-}
-
 .page-huawei [data-feature-reveal] .huawei-module__title {
   font-size: clamp(1.65rem, 2.8vw, 2.1rem);
   line-height: 1.08;
@@ -9926,12 +9922,14 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 .huawei-module__index {
   display: block;
   margin: 0;
-  font-family: "Bebas Neue", sans-serif;
+  /* Oswald: ровная высота цифр; у Bebas Neue «0» и «1» визуально расходятся */
+  font-family: "Oswald", sans-serif;
   font-size: clamp(4.5rem, 9vw, 7rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 0.8;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
   color: color-mix(in srgb, var(--huawei-red) 24%, color-mix(in srgb, var(--text) 14%, transparent));
   user-select: none;
   text-shadow: none;
