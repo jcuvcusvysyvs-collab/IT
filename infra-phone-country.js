@@ -118,14 +118,20 @@
       return (countryInput && countryInput.value) || "ru";
     }
 
+    var formField = field.closest(".infra-form-field--phone");
+
     function closeDropdown() {
       dropdown.hidden = true;
       trigger.setAttribute("aria-expanded", "false");
+      field.classList.remove("is-dropdown-open");
+      if (formField) formField.classList.remove("is-dropdown-open");
     }
 
     function openDropdown() {
       dropdown.hidden = false;
       trigger.setAttribute("aria-expanded", "true");
+      field.classList.add("is-dropdown-open");
+      if (formField) formField.classList.add("is-dropdown-open");
     }
 
     function selectOption(option, keepDigits) {
