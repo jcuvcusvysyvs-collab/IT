@@ -10117,6 +10117,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     0 0 0 1px color-mix(in srgb, var(--border) 50%, transparent),
     0 10px 28px color-mix(in srgb, var(--text) 5%, transparent),
     inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
 }
 
 [data-theme="dark"] .huawei-partner-card {
@@ -10126,18 +10130,6 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     0 0 0 1px rgba(255, 255, 255, 0.05),
     0 12px 32px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.page-huawei .huawei-partner-card:hover {
-  border-color: color-mix(in srgb, var(--huawei-red) 22%, var(--border));
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--huawei-red) 12%, var(--border)),
-    0 14px 36px color-mix(in srgb, var(--text) 7%, transparent),
-    inset 0 1px 0 color-mix(in srgb, #fff 45%, transparent);
-}
-
-[data-theme="dark"] .page-huawei .huawei-partner-card:hover {
-  border-color: color-mix(in srgb, var(--huawei-red) 28%, var(--border));
 }
 
 .huawei-partner-card__row-top {
@@ -10329,6 +10321,10 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     0 0 0 1px color-mix(in srgb, var(--border) 50%, transparent),
     0 10px 28px color-mix(in srgb, var(--text) 5%, transparent),
     inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
 }
 
 [data-theme="dark"] .huawei-spec-card {
@@ -10554,19 +10550,24 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
 /* Клик по превью — lightbox (huawei-cert-lightbox.js) */
 .huawei-cert-lightbox-trigger {
   cursor: zoom-in;
-}
-
-.huawei-cert-lightbox-trigger:focus-visible {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
   outline: none;
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--huawei-red, #b03840) 65%, transparent);
 }
 
+.huawei-cert-lightbox-trigger:focus,
+.huawei-cert-lightbox-trigger:focus-visible,
+.page-huawei .huawei-cert-lightbox-trigger:focus,
 .page-huawei .huawei-cert-lightbox-trigger:focus-visible {
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--huawei-red, #b03840) 70%, transparent);
+  outline: none;
+  box-shadow: none;
 }
 
-.page-huawei .huawei-cert-lightbox-trigger:hover img {
-  transform: scale(1.02);
+.page-huawei .huawei-cert-lightbox-trigger:hover img,
+.page-huawei .huawei-cert-lightbox-trigger:active img {
+  transform: none;
 }
 
 .huawei-spec-card__preview.huawei-cert-lightbox-trigger img {
@@ -10589,11 +10590,20 @@ html:not([data-theme="dark"]) .page-huawei .huawei-showcase {
     align-items: stretch;
   }
 
-  .page-huawei .huawei-partner-card:hover {
+  .page-huawei .huawei-partner-card:hover,
+  .page-huawei .huawei-partner-card:active,
+  .page-huawei .huawei-partner-card:focus-within {
+    border-color: color-mix(in srgb, var(--border) 88%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--border) 50%, transparent),
+      0 10px 28px color-mix(in srgb, var(--text) 5%, transparent),
+      inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
     transform: none;
   }
 
-  .page-huawei .huawei-partner-card:hover .huawei-partner-card__preview img {
+  .page-huawei .huawei-partner-card:hover .huawei-partner-card__preview img,
+  .page-huawei .huawei-cert-lightbox-trigger:hover img,
+  .page-huawei .huawei-cert-lightbox-trigger:active img {
     transform: none;
   }
 

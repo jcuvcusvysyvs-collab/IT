@@ -13,9 +13,30 @@
   let galleryItems = [];
   let galleryIndex = 0;
   let touchX = null;
+  let scrollLockBound = false;
+  const TAP_MOVE_PX = 12;
 
   function getScrollbarWidth() {
     return window.innerWidth - document.documentElement.clientWidth;
+  }
+
+  function preventScrollWhileOpen(event) {
+    if (!dialog.open) return;
+    event.preventDefault();
+  }
+
+  function bindScrollLock() {
+    if (scrollLockBound) return;
+    scrollLockBound = true;
+    document.addEventListener("wheel", preventScrollWhileOpen, { passive: false });
+    document.addEventListener("touchmove", preventScrollWhileOpen, { passive: false });
+  }
+
+  function unbindScrollLock() {
+    if (!scrollLockBound) return;
+    scrollLockBound = false;
+    document.removeEventListener("wheel", preventScrollWhileOpen);
+    document.removeEventListener("touchmove", preventScrollWhileOpen);
   }
 
   function lockPageScroll() {
@@ -29,18 +50,15 @@
     }
 
     window.scrollTo(0, lockedScrollY);
+    bindScrollLock();
   }
 
   function unlockPageScroll() {
+    unbindScrollLock();
     document.documentElement.classList.remove("cert-lightbox-open");
     document.body.classList.remove("cert-lightbox-open");
     document.body.style.paddingRight = "";
     window.scrollTo(0, lockedScrollY);
-  }
-
-  function preventScrollWhileOpen(event) {
-    if (!dialog.open) return;
-    event.preventDefault();
   }
 
   function collectGallery(trigger) {
@@ -127,8 +145,44 @@
     const sourceImg = trigger.querySelector("img");
     if (!sourceImg || !sourceImg.getAttribute("src")) return;
 
+    let pointerX = 0;
+    let pointerY = 0;
+    let pointerMoved = false;
+
+    trigger.addEventListener(
+      "pointerdown",
+      (e) => {
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        pointerMoved = false;
+      },
+      { passive: true }
+    );
+
+    trigger.addEventListener(
+      "pointermove",
+      (e) => {
+        if (pointerMoved) return;
+        if (
+          Math.abs(e.clientX - pointerX) > TAP_MOVE_PX ||
+          Math.abs(e.clientY - pointerY) > TAP_MOVE_PX
+        ) {
+          pointerMoved = true;
+        }
+      },
+      { passive: true }
+    );
+
     trigger.addEventListener("click", (e) => {
       e.preventDefault();
+      if (pointerMoved) return;
+      if (typeof trigger.blur === "function") {
+        try {
+          trigger.blur();
+        } catch (err) {
+          /* noop */
+        }
+      }
       openFromSource(sourceImg, trigger);
     });
 
@@ -197,7 +251,4 @@
     unlockPageScroll();
     priorFocus?.focus?.({ preventScroll: true });
   });
-
-  document.addEventListener("wheel", preventScrollWhileOpen, { passive: false });
-  document.addEventListener("touchmove", preventScrollWhileOpen, { passive: false });
 })();
