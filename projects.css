@@ -309,6 +309,7 @@
     right: 0;
     height: 44%;
     min-height: 15.5rem;
+    opacity: 0.72;
   }
 
   .projects-hero-logos__viewport {
@@ -356,8 +357,8 @@
     min-width: 10.5rem;
     height: 4.35rem;
     padding: 0.55rem 1.2rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .projects-hero-logos__chip img {
@@ -365,24 +366,31 @@
     max-width: 8.75rem;
   }
 
-  /* Верх полностью тёмный под текст → мягкий переход к ленте → затемнение к низу */
+  /* Верх чистый под текст → мягкий переход → затемнение всей ленты чипов + низ */
   .page-projects .projects-hero.projects-hero--logos::after {
     background:
       linear-gradient(
         180deg,
         #0a0e14 0%,
-        #0a0e14 46%,
-        rgba(10, 14, 20, 0.92) 52%,
-        rgba(10, 14, 20, 0.45) 60%,
-        rgba(10, 14, 20, 0.12) 68%,
-        transparent 76%
+        #0a0e14 44%,
+        rgba(10, 14, 20, 0.94) 50%,
+        rgba(10, 14, 20, 0.55) 58%,
+        rgba(10, 14, 20, 0.28) 66%,
+        rgba(10, 14, 20, 0.22) 100%
       ),
       linear-gradient(
         180deg,
-        transparent 70%,
-        rgba(10, 14, 20, 0.4) 82%,
-        rgba(10, 14, 20, 0.85) 92%,
+        transparent 52%,
+        rgba(10, 14, 20, 0.18) 68%,
+        rgba(10, 14, 20, 0.55) 84%,
+        rgba(10, 14, 20, 0.92) 94%,
         #0a0e14 100%
+      ),
+      radial-gradient(
+        120% 80% at 50% 78%,
+        transparent 0%,
+        rgba(10, 14, 20, 0.28) 55%,
+        rgba(10, 14, 20, 0.55) 100%
       );
   }
 }
