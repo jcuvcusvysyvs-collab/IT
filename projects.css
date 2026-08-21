@@ -1,5 +1,301 @@
 /* Страницы «Проекты» и кейсов — hero как на «Контактах» */
 
+/* ——— Список проектов: dark logos hero (Retool-style) ——— */
+
+/* Full-bleed под шапку — как hero на главной */
+.page-projects #main:has(> .projects-hero--logos:first-child) {
+  padding-top: 0;
+}
+
+.page-projects #main > .projects-hero.projects-hero--logos:first-child {
+  margin-top: calc(-1 * var(--site-header-height, 5.5rem));
+  box-sizing: border-box;
+  min-height: calc(100svh + var(--site-header-height, 5.5rem));
+  min-height: calc(100dvh + var(--site-header-height, 5.5rem));
+  height: calc(100svh + var(--site-header-height, 5.5rem));
+  height: calc(100dvh + var(--site-header-height, 5.5rem));
+}
+
+.page-projects .projects-hero.projects-hero--logos {
+  --hero-subnav-overlap: 4.75rem;
+  --projects-hero-pad-top: var(--hero-header-clearance, calc(var(--site-header-height, 5.5rem) + 1.75rem));
+  --projects-hero-pad-bottom: calc(
+    var(--hero-subnav-overlap) + clamp(1.35rem, 2.8vw, 2.15rem)
+  );
+  --projects-hero-crumbs-gap: clamp(1.1rem, 2.5vw, 1.6rem);
+  --projects-hero-content-width: min(38rem, 100%);
+  --projects-hero-logos-bg: #0a0e14;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--projects-hero-logos-bg);
+  background-image: none;
+  color: #fff;
+  color-scheme: dark;
+}
+
+/* Лента разделов на нижней границе hero — как на инфраструктуре / HUAWEI */
+.page-projects .page-sticky-scope > .page-section-subnav[data-section-subnav] {
+  margin-top: calc(-1 * var(--hero-subnav-overlap, 4.75rem));
+}
+
+.page-projects .projects-hero.projects-hero--logos::before {
+  content: none;
+  display: none;
+}
+
+/* Мягкое затемнение слева под текстовый блок */
+.page-projects .projects-hero.projects-hero--logos::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #0a0e14 0%,
+      rgba(10, 14, 20, 0.96) 14%,
+      rgba(10, 14, 20, 0.78) 28%,
+      rgba(10, 14, 20, 0.42) 44%,
+      rgba(10, 14, 20, 0.12) 58%,
+      transparent 72%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 14, 20, 0.5) 0%,
+      transparent 18%,
+      transparent 78%,
+      rgba(10, 14, 20, 0.55) 100%
+    );
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding:
+    var(--projects-hero-pad-top)
+    var(--layout-gutter)
+    var(--projects-hero-pad-bottom);
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--projects-hero-content-width);
+  padding-top: clamp(2.5rem, 9vh, 5.5rem);
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-hero__title {
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.page-projects .projects-hero.projects-hero--logos .projects-hero__lead {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  line-height: 1.55;
+  color: rgba(238, 242, 248, 0.8);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
+}
+
+.page-projects .projects-hero.projects-hero--logos .projects-hero__actions {
+  margin-top: 1.5rem;
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__item {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 0.7rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.38);
+  background: none;
+  width: auto;
+  height: auto;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__item[aria-current="page"] {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__link:hover,
+.page-projects .projects-hero.projects-hero--logos .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Logo field */
+.projects-hero-logos {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.projects-hero-logos__viewport {
+  position: absolute;
+  inset: clamp(-2rem, -4vw, -1rem) clamp(-10%, -6vw, -2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 1.45rem);
+  -webkit-mask-image: radial-gradient(ellipse 90% 84% at 64% 48%, #000 24%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 84% at 64% 48%, #000 24%, transparent 78%);
+}
+
+.projects-hero-logos__row {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.projects-hero-logos__row--offset .projects-hero-logos__track {
+  animation-duration: 70s;
+  animation-direction: reverse;
+  margin-left: clamp(3.5rem, 9vw, 7rem);
+}
+
+.projects-hero-logos__row:nth-child(3) .projects-hero-logos__track {
+  animation-duration: 62s;
+}
+
+.projects-hero-logos__row:nth-child(5) .projects-hero-logos__track {
+  animation-duration: 76s;
+}
+
+.projects-hero-logos__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 0;
+  animation: projects-hero-logos-drift 58s linear infinite;
+  will-change: transform;
+}
+
+.projects-hero-logos__set {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
+  padding-right: clamp(0.85rem, 1.6vw, 1.25rem);
+  flex: 0 0 auto;
+}
+
+.projects-hero-logos__chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(11.5rem, 18vw, 15.5rem);
+  height: clamp(5.25rem, 8.5vw, 6.75rem);
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.projects-hero-logos__chip img {
+  display: block;
+  width: auto;
+  max-width: min(12rem, 100%);
+  height: clamp(3.1rem, 5vw, 4.35rem);
+  object-fit: contain;
+}
+
+@keyframes projects-hero-logos-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 820px) {
+  .projects-hero-logos__viewport {
+    inset: -0.75rem -12% -1rem;
+  }
+
+  .projects-hero-logos__row:nth-child(n + 5) {
+    display: none;
+  }
+
+  .page-projects .projects-hero.projects-hero--logos::after {
+    background:
+      linear-gradient(
+        90deg,
+        #0a0e14 0%,
+        rgba(10, 14, 20, 0.94) 22%,
+        rgba(10, 14, 20, 0.55) 48%,
+        transparent 78%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 14, 20, 0.45) 0%,
+        transparent 16%,
+        transparent 80%,
+        rgba(10, 14, 20, 0.5) 100%
+      );
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-hero-logos__row:nth-child(n + 4) {
+    display: none;
+  }
+
+  .projects-hero-logos__chip {
+    min-width: 9.5rem;
+    height: 4.35rem;
+    padding: 0.55rem 1.15rem;
+  }
+
+  .projects-hero-logos__chip img {
+    height: 2.65rem;
+    max-width: 8rem;
+  }
+
+  .page-projects .projects-hero.projects-hero--logos .subpage-hero__content {
+    padding-top: clamp(1.5rem, 6vh, 2.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-hero-logos__track {
+    animation: none;
+  }
+}
+
 /* ——— Список проектов ——— */
 
 .page-projects .projects-hero.subpage-hero--about:not(.projects-hero--yandex) {
@@ -283,70 +579,26 @@ html:not([data-theme="dark"]) .page-project-case .projects-hero.subpage-hero--ab
   color: #fff;
 }
 
-/* ——— Липкая лента на странице «Проекты» (как на «О компании») ——— */
+/* ——— Липкая лента на странице «Проекты» (как на «Инфраструктурных решениях») ——— */
 
 /*
-  Как на «О компании»: лента не принудительно тёмная поверх hero.
-  Цвет полностью следует теме пользователя (светлая / тёмная).
+  Поверх тёмного hero — тёмная лента;
+  в светлой теме после прилипания — светлая (базовые стили .page-section-subnav).
 */
-html:not([data-theme="dark"]) .page-projects .page-section-subnav {
-  --subnav-link: color-mix(in srgb, var(--text) 68%, transparent);
-  --subnav-link-hover: var(--text);
+
+.page-projects .page-section-subnav__btn--primary {
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
-html:not([data-theme="dark"]) .page-projects .page-section-subnav::before {
-  background: color-mix(in srgb, var(--bg) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 8px 28px rgba(15, 18, 24, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+.page-projects .page-section-subnav__btn--primary:hover,
+.page-projects .page-section-subnav__btn--primary:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 86%, #000 14%);
+  background: color-mix(in srgb, var(--accent) 86%, #000 14%);
 }
 
-html:not([data-theme="dark"]) .page-projects .page-section-subnav.is-stuck::before {
-  background: color-mix(in srgb, var(--bg) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 8px 28px rgba(15, 18, 24, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-
-html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__brand {
-  color: var(--text);
-}
-
-html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__toggle {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
-  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
-}
-
-html:not([data-theme="dark"]) .page-projects .page-section-subnav.page-section-subnav--menu-open::before {
-  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 6px 24px rgba(15, 18, 24, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-html:not([data-theme="dark"]) .page-projects .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel {
-  background: var(--bg-elevated);
-  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
-  box-shadow:
-    0 20px 48px rgba(15, 18, 24, 0.11),
-    0 8px 22px rgba(15, 18, 24, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.96);
-}
-
-@media (max-width: 900px) {
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item {
-    color: color-mix(in srgb, var(--text) 72%, transparent);
-  }
-
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item.is-active {
-    color: var(--text);
-  }
+.page-projects .page-section-subnav__btn:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .page-projects .page-section-subnav .projects-hero-switcher {
@@ -385,7 +637,7 @@ html:not([data-theme="dark"]) .page-projects .page-section-subnav.page-section-s
   object-fit: contain;
 }
 
-html:not([data-theme="dark"]) .page-projects .page-section-subnav__brand-icon {
+html:not([data-theme="dark"]) .page-projects .page-section-subnav.is-stuck .page-section-subnav__brand-icon {
   background: transparent;
   box-shadow: none;
 }
@@ -399,13 +651,6 @@ html:not([data-theme="dark"]) .page-projects .page-section-subnav__brand-icon {
 .page-projects .page-section-subnav__toggle:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-}
-
-html:not([data-theme="dark"]) .page-projects .page-section-subnav__toggle:hover,
-html:not([data-theme="dark"]) .page-projects .page-section-subnav__toggle:focus-visible {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--text) 28%, var(--border));
-  background: color-mix(in srgb, var(--text) 6%, var(--bg-elevated));
 }
 
 @media (max-width: 900px) {
@@ -447,16 +692,6 @@ html:not([data-theme="dark"]) .page-projects .page-section-subnav__toggle:focus-
     max-width: min(260px, 54vw);
     object-fit: contain;
     object-position: left center;
-  }
-
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item {
-    color: var(--text);
-  }
-
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-projects .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
-    color: var(--text);
-    background: transparent;
   }
 }
 
