@@ -61,7 +61,7 @@
       desc: "Обеспечение непрерывности и&nbsp;развития информационных систем",
       meta: "Москва · 2024–2025",
       href: "project-rdi.html",
-      image: "images/project_02.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -71,7 +71,7 @@
       desc: "Внедрение многофакторной аутентификации",
       meta: "Москва · 2024–2025",
       href: "project-mggt.html",
-      image: "images/project_03.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -81,7 +81,7 @@
       desc: "Поддержка двух ЦОД: Huawei OceanStor, HPE, Fujitsu, Dell, Cisco",
       meta: "Саратов · 2024–2027",
       href: "project-saratovnpz.html",
-      image: "images/project_09.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -91,7 +91,7 @@
       desc: "Поддержка NEC, EMC, Cisco, HPE: СХД, серверы, коммутаторы, ленточные библиотеки",
       meta: "Москва · 2024–2025",
       href: "project-rgb.html",
-      image: "images/project_12.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -101,7 +101,7 @@
       desc: "Обследование и&nbsp;проектирование инфраструктуры передачи данных",
       meta: "Москва · 2025",
       href: "project-mggt-spd.html",
-      image: "images/project_15.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -111,7 +111,7 @@
       desc: "Миграция каталога и&nbsp;рабочих станций на&nbsp;RED OS",
       meta: "Москва · 2025",
       href: "project-minenergo.html",
-      image: "images/project_16.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -121,7 +121,7 @@
       desc: "Перевод рабочих мест сотрудников на&nbsp;AstraLinux",
       meta: "Москва · 2025",
       href: "project-rnpk.html",
-      image: "images/project_17.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -131,7 +131,7 @@
       desc: "Миграция программного обеспечения на&nbsp;AstraLinux с&nbsp;сохранением настроек",
       meta: "Москва · 2024–2025",
       href: "project-rnpk-migration.html",
-      image: "images/project_18.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -141,7 +141,7 @@
       desc: "Работы по&nbsp;созданию и&nbsp;внедрению системы электронной почты на&nbsp;Объектах пилотной зоны Заказчика, включая разработку технического проекта",
       meta: "Москва · 2024",
       href: "project-soees.html",
-      image: "images/project_19.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -151,7 +151,7 @@
       desc: "Внедрение пилотной зоны почтовой системы на&nbsp;уровне объекта",
       meta: "Москва · 2024",
       href: "project-soees-pilot.html",
-      image: "images/project_21.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -161,7 +161,7 @@
       desc: "Техническое обслуживание серверной инфраструктуры",
       meta: "Москва · 2024",
       href: "project-rgb-support.html",
-      image: "images/project_22.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -171,7 +171,7 @@
       desc: "Замена межсетевых экранов в&nbsp;частном облаке (Москва, СПб, Красноярск)",
       meta: "3 города · 2024",
       href: "project-linsm.html",
-      image: "images/project_23.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -181,7 +181,7 @@
       desc: "Техническое обслуживание серверного и&nbsp;сетевого оборудования",
       meta: "Саратов · 2024",
       href: "project-saratovnpz-support.html",
-      image: "images/project_24.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -191,7 +191,7 @@
       desc: "Обследование распределённой инфраструктуры, разработка рекомендаций и&nbsp;дорожной карты",
       meta: "Москва · 2023",
       href: "project-mggt-infra.html",
-      image: "images/project_26.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -201,7 +201,7 @@
       desc: "Поддержка платформы больших данных Splunk",
       meta: "Москва · 2023",
       href: "project-linsm-splunk.html",
-      image: "images/project_27.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -211,7 +211,7 @@
       desc: "Оптимизация работы антиспам системы согласно актуальным угрозам",
       meta: "Москва · 2023",
       href: "project-rdi-antispam.html",
-      image: "images/project_28.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -221,7 +221,7 @@
       desc: "Внедрение импортонезависимой среды виртуализации, миграция файловых серверов и&nbsp;решения ВКС",
       meta: "Москва · 2023",
       href: "project-minenergo-2023.html",
-      image: "images/project_29.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -231,7 +231,7 @@
       desc: "Замена системы резервного копирования для 21&nbsp;ИС без остановки работы",
       meta: "Москва · 2023",
       href: "project-rdi-backup.html",
-      image: "images/project_30.png",
+      image: ".webp",
       imageFit: "contain",
     },
     {
@@ -241,7 +241,7 @@
       desc: "Модернизация системы периметральных средств безопасности на&nbsp;28-ми объектах региональной сети филиалов банка",
       meta: "Москва · 2022",
       href: "project-linsm-perimeter.html",
-      image: "images/project_42.png",
+      image: ".webp",
       imageFit: "contain",
     },
   ];
