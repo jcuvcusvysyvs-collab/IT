@@ -218,7 +218,7 @@
   min-width: clamp(11.5rem, 18vw, 15.5rem);
   height: clamp(5.25rem, 8.5vw, 6.75rem);
   padding: 0.75rem 1.6rem;
-  border-radius: 999px;
+  border-radius: 0.85rem;
   background: #111821;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -230,6 +230,7 @@
   max-width: min(12rem, 100%);
   height: clamp(3.1rem, 5vw, 4.35rem);
   object-fit: contain;
+  border-radius: 0.45rem;
 }
 
 @keyframes projects-hero-logos-drift {
@@ -241,6 +242,15 @@
   }
 }
 
+@keyframes projects-hero-logos-drift-y {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
 @media (max-width: 820px) {
   .projects-hero-logos__viewport {
     inset: -0.75rem -12% -1rem;
@@ -248,7 +258,7 @@
 }
 
 @media (max-width: 720px) {
-  /* Как на десктопе: hero на весь экран под шапку */
+  /* Полноэкранный hero */
   .page-projects #main > .projects-hero.projects-hero--logos:first-child {
     height: calc(100svh + var(--site-header-height, 5.5rem));
     height: calc(100dvh + var(--site-header-height, 5.5rem));
@@ -258,19 +268,23 @@
 
   .page-projects .projects-hero.projects-hero--logos {
     --hero-subnav-overlap: 4.35rem;
-    --projects-hero-pad-bottom: calc(var(--hero-subnav-overlap) + 0.5rem);
+    --projects-hero-pad-bottom: 0;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Текст сверху — в потоке, без наездов */
   .page-projects .projects-hero.projects-hero--logos .subpage-hero__inner {
     position: relative;
     z-index: 2;
-    flex: 1 1 auto;
+    order: 1;
+    flex: 0 0 auto;
     justify-content: flex-start;
-    padding-bottom: calc(var(--hero-subnav-overlap) + 46vh);
+    padding-bottom: 1.25rem;
   }
 
   .page-projects .projects-hero.projects-hero--logos .subpage-hero__content {
-    padding-top: clamp(1.15rem, 4vh, 1.85rem);
+    padding-top: clamp(0.85rem, 3vh, 1.5rem);
     max-width: 100%;
   }
 
@@ -286,145 +300,171 @@
 
   .page-projects .projects-hero.projects-hero--logos .projects-hero__actions {
     margin-top: 1.15rem;
-    margin-bottom: 1.35rem;
-    position: relative;
-    z-index: 3;
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
   }
 
-  /* Крупные блоки — ниже кнопки, без наезда */
+  .page-projects .projects-hero.projects-hero--logos .projects-hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Вертикальные колонки — прокрутка сверху вниз */
   .projects-hero-logos {
-    position: absolute;
-    inset: auto 0 0;
-    top: auto;
+    position: relative;
+    inset: auto;
+    order: 2;
     z-index: 1;
-    height: calc(44vh + var(--hero-subnav-overlap));
-    max-height: calc(26rem + var(--hero-subnav-overlap));
-    min-height: calc(20rem + var(--hero-subnav-overlap));
-    padding-bottom: var(--hero-subnav-overlap);
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0.5rem 0 calc(var(--hero-subnav-overlap) + 0.35rem);
+    overflow: hidden;
     opacity: 1;
+    pointer-events: none;
   }
 
   .projects-hero-logos__viewport {
     position: absolute;
-    inset: 0.85rem -5% var(--hero-subnav-overlap);
+    inset: 0.35rem var(--layout-gutter) calc(var(--hero-subnav-overlap) + 0.35rem);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 0.85rem;
-    padding-block: 0;
+    align-items: stretch;
+    gap: 0.7rem;
+    width: auto;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
     -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 10%, #000 80%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 3%, #000 97%, transparent 100%);
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 88%, transparent 100%);
     mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 10%, #000 80%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 3%, #000 97%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 88%, transparent 100%);
   }
 
   .projects-hero-logos__row {
     display: block;
+    flex: 0 0 auto;
+    width: 7.75rem;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .projects-hero-logos__row:nth-child(n + 3) {
+  .projects-hero-logos__row:nth-child(n + 4) {
     display: none;
   }
 
-  .projects-hero-logos__row--offset .projects-hero-logos__track {
-    margin-left: 6.5rem;
-    animation-duration: 48s;
+  .projects-hero-logos__track {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 0;
+    animation: projects-hero-logos-drift-y 36s linear infinite;
+    will-change: transform;
   }
 
-  .projects-hero-logos__track {
-    animation-duration: 42s;
+  .projects-hero-logos__row--offset .projects-hero-logos__track {
+    margin-left: 0;
+    animation-duration: 44s;
+    animation-direction: reverse;
+  }
+
+  .projects-hero-logos__row:nth-child(3) .projects-hero-logos__track {
+    animation-duration: 40s;
   }
 
   .projects-hero-logos__set {
-    gap: 0.85rem;
-    padding-right: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 0 0.7rem;
   }
 
+  /* Квадратные чипы под фото, лёгкое скругление */
   .projects-hero-logos__chip {
-    width: 78vw;
-    min-width: 78vw;
-    max-width: none;
-    height: clamp(11.5rem, 38vw, 14.5rem);
-    padding: 0.85rem 1.35rem;
-    border-radius: 2rem;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 7.75rem;
+    min-width: 7.75rem;
+    height: 7.75rem;
+    padding: 0.85rem;
+    border-radius: 0.85rem;
     background: #111821;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
   }
 
   .projects-hero-logos__chip img {
-    height: clamp(8.5rem, 28vw, 11rem);
-    max-width: min(30rem, 96%);
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    border-radius: 0.45rem;
     opacity: 0.98;
   }
 
-  /* Мягкий стык со sticky снизу; сверху лёгкое затемнение под текст */
+  /* Затемнение только у sticky снизу */
   .page-projects .projects-hero.projects-hero--logos::after {
-    z-index: 1;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(10, 14, 20, 0.72) 0%,
-        rgba(10, 14, 20, 0.35) 28%,
-        transparent 48%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        transparent calc(100% - 5.5rem),
-        rgba(10, 14, 20, 0.45) calc(100% - 3.25rem),
-        rgba(10, 14, 20, 0.85) calc(100% - 1.35rem),
-        #0a0e14 100%
-      );
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent calc(100% - 5.25rem),
+      rgba(10, 14, 20, 0.5) calc(100% - 3rem),
+      rgba(10, 14, 20, 0.88) calc(100% - 1.25rem),
+      #0a0e14 100%
+    );
     pointer-events: none;
   }
 }
 
 @media (max-width: 480px) {
   .page-projects .projects-hero.projects-hero--logos .subpage-hero__inner {
-    padding-bottom: calc(var(--hero-subnav-overlap) + 46vh);
+    padding-bottom: 1.1rem;
   }
 
   .projects-hero-logos {
-    top: auto;
-    height: calc(42vh + var(--hero-subnav-overlap));
-    min-height: calc(19rem + var(--hero-subnav-overlap));
-    max-height: calc(24.5rem + var(--hero-subnav-overlap));
+    padding: 0.4rem 0 calc(var(--hero-subnav-overlap) + 0.3rem);
   }
 
   .projects-hero-logos__viewport {
-    inset: 1rem -4% var(--hero-subnav-overlap);
-    gap: 0.75rem;
+    inset: 0.25rem var(--layout-gutter) calc(var(--hero-subnav-overlap) + 0.3rem);
+    gap: 0.55rem;
+  }
+
+  .projects-hero-logos__row {
+    width: 6.85rem;
   }
 
   .projects-hero-logos__set {
-    gap: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .projects-hero-logos__row--offset .projects-hero-logos__track {
-    margin-left: 5.25rem;
+    gap: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 
   .projects-hero-logos__chip {
-    width: 82vw;
-    min-width: 82vw;
-    height: clamp(12rem, 42vw, 15.25rem);
-    padding: 0.75rem 1.15rem;
-    border-radius: 2rem;
+    width: 6.85rem;
+    min-width: 6.85rem;
+    height: 6.85rem;
+    padding: 0.7rem;
+    border-radius: 0.75rem;
   }
 
   .projects-hero-logos__chip img {
-    height: clamp(9rem, 30vw, 11.75rem);
-    max-width: min(32rem, 97%);
+    border-radius: 0.4rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .projects-hero-logos__track {
-    animation: none;
+    animation: none !important;
   }
 }
 
