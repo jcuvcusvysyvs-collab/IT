@@ -276,33 +276,11 @@
   .page-projects .projects-hero.projects-hero--logos .subpage-hero__content {
     padding-top: clamp(1.35rem, 5vh, 2.35rem);
     max-width: 100%;
-    isolation: isolate;
   }
 
   .page-projects .projects-hero.projects-hero--logos .subpage-hero__content::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: -1.15rem;
-    right: -0.85rem;
-    top: -0.85rem;
-    bottom: -1.1rem;
-    border-radius: 1.15rem;
-    background:
-      radial-gradient(
-        ellipse 92% 88% at 18% 28%,
-        rgba(10, 14, 20, 0.96) 0%,
-        rgba(10, 14, 20, 0.78) 48%,
-        rgba(10, 14, 20, 0.28) 78%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(10, 14, 20, 0.9) 0%,
-        rgba(10, 14, 20, 0.72) 62%,
-        rgba(10, 14, 20, 0.2) 100%
-      );
-    pointer-events: none;
+    content: none;
+    display: none;
   }
 
   .page-projects .projects-hero.projects-hero--logos .projects-hero__lead {
@@ -321,15 +299,17 @@
   }
 
   .projects-hero-logos__viewport {
-    inset: -1rem -34% -0.5rem;
-    justify-content: center;
+    inset: auto -34% -0.5rem;
+    top: 38%;
+    justify-content: flex-start;
     gap: 0.3rem;
     padding-block: 0;
+    padding-top: 0.35rem;
     -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 10%, #000 74%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%),
       linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
     mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 10%, #000 74%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%),
       linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
@@ -376,20 +356,32 @@
     max-width: 9.5rem;
   }
 
-  /* Общий фон мягче; читаемость — за счёт локального затемнения у текста */
+  /* Мягкое виньетирование под текст + плавный уход в низ */
   .page-projects .projects-hero.projects-hero--logos::after {
     background:
+      radial-gradient(
+        140% 95% at 12% 12%,
+        rgba(10, 14, 20, 0.97) 0%,
+        rgba(10, 14, 20, 0.88) 22%,
+        rgba(10, 14, 20, 0.55) 42%,
+        rgba(10, 14, 20, 0.18) 62%,
+        transparent 78%
+      ),
+      radial-gradient(
+        90% 70% at 50% 8%,
+        rgba(10, 14, 20, 0.55) 0%,
+        transparent 70%
+      ),
       linear-gradient(
         180deg,
-        rgba(10, 14, 20, 0.55) 0%,
-        rgba(10, 14, 20, 0.22) 28%,
-        transparent 48%
+        rgba(10, 14, 20, 0.35) 0%,
+        transparent 38%
       ),
       linear-gradient(
         180deg,
         transparent 58%,
-        rgba(10, 14, 20, 0.45) 78%,
-        rgba(10, 14, 20, 0.88) 92%,
+        rgba(10, 14, 20, 0.35) 76%,
+        rgba(10, 14, 20, 0.78) 90%,
         #0a0e14 100%
       );
   }
@@ -397,7 +389,8 @@
 
 @media (max-width: 480px) {
   .projects-hero-logos__viewport {
-    inset: -0.75rem -38% -0.35rem;
+    inset: auto -38% -0.35rem;
+    top: 40%;
     gap: 0.25rem;
   }
 
