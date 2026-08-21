@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260819-blue2-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260821-asdu-form-v2" />
     <link rel="preload" href="images/hero_03.webp?v=20260818-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -214,12 +214,10 @@
                 <a
                   class="btn btn--lg hero-pt__cta subpage-hero__cta"
                   href="#asdu-feedback"
-                  data-asdu-request-type="pilot"
                 >Пилот</a>
                 <a
                   class="btn btn--lg btn--ghost-light subpage-hero__cta"
                   href="#asdu-feedback"
-                  data-asdu-request-type="consultation"
                 >Консультация</a>
               </div>
             </div>
@@ -265,12 +263,10 @@
                 <a
                   class="page-section-subnav__btn page-section-subnav__btn--primary"
                   href="#asdu-feedback"
-                  data-asdu-request-type="pilot"
                 >Пилот</a>
                 <a
                   class="page-section-subnav__btn page-section-subnav__btn--ghost"
                   href="#asdu-feedback"
-                  data-asdu-request-type="consultation"
                 >Консультация</a>
               </div>
             </div>
@@ -993,227 +989,258 @@
           </div>
         </section>
 
-        <section class="section page-infra__form-section" id="asdu-feedback" aria-labelledby="asdu-form-heading">
-          <div class="huawei-clients__form-wrap">
-            <div class="huawei-feedback" data-feature-reveal>
-              <div class="huawei-feedback__intro">
-                <p class="huawei-feedback__eyebrow">Заявка на&nbsp;АСДУ</p>
-                <h2 class="huawei-feedback__title" id="asdu-form-heading">
-                  <span class="huawei-feedback__title-line">Обсудим ваш</span>
-                  <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">объект</span>
-                </h2>
-                <div class="huawei-feedback__contacts">
-                  <div class="huawei-feedback__contact">
-                    <span class="huawei-feedback__contact-label">Телефон</span>
-                    <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
-                  </div>
-                  <div class="huawei-feedback__contact">
-                    <span class="huawei-feedback__contact-label">Email</span>
-                    <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
-                  </div>
-                  <div class="huawei-feedback__contact">
-                    <span class="huawei-feedback__contact-label">Адрес</span>
-                    <span class="huawei-feedback__contact-value"
-                      >г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, 2, корп.&nbsp;12</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="huawei-feedback__panel">
-                <form
-                  class="huawei-request-form page-asdu__request-form"
-                  id="asdu-form"
-                  action="#"
-                  method="post"
-                  novalidate
-                  aria-labelledby="asdu-form-heading"
-                >
-                  <fieldset class="huawei-request-form__type">
-                    <legend class="huawei-request-form__type-legend">Тип заявки</legend>
-                    <div class="huawei-request-form__type-grid page-asdu__request-type-grid" role="presentation">
-                      <label class="huawei-request-form__type-card">
-                        <input
-                          class="huawei-request-form__type-input"
-                          type="radio"
-                          name="request_type"
-                          value="consultation"
-                          checked
-                        />
-                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
-                        <span class="huawei-request-form__type-icon" aria-hidden="true">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path
-                              d="M6 6.5h12a1.5 1.5 0 0 1 1.5 1.5v7.25a1.5 1.5 0 0 1-1.5 1.5H10l-3.75 2.5V8a1.5 1.5 0 0 1 1.5-1.5Z"
-                              stroke="currentColor"
-                              stroke-width="1.35"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M8.25 10.25h7.5M8.25 13h4.5"
-                              stroke="currentColor"
-                              stroke-width="1.35"
-                              stroke-linecap="round"
-                            />
-                          </svg>
-                        </span>
-                        <span class="huawei-request-form__type-body">
-                          <span class="huawei-request-form__type-title">Консультация</span>
-                          <span class="huawei-request-form__type-desc">Обсудим задачу и&nbsp;объект</span>
-                        </span>
-                      </label>
-                      <label class="huawei-request-form__type-card">
-                        <input
-                          class="huawei-request-form__type-input"
-                          type="radio"
-                          name="request_type"
-                          value="proposal"
-                        />
-                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
-                        <span class="huawei-request-form__type-icon" aria-hidden="true">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path
-                              d="M7.25 5.5h9.5A1.75 1.75 0 0 1 18.5 7.25v9.5A1.75 1.75 0 0 1 16.75 18.5h-9.5A1.75 1.75 0 0 1 5.5 16.75v-9.5A1.75 1.75 0 0 1 7.25 5.5Z"
-                              stroke="currentColor"
-                              stroke-width="1.35"
-                            />
-                            <path
-                              d="M8.25 9.25h7.5M8.25 12h7.5M8.25 14.75h4.5"
-                              stroke="currentColor"
-                              stroke-width="1.35"
-                              stroke-linecap="round"
-                            />
-                          </svg>
-                        </span>
-                        <span class="huawei-request-form__type-body">
-                          <span class="huawei-request-form__type-title">КП</span>
-                          <span class="huawei-request-form__type-desc">Оценка внедрения АСДУ</span>
-                        </span>
-                      </label>
-                      <label class="huawei-request-form__type-card">
-                        <input
-                          class="huawei-request-form__type-input"
-                          type="radio"
-                          name="request_type"
-                          value="pilot"
-                        />
-                        <span class="huawei-request-form__type-check" aria-hidden="true"></span>
-                        <span class="huawei-request-form__type-icon" aria-hidden="true">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path
-                              d="M8.2 5.8 18 12 8.2 18.2V5.8Z"
-                              stroke="currentColor"
-                              stroke-width="1.35"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <span class="huawei-request-form__type-body">
-                          <span class="huawei-request-form__type-title">Пилот / демо</span>
-                          <span class="huawei-request-form__type-desc">SCADA+ на&nbsp;вашем сценарии</span>
-                        </span>
-                      </label>
-                    </div>
-                  </fieldset>
+      <section class="section page-infra__form-section" id="asdu-feedback" aria-labelledby="asdu-form-heading">
 
-                  <div class="huawei-request-form__fields page-asdu__request-fields">
-                    <div class="page-asdu__request-row">
-                      <input
-                        class="huawei-request-form__input"
-                        type="text"
-                        name="name"
-                        placeholder="Контактное лицо"
-                        autocomplete="name"
-                        aria-label="Контактное лицо"
-                        required
-                      />
-                      <input
-                        class="huawei-request-form__input"
-                        type="text"
-                        name="company"
-                        placeholder="Компания"
-                        autocomplete="organization"
-                        aria-label="Компания"
-                        required
-                      />
+        <div class="infra-form-layout" data-feature-reveal>
+
+          <div class="infra-form-layout__photo">
+            <div class="infra-form-layout__media" aria-hidden="true">
+              <picture>
+                <source srcset="images/hero_section/01_hero_section.webp" type="image/webp" />
+                <img
+                  class="infra-form-layout__poster"
+                  src="images/hero_section/01_hero_section.png"
+                  alt=""
+                  width="1920"
+                  height="1080"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+              <video
+                class="infra-form-layout__video"
+                muted
+                playsinline
+                webkit-playsinline
+                preload="auto"
+              ></video>
+            </div>
+            <div class="infra-form-layout__photo-overlay"></div>
+          </div>
+
+          <div class="infra-form-layout__intro">
+            <p class="infra-form-layout__eyebrow">Заявка на&nbsp;АСДУ</p>
+            <h2 class="infra-form-layout__title" id="asdu-form-heading">Обсудим ваш<br><span class="infra-form-layout__title-accent">объект</span></h2>
+            <p class="infra-form-layout__lead">Опишите задачу&nbsp;— инженер профильного направления свяжется с&nbsp;вами и&nbsp;предложит следующие варианты действий: аудит, предварительный расчёт или техническую консультацию.</p>
+          </div>
+
+          <div class="infra-form-layout__form">
+            <form
+              class="huawei-request-form"
+              id="asdu-form"
+              action="#"
+              method="post"
+              novalidate
+              aria-labelledby="asdu-form-heading"
+            >
+              <div class="infra-form-fields">
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Имя Фамилия</span>
+                  <input
+                    class="infra-form-field__input"
+                    type="text"
+                    name="name"
+                    placeholder="Иван Иванов"
+                    autocomplete="name"
+                    required
+                  />
+                </label>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Компания</span>
+                  <input
+                    class="infra-form-field__input"
+                    type="text"
+                    name="company"
+                    placeholder="Название компании"
+                    autocomplete="organization"
+                  />
+                </label>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Email</span>
+                  <input
+                    class="infra-form-field__input"
+                    type="email"
+                    name="email"
+                    placeholder="mail@company.ru"
+                    autocomplete="email"
+                    required
+                  />
+                </label>
+                <label class="infra-form-field infra-form-field--phone">
+                  <span class="infra-form-field__label">Телефон</span>
+                  <div class="infra-phone-field" data-phone-country>
+                    <div class="infra-phone-field__country">
+                      <button
+                        type="button"
+                        class="infra-phone-field__trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Выбор страны"
+                      >
+                        <span class="infra-phone-field__flag" aria-hidden="true">
+                          <img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" />
+                        </span>
+                        <svg class="infra-phone-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <ul class="infra-phone-field__dropdown" role="listbox" hidden>
+                        <li
+                          class="infra-phone-field__option is-selected"
+                          role="option"
+                          data-country="ru"
+                          data-code="+7"
+                          data-flag="images/form/Flag1.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="true"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Россия</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="by"
+                          data-code="+375"
+                          data-flag="images/form/Flag2.svg"
+                          data-placeholder="(__) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag2.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Беларусь</span>
+                          <span class="infra-phone-field__option-code">+375</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="kz"
+                          data-code="+7"
+                          data-flag="images/form/Flag3.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag3.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Казахстан</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                      </ul>
+                      <input type="hidden" name="phone_country" value="ru" />
                     </div>
-                    <div class="page-asdu__request-row">
+                    <div class="infra-phone-field__number">
+                      <span class="infra-phone-field__code" aria-hidden="true">+7</span>
                       <input
-                        class="huawei-request-form__input"
-                        type="email"
-                        name="email"
-                        placeholder="Рабочая почта"
-                        autocomplete="email"
-                        aria-label="Рабочая почта"
-                        required
-                      />
-                      <input
-                        class="huawei-request-form__input"
+                        class="infra-form-field__input infra-phone-field__input"
                         type="tel"
                         name="phone"
-                        placeholder="Телефон"
+                        placeholder="(___) ___ - __ - __"
                         autocomplete="tel"
-                        inputmode="tel"
-                        aria-label="Телефон"
-                        required
+                        inputmode="numeric"
                       />
                     </div>
-                    <div class="page-asdu__request-row">
-                      <input
-                        class="huawei-request-form__input"
-                        type="text"
-                        name="position"
-                        placeholder="Должность (необязательно)"
-                        autocomplete="organization-title"
-                        aria-label="Должность"
-                      />
-                      <label class="page-asdu__request-select-wrap">
-                        <span class="visually-hidden">Тип объекта</span>
-                        <select
-                          class="huawei-request-form__input page-asdu__request-select"
-                          name="object_type"
-                          aria-label="Тип объекта"
-                        >
-                          <option value="" selected disabled>Тип объекта</option>
-                          <option value="datacenter">ЦОД / серверная</option>
-                          <option value="industry">Производство</option>
-                          <option value="building">Здание / комплекс</option>
-                          <option value="energy">ТЭК / энергетика</option>
-                          <option value="other">Другое</option>
-                        </select>
-                      </label>
-                    </div>
-                    <textarea
-                      class="huawei-request-form__input huawei-request-form__input--area"
-                      id="asdu-request-message"
-                      name="message"
-                      placeholder="Кратко опишите задачу"
-                      rows="3"
-                      aria-label="Кратко опишите задачу"
-                      required
-                    ></textarea>
                   </div>
-                  <label class="huawei-request-form__consent">
-                    <input class="huawei-request-form__checkbox" type="checkbox" name="consent" value="yes" required />
-                    <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
-                    <span class="huawei-request-form__consent-text">
-                      Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на&nbsp;обработку моих персональных данных для&nbsp;цели
-                      ответа на&nbsp;мою заявку.
-                    </span>
-                  </label>
-                  <button type="submit" class="huawei-request-form__submit">
-                    <span class="huawei-request-form__submit-text" data-asdu-submit-text>Получить консультацию</span>
-                    <span class="huawei-request-form__submit-icon" aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                </label>
+                <div class="infra-form-field infra-form-field--interests">
+                  <span class="infra-form-field__label" id="asdu-interests-label">Что интересует</span>
+                  <div class="infra-interests-field" data-interests-select>
+                    <button
+                      type="button"
+                      class="infra-interests-field__trigger infra-form-field__input"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-labelledby="asdu-interests-label asdu-interests-value"
+                    >
+                      <span class="infra-interests-field__value" id="asdu-interests-value">Выберите направления</span>
+                      <svg class="infra-interests-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                    </span>
-                  </button>
-                  <p class="huawei-request-form__status" id="asdu-form-status" role="status" aria-live="polite"></p>
-                </form>
+                    </button>
+                    <ul class="infra-interests-field__dropdown" role="listbox" aria-multiselectable="true" aria-labelledby="asdu-interests-label" hidden>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="survey" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Обследование</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="design" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Проектирование</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="supply" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Поставка</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="implementation" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Внедрение</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="support" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Поддержка и эксплуатация</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="consultation" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Пока не знаю, нужна консультация</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Ваш вопрос</span>
+                  <textarea
+                    class="infra-form-field__input infra-form-field__input--area"
+                    name="message"
+                    placeholder="Опишите задачу..."
+                    rows="3"
+                    required
+                  ></textarea>
+                </label>
               </div>
-            </div>
+
+              <label class="huawei-request-form__consent">
+                <input
+                  class="huawei-request-form__checkbox"
+                  type="checkbox"
+                  name="consent"
+                  value="yes"
+                  required
+                />
+                <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                <span class="huawei-request-form__consent-text">
+                  Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на мою заявку.
+                </span>
+              </label>
+
+              <button type="submit" class="huawei-request-form__submit">
+                <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <p class="huawei-request-form__status" id="asdu-form-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
-        </section>
+
+        </div>
+      </section>
       </div>
     </main>
 
@@ -1383,7 +1410,10 @@
     <script defer src="infra-scenarios.js?v=20260731-swipe-standards"></script>
     <script defer src="asdu-gallery-lightbox.js?v=20260721-gallery-all"></script>
     <script defer src="asdu-video-poster.js?v=20260723-poster-min"></script>
-    <script defer src="asdu-request-form.js?v=20260724-subnav-ctas"></script>
+    <script defer src="infra-form-video.js?v=20260820-huawei-v1"></script>
+    <script defer src="infra-phone-country.js?v=20260820-v1"></script>
+    <script defer src="infra-interests-select.js?v=20260820-v2"></script>
+    <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260801-nav-drill-v2"></script>
     <script defer src="footer-dot-matrix.js?v=20260817-halftone-v10"></script>
   </body>

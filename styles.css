@@ -20672,61 +20672,6 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
   min-width: 0;
 }
 
-/* B2B lead form — ASDU */
-.page-asdu .page-asdu__request-type-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.page-asdu .page-asdu__request-type-grid .huawei-request-form__type-card {
-  min-height: 8.25rem;
-  padding: 1rem 0.85rem 1.05rem;
-}
-
-.page-asdu__request-fields {
-  gap: 0;
-}
-
-.page-asdu__request-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 1.25rem;
-}
-
-.page-asdu__request-select-wrap {
-  display: block;
-  min-width: 0;
-}
-
-.page-asdu__request-select {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23999' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.15rem center;
-  background-size: 0.75rem 0.5rem;
-  padding-right: 1.35rem;
-}
-
-.page-asdu__request-select:has(option[value=""]:checked) {
-  color: color-mix(in srgb, var(--hc-white, #fff) 45%, transparent);
-}
-
-.page-asdu__request-select option {
-  color: #111;
-  background: #fff;
-}
-
-@media (max-width: 720px) {
-  .page-asdu .page-asdu__request-type-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .page-asdu__request-row {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Видео отдельно — между блоками 01 и 02 */
 .page-asdu__watch {
   margin: 0;
@@ -22983,8 +22928,7 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   --hc-invalid-border: color-mix(in srgb, var(--accent) 50%, var(--border) 50%);
 }
 
-.page-contacts .page-contacts__form-section .huawei-clients__form-wrap,
-.page-infra .page-infra__form-section .huawei-clients__form-wrap  {
+.page-contacts .page-contacts__form-section .huawei-clients__form-wrap {
   position: relative;
   z-index: 1;
   border-top: none;
@@ -22994,12 +22938,6 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
 .page-infra .page-infra__form-section {
   padding: clamp(3rem, 6vw, 5rem) 0;
   background: var(--hc-dark, #0c1220);
-}
-
-   Infra — форма обратной связи (split layout)
-   ═══════════════════════════════════════════ */
-.page-infra .page-infra__form-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
 }
 
 /* Общий контейнер-карточка */
@@ -23151,6 +23089,10 @@ html:not([data-theme="dark"]) .page-asdu__watch .page-asdu__video-frame {
   line-height: 1.02;
   letter-spacing: 0.01em;
   color: #fff;
+}
+
+.infra-form-layout__title-accent {
+  color: color-mix(in srgb, var(--accent) 78%, #fff 22%);
 }
 
 .infra-form-layout__lead {
@@ -24129,8 +24071,7 @@ a.infra-form-layout__contact-value:hover {
   }
 }
 
-.page-contacts .page-contacts__form-section .huawei-feedback__title-line--accent,
-.page-infra .page-infra__form-section .huawei-feedback__title-line--accent  {
+.page-contacts .page-contacts__form-section .huawei-feedback__title-line--accent {
   color: var(--accent);
 }
 
@@ -24139,25 +24080,7 @@ a.infra-form-layout__contact-value:hover {
   --hc-panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 
-@media (max-width: 1024px) {
-  .page-infra .page-infra__form-section .huawei-clients__form-wrap  {
-    padding-block: clamp(2rem, 6vw, 2.75rem) clamp(2.35rem, 7vw, 3.25rem);
-  }
-}
-
 @media (max-width: 720px) {
-  .page-infra .page-infra__form-section .huawei-feedback__panel  {
-    padding: 1.35rem 1.1rem 1.5rem;
-  }
-
-  .page-infra .page-infra__form-section .huawei-feedback__title  {
-    font-size: clamp(2.55rem, 13vw, 3.35rem);
-  }
-
-  .page-infra .page-infra__form-section .huawei-feedback__lead  {
-    max-width: none;
-  }
-
   .page-infra .page-infra__form-section .huawei-request-form__consent-text  {
     font-size: 0.8125rem;
   }

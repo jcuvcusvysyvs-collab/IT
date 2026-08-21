@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260819-revert-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260821-infosec-form-v1" />
     <link rel="preload" href="images/SERVICE_02.webp?v=20260818-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -650,120 +650,255 @@
       </section>
 
       <section class="section page-infra__form-section" id="infosec-feedback" aria-labelledby="infosec-form-heading">
-        <div class="huawei-clients__form-wrap">
-          <div class="huawei-feedback" data-feature-reveal>
-            <div class="huawei-feedback__intro">
-              <p class="huawei-feedback__eyebrow">Обратная связь</p>
-              <h2 class="huawei-feedback__title" id="infosec-form-heading">
-                <span class="huawei-feedback__title-line">Остались</span>
-                <span class="huawei-feedback__title-line huawei-feedback__title-line--accent">вопросы</span>
-              </h2>
-              <p class="huawei-feedback__lead">
-                Ответим в&nbsp;течение одного рабочего дня. Для срочных вопросов&nbsp;— звоните напрямую.
-              </p>
-              <div class="huawei-feedback__contacts">
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Телефон</span>
-                  <a class="huawei-feedback__contact-value" href="tel:+74951086156">8&nbsp;495&nbsp;108-61-56</a>
-                </div>
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Email</span>
-                  <a class="huawei-feedback__contact-value" href="mailto:info@dce.su">info@dce.su</a>
-                </div>
-                <div class="huawei-feedback__contact">
-                  <span class="huawei-feedback__contact-label">Адрес</span>
-                  <span class="huawei-feedback__contact-value"
-                    >125124, г.&nbsp;Москва, 3‑я&nbsp;ул.&nbsp;Ямского&nbsp;Поля, дом&nbsp;2, корпус&nbsp;12, офис&nbsp;№&nbsp;314</span
-                  >
-                </div>
-              </div>
-            </div>
 
-            <div class="huawei-feedback__panel">
-              <form
-                class="huawei-request-form"
-                id="infosec-form"
-                action="#"
-                method="post"
-                novalidate
-                aria-labelledby="infosec-form-heading"
-              >
-                <div class="huawei-request-form__fields">
+        <div class="infra-form-layout" data-feature-reveal>
+
+          <div class="infra-form-layout__photo">
+            <div class="infra-form-layout__media" aria-hidden="true">
+              <picture>
+                <source srcset="images/hero_section/01_hero_section.webp" type="image/webp" />
+                <img
+                  class="infra-form-layout__poster"
+                  src="images/hero_section/01_hero_section.png"
+                  alt=""
+                  width="1920"
+                  height="1080"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
+              <video
+                class="infra-form-layout__video"
+                muted
+                playsinline
+                webkit-playsinline
+                preload="auto"
+              ></video>
+            </div>
+            <div class="infra-form-layout__photo-overlay"></div>
+          </div>
+
+          <div class="infra-form-layout__intro">
+            <p class="infra-form-layout__eyebrow">Обратная связь</p>
+            <h2 class="infra-form-layout__title" id="infosec-form-heading">Обсудим вашу<br>задачу</h2>
+            <p class="infra-form-layout__lead">Опишите задачу&nbsp;— инженер профильного направления свяжется с&nbsp;вами и&nbsp;предложит следующие варианты действий: аудит, предварительный расчёт или техническую консультацию.</p>
+          </div>
+
+          <div class="infra-form-layout__form">
+            <form
+              class="huawei-request-form"
+              id="infosec-form"
+              action="#"
+              method="post"
+              novalidate
+              aria-labelledby="infosec-form-heading"
+            >
+              <div class="infra-form-fields">
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Имя Фамилия</span>
                   <input
-                    class="huawei-request-form__input"
+                    class="infra-form-field__input"
                     type="text"
                     name="name"
-                    placeholder="Имя Фамилия"
+                    placeholder="Иван Иванов"
                     autocomplete="name"
-                    aria-label="Имя Фамилия"
                     required
                   />
+                </label>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Компания</span>
                   <input
-                    class="huawei-request-form__input"
+                    class="infra-form-field__input"
+                    type="text"
+                    name="company"
+                    placeholder="Название компании"
+                    autocomplete="organization"
+                  />
+                </label>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Email</span>
+                  <input
+                    class="infra-form-field__input"
                     type="email"
                     name="email"
-                    placeholder="Почта"
+                    placeholder="mail@company.ru"
                     autocomplete="email"
-                    aria-label="Почта"
                     required
                   />
-                  <input
-                    class="huawei-request-form__input"
-                    type="tel"
-                    name="phone"
-                    placeholder="Телефон"
-                    autocomplete="tel"
-                    inputmode="tel"
-                    aria-label="Телефон"
-                  />
+                </label>
+                <label class="infra-form-field infra-form-field--phone">
+                  <span class="infra-form-field__label">Телефон</span>
+                  <div class="infra-phone-field" data-phone-country>
+                    <div class="infra-phone-field__country">
+                      <button
+                        type="button"
+                        class="infra-phone-field__trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Выбор страны"
+                      >
+                        <span class="infra-phone-field__flag" aria-hidden="true">
+                          <img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" />
+                        </span>
+                        <svg class="infra-phone-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <ul class="infra-phone-field__dropdown" role="listbox" hidden>
+                        <li
+                          class="infra-phone-field__option is-selected"
+                          role="option"
+                          data-country="ru"
+                          data-code="+7"
+                          data-flag="images/form/Flag1.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="true"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag1.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Россия</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="by"
+                          data-code="+375"
+                          data-flag="images/form/Flag2.svg"
+                          data-placeholder="(__) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag2.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Беларусь</span>
+                          <span class="infra-phone-field__option-code">+375</span>
+                        </li>
+                        <li
+                          class="infra-phone-field__option"
+                          role="option"
+                          data-country="kz"
+                          data-code="+7"
+                          data-flag="images/form/Flag3.svg"
+                          data-placeholder="(___) ___ - __ - __"
+                          aria-selected="false"
+                        >
+                          <span class="infra-phone-field__option-flag"><img src="images/form/Flag3.svg" alt="" width="36" height="24" decoding="async" /></span>
+                          <span class="infra-phone-field__option-name">Казахстан</span>
+                          <span class="infra-phone-field__option-code">+7</span>
+                        </li>
+                      </ul>
+                      <input type="hidden" name="phone_country" value="ru" />
+                    </div>
+                    <div class="infra-phone-field__number">
+                      <span class="infra-phone-field__code" aria-hidden="true">+7</span>
+                      <input
+                        class="infra-form-field__input infra-phone-field__input"
+                        type="tel"
+                        name="phone"
+                        placeholder="(___) ___ - __ - __"
+                        autocomplete="tel"
+                        inputmode="numeric"
+                      />
+                    </div>
+                  </div>
+                </label>
+                <div class="infra-form-field infra-form-field--interests">
+                  <span class="infra-form-field__label" id="infosec-interests-label">Что интересует</span>
+                  <div class="infra-interests-field" data-interests-select>
+                    <button
+                      type="button"
+                      class="infra-interests-field__trigger infra-form-field__input"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-labelledby="infosec-interests-label infosec-interests-value"
+                    >
+                      <span class="infra-interests-field__value" id="infosec-interests-value">Выберите направления</span>
+                      <svg class="infra-interests-field__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <ul class="infra-interests-field__dropdown" role="listbox" aria-multiselectable="true" aria-labelledby="infosec-interests-label" hidden>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="survey" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Обследование</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="design" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Проектирование</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="supply" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Поставка</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="implementation" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Внедрение</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="support" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Поддержка и эксплуатация</span>
+                        </label>
+                      </li>
+                      <li class="infra-interests-field__option" role="option">
+                        <label class="infra-interests-field__option-label">
+                          <input class="infra-interests-field__checkbox" type="checkbox" name="interests[]" value="consultation" />
+                          <span class="infra-interests-field__box" aria-hidden="true"></span>
+                          <span class="infra-interests-field__option-text">Пока не знаю, нужна консультация</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <label class="infra-form-field">
+                  <span class="infra-form-field__label">Ваш вопрос</span>
                   <textarea
-                    class="huawei-request-form__input huawei-request-form__input--area"
+                    class="infra-form-field__input infra-form-field__input--area"
                     name="message"
-                    placeholder="Ваш вопрос"
-                    rows="4"
-                    aria-label="Ваш вопрос"
+                    placeholder="Опишите задачу..."
+                    rows="3"
                     required
                   ></textarea>
-                </div>
-
-                <label class="huawei-request-form__consent">
-                  <input
-                    class="huawei-request-form__checkbox"
-                    type="checkbox"
-                    name="consent"
-                    value="yes"
-                    required
-                  />
-                  <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
-                  <span class="huawei-request-form__consent-text">
-                    Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на
-                    мою заявку.
-                  </span>
                 </label>
+              </div>
 
-                <button type="submit" class="huawei-request-form__submit">
-                  <span class="huawei-request-form__submit-text">Отправить заявку</span>
-                  <span class="huawei-request-form__submit-icon" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M3 7h8M8 4l3 3-3 3"
-                        stroke="currentColor"
-                        stroke-width="1.3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-                <p
-                  class="huawei-request-form__status"
-                  id="infosec-form-status"
-                  role="status"
-                  aria-live="polite"
-                ></p>
-              </form>
-            </div>
+              <label class="huawei-request-form__consent">
+                <input
+                  class="huawei-request-form__checkbox"
+                  type="checkbox"
+                  name="consent"
+                  value="yes"
+                  required
+                />
+                <span class="huawei-request-form__consent-box" aria-hidden="true"></span>
+                <span class="huawei-request-form__consent-text">
+                  Я даю ООО «ДИСИ ИНЖИНИРИНГ» согласие на обработку моих персональных данных для цели ответа на мою заявку.
+                </span>
+              </label>
+
+              <button type="submit" class="huawei-request-form__submit">
+                <span class="huawei-request-form__submit-text">Отправить заявку</span>
+                <span class="huawei-request-form__submit-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <p class="huawei-request-form__status" id="infosec-form-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
+
         </div>
       </section>
       </div>
@@ -879,6 +1014,9 @@
     <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
     <script defer src="infra-scenarios.js?v=20260731-swipe-standards"></script>
     <script defer src="feature-reveal.js"></script>
+    <script defer src="infra-form-video.js?v=20260820-huawei-v1"></script>
+    <script defer src="infra-phone-country.js?v=20260820-v1"></script>
+    <script defer src="infra-interests-select.js?v=20260820-v2"></script>
     <script defer src="contacts-form.js"></script>
     <script defer src="nav.js?v=20260801-nav-drill-v2"></script>
     <script defer src="footer-dot-matrix.js?v=20260817-halftone-v10"></script>

@@ -73,5 +73,6 @@
   bindForm("scaling-form", "scaling-form-status");
   bindForm("continuity-form", "continuity-form-status");
   bindForm("ops-form", "ops-form-status");
+  bindForm("asdu-form", "asdu-form-status");
   preventConsentTextSelection();
 })();
