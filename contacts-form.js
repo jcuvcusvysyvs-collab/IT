@@ -39,8 +39,7 @@
     });
   }
 
-  var MAIL_ENDPOINT = "send-form.php";
-  var TEST_MAIL_FALLBACK = "https://formsubmit.co/ajax/obrainov@yandex.ru";
+  var TEST_MAIL = "https://formsubmit.co/ajax/obrainov@yandex.ru";
 
   function setStatus(statusEl, type, text) {
     statusEl.textContent = text;
@@ -52,83 +51,71 @@
     return text ? text.textContent.trim() : input.value;
   }
 
-  function buildPayload(form) {
-    var payload = new FormData(form);
-    var labels = [];
+  function phoneValue(form) {
+    var code = form.querySelector(".infra-phone-field__code");
+    var phone = form.querySelector('input[name="phone"]');
+    var country = form.querySelector('input[name="phone_country"]');
+    var parts = [];
+    if (code && code.textContent) parts.push(code.textContent.trim());
+    if (phone && phone.value) parts.push(phone.value.trim());
+    var result = parts.join(" ");
+    if (country && country.value) result += " (" + country.value + ")";
+    return result.trim();
+  }
+
+  function buildMailData(form) {
+    var interests = [];
     form.querySelectorAll('input[name="interests[]"]:checked').forEach(function (input) {
-      labels.push(interestLabel(input));
+      interests.push(interestLabel(input));
     });
-    payload.delete("interests[]");
-    labels.forEach(function (label) {
-      payload.append("interests[]", label);
-    });
-    payload.set("page", window.location.href);
-    payload.set("source", document.title || "Сайт DC Engineering");
-    return payload;
+
+    return {
+      _subject: "Заявка с сайта: Инфраструктурные решения",
+      _template: "table",
+      _captcha: "false",
+      _honey: "",
+      name: (form.elements.name && form.elements.name.value) || "",
+      company: (form.elements.company && form.elements.company.value) || "",
+      email: (form.elements.email && form.elements.email.value) || "",
+      phone: phoneValue(form),
+      interests: interests.length ? interests.join(", ") : "—",
+      message: (form.elements.message && form.elements.message.value) || "",
+      page: window.location.href,
+      source: "Инфраструктурные решения",
+    };
   }
 
-  function payloadToJson(payload) {
-    var data = {};
-    payload.forEach(function (value, key) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        if (!Array.isArray(data[key])) data[key] = [data[key]];
-        data[key].push(value);
-      } else {
-        data[key] = value;
-      }
-    });
-    return data;
+  function isSuccess(result) {
+    if (!result) return false;
+    return result.success === true || result.success === "true";
   }
 
-  function sendViaPhp(payload) {
-    return fetch(MAIL_ENDPOINT, {
-      method: "POST",
-      body: payload,
-      headers: { Accept: "application/json" },
-    }).then(function (response) {
-      if (response.status === 404) {
-        var err = new Error("php-missing");
-        err.code = "php-missing";
-        throw err;
-      }
-      return response.json().then(function (data) {
-        if (!response.ok || !data || !data.ok) {
-          throw new Error("mail");
-        }
-        return data;
-      });
-    });
-  }
-
-  function sendViaFormsubmit(payload) {
-    var data = payloadToJson(payload);
-    data._subject = "Заявка с сайта: Инфраструктурные решения";
-    data._template = "table";
-    data._captcha = "false";
-    return fetch(TEST_MAIL_FALLBACK, {
+  function sendMail(form) {
+    return fetch(TEST_MAIL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(buildMailData(form)),
     }).then(function (response) {
-      return response.json().then(function (result) {
-        if (!response.ok || (result && result.success === false)) {
-          throw new Error("mail");
+      return response.text().then(function (raw) {
+        var result = null;
+        try {
+          result = raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          result = null;
         }
-        return result;
-      });
-    });
-  }
 
-  function sendMail(form) {
-    var payload = buildPayload(form);
-    return sendViaPhp(payload).catch(function (error) {
-      if (error && error.code === "php-missing") {
-        return sendViaFormsubmit(payload);
-      }
-      throw error;
+        if (isSuccess(result)) return result;
+
+        var message = (result && (result.message || result.error)) || "";
+        var err = new Error(message || "mail");
+        if (/confirm|activate|verify|check your email/i.test(message)) {
+          err.code = "confirm";
+        }
+        throw err;
+      });
     });
   }
 
@@ -170,17 +157,25 @@
           setStatus(
             statusEl,
             "success",
-            "Спасибо! Заявка отправлена — письмо придёт на тестовую почту."
+            "Спасибо! Заявка отправлена на obrainov@yandex.ru."
           );
           form.reset();
           var interestsValue = document.getElementById("infra-interests-value");
           if (interestsValue) interestsValue.textContent = "Выберите направления";
         })
-        .catch(function () {
+        .catch(function (error) {
+          if (error && error.code === "confirm") {
+            setStatus(
+              statusEl,
+              "success",
+              "Первая отправка: откройте почту obrainov@yandex.ru и подтвердите адрес по ссылке в письме от FormSubmit. После этого заявки начнут приходить."
+            );
+            return;
+          }
           setStatus(
             statusEl,
             "error",
-            "Не удалось отправить заявку. Попробуйте ещё раз или напишите на obrainov@yandex.ru."
+            "Не удалось отправить заявку. Проверьте интернет и попробуйте ещё раз."
           );
         })
         .then(done);
