@@ -79,9 +79,6 @@
     };
   }
 
-  var TEST_INBOX = "kislinskiy.stas00@mail.ru";
-  var FORMSUBMIT_URL = "https://formsubmit.co/ajax/" + TEST_INBOX;
-
   function parseJson(raw) {
     try {
       return raw ? JSON.parse(raw) : null;
@@ -90,14 +87,14 @@
     }
   }
 
-  function sendViaPhp(data) {
+  function sendMail(form) {
     return fetch("send-form.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(buildMailData(form)),
     }).then(function (response) {
       return response.text().then(function (raw) {
         var result = parseJson(raw);
@@ -106,50 +103,6 @@
         err.code = (result && result.error) || (response.status === 404 ? "php_missing" : "mail");
         throw err;
       });
-    });
-  }
-
-  function sendViaFormsubmit(data) {
-    var payload = {
-      _subject: "Заявка с сайта: Инфраструктурные решения",
-      _template: "table",
-      _captcha: "false",
-      name: data.name,
-      company: data.company,
-      email: data.email,
-      phone: data.phone,
-      interests: data.interests,
-      message: data.message,
-      page: data.page,
-      source: data.source,
-    };
-    return fetch(FORMSUBMIT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(payload),
-    }).then(function (response) {
-      return response.text().then(function (raw) {
-        var result = parseJson(raw);
-        if (result && (result.success === true || result.success === "true")) return result;
-        var message = (result && (result.message || result.error)) || "";
-        var err = new Error(message || "mail");
-        if (/confirm|activate|verify|check your email/i.test(message)) err.code = "confirm";
-        else err.code = "mail";
-        throw err;
-      });
-    });
-  }
-
-  function sendMail(form) {
-    var data = buildMailData(form);
-    return sendViaPhp(data).catch(function (error) {
-      if (error && (error.code === "smtp_not_configured" || error.code === "php_missing" || error.code === "smtp")) {
-        return sendViaFormsubmit(data);
-      }
-      throw error;
     });
   }
 
@@ -199,18 +152,26 @@
         })
         .catch(function (error) {
           var code = error && error.code;
-          if (code === "confirm") {
+          if (code === "php_missing") {
             setStatus(
               statusEl,
-              "success",
-              "Первая отправка: откройте почту kislinskiy.stas00@mail.ru (и папку «Спам») и подтвердите адрес по ссылке в письме. После этого заявки начнут приходить."
+              "error",
+              "Сервер не принял заявку: страница должна открываться с PHP-хостинга, не локально."
+            );
+            return;
+          }
+          if (code === "mail_disabled") {
+            setStatus(
+              statusEl,
+              "error",
+              "Хостинг запретил отправку писем. Нужно включить PHP mail или вписать пароль SMTP в send-form.config.php."
             );
             return;
           }
           setStatus(
             statusEl,
             "error",
-            "Не удалось отправить заявку. Проверьте интернет и папку «Спам» на kislinskiy.stas00@mail.ru."
+            "Не удалось отправить заявку" + (code ? " (" + code + ")" : "") + "."
           );
         })
         .then(done);

@@ -49,23 +49,19 @@ if ($name === "" || $email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL))
   exit;
 }
 
+$config = array();
 $configFile = __DIR__ . "/send-form.config.php";
-if (!is_file($configFile)) {
-  http_response_code(500);
-  echo json_encode(array("ok" => false, "error" => "config_missing"));
-  exit;
+if (is_file($configFile)) {
+  $loaded = include $configFile;
+  if (is_array($loaded)) {
+    $config = $loaded;
+  }
 }
 
-$config = include $configFile;
-$smtpUser = isset($config["smtp_user"]) ? trim((string) $config["smtp_user"]) : "";
+$to = isset($config["to"]) ? trim((string) $config["to"]) : "kislinskiy.stas00@mail.ru";
+$fromEmail = isset($config["from_email"]) ? trim((string) $config["from_email"]) : "info@dce.su";
+$fromName = isset($config["from_name"]) ? trim((string) $config["from_name"]) : "DC Engineering";
 $smtpPass = isset($config["smtp_pass"]) ? (string) $config["smtp_pass"] : "";
-$to = isset($config["to"]) ? trim((string) $config["to"]) : $smtpUser;
-
-if ($smtpUser === "" || $smtpPass === "") {
-  http_response_code(500);
-  echo json_encode(array("ok" => false, "error" => "smtp_not_configured"));
-  exit;
-}
 
 $subject = "Заявка с сайта: Инфраструктурные решения";
 $lines = array(
@@ -81,6 +77,8 @@ $lines = array(
   $message !== "" ? $message : "—",
 );
 $bodyText = implode("\n", $lines);
+$encodedSubject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+$encodedFrom = "=?UTF-8?B?" . base64_encode($fromName) . "?= <" . $fromEmail . ">";
 
 function smtp_read($fp) {
   $data = "";
@@ -106,16 +104,15 @@ function smtp_cmd($fp, $command, $expect) {
   return $resp;
 }
 
-function smtp_send_yandex($config, $to, $replyTo, $replyName, $subject, $bodyText) {
+function smtp_send($config, $to, $replyTo, $replyName, $subject, $bodyText) {
   $host = isset($config["smtp_host"]) ? $config["smtp_host"] : "smtp.mail.ru";
   $port = isset($config["smtp_port"]) ? (int) $config["smtp_port"] : 465;
   $user = $config["smtp_user"];
   $pass = $config["smtp_pass"];
   $fromName = isset($config["from_name"]) ? $config["from_name"] : "DC Engineering";
 
-  $remote = "ssl://" . $host . ":" . $port;
   $fp = @stream_socket_client(
-    $remote,
+    "ssl://" . $host . ":" . $port,
     $errno,
     $errstr,
     20,
@@ -146,15 +143,39 @@ function smtp_send_yandex($config, $to, $replyTo, $replyName, $subject, $bodyTex
     "Content-Type: text/plain; charset=UTF-8",
     "Content-Transfer-Encoding: 8bit",
   );
-  $payload = implode("\r\n", $headers) . "\r\n\r\n" . str_replace("\n", "\r\n", $bodyText) . "\r\n.";
-  smtp_cmd($fp, $payload, 250);
+  smtp_cmd($fp, implode("\r\n", $headers) . "\r\n\r\n" . str_replace("\n", "\r\n", $bodyText) . "\r\n.", 250);
   fwrite($fp, "QUIT\r\n");
   fclose($fp);
 }
 
 try {
-  smtp_send_yandex($config, $to, $email, $name, $subject, $bodyText);
-  echo json_encode(array("ok" => true));
+  if ($smtpPass !== "") {
+    smtp_send($config, $to, $email, $name, $subject, $bodyText);
+    echo json_encode(array("ok" => true, "via" => "smtp"));
+    exit;
+  }
+
+  $headers = array(
+    "MIME-Version: 1.0",
+    "Content-Type: text/plain; charset=UTF-8",
+    "Content-Transfer-Encoding: 8bit",
+    "From: " . $encodedFrom,
+    "Reply-To: " . $name . " <" . $email . ">",
+    "X-Mailer: PHP/" . phpversion(),
+  );
+
+  $sent = @mail($to, $encodedSubject, $bodyText, implode("\r\n", $headers), "-f " . $fromEmail);
+  if (!$sent) {
+    $sent = @mail($to, $encodedSubject, $bodyText, implode("\r\n", $headers));
+  }
+
+  if (!$sent) {
+    http_response_code(500);
+    echo json_encode(array("ok" => false, "error" => "mail_disabled"));
+    exit;
+  }
+
+  echo json_encode(array("ok" => true, "via" => "mail"));
 } catch (Exception $e) {
   http_response_code(500);
   echo json_encode(array("ok" => false, "error" => "smtp", "detail" => $e->getMessage()));
