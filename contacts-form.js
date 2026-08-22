@@ -79,6 +79,36 @@
     };
   }
 
+  var TEST_INBOX = "kislinskiy.stas00@mail.ru";
+  var STATIC_HOST = /github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname) || location.protocol === "file:";
+
+  function ensureHidden(form, name, value) {
+    var input = form.querySelector('input[name="' + name + '"]');
+    if (!input) {
+      input = document.createElement("input");
+      input.type = "hidden";
+      input.name = name;
+      form.appendChild(input);
+    }
+    input.value = value;
+  }
+
+  function submitViaFormsubmit(form) {
+    var data = buildMailData(form);
+    ensureHidden(form, "_captcha", "false");
+    ensureHidden(form, "_template", "table");
+    ensureHidden(form, "_subject", "Заявка с сайта: Инфраструктурные решения");
+    ensureHidden(form, "_next", location.href.split("#")[0].replace(/[?&]sent=1/, "") + (location.search ? "&" : "?") + "sent=1#infra-feedback");
+    ensureHidden(form, "phone", data.phone);
+    ensureHidden(form, "interests", data.interests);
+    ensureHidden(form, "page", data.page);
+    ensureHidden(form, "source", data.source);
+    form.setAttribute("data-native-submit", "1");
+    form.action = "https://formsubmit.co/" + encodeURIComponent(TEST_INBOX);
+    form.method = "post";
+    form.submit();
+  }
+
   function parseJson(raw) {
     try {
       return raw ? JSON.parse(raw) : null;
@@ -124,7 +154,13 @@
     if (!form || !statusEl) return;
     options = options || {};
 
+    if (/[?&]sent=1(?:&|$)/.test(location.search)) {
+      setStatus(statusEl, "success", "Спасибо! Если это первая заявка, подтвердите адрес в письме на " + TEST_INBOX + " (проверьте «Спам»). Следующие заявки придут автоматически.");
+    }
+
     form.addEventListener("submit", function (event) {
+      if (form.getAttribute("data-native-submit") === "1") return;
+
       event.preventDefault();
 
       if (!form.checkValidity()) {
@@ -151,12 +187,20 @@
         return;
       }
 
+      if (STATIC_HOST) {
+        setStatus(statusEl, "pending", "Отправляем заявку на " + TEST_INBOX + "...");
+        window.setTimeout(function () {
+          submitViaFormsubmit(form);
+        }, 200);
+        return;
+      }
+
       sendMail(form)
         .then(function () {
           setStatus(
             statusEl,
             "success",
-            "Спасибо! Заявка отправлена на kislinskiy.stas00@mail.ru."
+            "Спасибо! Заявка отправлена на " + TEST_INBOX + "."
           );
           form.reset();
           var interestsValue = document.getElementById("infra-interests-value");
@@ -164,20 +208,9 @@
         })
         .catch(function (error) {
           var code = error && error.code;
-          if (code === "php_missing" || code === "php_not_running") {
-            setStatus(
-              statusEl,
-              "error",
-              "Файл send-form.php не выполняется. Нужен хостинг с PHP, и этот файл должен лежать рядом со страницей."
-            );
-            return;
-          }
-          if (code === "mail_disabled") {
-            setStatus(
-              statusEl,
-              "error",
-              "Хостинг запретил отправку писем. Нужно включить PHP mail или вписать пароль SMTP в send-form.config.php."
-            );
+          if (code === "php_missing" || code === "php_not_running" || code === "mail_disabled") {
+            setStatus(statusEl, "pending", "Отправляем заявку на " + TEST_INBOX + "...");
+            submitViaFormsubmit(form);
             return;
           }
           setStatus(
