@@ -39,8 +39,6 @@
     });
   }
 
-  var TEST_MAIL = "https://formsubmit.co/ajax/obrainov@yandex.ru";
-
   function setStatus(statusEl, type, text) {
     statusEl.textContent = text;
     statusEl.className = "huawei-request-form__status is-" + type;
@@ -70,10 +68,6 @@
     });
 
     return {
-      _subject: "Заявка с сайта: Инфраструктурные решения",
-      _template: "table",
-      _captcha: "false",
-      _honey: "",
       name: (form.elements.name && form.elements.name.value) || "",
       company: (form.elements.company && form.elements.company.value) || "",
       email: (form.elements.email && form.elements.email.value) || "",
@@ -85,37 +79,77 @@
     };
   }
 
-  function isSuccess(result) {
-    if (!result) return false;
-    return result.success === true || result.success === "true";
+  var TEST_INBOX = "kislinskiy.stas00@mail.ru";
+  var FORMSUBMIT_URL = "https://formsubmit.co/ajax/" + TEST_INBOX;
+
+  function parseJson(raw) {
+    try {
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
   }
 
-  function sendMail(form) {
-    return fetch(TEST_MAIL, {
+  function sendViaPhp(data) {
+    return fetch("send-form.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(buildMailData(form)),
+      body: JSON.stringify(data),
     }).then(function (response) {
       return response.text().then(function (raw) {
-        var result = null;
-        try {
-          result = raw ? JSON.parse(raw) : null;
-        } catch (e) {
-          result = null;
-        }
-
-        if (isSuccess(result)) return result;
-
-        var message = (result && (result.message || result.error)) || "";
-        var err = new Error(message || "mail");
-        if (/confirm|activate|verify|check your email/i.test(message)) {
-          err.code = "confirm";
-        }
+        var result = parseJson(raw);
+        if (result && result.ok) return result;
+        var err = new Error("mail");
+        err.code = (result && result.error) || (response.status === 404 ? "php_missing" : "mail");
         throw err;
       });
+    });
+  }
+
+  function sendViaFormsubmit(data) {
+    var payload = {
+      _subject: "Заявка с сайта: Инфраструктурные решения",
+      _template: "table",
+      _captcha: "false",
+      name: data.name,
+      company: data.company,
+      email: data.email,
+      phone: data.phone,
+      interests: data.interests,
+      message: data.message,
+      page: data.page,
+      source: data.source,
+    };
+    return fetch(FORMSUBMIT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).then(function (response) {
+      return response.text().then(function (raw) {
+        var result = parseJson(raw);
+        if (result && (result.success === true || result.success === "true")) return result;
+        var message = (result && (result.message || result.error)) || "";
+        var err = new Error(message || "mail");
+        if (/confirm|activate|verify|check your email/i.test(message)) err.code = "confirm";
+        else err.code = "mail";
+        throw err;
+      });
+    });
+  }
+
+  function sendMail(form) {
+    var data = buildMailData(form);
+    return sendViaPhp(data).catch(function (error) {
+      if (error && (error.code === "smtp_not_configured" || error.code === "php_missing" || error.code === "smtp")) {
+        return sendViaFormsubmit(data);
+      }
+      throw error;
     });
   }
 
@@ -157,25 +191,26 @@
           setStatus(
             statusEl,
             "success",
-            "Спасибо! Заявка отправлена на obrainov@yandex.ru."
+            "Спасибо! Заявка отправлена на kislinskiy.stas00@mail.ru."
           );
           form.reset();
           var interestsValue = document.getElementById("infra-interests-value");
           if (interestsValue) interestsValue.textContent = "Выберите направления";
         })
         .catch(function (error) {
-          if (error && error.code === "confirm") {
+          var code = error && error.code;
+          if (code === "confirm") {
             setStatus(
               statusEl,
               "success",
-              "Первая отправка: откройте почту obrainov@yandex.ru и подтвердите адрес по ссылке в письме от FormSubmit. После этого заявки начнут приходить."
+              "Первая отправка: откройте почту kislinskiy.stas00@mail.ru (и папку «Спам») и подтвердите адрес по ссылке в письме. После этого заявки начнут приходить."
             );
             return;
           }
           setStatus(
             statusEl,
             "error",
-            "Не удалось отправить заявку. Проверьте интернет и попробуйте ещё раз."
+            "Не удалось отправить заявку. Проверьте интернет и папку «Спам» на kislinskiy.stas00@mail.ru."
           );
         })
         .then(done);
