@@ -88,19 +88,31 @@
   }
 
   function sendMail(form) {
+    var payload = new FormData();
+    var data = buildMailData(form);
+    Object.keys(data).forEach(function (key) {
+      payload.append(key, data[key]);
+    });
+
     return fetch("send-form.php", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(buildMailData(form)),
+      body: payload,
+      headers: { Accept: "application/json" },
     }).then(function (response) {
       return response.text().then(function (raw) {
         var result = parseJson(raw);
         if (result && result.ok) return result;
+
         var err = new Error("mail");
-        err.code = (result && result.error) || (response.status === 404 ? "php_missing" : "mail");
+        if (result && result.error) {
+          err.code = result.error;
+        } else if (response.status === 404) {
+          err.code = "php_missing";
+        } else if (!result) {
+          err.code = "php_not_running";
+        } else {
+          err.code = "mail";
+        }
         throw err;
       });
     });
@@ -152,11 +164,11 @@
         })
         .catch(function (error) {
           var code = error && error.code;
-          if (code === "php_missing") {
+          if (code === "php_missing" || code === "php_not_running") {
             setStatus(
               statusEl,
               "error",
-              "Сервер не принял заявку: страница должна открываться с PHP-хостинга, не локально."
+              "Файл send-form.php не выполняется. Нужен хостинг с PHP, и этот файл должен лежать рядом со страницей."
             );
             return;
           }

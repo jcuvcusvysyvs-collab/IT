@@ -2,6 +2,35 @@
 header("Content-Type: application/json; charset=utf-8");
 header("X-Content-Type-Options: nosniff");
 
+register_shutdown_function(function () {
+  $error = error_get_last();
+  if (!$error) {
+    return;
+  }
+  $fatal = array(E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR);
+  if (!in_array($error["type"], $fatal, true)) {
+    return;
+  }
+  if (!headers_sent()) {
+    header("Content-Type: application/json; charset=utf-8", true, 500);
+  }
+  echo json_encode(array(
+    "ok" => false,
+    "error" => "php_fatal",
+    "detail" => $error["message"],
+  ));
+});
+
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+  echo json_encode(array(
+    "ok" => true,
+    "service" => "send-form",
+    "php" => PHP_VERSION,
+    "mail" => function_exists("mail"),
+  ));
+  exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   http_response_code(405);
   echo json_encode(array("ok" => false, "error" => "method"));
@@ -9,16 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $raw = file_get_contents("php://input");
-$input = array();
+$input = $_POST;
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? $_SERVER["CONTENT_TYPE"] : "";
-
 if (stripos($contentType, "application/json") !== false) {
   $decoded = json_decode($raw, true);
   if (is_array($decoded)) {
     $input = $decoded;
   }
-} else {
-  $input = $_POST;
 }
 
 if (!empty($input["website"])) {
@@ -50,7 +76,7 @@ if ($name === "" || $email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL))
 }
 
 $config = array();
-$configFile = __DIR__ . "/send-form.config.php";
+$configFile = dirname(__FILE__) . "/send-form.config.php";
 if (is_file($configFile)) {
   $loaded = include $configFile;
   if (is_array($loaded)) {
@@ -68,13 +94,13 @@ $lines = array(
   "Источник: " . ($source !== "" ? $source : "Инфраструктурные решения"),
   "Страница: " . ($page !== "" ? $page : ""),
   "Имя: " . $name,
-  "Компания: " . ($company !== "" ? $company : "—"),
+  "Компания: " . ($company !== "" ? $company : "-"),
   "Email: " . $email,
-  "Телефон: " . ($phone !== "" ? $phone : "—"),
-  "Интересы: " . ($interests !== "" ? $interests : "—"),
+  "Телефон: " . ($phone !== "" ? $phone : "-"),
+  "Интересы: " . ($interests !== "" ? $interests : "-"),
   "",
   "Сообщение:",
-  $message !== "" ? $message : "—",
+  $message !== "" ? $message : "-",
 );
 $bodyText = implode("\n", $lines);
 $encodedSubject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
@@ -155,18 +181,17 @@ try {
     exit;
   }
 
-  $headers = array(
+  $headerStr = implode("\r\n", array(
     "MIME-Version: 1.0",
     "Content-Type: text/plain; charset=UTF-8",
     "Content-Transfer-Encoding: 8bit",
     "From: " . $encodedFrom,
     "Reply-To: " . $name . " <" . $email . ">",
-    "X-Mailer: PHP/" . phpversion(),
-  );
+  ));
 
-  $sent = @mail($to, $encodedSubject, $bodyText, implode("\r\n", $headers), "-f " . $fromEmail);
-  if (!$sent) {
-    $sent = @mail($to, $encodedSubject, $bodyText, implode("\r\n", $headers));
+  $sent = false;
+  if (function_exists("mail")) {
+    $sent = @mail($to, $encodedSubject, $bodyText, $headerStr);
   }
 
   if (!$sent) {
