@@ -174,6 +174,73 @@ function smtp_send($config, $to, $replyTo, $replyName, $subject, $bodyText) {
   fclose($fp);
 }
 
+function h($value) {
+  return htmlspecialchars((string) $value, ENT_QUOTES, "UTF-8");
+}
+
+function brand_email_html($name, $email, $company, $phone, $interests, $message, $page) {
+  $rows = array(
+    "Имя" => $name,
+    "Компания" => $company !== "" ? $company : "—",
+    "Почта" => $email,
+    "Телефон" => $phone !== "" ? $phone : "—",
+    "Что интересует" => $interests !== "" ? $interests : "—",
+    "Сообщение" => $message !== "" ? $message : "—",
+    "Страница" => $page !== "" ? $page : "—",
+  );
+  $rowHtml = "";
+  foreach ($rows as $label => $value) {
+    $rowHtml .=
+      '<tr>' .
+      '<td style="padding:12px 0;border-bottom:1px solid #e6eaf2;width:38%;color:#6b7280;font-size:13px;vertical-align:top;">' . h($label) . '</td>' .
+      '<td style="padding:12px 0;border-bottom:1px solid #e6eaf2;color:#0f141c;font-size:15px;font-weight:600;vertical-align:top;">' . nl2br(h($value)) . '</td>' .
+      '</tr>';
+  }
+
+  return '<!DOCTYPE html><html lang="ru"><body style="margin:0;padding:0;background:#f4f6fa;">' .
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6fa;padding:24px 12px;">' .
+    '<tr><td align="center">' .
+    '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e6eaf2;">' .
+    '<tr><td style="background:#032477;padding:28px 32px;">' .
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9db4e8;">DC Engineering</div>' .
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.3;font-weight:700;color:#ffffff;margin-top:8px;">Новая заявка с сайта</div>' .
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#d5def0;margin-top:6px;">Инфраструктурные решения</div>' .
+    '</td></tr>' .
+    '<tr><td style="padding:8px 32px 28px;font-family:Arial,Helvetica,sans-serif;">' .
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' . $rowHtml . '</table>' .
+    '</td></tr>' .
+    '<tr><td style="padding:16px 32px 24px;background:#f7f9fc;color:#6b7280;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;">' .
+    'Ответьте на это письмо, чтобы связаться с клиентом. Сообщение сформировано автоматически с сайта DC Engineering.' .
+    '</td></tr>' .
+    '</table></td></tr></table></body></html>';
+}
+
+function brand_email_payload($fromHeader, $to, $replyName, $replyTo, $subject, $bodyText, $bodyHtml) {
+  $boundary = "dce-" . md5($subject . microtime(true));
+  $encodedSubject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+  $headers = array(
+    "From: " . $fromHeader,
+    "To: <" . $to . ">",
+    "Reply-To: " . $replyName . " <" . $replyTo . ">",
+    "Subject: " . $encodedSubject,
+    "MIME-Version: 1.0",
+    "Content-Type: multipart/alternative; boundary=\"" . $boundary . "\"",
+  );
+  $body =
+    "--" . $boundary . "\r\n" .
+    "Content-Type: text/plain; charset=UTF-8\r\n" .
+    "Content-Transfer-Encoding: 8bit\r\n\r\n" .
+    str_replace("\n", "\r\n", $bodyText) . "\r\n" .
+    "--" . $boundary . "\r\n" .
+    "Content-Type: text/html; charset=UTF-8\r\n" .
+    "Content-Transfer-Encoding: 8bit\r\n\r\n" .
+    str_replace("\n", "\r\n", $bodyHtml) . "\r\n" .
+    "--" . $boundary . "--";
+  return array($headers, $body, $encodedSubject);
+}
+
+$bodyHtml = brand_email_html($name, $email, $company, $phone, $interests, $message, $page);
+
 try {
   if ($smtpPass !== "") {
     smtp_send($config, $to, $email, $name, $subject, $bodyText);
@@ -181,17 +248,10 @@ try {
     exit;
   }
 
-  $headerStr = implode("\r\n", array(
-    "MIME-Version: 1.0",
-    "Content-Type: text/plain; charset=UTF-8",
-    "Content-Transfer-Encoding: 8bit",
-    "From: " . $encodedFrom,
-    "Reply-To: " . $name . " <" . $email . ">",
-  ));
-
+  $payload = brand_email_payload($encodedFrom, $to, $name, $email, $subject, $bodyText, $bodyHtml);
   $sent = false;
   if (function_exists("mail")) {
-    $sent = @mail($to, $encodedSubject, $bodyText, $headerStr);
+    $sent = @mail($to, $payload[2], $payload[1], implode("\r\n", $payload[0]));
   }
 
   if (!$sent) {

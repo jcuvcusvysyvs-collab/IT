@@ -93,16 +93,41 @@
     input.value = value;
   }
 
+  function clearFieldNames(form) {
+    var keep = {
+      _captcha: true,
+      _template: true,
+      _subject: true,
+      _next: true,
+      _replyto: true,
+    };
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || keep[el.name]) return;
+      el.removeAttribute("name");
+    });
+  }
+
   function submitViaFormsubmit(form) {
     var data = buildMailData(form);
     ensureHidden(form, "_captcha", "false");
-    ensureHidden(form, "_template", "table");
-    ensureHidden(form, "_subject", "Заявка с сайта: Инфраструктурные решения");
-    ensureHidden(form, "_next", location.href.split("#")[0].replace(/[?&]sent=1/, "") + (location.search ? "&" : "?") + "sent=1#infra-feedback");
-    ensureHidden(form, "phone", data.phone);
-    ensureHidden(form, "interests", data.interests);
-    ensureHidden(form, "page", data.page);
-    ensureHidden(form, "source", data.source);
+    ensureHidden(form, "_template", "box");
+    ensureHidden(form, "_subject", "DC Engineering — заявка с сайта");
+    ensureHidden(form, "_replyto", data.email);
+    ensureHidden(
+      form,
+      "_next",
+      location.href.split("#")[0].replace(/[?&]sent=1/, "") +
+        (location.search.indexOf("sent=1") === -1 ? (location.search ? "&" : "?") + "sent=1" : "") +
+        "#infra-feedback"
+    );
+    clearFieldNames(form);
+    ensureHidden(form, "Имя", data.name);
+    ensureHidden(form, "Компания", data.company || "—");
+    ensureHidden(form, "Почта", data.email);
+    ensureHidden(form, "Телефон", data.phone || "—");
+    ensureHidden(form, "Что интересует", data.interests || "—");
+    ensureHidden(form, "Сообщение", data.message || "—");
+    ensureHidden(form, "Страница", data.page);
     form.setAttribute("data-native-submit", "1");
     form.action = "https://formsubmit.co/" + encodeURIComponent(TEST_INBOX);
     form.method = "post";
