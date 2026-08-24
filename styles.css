@@ -868,6 +868,69 @@ html:not([data-theme="dark"]) .nav-toggle {
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, var(--border));
 }
 
+.nav-submenu-cta {
+  margin: 0.2rem 0.55rem 0.5rem;
+  padding: 0.65rem 0.3rem 0.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+.nav-submenu-cta__btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  width: auto !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.55rem !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--text-muted, color-mix(in srgb, var(--text) 58%, transparent)) !important;
+  font-family: var(--font-text);
+  font-size: 0.6875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: none !important;
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.nav-submenu-cta__btn:hover,
+.nav-submenu-cta__btn:focus-visible {
+  background: transparent !important;
+  color: var(--accent) !important;
+  transform: none;
+  box-shadow: none !important;
+  outline: none;
+  gap: 0.75rem;
+}
+
+.nav-submenu-cta__btn:focus-visible {
+  border-radius: 6px !important;
+  box-shadow: var(--focus-ring) !important;
+}
+
+.nav-submenu-cta__btn svg {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  opacity: 0.75;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.nav-submenu-cta__btn:hover svg,
+.nav-submenu-cta__btn:focus-visible svg {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
 /* Mega-menu «Услуги»: ссылки слева + промо HUAWEI справа */
 .nav-mega-backdrop {
   position: fixed;
