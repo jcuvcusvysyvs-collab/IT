@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260821-footer-light-v14" />
+    <link rel="stylesheet" href="styles.css?v=20260825-share-toast-v3" />
     <link rel="preload" href="images/SERVICE_03.webp?v=20260818-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -29,7 +29,7 @@
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-theme-v1"></script>
+    <script defer src="page-loader.js?v=20260820-vf2"></script>
     <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-infra page-scaling">
@@ -43,7 +43,7 @@
           <img class="logo__img logo__img--dark" src="images/Logo_black.png" alt="" width="280" height="64" decoding="async" />
         </a>
 
-                                                                                <nav class="nav" aria-label="Основное меню">
+        <nav class="nav" aria-label="Основное меню">
           <button
             type="button"
             class="nav-toggle"
@@ -671,10 +671,81 @@
 
         </div>
       </section>
-      </div>
+      
+      <section class="section page-share" aria-label="Поделиться ссылкой">
+        <div class="page-share__inner" data-feature-reveal>
+          <p class="page-share__label">Поделиться ссылкой</p>
+          <div class="page-share__actions">
+            <a
+              class="page-share__btn"
+              data-share="telegram"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Поделиться в Telegram"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M1.527 7.11C5.553 5.362 8.233 4.2 9.578 3.636c3.83-1.598 4.636-1.874 5.153-1.886.115 0 .368.023.54.161.139.115.173.265.196.38s.046.356.024.54c-.208 2.186-1.105 7.488-1.565 9.926-.195 1.036-.575 1.38-.943 1.415-.805.07-1.415-.529-2.185-1.035-1.22-.794-1.898-1.288-3.083-2.07-1.369-.898-.483-1.392.3-2.197.206-.207 3.737-3.428 3.806-3.715.012-.035.012-.173-.069-.242-.08-.069-.195-.046-.287-.023-.127.023-2.06 1.311-5.82 3.853-.552.38-1.047.564-1.496.552C3.655 9.284 2.712 9.02 2 8.79 1.136 8.513.446 8.364.503 7.881c.035-.253.38-.507 1.024-.771"
+                />
+              </svg>
+            </a>
+            <a
+              class="page-share__btn"
+              data-share="whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Поделиться в WhatsApp"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12.075 10.885c-.169.477-.84.872-1.374.988-.367.078-.844.14-2.453-.527-1.806-.749-4.315-3.415-4.315-5.19 0-.903.52-1.955 1.431-1.955.439 0 .535.009.68.355.168.407.58 1.411.629 1.514.202.422-.206.67-.502 1.037-.095.11-.202.23-.082.436.119.202.53.873 1.135 1.411.782.696 1.415.919 1.642 1.013.169.07.37.054.493-.078.156-.169.35-.449.548-.724.14-.198.316-.223.502-.153.125.044 1.717.783 1.785.902.05.086.05.493-.12.97M8 1h-.003C4.138 1 1 4.14 1 8c0 1.53.494 2.95 1.333 4.103l-.872 2.6 2.69-.859A6.95 6.95 0 0 0 8 15C11.861 15 15 11.86 15 8s-3.14-7-6.999-7"
+                />
+              </svg>
+            </a>
+            <a
+              class="page-share__btn"
+              data-share="vk"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Поделиться во ВКонтакте"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M8.813 13C3.408 13 .128 9.243 0 3h2.738c.085 4.586 2.168 6.532 3.764 6.929V3h2.625v3.957c1.54-.171 3.15-1.971 3.693-3.957h2.58c-.412 2.443-2.166 4.243-3.407 4.986 1.24.6 3.237 2.172 4.007 5.014h-2.837c-.6-1.9-2.069-3.372-4.036-3.572V13z"
+                />
+              </svg>
+            </a>
+            <button
+              type="button"
+              class="page-share__btn"
+              data-share="copy"
+              aria-label="Скопировать ссылку"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M3.439 5.56a.7.7 0 0 1 .99 0l.354.354a.7.7 0 0 1 0 .99l-1.06 1.06a3.05 3.05 0 1 0 4.312 4.314l1.06-1.06a.7.7 0 0 1 .991 0l.354.353a.7.7 0 0 1 0 .99l-1.061 1.06a4.95 4.95 0 0 1-7-7zm3.182-3.182a4.95 4.95 0 0 1 7 7.001l-1.06 1.06a.7.7 0 0 1-.99 0l-.354-.353a.7.7 0 0 1 0-.99l1.06-1.06a3.05 3.05 0 1 0-4.312-4.314l-1.06 1.06a.7.7 0 0 1-.991 0L5.56 4.43a.7.7 0 0 1 0-.99zm2.828 2.829a.7.7 0 0 1 .99 0l.354.353a.7.7 0 0 1 0 .99l-4.242 4.243a.7.7 0 0 1-.99 0l-.354-.353a.7.7 0 0 1 0-.99z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+</div>
     </main>
 
     <footer class="site-footer">
+      <!-- Источник правды: править этот файл, затем: python scripts/sync-all.py -->
       <div class="footer-main">
         <div class="footer-inner">
           <div class="footer-grid">
@@ -745,8 +816,7 @@
         </div>
       </div>
     </footer>
-
-    <script defer src="huawei-subnav.js?v=20260801-nav-drill-v2"></script>
+<script defer src="huawei-subnav.js?v=20260801-nav-drill-v2"></script>
     <script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
     <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
     <script defer src="feature-reveal.js"></script>
@@ -754,8 +824,9 @@
     <script defer src="infra-phone-country.js?v=20260820-v1"></script>
     <script defer src="infra-interests-select.js?v=20260820-v2"></script>
     <script defer src="contacts-form.js"></script>
-    <script defer src="nav.js?v=20260824-nav-cta-v1"></script>
-      <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
+    <script defer src="nav.js?v=20260824-nav-cta-v2"></script>
+          <script defer src="page-share.js?v=20260825-share-toast-v2"></script>
+    <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
       <script defer src="footer-mos-widget.js?v=20260821-mos-widget-v3"></script>
   </body>
 </html>

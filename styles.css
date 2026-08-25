@@ -26106,4 +26106,238 @@ html:has(body.page-404) {
   color: #e6e5ce;
 }
 
+/* ── Поделиться ссылкой — как на PT: карточка на ширину формы ── */
+.page-infra__form-section:has(+ .page-share),
+.section.page-infra__form-section:has(+ .page-share) {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.page-share {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-1.75rem, -3vw, -2.5rem);
+  padding: 0 var(--layout-gutter) clamp(2.5rem, 5vw, 3.75rem);
+  background: transparent;
+}
+
+.page-share__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  max-width: calc(var(--layout-max) - (var(--layout-gutter) + var(--layout-gutter)));
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1.15rem, 2.4vw, 1.75rem);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow:
+    0 2px 8px color-mix(in srgb, var(--text) 5%, transparent),
+    0 16px 40px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.page-share__label {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.page-share__actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+.page-share__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--text-muted) 12%, transparent);
+  color: color-mix(in srgb, var(--text-muted) 92%, var(--text) 8%);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.page-share__btn:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text-muted) 20%, transparent);
+}
+
+.page-share__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.page-share__btn:active {
+  transform: translateY(1px);
+}
+
+.page-share__btn svg {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  shape-rendering: geometricPrecision;
+}
+
+/* Тост: ссылка скопирована */
+.page-share-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 0px) + 1rem);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0.85rem 0.85rem 0.85rem 1.05rem;
+  border: none;
+  border-radius: 12px;
+  background: #0d0d0d;
+  color: #fff;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.28),
+    0 2px 8px rgba(0, 0, 0, 0.18);
+  transform: translate(-50%, 120%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease;
+}
+
+.page-share-toast.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.page-share-toast__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #fff;
+}
+
+.page-share-toast__text {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.page-share-toast__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.15rem;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.page-share-toast__close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.page-share-toast__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Тёмная тема: светлая плашка, чтобы не сливалась с фоном */
+[data-theme="dark"] .page-share-toast {
+  background: #f3f5f8;
+  color: #0d1218;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 10px 32px rgba(0, 0, 0, 0.45),
+    0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="dark"] .page-share-toast__icon {
+  color: #0d1218;
+}
+
+[data-theme="dark"] .page-share-toast__text {
+  color: #0d1218;
+}
+
+[data-theme="dark"] .page-share-toast__close {
+  color: rgba(13, 18, 24, 0.55);
+}
+
+[data-theme="dark"] .page-share-toast__close:hover {
+  color: #0d1218;
+  background: rgba(13, 18, 24, 0.08);
+}
+
+[data-theme="dark"] .page-share-toast__close:focus-visible {
+  box-shadow: 0 0 0 2px rgba(13, 18, 24, 0.28);
+}
+
+@media (max-width: 720px) {
+  .page-share {
+    margin-top: -1.25rem;
+  }
+
+  .page-share__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    border-radius: 14px;
+    padding: 1.1rem 1.1rem 1.15rem;
+  }
+
+  .page-share__actions {
+    gap: 0.65rem;
+  }
+
+  .page-share-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px) + 0.75rem);
+    width: auto;
+    max-width: none;
+    transform: translate(0, 120%);
+  }
+
+  .page-share-toast.is-visible {
+    transform: translate(0, 0);
+  }
+
+  .page-share-toast__text {
+    flex: 1;
+    white-space: normal;
+  }
+}
 

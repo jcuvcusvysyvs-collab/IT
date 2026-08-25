@@ -144,7 +144,7 @@
   align-items: stretch;
   max-width: var(--layout-max);
   margin: 0 auto;
-  padding: clamp(1.75rem, 4vw, 3rem) var(--layout-gutter) clamp(2.5rem, 5vw, 3.75rem);
+  padding: clamp(1.75rem, 4vw, 3rem) var(--layout-gutter) clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 .page-contacts__map-col,
@@ -369,6 +369,77 @@
   margin-top: 1rem;
 }
 
+/* Реквизиты — тот же паттерн, что блок под картой */
+.page-contacts__requisites-section {
+  position: relative;
+  background: var(--bg);
+  padding: 0 0 clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.page-contacts__requisites {
+  position: relative;
+  z-index: 1;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+}
+
+.page-contacts__requisites-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.15rem, 2.2vw, 1.5rem) clamp(1.15rem, 2.4vw, 1.65rem) clamp(1.25rem, 2.4vw, 1.6rem);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow:
+    0 2px 8px color-mix(in srgb, var(--text) 4%, transparent),
+    0 18px 48px color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.page-contacts__requisites-eyebrow {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.page-contacts__requisites-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin: 0;
+  padding: 0.95rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+}
+
+.page-contacts__requisites-fact {
+  min-width: 0;
+}
+
+.page-contacts__requisites-fact dt {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-text);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.page-contacts__requisites-fact dd {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 1024px) {
   .page-contacts__split {
     grid-template-columns: 1fr;
@@ -404,5 +475,14 @@
 
   .page-contacts__form-card {
     padding: 1.25rem 1.1rem 1.35rem;
+  }
+
+  .page-contacts__requisites-card {
+    padding: 1.15rem 1.1rem 1.25rem;
+  }
+
+  .page-contacts__requisites-facts {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 }

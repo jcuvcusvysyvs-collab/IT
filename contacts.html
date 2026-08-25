@@ -14,8 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260825-contacts-map-h-v5" />
-    <link rel="stylesheet" href="contacts.css?v=20260825-contacts-map-h-v5" />
+    <link rel="stylesheet" href="styles.css?v=20260825-share-toast-v3" />
+    <link rel="stylesheet" href="contacts.css?v=20260825-contacts-req-v11" />
     <script>
       (function () {
         var r = document.documentElement;
@@ -32,7 +32,7 @@
         r.setAttribute("aria-busy", "true");
       })();
     </script>
-    <script defer src="page-loader.js?v=20260818-theme-v1"></script>
+    <script defer src="page-loader.js?v=20260820-vf2"></script>
     <script defer src="theme.js?v=20260818-theme-v1"></script>
   </head>
   <body class="page-contacts">
@@ -61,7 +61,7 @@
           />
         </a>
 
-                                                                                <nav class="nav" aria-label="Основное меню">
+        <nav class="nav" aria-label="Основное меню">
           <button
             type="button"
             class="nav-toggle"
@@ -480,9 +480,38 @@
           </div>
         </div>
       </section>
+
+      <section
+        class="section page-contacts__requisites-section"
+        id="contacts-requisites"
+        aria-labelledby="contacts-requisites-heading"
+      >
+        <div class="page-contacts__requisites" data-feature-reveal>
+          <article class="page-contacts__requisites-card">
+            <p class="page-contacts__requisites-eyebrow" id="contacts-requisites-heading">
+              Реквизиты
+            </p>
+            <dl class="page-contacts__requisites-facts">
+              <div class="page-contacts__requisites-fact">
+                <dt>ИНН</dt>
+                <dd>7714330102</dd>
+              </div>
+              <div class="page-contacts__requisites-fact">
+                <dt>КПП</dt>
+                <dd>771401001</dd>
+              </div>
+              <div class="page-contacts__requisites-fact">
+                <dt>ОГРН</dt>
+                <dd>1157746150935</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
+      <!-- Источник правды: править этот файл, затем: python scripts/sync-all.py -->
       <div class="footer-main">
         <div class="footer-inner">
           <div class="footer-grid">
@@ -553,8 +582,7 @@
         </div>
       </div>
     </footer>
-
-    <script defer src="contacts-map.js"></script>
+<script defer src="contacts-map.js"></script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="feature-reveal.js"></script>
     <script defer src="infra-phone-country.js?v=20260820-v1"></script>
