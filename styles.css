@@ -26132,8 +26132,12 @@ html:has(body.page-404) {
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow:
-    0 2px 8px color-mix(in srgb, var(--text) 5%, transparent),
-    0 16px 40px color-mix(in srgb, var(--text) 8%, transparent);
+    0 2px 8px rgba(15, 23, 42, 0.04),
+    0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="dark"] .page-share__inner {
+  box-shadow: none;
 }
 
 .page-share__label {
