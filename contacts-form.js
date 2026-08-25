@@ -67,6 +67,16 @@
       interests.push(interestLabel(input));
     });
 
+    var sourceByForm = {
+      "contacts-form": "Контакты",
+      "infra-form": "Инфраструктурные решения",
+      "infosec-form": "Информационная безопасность",
+      "scaling-form": "Масштабирование без закупок",
+      "continuity-form": "Обеспечение непрерывности",
+      "ops-form": "Эксплуатация и сопровождение",
+      "asdu-form": "АСДУ",
+    };
+
     return {
       name: (form.elements.name && form.elements.name.value) || "",
       company: (form.elements.company && form.elements.company.value) || "",
@@ -75,7 +85,7 @@
       interests: interests.length ? interests.join(", ") : "—",
       message: (form.elements.message && form.elements.message.value) || "",
       page: window.location.href,
-      source: "Инфраструктурные решения",
+      source: sourceByForm[form.id] || document.title || "Сайт DC Engineering",
     };
   }
 
@@ -118,7 +128,7 @@
       "_next",
       location.href.split("#")[0].replace(/[?&]sent=1/, "") +
         (location.search.indexOf("sent=1") === -1 ? (location.search ? "&" : "?") + "sent=1" : "") +
-        "#infra-feedback"
+        "#contacts-content"
     );
     clearFieldNames(form);
     ensureHidden(form, "Имя", data.name);
