@@ -101,30 +101,35 @@
 
   enhanceServicesMegaMenu();
 
-  function enhanceProjectsPanelCta() {
-    var menu = document.getElementById("submenu-projects");
+  function ensureSubmenuCtaStyles() {
+    if (document.getElementById("nav-submenu-cta-style")) return;
+    var style = document.createElement("style");
+    style.id = "nav-submenu-cta-style";
+    style.textContent =
+      ".nav-submenu-cta{margin:.2rem .55rem .5rem;padding:.65rem .3rem .35rem;border-top:1px solid color-mix(in srgb,var(--border) 80%,transparent)}" +
+      ".nav-submenu-cta__btn{display:inline-flex!important;align-items:center;justify-content:flex-start;gap:.55rem;width:auto!important;max-width:100%;box-sizing:border-box;padding:.35rem .55rem!important;border-radius:0!important;background:transparent!important;color:var(--text-muted,color-mix(in srgb,var(--text) 58%,transparent))!important;font-family:var(--font-text);font-size:.6875rem!important;font-weight:500!important;line-height:1.3;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:none!important;transition:color .2s ease,gap .2s ease}" +
+      ".nav-submenu-cta__btn:hover,.nav-submenu-cta__btn:focus-visible{background:transparent!important;color:var(--accent)!important;transform:none;box-shadow:none!important;outline:none;gap:.75rem}" +
+      ".nav-submenu-cta__btn:focus-visible{border-radius:6px!important;box-shadow:var(--focus-ring)!important}" +
+      ".nav-submenu-cta__btn svg{flex-shrink:0;width:13px;height:13px;opacity:.75;transition:transform .2s ease,opacity .2s ease}" +
+      ".nav-submenu-cta__btn:hover svg,.nav-submenu-cta__btn:focus-visible svg{opacity:1;transform:translateX(2px)}";
+    document.head.appendChild(style);
+  }
+
+  function enhancePanelCta(menuId, href) {
+    var menu = document.getElementById(menuId);
     if (!menu) return;
 
     var panel = menu.querySelector(".nav-submenu-panel");
     if (!panel || panel.querySelector(".nav-submenu-cta")) return;
 
-    if (!document.getElementById("nav-submenu-cta-style")) {
-      var style = document.createElement("style");
-      style.id = "nav-submenu-cta-style";
-      style.textContent =
-        ".nav-submenu-cta{margin:.2rem .55rem .5rem;padding:.65rem .3rem .35rem;border-top:1px solid color-mix(in srgb,var(--border) 80%,transparent)}" +
-        ".nav-submenu-cta__btn{display:inline-flex!important;align-items:center;justify-content:flex-start;gap:.55rem;width:auto!important;max-width:100%;box-sizing:border-box;padding:.35rem .55rem!important;border-radius:0!important;background:transparent!important;color:var(--text-muted,color-mix(in srgb,var(--text) 58%,transparent))!important;font-family:var(--font-text);font-size:.6875rem!important;font-weight:500!important;line-height:1.3;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:none!important;transition:color .2s ease,gap .2s ease}" +
-        ".nav-submenu-cta__btn:hover,.nav-submenu-cta__btn:focus-visible{background:transparent!important;color:var(--accent)!important;transform:none;box-shadow:none!important;outline:none;gap:.75rem}" +
-        ".nav-submenu-cta__btn:focus-visible{border-radius:6px!important;box-shadow:var(--focus-ring)!important}" +
-        ".nav-submenu-cta__btn svg{flex-shrink:0;width:13px;height:13px;opacity:.75;transition:transform .2s ease,opacity .2s ease}" +
-        ".nav-submenu-cta__btn:hover svg,.nav-submenu-cta__btn:focus-visible svg{opacity:1;transform:translateX(2px)}";
-      document.head.appendChild(style);
-    }
+    ensureSubmenuCtaStyles();
 
     var cta = document.createElement("div");
     cta.className = "nav-submenu-cta";
     cta.innerHTML =
-      '<a class="nav-submenu-cta__btn" href="projects.html" role="menuitem">' +
+      '<a class="nav-submenu-cta__btn" href="' +
+      href +
+      '" role="menuitem">' +
       "<span>Перейти в раздел</span>" +
       '<svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true">' +
       '<path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
@@ -133,7 +138,8 @@
     panel.appendChild(cta);
   }
 
-  enhanceProjectsPanelCta();
+  enhancePanelCta("submenu-projects", "projects.html");
+  enhancePanelCta("submenu-about", "about.html");
 
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".nav-toggle");

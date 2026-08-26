@@ -170,6 +170,14 @@ def build_nav(filename: str) -> str:
                   <ul class="nav-submenu-links" role="menu">
 {project_items}
                   </ul>
+                  <div class="nav-submenu-cta">
+                    <a class="nav-submenu-cta__btn" href="projects.html" role="menuitem">
+                      <span>Перейти в раздел</span>
+                      <svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true">
+                        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </li>
@@ -192,6 +200,14 @@ def build_nav(filename: str) -> str:
                   <ul class="nav-submenu-links" role="menu">
 {about_items}
                   </ul>
+                  <div class="nav-submenu-cta">
+                    <a class="nav-submenu-cta__btn" href="about.html" role="menuitem">
+                      <span>Перейти в раздел</span>
+                      <svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true">
+                        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </li>
