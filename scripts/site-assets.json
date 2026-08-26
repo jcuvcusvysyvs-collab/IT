@@ -1,9 +1,10 @@
 {
-  "styles.css": "20260826-career-cta-radius-v1",
+  "styles.css": "20260826-scroll-top-v2",
   "nav.js": "20260826-nav-about-cta-v1",
   "page-loader.js": "20260820-vf2",
   "theme.js": "20260818-theme-v1",
   "footer-dot-matrix.js": "20260821-footer-rail-v1",
   "footer-mos-widget.js": "20260821-mos-widget-v3",
-  "page-share.js": "20260825-share-toast-v2"
+  "page-share.js": "20260825-share-toast-v2",
+  "scroll-top.js": "20260826-scroll-top-v2"
 }

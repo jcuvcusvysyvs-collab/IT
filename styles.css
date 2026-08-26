@@ -26345,3 +26345,120 @@ html:has(body.page-404) {
   }
 }
 
+/* Кнопка «Наверх» — как на ptsecurity.com */
+.scroll-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  z-index: 1100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--text-muted) 18%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--text-muted) 10%, var(--bg-elevated));
+  color: color-mix(in srgb, var(--text-muted) 82%, var(--text) 18%);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform: translate3d(0, calc(100% + 1.5rem), 0);
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.32s ease,
+    visibility 0s linear 0.42s,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease,
+    visibility 0s linear 0s,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.scroll-top:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text-muted) 16%, var(--bg-elevated));
+  border-color: color-mix(in srgb, var(--text-muted) 28%, transparent);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+.scroll-top:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.scroll-top.is-visible:active {
+  transform: translate3d(0, 1px, 0);
+}
+
+.scroll-top__icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .scroll-top {
+  background: rgba(151, 161, 176, 0.1);
+  border-color: rgba(151, 161, 176, 0.12);
+  color: rgb(151, 161, 176);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="dark"] .scroll-top:hover {
+  color: #eef2f8;
+  background: rgba(151, 161, 176, 0.16);
+  border-color: rgba(151, 161, 176, 0.22);
+}
+
+html.nav-mobile-open .scroll-top,
+body.nav-mobile-open .scroll-top {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(0, calc(100% + 1.5rem), 0) !important;
+}
+
+@media (max-width: 720px) {
+  .scroll-top {
+    width: 3.25rem;
+    height: 3.25rem;
+    right: max(0.85rem, env(safe-area-inset-right, 0px));
+    bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+    border-radius: 10px;
+  }
+
+  .scroll-top__icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top,
+  .scroll-top.is-visible {
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    transform: none;
+  }
+
+  .scroll-top.is-visible:active {
+    transform: none;
+  }
+}
+
