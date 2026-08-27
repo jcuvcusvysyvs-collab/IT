@@ -59,15 +59,24 @@
 
   var overlay = null;
   var dismissed = false;
+  var phraseDone = reduced && !force;
   var startedAt = Date.now();
   var pageReady = document.readyState !== "loading";
   var videoReady = !!(reduced && !force);
-  /* Video-first: short brand beat, unlock as soon as hero video is primed */
-  var MIN_MS = reduced && !force ? 420 : firstVisit ? 1100 : 720;
-  var FADE_MS = reduced && !force ? 280 : firstVisit ? 420 : 320;
+
+  /*
+   * Timings must match CSS --tm-slot / --tm-cycle:
+   * first: slot 0.8s × 3 = 2.4s cycle; return: slot 0.55s × 3 = 1.65s
+   * Wait until ENGINEERING is fully readable, then hold brand before fade.
+   */
+  var SLOT_MS = reduced && !force ? 0 : firstVisit ? 800 : 550;
+  var MORPH_MS = reduced && !force ? 0 : firstVisit ? 580 : 400;
+  var PHRASE_MS = reduced && !force ? 0 : SLOT_MS * 2 + MORPH_MS;
+  var SETTLE_MS = reduced && !force ? 420 : firstVisit ? 380 : 280;
+  var MIN_MS = PHRASE_MS + SETTLE_MS;
+  var FADE_MS = reduced && !force ? 280 : firstVisit ? 520 : 400;
   var isDesktop =
     window.matchMedia && window.matchMedia("(min-width: 721px)").matches;
-  /* Mobile needs longer buffer before unlock; don't force play on a single frame */
   var VIDEO_WAIT_MS = isDesktop ? 5500 : 7000;
 
   var MARKUP =
@@ -77,16 +86,16 @@
     '<svg class="page-loader__goo" aria-hidden="true" focusable="false">' +
     "<defs>" +
     '<filter id="dce-loader-goo" color-interpolation-filters="sRGB">' +
-    '<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -9" result="goo"/>' +
+    '<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -8" result="goo"/>' +
     '<feComposite in="SourceGraphic" in2="goo" operator="atop"/>' +
     "</filter>" +
     "</defs>" +
     "</svg>" +
     '<div class="page-loader__words">' +
     '<span class="page-loader__ghost" aria-hidden="true">ENGINEERING</span>' +
-    '<span class="page-loader__word" aria-hidden="true">DATA</span>' +
-    '<span class="page-loader__word" aria-hidden="true">CENTER</span>' +
-    '<span class="page-loader__word" aria-hidden="true">ENGINEERING</span>' +
+    '<span class="page-loader__word page-loader__word--data" aria-hidden="true">DATA</span>' +
+    '<span class="page-loader__word page-loader__word--center" aria-hidden="true">CENTER</span>' +
+    '<span class="page-loader__word page-loader__word--eng" aria-hidden="true">ENGINEERING</span>' +
     "</div>" +
     "</div>" +
     "</div>";
@@ -107,6 +116,17 @@
     overlay.setAttribute("aria-label", "Загрузка");
     overlay.innerHTML = MARKUP;
     document.body.insertBefore(overlay, document.body.firstChild);
+
+    if (!reduced || force) {
+      window.setTimeout(function () {
+        if (dismissed || !overlay) return;
+        phraseDone = true;
+        overlay.classList.add("page-loader--done");
+        tryDismiss();
+      }, PHRASE_MS);
+    } else {
+      phraseDone = true;
+    }
   }
 
   mount();
@@ -136,6 +156,7 @@
       return;
     }
 
+    overlay.classList.add("page-loader--done");
     overlay.classList.add("is-leaving");
     overlay.setAttribute("aria-hidden", "true");
 
@@ -155,6 +176,7 @@
     if (dismissed) return;
     if (!pageReady) return;
     if (!videoReady) return;
+    if (!phraseDone) return;
     var elapsed = Date.now() - startedAt;
     if (elapsed < MIN_MS) {
       window.setTimeout(tryDismiss, MIN_MS - elapsed);
