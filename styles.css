@@ -1541,18 +1541,41 @@ body.nav-mega-open .nav-mega-backdrop {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.15rem;
-  height: 2.15rem;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
   padding: 0;
+  margin: 0;
   border: 0;
-  border-radius: 999px;
+  border-radius: 50%;
   background: color-mix(in srgb, var(--text) 6%, transparent);
   color: var(--text);
+  line-height: 0;
+  font-size: 0;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   transition: background 0.18s ease;
+}
+
+.callback-modal__close::before,
+.callback-modal__close::after {
+  content: "";
+  grid-area: 1 / 1;
+  width: 12px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.callback-modal__close::before {
+  transform: rotate(45deg);
+}
+
+.callback-modal__close::after {
+  transform: rotate(-45deg);
 }
 
 .callback-modal__close:hover,
@@ -1563,10 +1586,6 @@ body.nav-mega-open .nav-mega-backdrop {
 .callback-modal__close:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-}
-
-.callback-modal__close svg {
-  pointer-events: none;
 }
 
 .callback-modal__eyebrow {

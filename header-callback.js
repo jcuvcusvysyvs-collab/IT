@@ -226,9 +226,7 @@
     root.innerHTML =
       '<button type="button" class="callback-modal__scrim" data-callback-close tabindex="-1" aria-label="Закрыть окно"></button>' +
       '<div class="callback-modal__panel" role="dialog" aria-modal="true" aria-labelledby="callback-title">' +
-      '<button type="button" class="callback-modal__close" data-callback-close aria-label="Закрыть">' +
-      '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>' +
-      "</button>" +
+      '<button type="button" class="callback-modal__close" data-callback-close aria-label="Закрыть"></button>' +
       '<p class="callback-modal__eyebrow">Обратная связь</p>' +
       '<h2 class="callback-modal__title" id="callback-title">Перезвоним вам</h2>' +
       '<p class="callback-modal__lead">Оставьте имя и телефон — инженер свяжется в рабочий день.</p>' +
