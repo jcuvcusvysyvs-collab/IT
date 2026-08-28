@@ -69,7 +69,11 @@ $message = isset($input["message"]) ? trim((string) $input["message"]) : "";
 $page = field($input, "page");
 $source = field($input, "source");
 
-if ($name === "" || $email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+$phoneDigits = preg_replace("/\\D+/", "", $phone);
+$hasEmail = $email !== "" && filter_var($email, FILTER_VALIDATE_EMAIL);
+$hasPhone = strlen($phoneDigits) >= 10;
+
+if ($name === "" || (!$hasEmail && !$hasPhone)) {
   http_response_code(400);
   echo json_encode(array("ok" => false, "error" => "validation"));
   exit;
@@ -88,8 +92,9 @@ $to = isset($config["to"]) ? trim((string) $config["to"]) : "kislinskiy.stas00@m
 $fromEmail = isset($config["from_email"]) ? trim((string) $config["from_email"]) : "info@dce.su";
 $fromName = isset($config["from_name"]) ? trim((string) $config["from_name"]) : "DC Engineering";
 $smtpPass = isset($config["smtp_pass"]) ? (string) $config["smtp_pass"] : "";
+$replyTo = $hasEmail ? $email : $fromEmail;
 
-$subject = "Заявка с сайта: Инфраструктурные решения";
+$subject = "Заявка с сайта: " . ($source !== "" ? $source : "DC Engineering");
 $lines = array(
   "Источник: " . ($source !== "" ? $source : "Инфраструктурные решения"),
   "Страница: " . ($page !== "" ? $page : ""),
@@ -243,12 +248,12 @@ $bodyHtml = brand_email_html($name, $email, $company, $phone, $interests, $messa
 
 try {
   if ($smtpPass !== "") {
-    smtp_send($config, $to, $email, $name, $subject, $bodyText);
+    smtp_send($config, $to, $replyTo, $name, $subject, $bodyText);
     echo json_encode(array("ok" => true, "via" => "smtp"));
     exit;
   }
 
-  $payload = brand_email_payload($encodedFrom, $to, $name, $email, $subject, $bodyText, $bodyHtml);
+  $payload = brand_email_payload($encodedFrom, $to, $name, $replyTo, $subject, $bodyText, $bodyHtml);
   $sent = false;
   if (function_exists("mail")) {
     $sent = @mail($to, $payload[2], $payload[1], implode("\r\n", $payload[0]));

@@ -239,7 +239,7 @@ def apply_asset_versions(text: str, assets: dict[str, str]) -> str:
                 text,
             )
         elif name.endswith(".js"):
-            if name in ("footer-dot-matrix.js", "footer-mos-widget.js", "scroll-top.js", "cookie-banner.js"):
+            if name in ("footer-dot-matrix.js", "footer-mos-widget.js", "scroll-top.js", "cookie-banner.js", "header-callback.js"):
                 text = ensure_script(text, name, version)
             else:
                 text = re.sub(
@@ -248,6 +248,28 @@ def apply_asset_versions(text: str, assets: dict[str, str]) -> str:
                     text,
                 )
     return text
+
+
+def build_header_cta(filename: str) -> str:
+    return (
+        '        <div class="header-actions">\n'
+        '          <button type="button" class="header-cta" data-callback-open aria-haspopup="dialog" aria-controls="callback-modal">\n'
+        '            <span class="header-cta__text">Связаться <span class="header-cta__more">с&nbsp;нами</span></span>\n'
+        '          </button>\n'
+        '          '
+    )
+
+
+def sync_header_cta(text: str, filename: str) -> str:
+    marker = '<div class="header-actions">'
+    start = text.find(marker)
+    if start < 0:
+        return text
+    label = text.find('<label class="theme-switch"', start)
+    if label < 0:
+        return text
+    line_start = text.rfind("\n", 0, start) + 1
+    return text[:line_start] + build_header_cta(filename) + text[label:]
 
 
 def sync_text(
@@ -269,6 +291,7 @@ def sync_text(
     if name not in SKIP_NAV and '<nav class="nav" aria-label="Основное меню">' in text:
         text = NAV_PATTERN.sub(build_nav(name), text, count=1)
 
+    text = sync_header_cta(text, name)
     text = apply_asset_versions(text, assets)
     return text
 
