@@ -15809,6 +15809,38 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
     linear-gradient(165deg, #0c1219 0%, #151f2b 48%, #0a0f16 100%);
 }
 
+.page-projects__item-media-link {
+  display: block;
+  flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.page-projects__item-media-link:focus-visible {
+  outline: none;
+}
+
+.page-projects__item-media-link:focus-visible .page-projects__item-media {
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+.page-projects__item--linked:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.page-projects__item--linked .page-projects__item-media-link:hover .page-projects__item-media--logo .page-projects__item-photo,
+.page-projects__item--linked:hover .page-projects__item-media--logo .page-projects__item-photo {
+  transform: scale(1.06);
+}
+
+.page-projects__item--linked .page-projects__item-media-link:hover .page-projects__item-media--photo .page-projects__item-photo,
+.page-projects__item--linked .page-projects__item-media-link:hover .page-projects__item-media--brand .page-projects__item-photo,
+.page-projects__item--linked:hover .page-projects__item-media--photo .page-projects__item-photo,
+.page-projects__item--linked:hover .page-projects__item-media--brand .page-projects__item-photo {
+  transform: scale(1.08);
+}
+
 .page-projects__item-media::before {
   content: "";
   position: absolute;

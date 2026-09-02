@@ -18,11 +18,60 @@
 
   var activeClient = "";
   var clients = [];
+  var clientNames = {};
   var menuOpen = false;
   var focusIndex = -1;
 
   function stripHtml(html) {
     return (html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function plainText(el) {
+    return stripHtml(el ? el.textContent || el.innerHTML : "");
+  }
+
+  function normalizeClientKey(name) {
+    return stripHtml(name).toLowerCase();
+  }
+
+  function getItemClientName(item) {
+    if (item.dataset.projectClient) {
+      return stripHtml(item.dataset.projectClient);
+    }
+
+    var clientEl = item.querySelector(".page-projects__item-client");
+    if (clientEl) {
+      return plainText(clientEl);
+    }
+
+    return "";
+  }
+
+  function getItemClientKey(item) {
+    var name = getItemClientName(item);
+    return name ? normalizeClientKey(name) : "";
+  }
+
+  function resolveClientParam(clientId) {
+    if (!clientId) return "";
+    if (hasClientInList(clientId)) return clientId;
+
+    var c = window.DCE_CLIENTS && window.DCE_CLIENTS[clientId];
+    if (c && c.name) {
+      var byName = normalizeClientKey(c.name);
+      if (hasClientInList(byName)) return byName;
+    }
+
+    return "";
+  }
+
+  function assignClientKeys() {
+    listEl.querySelectorAll(".page-projects__item").forEach(function (item) {
+      var key = getItemClientKey(item);
+      if (key) {
+        item.dataset.projectClientKey = key;
+      }
+    });
   }
 
   function pluralProjects(n) {
@@ -62,28 +111,59 @@
 
   function getClientFullName(id) {
     if (!id) return ALL_LABEL;
+    if (clientNames[id]) return clientNames[id];
+
     var c = window.DCE_CLIENTS && window.DCE_CLIENTS[id];
     if (c && c.name) return stripHtml(c.name);
+
     return id;
   }
 
   function loadClients() {
-    if (!window.DCE_CLIENTS || typeof window.getClientProjectCount !== "function") return [];
+    var map = {};
 
-    return Object.keys(window.DCE_CLIENTS)
-      .map(function (id) {
-        return {
-          id: id,
-          name: getClientFullName(id),
-          count: window.getClientProjectCount(id),
-        };
-      })
-      .filter(function (c) {
-        return c.count >= 2;
+    listEl.querySelectorAll(".page-projects__item").forEach(function (item) {
+      var key = getItemClientKey(item);
+      var name = getItemClientName(item);
+      if (!key || !name) return;
+
+      if (!map[key]) {
+        map[key] = { id: key, name: name, count: 0 };
+      }
+
+      if (name.length > map[key].name.length) {
+        map[key].name = name;
+      }
+
+      map[key].count += 1;
+      item.dataset.projectClientKey = key;
+    });
+
+    clientNames = {};
+    Object.keys(map).forEach(function (key) {
+      clientNames[key] = map[key].name;
+    });
+
+    return Object.keys(map)
+      .map(function (key) {
+        return map[key];
       })
       .sort(function (a, b) {
         return a.name.localeCompare(b.name, "ru");
       });
+  }
+
+  function itemMatchesClient(item, clientId) {
+    if (!clientId) return true;
+    var key = item.getAttribute("data-project-client-key") || getItemClientKey(item);
+    return key === clientId;
+  }
+
+  function hasClientInList(clientId) {
+    if (!clientId) return true;
+    return clients.some(function (client) {
+      return client.id === clientId;
+    });
   }
 
   function applyFilter(clientId, options) {
@@ -91,7 +171,7 @@
     activeClient = clientId || "";
 
     listEl.querySelectorAll(".page-projects__item").forEach(function (item) {
-      var match = !activeClient || item.getAttribute("data-client") === activeClient;
+      var match = itemMatchesClient(item, activeClient);
       item.classList.toggle("is-filtered-out", !match);
     });
 
@@ -253,12 +333,13 @@
   });
 
   window.addEventListener("popstate", function (e) {
-    var id =
+    var raw =
       (e.state && e.state.client) || new URL(window.location.href).searchParams.get(PARAM) || "";
-    applyFilter(id, { updateUrl: false });
+    applyFilter(resolveClientParam(raw), { updateUrl: false });
   });
 
   function init() {
+    assignClientKeys();
     clients = loadClients();
 
     if (!clients.length) {
@@ -268,8 +349,10 @@
 
     filterEl.hidden = false;
 
-    var fromUrl = new URL(window.location.href).searchParams.get(PARAM) || "";
-    if (fromUrl && window.DCE_CLIENTS && window.DCE_CLIENTS[fromUrl]) {
+    var fromUrl = resolveClientParam(
+      new URL(window.location.href).searchParams.get(PARAM) || ""
+    );
+    if (fromUrl) {
       applyFilter(fromUrl, {
         updateUrl: false,
         scroll: window.location.hash === "#projects-all" ? "auto" : "smooth",

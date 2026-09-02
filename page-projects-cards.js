@@ -2,7 +2,7 @@
  * Карточки каталога проектов.
  */
 (function () {
-  const VERSION = "184";
+  const VERSION = "185";
   const DEFAULT_HREF = "contacts.html";
 
   const legalPrefix =
@@ -232,7 +232,22 @@
       footer.appendChild(tag);
       footer.appendChild(more);
       body.append(title, text, footer);
-      item.replaceChildren(media, body);
+
+      if (href) {
+        const mediaLink = document.createElement("a");
+        mediaLink.className = "page-projects__item-media-link";
+        mediaLink.href = href;
+        mediaLink.setAttribute(
+          "aria-label",
+          "Открыть проект: " + source.client.replace(/\s+/g, " ").trim()
+        );
+        mediaLink.appendChild(media);
+        item.replaceChildren(mediaLink, body);
+        item.classList.add("page-projects__item--linked");
+      } else {
+        item.replaceChildren(media, body);
+      }
+
       item.setAttribute("data-cards-v", VERSION);
       item.setAttribute("data-enhanced", "");
     });
