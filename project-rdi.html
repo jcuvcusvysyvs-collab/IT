@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260902-mobile-theme-bar-v2" />
+    <link rel="stylesheet" href="styles.css?v=20260902-mobile-theme-bar-v3" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <script>
       (function () {
@@ -47,12 +47,14 @@
         }
         ensureMeta("theme-color", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
         ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
+        r.style.setProperty("--safari-chrome-bg", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
+        r.style.backgroundColor = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260902-mobile-theme-bar-v2"></script>
+    <script defer src="theme.js?v=20260902-mobile-theme-bar-v3"></script>
   </head>
   <body class="page-project-case page-project-rdi">
     <a class="skip-link" href="#main">К основному содержимому</a>

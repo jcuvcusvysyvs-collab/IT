@@ -38,6 +38,8 @@ NEW_INLINE = """    <script>
         }
         ensureMeta("theme-color", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
         ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
+        r.style.setProperty("--safari-chrome-bg", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
+        r.style.backgroundColor = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();

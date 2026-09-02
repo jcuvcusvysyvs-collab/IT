@@ -49,7 +49,7 @@
     return root.hasAttribute("data-theme") ? "dark" : "light";
   }
 
-  function resolveThemeColor(theme) {
+  function themeColorFor(theme) {
     return theme === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
   }
 
@@ -64,28 +64,42 @@
     document.head.appendChild(meta);
   }
 
-  function syncThemeColor(theme, options) {
-    options = options || {};
-    var color = options.forceThemeMatch
-      ? theme === "dark"
-        ? THEME_COLOR_DARK
-        : THEME_COLOR_LIGHT
-      : resolveThemeColor(theme);
+  function syncSafariChrome(theme) {
+    var color = themeColorFor(theme);
+    root.style.setProperty("--safari-chrome-bg", color);
+    root.style.backgroundColor = color;
 
+    if (document.body) {
+      document.body.style.backgroundColor = color;
+    }
+
+    var header = document.querySelector(".site-header");
+    if (header) {
+      if (isMobile()) {
+        header.style.backgroundColor = color;
+      } else {
+        header.style.removeProperty("background-color");
+      }
+    }
+  }
+
+  function syncThemeColor(theme) {
+    var color = themeColorFor(theme);
     setMeta("theme-color", color);
     setMeta(
       "apple-mobile-web-app-status-bar-style",
       color === THEME_COLOR_DARK ? "black-translucent" : "default"
     );
+    syncSafariChrome(theme);
   }
 
-  function applyTheme(theme, options) {
+  function applyTheme(theme) {
     if (theme === "dark") {
       root.setAttribute("data-theme", "dark");
     } else {
       root.removeAttribute("data-theme");
     }
-    syncThemeColor(theme, options);
+    syncThemeColor(theme);
   }
 
   function syncToggle(theme) {
@@ -108,7 +122,7 @@
 
   window.dcSiteTheme = {
     refreshThemeColor: function () {
-      syncThemeColor(currentTheme(), { forceThemeMatch: true });
+      syncThemeColor(currentTheme());
     },
     syncThemeColor: syncThemeColor,
   };
@@ -152,7 +166,7 @@
         } else {
           setStoredTheme(next);
         }
-        applyTheme(next, { forceThemeMatch: true });
+        applyTheme(next);
         syncToggle(next);
       });
     }
@@ -160,7 +174,7 @@
 
   if (typeof MutationObserver !== "undefined") {
     new MutationObserver(function () {
-      syncThemeColor(currentTheme(), { forceThemeMatch: true });
+      syncThemeColor(currentTheme());
     }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
   }
 
