@@ -50,21 +50,18 @@
   }
 
   function resolveThemeColor(theme) {
-    if (theme === "dark") {
-      return THEME_COLOR_DARK;
-    }
+    return theme === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+  }
 
-    var subnav = document.querySelector("[data-section-subnav]");
-    if (
-      subnav &&
-      document.body &&
-      !document.body.classList.contains("page-about") &&
-      !subnav.classList.contains("is-stuck")
-    ) {
-      return THEME_COLOR_DARK;
+  function setMeta(name, content) {
+    var existing = document.querySelectorAll('meta[name="' + name + '"]');
+    for (var i = 0; i < existing.length; i++) {
+      existing[i].parentNode.removeChild(existing[i]);
     }
-
-    return THEME_COLOR_LIGHT;
+    var meta = document.createElement("meta");
+    meta.setAttribute("name", name);
+    meta.setAttribute("content", content);
+    document.head.appendChild(meta);
   }
 
   function syncThemeColor(theme, options) {
@@ -75,26 +72,11 @@
         : THEME_COLOR_LIGHT
       : resolveThemeColor(theme);
 
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "theme-color");
-      document.head.appendChild(meta);
-    }
-    if (meta.getAttribute("content") !== color) {
-      meta.setAttribute("content", color);
-    }
-
-    var appleBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
-    if (!appleBar) {
-      appleBar = document.createElement("meta");
-      appleBar.setAttribute("name", "apple-mobile-web-app-status-bar-style");
-      document.head.appendChild(appleBar);
-    }
-    var appleStyle = color === THEME_COLOR_DARK ? "black-translucent" : "default";
-    if (appleBar.getAttribute("content") !== appleStyle) {
-      appleBar.setAttribute("content", appleStyle);
-    }
+    setMeta("theme-color", color);
+    setMeta(
+      "apple-mobile-web-app-status-bar-style",
+      color === THEME_COLOR_DARK ? "black-translucent" : "default"
+    );
   }
 
   function applyTheme(theme, options) {
@@ -126,8 +108,9 @@
 
   window.dcSiteTheme = {
     refreshThemeColor: function () {
-      syncThemeColor(currentTheme());
+      syncThemeColor(currentTheme(), { forceThemeMatch: true });
     },
+    syncThemeColor: syncThemeColor,
   };
 
   function onSystemChange() {
@@ -173,6 +156,12 @@
         syncToggle(next);
       });
     }
+  }
+
+  if (typeof MutationObserver !== "undefined") {
+    new MutationObserver(function () {
+      syncThemeColor(currentTheme(), { forceThemeMatch: true });
+    }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
   }
 
   if (document.readyState === "loading") {
