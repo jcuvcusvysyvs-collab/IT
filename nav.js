@@ -710,9 +710,19 @@
   /* Фиксированная шапка: видна на hero, скрывается после полного ухода hero из экрана */
   if (header) {
     var lastScrollY = window.scrollY;
+    var lastHeaderHidden = header.classList.contains("site-header--hidden");
     var ticking = false;
     var deltaThreshold = 8;
     var topAlwaysVisibleBelow = 72;
+
+    function refreshSafariChromeIfNeeded() {
+      var hiddenNow = header.classList.contains("site-header--hidden");
+      if (hiddenNow === lastHeaderHidden) return;
+      lastHeaderHidden = hiddenNow;
+      if (window.dcSiteTheme && typeof window.dcSiteTheme.refreshThemeColor === "function") {
+        window.dcSiteTheme.refreshThemeColor();
+      }
+    }
 
     function getPageHero() {
       var main = document.getElementById("main");
@@ -790,12 +800,14 @@
       if (nav && nav.classList.contains("is-open")) {
         header.classList.remove("site-header--hidden");
         lastScrollY = y;
+        refreshSafariChromeIfNeeded();
         return;
       }
 
       if (isSubnavStuck()) {
         header.classList.add("site-header--hidden");
         lastScrollY = y;
+        refreshSafariChromeIfNeeded();
         return;
       }
 
@@ -826,6 +838,7 @@
       }
 
       lastScrollY = y;
+      refreshSafariChromeIfNeeded();
     }
 
     function onScroll() {

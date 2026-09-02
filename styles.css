@@ -9404,11 +9404,29 @@ body:has(.site-header--hidden) .page-section-subnav {
 
 /* Светлая тема ленты — только в закреплённом состоянии; на hero всегда тёмная */
 html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
-  background: color-mix(in srgb, var(--bg) 99%, transparent);
+  background: var(--bg);
   border-bottom-color: var(--border);
   box-shadow:
     0 8px 28px rgba(15, 18, 24, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
+  background-color: var(--safari-chrome-bg, var(--bg));
+}
+
+[data-theme="dark"] .page-section-subnav.is-stuck {
+  background-color: var(--safari-chrome-bg, var(--bg));
+}
+
+@media (max-width: 720px) {
+  body:has(.site-header--hidden) .page-section-subnav.is-stuck {
+    padding-top: calc(clamp(0.8rem, 1.5vw, 1rem) + env(safe-area-inset-top, 0px));
+  }
+
+  body:has(.site-header--hidden) .page-section-subnav.is-stuck::before {
+    top: calc(-1 * env(safe-area-inset-top, 0px));
+  }
 }
 
 .page-section-subnav__inner {
