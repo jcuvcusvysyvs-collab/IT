@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <link rel="icon" href="images/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/webp" href="images/favicon/logoVertical.webp" sizes="any" />
@@ -18,26 +18,41 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260902-projects-media-link-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260902-mobile-theme-bar-v2" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <script>
       (function () {
         var r = document.documentElement;
+        var THEME_COLOR_LIGHT = "#f4f6fa";
+        var THEME_COLOR_DARK = "#0a0e14";
+        var dark = false;
         try {
           var mobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
           var t = localStorage.getItem(mobile ? "dc-site-theme-mobile" : "dc-site-theme");
           if (t === "dark" || (t !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            dark = true;
             r.setAttribute("data-theme", "dark");
           } else {
             r.removeAttribute("data-theme");
           }
         } catch (e) {}
+        function ensureMeta(name, content) {
+          var meta = document.querySelector('meta[name="' + name + '"]');
+          if (!meta) {
+            meta = document.createElement("meta");
+            meta.setAttribute("name", name);
+            document.head.appendChild(meta);
+          }
+          meta.setAttribute("content", content);
+        }
+        ensureMeta("theme-color", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
+        ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260818-theme-v1"></script>
+    <script defer src="theme.js?v=20260902-mobile-theme-bar-v1"></script>
   </head>
   <body class="page-project-case page-project-peresvet">
     <a class="skip-link" href="#main">К основному содержимому</a>

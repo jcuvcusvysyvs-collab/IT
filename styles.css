@@ -250,6 +250,7 @@ html {
   scrollbar-gutter: stable;
   touch-action: manipulation;
   -ms-touch-action: manipulation;
+  background: var(--bg);
 }
 
 body {
@@ -8624,9 +8625,13 @@ html[data-theme="dark"] .footer-widget #widget1 {
     align-items: center;
     gap: 0.45rem;
     row-gap: 0;
-    padding: 0.55rem var(--layout-gutter);
+    padding: calc(0.55rem + env(safe-area-inset-top, 0px)) var(--layout-gutter) 0.55rem;
     min-height: 3.25rem;
     border-radius: 0;
+  }
+
+  .header-inner::before {
+    top: calc(-1 * env(safe-area-inset-top, 0px));
   }
 
   .logo {
