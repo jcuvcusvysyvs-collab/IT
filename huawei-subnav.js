@@ -192,8 +192,12 @@
     stickyTicking = false;
     if (!isOpen) {
       var stuck = isSubnavStuck();
-      if (subnav.classList.contains("is-stuck") !== stuck) {
+      var wasStuck = subnav.classList.contains("is-stuck");
+      if (wasStuck !== stuck) {
         subnav.classList.toggle("is-stuck", stuck);
+        if (window.dcSiteTheme && typeof window.dcSiteTheme.refreshThemeColor === "function") {
+          window.dcSiteTheme.refreshThemeColor();
+        }
       }
     }
     syncSubnavHeight();
