@@ -26,6 +26,7 @@ def main() -> int:
             elif name.endswith(".js") and name not in (
                 "footer-dot-matrix.js",
                 "footer-mos-widget.js",
+                "footer-newsletter.js",
                 "scroll-top.js",
                 "cookie-banner.js",
                 "header-callback.js",

@@ -239,7 +239,7 @@ def apply_asset_versions(text: str, assets: dict[str, str]) -> str:
                 text,
             )
         elif name.endswith(".js"):
-            if name in ("footer-dot-matrix.js", "footer-mos-widget.js", "scroll-top.js", "cookie-banner.js", "header-callback.js"):
+            if name in ("footer-dot-matrix.js", "footer-mos-widget.js", "footer-newsletter.js", "scroll-top.js", "cookie-banner.js", "header-callback.js"):
                 text = ensure_script(text, name, version)
             else:
                 text = re.sub(
