@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260904-newsletter-name-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260904-nav-theme-shift-v2" />
     <link rel="preload" href="images/SERVICE_03.webp?v=20260818-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -51,7 +51,7 @@
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260902-mobile-theme-bar-v4"></script>
+    <script defer src="theme.js?v=20260904-theme-toggle3-v1"></script>
   </head>
   <body class="page-infra page-scaling">
     <a class="skip-link" href="#main">К основному содержимому</a>
@@ -201,27 +201,20 @@
           <label class="theme-switch" title="Тема оформления">
             <span class="visually-hidden">Переключить светлую и тёмную тему</span>
             <input type="checkbox" class="theme-switch-input" role="switch" aria-checked="false" />
-            <span class="theme-switch-track" aria-hidden="true">
-              <span class="theme-switch-decor theme-switch-decor--sun">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
-                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-              </span>
-              <span class="theme-switch-decor theme-switch-decor--moon">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-              <span class="theme-switch-thumb">
-                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--sun" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2.25" />
-                  <path d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4l1.4-1.4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
-                </svg>
-                <svg class="theme-switch-thumb__icon theme-switch-thumb__icon--moon" viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
+            <span class="theme-switch__btn" aria-hidden="true">
+              <svg class="theme-switch__icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-linecap="round">
+                <defs>
+                  <clipPath id="theme-switch-clip">
+                    <path class="theme-switch__clip" d="M0-11h25a1 1 0 0017 13v30H0Z" />
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#theme-switch-clip)">
+                  <circle class="theme-switch__core" cx="16" cy="16" r="8" />
+                  <g class="theme-switch__rays" stroke="currentColor" stroke-width="1.5" fill="currentColor">
+                    <path d="M18.3 3.2c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3S14.7.9 16 .9s2.3 1 2.3 2.3zm-4.6 25.6c0-1.3 1-2.3 2.3-2.3s2.3 1 2.3 2.3-1 2.3-2.3 2.3-2.3-1-2.3-2.3zm15.1-10.5c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zM3.2 13.7c1.3 0 2.3 1 2.3 2.3s-1 2.3-2.3 2.3S.9 17.3.9 16s1-2.3 2.3-2.3zm5.8-7C9 7.9 7.9 9 6.7 9S4.4 8 4.4 6.7s1-2.3 2.3-2.3S9 5.4 9 6.7zm16.3 21c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm2.4-21c0 1.3-1 2.3-2.3 2.3S23 7.9 23 6.7s1-2.3 2.3-2.3 2.4 1 2.4 2.3zM6.7 23C8 23 9 24 9 25.3s-1 2.3-2.3 2.3-2.3-1-2.3-2.3 1-2.3 2.3-2.3z" />
+                  </g>
+                </g>
+              </svg>
             </span>
           </label>
         </div>
@@ -789,7 +782,7 @@
       <div class="site-footer__divider" aria-hidden="true"></div>
       <div class="footer-newsletter-strip" aria-label="Подписка на рассылку">
         <div class="footer-inner footer-newsletter-strip__inner">
-          <a class="footer-newsletter-strip__brand" href="index.html#top" aria-label="DATA CENTER ENGINEERING">
+          <p class="footer-newsletter-strip__brand">
             <span class="footer-newsletter-strip__brand-text">
               <span class="footer-newsletter-strip__brand-line footer-newsletter-strip__brand-line--pair" aria-hidden="true">
                 <span class="footer-newsletter-strip__brand-word" style="--brand-chars: 4">
@@ -803,7 +796,8 @@
                 <span>E</span><span>N</span><span>G</span><span>I</span><span>N</span><span>E</span><span>E</span><span>R</span><span>I</span><span>N</span><span>G</span>
               </span>
             </span>
-          </a>
+            <span class="visually-hidden">DATA CENTER ENGINEERING</span>
+          </p>
           <form class="footer-newsletter" id="footer-newsletter-form" novalidate>
             <p class="footer-newsletter__label" id="footer-newsletter-label">Рассылка</p>
             <label class="footer-newsletter__field">

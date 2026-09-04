@@ -4,6 +4,7 @@
 Source of truth:
   - _partials/footer-home.html      (index.html)
   - _partials/footer-subpage.html   (all other pages with .site-footer)
+  - _partials/theme-switch.html     (header theme toggle)
   - SERVICE/PROJECT/ABOUT link lists below (nav)
   - scripts/site-assets.json        (shared CSS/JS ?v=)
 
@@ -24,6 +25,10 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS_PATH = Path(__file__).resolve().parent / "site-assets.json"
 
 FOOTER_RE = re.compile(r"[ \t]*<footer class=\"site-footer\"[\s\S]*?</footer>\s*", re.M)
+THEME_SWITCH_RE = re.compile(
+    r"[ \t]*<label class=\"theme-switch\"[\s\S]*?</label>",
+    re.M,
+)
 NAV_PATTERN = re.compile(
     r'[ \t]*<nav class="nav" aria-label="Основное меню">.*?</nav>(?=\s*<div class="header-actions">)',
     re.DOTALL,
@@ -78,6 +83,26 @@ def load_footer(name: str) -> str:
     if not text.startswith("    <footer"):
         text = "    " + text.lstrip()
     return text
+
+
+def load_theme_switch() -> str:
+    text = (ROOT / "_partials" / "theme-switch.html").read_text(encoding="utf-8").strip()
+    if not text.lstrip().startswith("<label class=\"theme-switch\""):
+        raise SystemExit("Partial is not a theme-switch label")
+    return text
+
+
+def sync_theme_switch(text: str) -> str:
+    partial = load_theme_switch()
+    match = THEME_SWITCH_RE.search(text)
+    if not match:
+        return text
+    indent = re.match(r"[ \t]*", match.group(0)).group(0)
+    # Partial uses 2-space nesting from column 0; pad to page indent.
+    block = "\n".join(
+        (indent + line) if line.strip() else "" for line in partial.splitlines()
+    )
+    return text[: match.start()] + block + text[match.end() :]
 
 
 def page_href(filename: str, page: str, anchor: str) -> str:
@@ -292,6 +317,7 @@ def sync_text(
         text = NAV_PATTERN.sub(build_nav(name), text, count=1)
 
     text = sync_header_cta(text, name)
+    text = sync_theme_switch(text)
     text = apply_asset_versions(text, assets)
     return text
 
