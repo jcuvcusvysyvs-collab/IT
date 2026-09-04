@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260903-footer-newsletter-v13" />
+    <link rel="stylesheet" href="styles.css?v=20260904-newsletter-name-v1" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <script>
       (function () {
@@ -394,23 +394,38 @@
 
     <footer class="site-footer">
       <!-- Источник правды: править этот файл, затем: python scripts/sync-all.py -->
+      <div class="site-footer__divider" aria-hidden="true"></div>
       <div class="footer-newsletter-strip" aria-label="Подписка на рассылку">
-        <div class="footer-newsletter-strip__inner">
+        <div class="footer-inner footer-newsletter-strip__inner">
           <a class="footer-newsletter-strip__brand" href="index.html#top" aria-label="DATA CENTER ENGINEERING">
-            <span class="footer-newsletter-strip__brand-line footer-newsletter-strip__brand-line--pair" aria-hidden="true">
-              <span class="footer-newsletter-strip__brand-word" style="--brand-chars: 4">
-                <span>D</span><span>A</span><span>T</span><span>A</span>
+            <span class="footer-newsletter-strip__brand-text">
+              <span class="footer-newsletter-strip__brand-line footer-newsletter-strip__brand-line--pair" aria-hidden="true">
+                <span class="footer-newsletter-strip__brand-word" style="--brand-chars: 4">
+                  <span>D</span><span>A</span><span>T</span><span>A</span>
+                </span>
+                <span class="footer-newsletter-strip__brand-word" style="--brand-chars: 6">
+                  <span>C</span><span>E</span><span>N</span><span>T</span><span>E</span><span>R</span>
+                </span>
               </span>
-              <span class="footer-newsletter-strip__brand-word" style="--brand-chars: 6">
-                <span>C</span><span>E</span><span>N</span><span>T</span><span>E</span><span>R</span>
+              <span class="footer-newsletter-strip__brand-line footer-newsletter-strip__brand-line--full" style="--brand-chars: 11" aria-hidden="true">
+                <span>E</span><span>N</span><span>G</span><span>I</span><span>N</span><span>E</span><span>E</span><span>R</span><span>I</span><span>N</span><span>G</span>
               </span>
-            </span>
-            <span class="footer-newsletter-strip__brand-line footer-newsletter-strip__brand-line--full" style="--brand-chars: 11" aria-hidden="true">
-              <span>E</span><span>N</span><span>G</span><span>I</span><span>N</span><span>E</span><span>E</span><span>R</span><span>I</span><span>N</span><span>G</span>
             </span>
           </a>
           <form class="footer-newsletter" id="footer-newsletter-form" novalidate>
-            <p class="footer-newsletter__label">Рассылка</p>
+            <p class="footer-newsletter__label" id="footer-newsletter-label">Рассылка</p>
+            <label class="footer-newsletter__field">
+              <span class="visually-hidden">Имя</span>
+              <input
+                class="footer-newsletter__input"
+                type="text"
+                name="name"
+                id="footer-newsletter-name"
+                autocomplete="name"
+                placeholder="Ваше имя"
+                required
+              />
+            </label>
             <div class="footer-newsletter__row">
               <label class="footer-newsletter__field">
                 <span class="visually-hidden">Email для рассылки</span>
@@ -422,6 +437,7 @@
                   autocomplete="email"
                   placeholder="Ваш email"
                   required
+                  aria-labelledby="footer-newsletter-label"
                 />
               </label>
               <button type="submit" class="footer-newsletter__submit">
@@ -445,18 +461,31 @@
               autocomplete="off"
               aria-hidden="true"
             />
-            <p class="footer-newsletter__legal">
-              Нажимая «Подписаться», вы соглашаетесь с&nbsp;<a
-                href="images/documents/persdata_policy.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                >политикой персональных данных</a
-              >.
-            </p>
+            <label class="footer-newsletter__consent">
+              <input
+                class="footer-newsletter__checkbox"
+                type="checkbox"
+                name="consent"
+                id="footer-newsletter-consent"
+                value="yes"
+                required
+              />
+              <span class="footer-newsletter__consent-box" aria-hidden="true"></span>
+              <span class="footer-newsletter__consent-text">
+                Согласен с&nbsp;<a
+                  href="images/documents/persdata_policy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >политикой персональных данных</a
+                >
+              </span>
+            </label>
             <p class="footer-newsletter__status" id="footer-newsletter-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
+
+      <div class="site-footer__divider" aria-hidden="true"></div>
 
       <div class="footer-main">
         <div class="footer-inner">
@@ -535,7 +564,7 @@
       <script defer src="scroll-top.js?v=20260826-scroll-top-v2"></script>
       <script defer src="cookie-banner.js?v=20260827-cookie-v1"></script>
       <script defer src="header-callback.js?v=20260828-callback-v4"></script>
-      <script defer src="footer-newsletter.js?v=20260903-footer-newsletter-v1"></script>
+      <script defer src="footer-newsletter.js?v=20260904-newsletter-name-v1"></script>
   </body>
 </html>
 
