@@ -26,7 +26,7 @@
         rel="stylesheet"
       />
     </noscript>
-    <link rel="stylesheet" href="styles.css?v=20260904-nav-theme-shift-v2" />
+    <link rel="stylesheet" href="styles.css?v=20260907-geo-mobile-uniform-v1" />
     <link
       rel="preload"
       href="video/data-center-hero-mobile.mp4?v=20260818-m720p"
@@ -876,104 +876,24 @@
                   loading="lazy"
                   aria-hidden="true"
                 />
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--sm"
-                  style="left: 12.3%; top: 34.6%"
-                  data-city="Санкт-Петербург"
-                  data-count="1"
-                  aria-label="Санкт-Петербург: 1 проект"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">1</span>
-                  <span class="home-geo__pin-label">Санкт-Петербург · 1</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--lg"
-                  style="left: 14.4%; top: 46.5%"
-                  data-city="Москва"
-                  data-count="58"
-                  aria-label="Москва: 58 проектов"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">58</span>
-                  <span class="home-geo__pin-label">Москва · 58</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--md"
-                  style="left: 31.2%; top: 48.8%"
-                  data-city="Казань"
-                  data-count="2"
-                  aria-label="Казань: 2 проекта"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">2</span>
-                  <span class="home-geo__pin-label">Казань · 2</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--md"
-                  style="left: 35.5%; top: 47.6%"
-                  data-city="Пермь"
-                  data-count="2"
-                  aria-label="Пермь: 2 проекта"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">2</span>
-                  <span class="home-geo__pin-label">Пермь · 2</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--md"
-                  style="left: 23.8%; top: 56.7%"
-                  data-city="Саратов"
-                  data-count="2"
-                  aria-label="Саратов: 2 проекта"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">2</span>
-                  <span class="home-geo__pin-label">Саратов · 2</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--sm"
-                  style="left: 23.3%; top: 73.6%"
-                  data-city="Ставрополь"
-                  data-count="1"
-                  aria-label="Ставрополь: 1 проект"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">1</span>
-                  <span class="home-geo__pin-label">Ставрополь · 1</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--sm"
-                  style="left: 17.0%; top: 64.6%"
-                  data-city="Краснодар"
-                  data-count="1"
-                  aria-label="Краснодар: 1 проект"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">1</span>
-                  <span class="home-geo__pin-label">Краснодар · 1</span>
-                </button>
-                <button
-                  type="button"
-                  class="home-geo__pin home-geo__pin--sm"
-                  style="left: 53.0%; top: 90.3%"
-                  data-city="Красноярск"
-                  data-count="1"
-                  aria-label="Красноярск: 1 проект"
-                >
-                  <span class="home-geo__pin-dot" aria-hidden="true">1</span>
-                  <span class="home-geo__pin-label">Красноярск · 1</span>
-                </button>
+                <div class="home-geo__pins" data-geo-pins></div>
               </div>
 
-                <article class="home-geo__card" data-geo-card hidden>
+                <article class="home-geo__card" data-geo-card hidden aria-hidden="true">
                   <header class="home-geo__card-head">
                     <div class="home-geo__card-brand">
                       <span class="home-geo__card-logo">
                         <img data-geo-card-logo-light class="home-geo__card-logo-img home-geo__card-logo-img--light" src="" alt="" width="120" height="48" />
                         <img data-geo-card-logo-dark class="home-geo__card-logo-img home-geo__card-logo-img--dark" src="" alt="" width="120" height="48" />
                       </span>
-                      <h3 class="home-geo__card-name" data-geo-card-name></h3>
+                      <div class="home-geo__card-titles">
+                        <h3 class="home-geo__card-name" data-geo-card-name></h3>
+                        <p class="home-geo__card-meta" data-geo-card-meta>
+                          <span data-geo-card-city></span>
+                          <span class="home-geo__card-meta-sep" data-geo-card-meta-sep hidden aria-hidden="true">,</span>
+                          <span data-geo-card-year hidden></span>
+                        </p>
+                      </div>
                     </div>
                     <button type="button" class="home-geo__card-close" data-geo-card-close aria-label="Закрыть">
                       <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
@@ -982,7 +902,6 @@
                     </button>
                   </header>
                   <div class="home-geo__card-body" data-geo-card-body>
-                    <p class="home-geo__card-year" data-geo-card-year hidden></p>
                     <p class="home-geo__card-desc" data-geo-card-desc></p>
                   </div>
                   <div class="home-geo__card-nav" data-geo-card-nav hidden>
@@ -1207,7 +1126,8 @@
     </footer>
 <script defer src="hero-pt.js?v=20260820-vf2"></script>
     <script defer src="services-carousel.js?v=20260820-services-active-v1"></script>
-    <script defer src="home-geo.js?v=20260824-geo-card-v3"></script>
+    <script defer src="home-geo-data.js?v=20260907-geo-data-js-v1"></script>
+    <script defer src="home-geo.js?v=20260907-geo-data-js-v1"></script>
     <script defer src="clients-marquee.js?v=20260820-slow-hover-v1"></script>
     <script defer src="nav.js?v=20260902-subnav-chrome-v1"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
