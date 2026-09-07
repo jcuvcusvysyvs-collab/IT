@@ -176,12 +176,18 @@
       document.body.style.right = "0";
       document.body.style.width = "100%";
     } else if (document.body.style.position === "fixed") {
+      var restoreY = mobileScrollLockY;
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.width = "";
-      window.scrollTo(0, mobileScrollLockY);
+      // html { scroll-behavior: smooth } иначе анимирует «сверху вниз» к restoreY
+      var htmlEl = document.documentElement;
+      var prevScrollBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = "auto";
+      window.scrollTo(0, restoreY);
+      htmlEl.style.scrollBehavior = prevScrollBehavior;
     }
 
     if (mobileBackdrop) {
