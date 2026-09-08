@@ -480,10 +480,11 @@ html:not([data-theme="dark"]) .page-cookies .projects-hero.subpage-hero--about {
 
 .page-cookies__table {
   width: 100%;
-  min-width: 28rem;
-  border-collapse: collapse;
+  min-width: 36rem;
+  border-collapse: separate;
+  border-spacing: 0;
   font-family: var(--font-text);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 
@@ -506,18 +507,40 @@ html:not([data-theme="dark"]) .page-cookies .projects-hero.subpage-hero--about {
 
 .page-cookies__table td {
   color: var(--text-muted);
+  background: var(--bg-elevated);
+}
+
+.page-cookies__table th:first-child,
+.page-cookies__table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  width: 11.5rem;
+  min-width: 11.5rem;
+  max-width: 13rem;
+  box-shadow: 1px 0 0 color-mix(in srgb, var(--border) 90%, transparent);
+}
+
+.page-cookies__table th:first-child {
+  z-index: 3;
+  background: color-mix(in srgb, var(--text) 4.5%, var(--bg-elevated));
 }
 
 .page-cookies__table td:first-child {
-  width: 28%;
+  background: var(--bg-elevated);
 }
 
 .page-cookies__table tbody tr:nth-child(even) td {
-  background: color-mix(in srgb, var(--text) 1.8%, transparent);
+  background: color-mix(in srgb, var(--text) 1.8%, var(--bg-elevated));
 }
 
-.page-cookies__table tbody tr:hover td {
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
+.page-cookies__table tbody tr:nth-child(even) td:first-child {
+  background: color-mix(in srgb, var(--text) 1.8%, var(--bg-elevated));
+}
+
+.page-cookies__table tbody tr:hover td,
+.page-cookies__table tbody tr:hover td:first-child {
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-elevated));
 }
 
 .page-cookies__table tr:last-child th,
@@ -527,13 +550,16 @@ html:not([data-theme="dark"]) .page-cookies .projects-hero.subpage-hero--about {
 
 .page-cookies__table code {
   display: inline-block;
-  padding: 0.18rem 0.5rem;
+  max-width: 100%;
+  padding: 0.22rem 0.55rem;
   border-radius: 4px;
   background: color-mix(in srgb, var(--accent) 12%, transparent);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--text);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .page-cookies__callout {
@@ -899,7 +925,28 @@ html:not([data-theme="dark"]) .page-cookies .page-section-subnav__toggle:focus-v
   }
 
   .page-cookies__table {
-    min-width: 22.5rem;
+    min-width: 40rem;
+    font-size: 0.96875rem;
+  }
+
+  .page-cookies__table th,
+  .page-cookies__table td {
+    padding: 1rem 1rem;
+  }
+
+  .page-cookies__table th:first-child,
+  .page-cookies__table td:first-child {
+    width: 9.75rem;
+    min-width: 9.75rem;
+    max-width: 9.75rem;
+    box-shadow:
+      1px 0 0 color-mix(in srgb, var(--border) 90%, transparent),
+      8px 0 16px color-mix(in srgb, var(--text) 8%, transparent);
+  }
+
+  .page-cookies__table code {
+    font-size: 0.8125rem;
+    padding: 0.28rem 0.55rem;
   }
 
   .page-cookies__text,
