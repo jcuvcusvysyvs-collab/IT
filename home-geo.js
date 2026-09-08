@@ -74,7 +74,6 @@
     pinsHost.innerHTML = CITY_PINS.map(function (entry) {
       var count = counts[entry.city] || 0;
       var sizeClass = pinSizeClass(count);
-      var dot = count > 0 ? String(count) : "";
       var aria =
         count > 0
           ? entry.city + ": " + count + " " + projectWord(count)
@@ -93,9 +92,7 @@
         '" aria-label="' +
         escapeHtml(aria) +
         '">' +
-        '<span class="home-geo__pin-dot" aria-hidden="true">' +
-        escapeHtml(dot) +
-        "</span>" +
+        '<span class="home-geo__pin-dot" aria-hidden="true"></span>' +
         '<span class="home-geo__pin-label">' +
         escapeHtml(entry.city) +
         "</span>" +
