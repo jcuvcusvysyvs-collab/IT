@@ -2,8 +2,7 @@
   "use strict";
 
   var STORAGE_KEY = "dce-cookie-consent";
-  /* When the policy page is ready, set e.g. "cookie-policy.html" */
-  var POLICY_HREF = "";
+  var POLICY_HREF = "cookies.html";
 
   var root = null;
   var shown = false;
@@ -42,6 +41,16 @@
     publish(status);
   }
 
+  function resetConsent() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      /* ignore */
+    }
+    publish(null);
+    return true;
+  }
+
   function canLoadAnalytics() {
     return readStatus() === "accepted";
   }
@@ -49,14 +58,9 @@
   window.__dceCookieConsentApi = {
     getStatus: readStatus,
     canLoadAnalytics: canLoadAnalytics,
+    reset: resetConsent,
     STORAGE_KEY: STORAGE_KEY,
   };
-
-  var existing = readStatus();
-  if (existing) {
-    publish(existing);
-    return;
-  }
 
   function policyMarkup() {
     var label = "политикой использования файлов cookie";
@@ -154,6 +158,20 @@
     });
   }
 
+  function bindPolicyPageControls() {
+    var btn = document.querySelector("[data-cookie-reset]");
+    var statusEl = document.querySelector("[data-cookie-reset-status]");
+    if (!btn) return;
+
+    btn.addEventListener("click", function () {
+      resetConsent();
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.textContent = "Настройки сброшены. Обновите страницу.";
+      }
+    });
+  }
+
   function whenLoaderDone(run) {
     if (window.__dcePageLoaderDone) {
       run();
@@ -171,6 +189,14 @@
   }
 
   function boot() {
+    bindPolicyPageControls();
+
+    var existing = readStatus();
+    if (existing) {
+      publish(existing);
+      return;
+    }
+
     whenLoaderDone(mount);
   }
 
