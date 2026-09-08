@@ -840,7 +840,6 @@ html:not([data-theme="dark"]) .page-cookies .page-section-subnav__toggle:focus-v
   .page-cookies #main {
     min-width: 0;
     max-width: 100%;
-    overflow-x: clip;
   }
 
   .page-cookies .page-section-subnav:not(.page-section-subnav--menu-open) {
