@@ -7,39 +7,39 @@
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function reveal(block) {
-    if (block.classList.contains("is-visible")) return;
+  function show(block) {
     block.classList.add("is-visible");
   }
 
+  function hide(block) {
+    block.classList.remove("is-visible");
+  }
+
   if (reduceMotion || typeof IntersectionObserver === "undefined") {
-    blocks.forEach(reveal);
+    blocks.forEach(function (block) {
+      block.classList.add("is-visible");
+    });
     return;
   }
 
   var observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        reveal(entry.target);
-        observer.unobserve(entry.target);
+        if (entry.isIntersecting) {
+          show(entry.target);
+        } else {
+          hide(entry.target);
+        }
       });
     },
     {
       root: null,
-      rootMargin: "0px 0px -12% 0px",
-      threshold: 0.12,
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.14,
     }
   );
 
   blocks.forEach(function (block) {
-    /* Уже в зоне видимости при загрузке — раскрыть сразу */
-    var rect = block.getBoundingClientRect();
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < vh * 0.88 && rect.bottom > vh * 0.08) {
-      reveal(block);
-      return;
-    }
     observer.observe(block);
   });
 })();

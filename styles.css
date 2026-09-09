@@ -27754,9 +27754,7 @@ body.nav-mobile-open .cookie-banner {
 .page-infra [data-infra-reveal] .page-infra__example-card {
   opacity: 0;
   transform: translate3d(0, var(--infra-reveal-distance), 0);
-  transition:
-    opacity var(--infra-reveal-duration) var(--infra-reveal-ease),
-    transform var(--infra-reveal-duration) var(--infra-reveal-ease);
+  transition: none;
   will-change: opacity, transform;
 }
 
@@ -27771,6 +27769,9 @@ body.nav-mobile-open .cookie-banner {
 .page-infra [data-infra-reveal].is-visible .page-infra__example-card {
   opacity: 1;
   transform: none;
+  transition:
+    opacity var(--infra-reveal-duration) var(--infra-reveal-ease),
+    transform var(--infra-reveal-duration) var(--infra-reveal-ease);
 }
 
 .page-infra [data-infra-reveal].is-visible > .about-dce__header,
