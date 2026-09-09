@@ -27863,6 +27863,45 @@ body.nav-mobile-open .cookie-banner {
   transition-delay: 0.7s;
 }
 
+/* Мобилка: блок 01 уже торчит под hero — короче ход, раньше header */
+@media (max-width: 900px) {
+  .page-infra [data-infra-reveal] {
+    --infra-reveal-duration: 0.72s;
+    --infra-reveal-distance: 1.35rem;
+  }
+
+  .page-infra [data-infra-reveal] .page-infra__example-card {
+    --infra-reveal-distance: 1.1rem;
+    --infra-reveal-duration: 0.6s;
+  }
+
+  .page-infra [data-infra-reveal].is-visible > .about-dce__header {
+    transition-delay: 0s;
+  }
+
+  .page-infra [data-infra-reveal].is-visible > .infra-scenarios,
+  .page-infra [data-infra-reveal].is-visible > .page-infra__cycle,
+  .page-infra [data-infra-reveal].is-visible > .about-dce__grid,
+  .page-infra [data-infra-reveal].is-visible > .infra-form-layout__intro {
+    transition-delay: 0.1s;
+  }
+
+  .page-infra [data-infra-reveal].is-visible > .page-infra__standards-block,
+  .page-infra [data-infra-reveal].is-visible > .infra-form-layout__form {
+    transition-delay: 0.18s;
+  }
+
+  /* На мобильной форме обратной связи reveal отключён */
+  .page-infra #infra-feedback [data-infra-reveal] > .infra-form-layout__photo,
+  .page-infra #infra-feedback [data-infra-reveal] > .infra-form-layout__intro,
+  .page-infra #infra-feedback [data-infra-reveal] > .infra-form-layout__form {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page-infra [data-infra-reveal] > .about-dce__header,
   .page-infra [data-infra-reveal] > .infra-scenarios,
