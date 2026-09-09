@@ -9855,13 +9855,13 @@ html[data-theme="dark"] .footer-widget #widget1 {
 }
 
 .page-huawei .projects-hero-stage[data-hero-grid] .projects-hero__background {
-  opacity: calc(1 - var(--hero-fade) * 0.5);
+  opacity: calc(1 - var(--hero-fade) * 0.62);
   transform: translate3d(0, calc(var(--hero-shift) * -1.25rem), 0);
 }
 
 .page-huawei .projects-hero-stage[data-hero-grid] .projects-hero__content {
   transform: translate3d(0, calc(var(--hero-shift) * -1.5rem), 0);
-  opacity: calc(1 - var(--hero-fade) * 0.82);
+  opacity: calc(1 - var(--hero-fade) * 0.92);
 }
 
 .page-huawei .projects-hero__inner--left {
@@ -20223,10 +20223,14 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 }
 
 .page-infra .projects-hero-stage[data-hero-grid] .projects-hero__background  {
+  opacity: calc(1 - var(--hero-fade) * 0.62);
+  transform: translate3d(0, calc(var(--hero-shift) * -1.25rem), 0);
   z-index: 0;
 }
 
 .page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content  {
+  transform: translate3d(0, calc(var(--hero-shift) * -1.5rem), 0);
+  opacity: calc(1 - var(--hero-fade) * 0.92);
   position: relative;
   z-index: 3;
 }
@@ -20249,6 +20253,14 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
 .page-infra .projects-hero__inner--left a  {
   pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-infra .projects-hero-stage[data-hero-grid] .projects-hero__background,
+  .page-infra .projects-hero-stage[data-hero-grid] .projects-hero__content {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .page-infra .projects-hero--yandex .projects-hero__content,
