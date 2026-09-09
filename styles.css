@@ -20764,7 +20764,47 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
   opacity: 1;
   pointer-events: auto;
   z-index: 1;
-  animation: infra-scenarios-fade 0.22s ease;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__title {
+  animation: infra-scenarios-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__prose,
+.infra-scenarios__panel.is-active .infra-scenarios__list li {
+  animation: infra-scenarios-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__prose {
+  animation-delay: 0.06s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(6) {
+  animation-delay: 0.38s;
+}
+
+.infra-scenarios__panel.is-active .infra-scenarios__list li:nth-child(n + 7) {
+  animation-delay: 0.42s;
 }
 
 .infra-scenarios__copy {
@@ -21008,7 +21048,7 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 @keyframes infra-scenarios-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translate3d(0, 1.1rem, 0);
   }
   to {
     opacity: 1;
@@ -21100,7 +21140,10 @@ html:not([data-theme="dark"]) .page-infra .page-section-subnav.is-stuck .page-se
 
 @media (prefers-reduced-motion: reduce) {
   .infra-scenarios__tab,
-  .infra-scenarios__panel.is-active {
+  .infra-scenarios__panel.is-active,
+  .infra-scenarios__panel.is-active .infra-scenarios__title,
+  .infra-scenarios__panel.is-active .infra-scenarios__prose,
+  .infra-scenarios__panel.is-active .infra-scenarios__list li {
     transition: none;
     animation: none;
   }

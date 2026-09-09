@@ -74,9 +74,14 @@
 
       panels.forEach((panel) => {
         const on = panel.getAttribute("data-infra-panel") === id;
-        panel.classList.toggle("is-active", on);
+        panel.classList.remove("is-active");
         panel.setAttribute("aria-hidden", on ? "false" : "true");
         panel.removeAttribute("hidden");
+        if (on) {
+          /* Перезапуск CSS-анимации при каждом переключении вкладки */
+          void panel.offsetWidth;
+          panel.classList.add("is-active");
+        }
       });
 
       const index = tabs.indexOf(nextTab);
