@@ -792,6 +792,9 @@
       var scope = subnav && subnav.closest(".page-sticky-scope");
       if (!subnav || !scope) return false;
 
+      /* На части страниц лента скрыта на desktop (display:none) — не блокируем шапку */
+      if (subnav.getClientRects().length === 0) return false;
+
       var headerHeight =
         parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue("--site-header-height")
