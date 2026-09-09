@@ -27900,6 +27900,11 @@ body.nav-mobile-open .cookie-banner {
     transition: none;
     will-change: auto;
   }
+
+  /* На мобиле стрелочные кнопки вперёд/назад должны иметь «карточное» скругление, не круг */
+  .page-infra .infra-scenarios__nav-btn {
+    border-radius: var(--radius-sm);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
