@@ -36,6 +36,18 @@
     });
   }
 
+  function resetProjectBits() {
+    yearHeads.forEach(function (head) {
+      hide(head);
+    });
+    yearGroups.forEach(function (group) {
+      group.querySelectorAll(".page-projects__item").forEach(function (el) {
+        hide(el);
+        el.style.removeProperty("--projects-row-delay");
+      });
+    });
+  }
+
   if (reduceMotion) {
     blocks.forEach(show);
     yearHeads.forEach(show);
@@ -45,24 +57,20 @@
     return;
   }
 
-  /* Секции — чуть раньше края; карточки проектов — только когда реально входят в кадр
-     (на мобиле ранний lead прятал анимацию за нижней границей экрана). */
-  function inFrame(top, bottom, leadPx) {
-    return top < vhRef() + leadPx && bottom > 8;
-  }
-
   function vhRef() {
     return window.innerHeight || document.documentElement.clientHeight;
+  }
+
+  function inFrame(top, bottom, leadPx) {
+    return top < vhRef() + leadPx && bottom > 8;
   }
 
   function update() {
     var vh = vhRef();
     var blockLead = mobileMq.matches ? 36 : 64;
-    /* Мобила: старт, когда верх уже ~12% экрана внутри — анимация видна при скролле.
-       Десктоп: лёгкий early, чтобы ряд из 3 успел начать до полного входа. */
-    var cardLead = mobileMq.matches ? -Math.round(vh * 0.12) : 28;
+    /* Старт чуть после входа в кадр — анимация читается целиком */
+    var cardLead = mobileMq.matches ? -Math.round(vh * 0.08) : 20;
     var cols = getCols();
-    var rowStagger = cols === 1 ? 0 : cols === 2 ? 0.08 : 0.09;
 
     blocks.forEach(function (block) {
       var rect = block.getBoundingClientRect();
@@ -76,9 +84,9 @@
         hide(head);
         return;
       }
+      if (head.classList.contains("is-visible")) return;
       var rect = head.getBoundingClientRect();
       if (inFrame(rect.top, rect.bottom, cardLead)) show(head);
-      else hide(head);
     });
 
     yearGroups.forEach(function (group) {
@@ -92,30 +100,32 @@
       var i;
       for (i = 0; i < items.length; i += cols) {
         var row = items.slice(i, i + cols);
-        var firstRect = row[0].getBoundingClientRect();
-        var lastRect = row[row.length - 1].getBoundingClientRect();
         var rowTop = Math.min.apply(
           null,
           row.map(function (el) {
             return el.getBoundingClientRect().top;
           })
         );
-        var rowBottom = Math.max(firstRect.bottom, lastRect.bottom);
-        var entering = inFrame(rowTop, rowBottom, cardLead);
+        var rowBottom = Math.max.apply(
+          null,
+          row.map(function (el) {
+            return el.getBoundingClientRect().bottom;
+          })
+        );
+        /* Весь ряд (3 / 2 / 1) появляется одновременно — без stagger слева направо */
+        if (!inFrame(rowTop, rowBottom, cardLead)) continue;
 
-        row.forEach(function (el, idx) {
-          if (entering) {
-            el.style.setProperty("--projects-row-delay", (idx * rowStagger).toFixed(2) + "s");
-            show(el);
-          } else {
-            el.style.removeProperty("--projects-row-delay");
-            hide(el);
-          }
+        row.forEach(function (el) {
+          if (el.classList.contains("is-visible")) return;
+          el.style.removeProperty("--projects-row-delay");
+          show(el);
         });
       }
 
-      /* Скрытые фильтром — без анимации */
-      group.querySelectorAll(".page-projects__item.is-filtered-out").forEach(hide);
+      group.querySelectorAll(".page-projects__item.is-filtered-out").forEach(function (el) {
+        hide(el);
+        el.style.removeProperty("--projects-row-delay");
+      });
     });
 
     ticking = false;
@@ -130,6 +140,7 @@
   window.refreshInfraReveal = function () {
     yearHeads = Array.prototype.slice.call(document.querySelectorAll(".page-projects__year-head"));
     yearGroups = Array.prototype.slice.call(document.querySelectorAll(".page-projects__year-group"));
+    resetProjectBits();
     requestUpdate();
   };
 

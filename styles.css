@@ -16450,32 +16450,48 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
     0 12px 32px color-mix(in srgb, var(--text) 4%, transparent);
 }
 
-/* Плавное появление: ряд из 3 карточек целиком + заголовки годов */
+/* Плавное появление: на ПК — ряд целиком (3), на мобиле — по одной вертикально */
+.page-projects {
+  --projects-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --projects-reveal-opacity-dur: 0.82s;
+  --projects-reveal-move-dur: 0.98s;
+  --projects-reveal-y: 2.1rem;
+  --projects-reveal-scale: 0.978;
+}
+
 .page-projects .page-projects__year-head,
 .page-projects .page-projects__item {
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(0, 1.5rem, 0);
+  transform: translate3d(0, var(--projects-reveal-y), 0) scale(var(--projects-reveal-scale));
+  transform-origin: 50% 85%;
   transition: none;
   will-change: opacity, transform;
   pointer-events: none;
+  backface-visibility: hidden;
+}
+
+.page-projects .page-projects__year-head {
+  --projects-reveal-y: 1.2rem;
+  --projects-reveal-scale: 0.992;
+  transform-origin: 0 100%;
 }
 
 .page-projects .page-projects__year-head.is-visible,
 .page-projects .page-projects__item.is-visible {
   opacity: 1;
   visibility: visible;
-  transform: none;
+  transform: translate3d(0, 0, 0) scale(1);
   pointer-events: auto;
   transition:
-    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity var(--projects-reveal-opacity-dur) var(--projects-reveal-ease),
+    transform var(--projects-reveal-move-dur) var(--projects-reveal-ease),
     visibility 0s linear 0s;
-  transition-delay: var(--projects-row-delay, 0s);
 }
 
 .page-projects .page-projects__year-head.is-visible {
-  transition-delay: 0s;
+  --projects-reveal-opacity-dur: 0.68s;
+  --projects-reveal-move-dur: 0.8s;
 }
 
 .page-projects [data-infra-reveal].is-visible .projects-filter {
@@ -16484,29 +16500,30 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   transform: none;
   pointer-events: auto;
   transition:
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: 0.04s;
+    opacity 0.65s var(--projects-reveal-ease),
+    transform 0.8s var(--projects-reveal-ease);
+  transition-delay: 0.06s;
 }
 
 .page-projects [data-infra-reveal] .projects-filter {
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(0, 0.85rem, 0);
+  transform: translate3d(0, 1rem, 0);
   transition: none;
   will-change: opacity, transform;
   pointer-events: none;
 }
 
 @media (max-width: 900px) {
-  .page-projects .page-projects__year-head,
-  .page-projects .page-projects__item {
-    transform: translate3d(0, 2rem, 0);
+  .page-projects {
+    --projects-reveal-opacity-dur: 0.78s;
+    --projects-reveal-move-dur: 0.9s;
+    --projects-reveal-y: 1.85rem;
+    --projects-reveal-scale: 0.982;
   }
 
-  .page-projects .page-projects__year-head.is-visible,
-  .page-projects .page-projects__item.is-visible {
-    transition-duration: 0.7s;
+  .page-projects .page-projects__year-head {
+    --projects-reveal-y: 1rem;
   }
 }
 
