@@ -20,6 +20,7 @@
   var optionsEl = document.getElementById("projects-filter-options");
   var modalOptionsEl = document.getElementById("projects-filter-modal-options");
   var clearBtn = document.getElementById("projects-filter-clear");
+  var resetBtn = document.getElementById("projects-filter-reset");
   var listEl = document.getElementById("projects-list");
   var searchWrap = document.getElementById("projects-filter-search");
   var searchInput = document.getElementById("projects-search");
@@ -43,9 +44,67 @@
   var searchTimer = null;
   var mobileMq = window.matchMedia(MOBILE_MQ);
   var lastFocusEl = null;
+  var lockedScrollY = 0;
+  var resetHideTimer = null;
 
   function isMobile() {
     return mobileMq.matches;
+  }
+
+  function setResetVisible(show) {
+    if (!resetBtn) return;
+
+    if (resetHideTimer) {
+      window.clearTimeout(resetHideTimer);
+      resetHideTimer = null;
+    }
+
+    if (show) {
+      resetBtn.hidden = false;
+      resetBtn.setAttribute("aria-hidden", "false");
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          if (activeClient) resetBtn.classList.add("is-visible");
+        });
+      });
+      return;
+    }
+
+    resetBtn.classList.remove("is-visible");
+    resetBtn.setAttribute("aria-hidden", "true");
+    resetHideTimer = window.setTimeout(function () {
+      resetHideTimer = null;
+      if (!activeClient) resetBtn.hidden = true;
+    }, 320);
+  }
+
+  function focusEl(el) {
+    if (!el || typeof el.focus !== "function") return;
+    try {
+      el.focus({ preventScroll: true });
+    } catch (err) {
+      el.focus();
+    }
+  }
+
+  function lockBodyScroll() {
+    lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.documentElement.classList.add("projects-filter-modal-open");
+    document.body.classList.add("projects-filter-modal-open");
+    document.body.style.top = "-" + lockedScrollY + "px";
+  }
+
+  function unlockBodyScroll() {
+    var restoreY = lockedScrollY;
+    var htmlEl = document.documentElement;
+    document.documentElement.classList.remove("projects-filter-modal-open");
+    document.body.classList.remove("projects-filter-modal-open");
+    document.body.style.top = "";
+    /* html { scroll-behavior: smooth } иначе анимирует «сверху вниз» к restoreY */
+    var prevScrollBehavior = htmlEl.style.scrollBehavior;
+    htmlEl.style.scrollBehavior = "auto";
+    window.scrollTo(0, restoreY);
+    htmlEl.style.scrollBehavior = prevScrollBehavior;
   }
 
   function stripHtml(html) {
@@ -419,9 +478,11 @@
   function setModalOpen(open) {
     if (!modalEl) return;
 
-    modalOpen = !!open;
+    var nextOpen = !!open;
+    if (nextOpen === modalOpen) return;
+
+    modalOpen = nextOpen;
     modalEl.hidden = !modalOpen;
-    document.body.classList.toggle("projects-filter-modal-open", modalOpen);
 
     if (mobileBtn) {
       mobileBtn.setAttribute("aria-expanded", modalOpen ? "true" : "false");
@@ -435,14 +496,16 @@
       menuEl.hidden = true;
 
       lastFocusEl = document.activeElement;
+      lockBodyScroll();
       renderOptions();
       var firstFocus =
         modalOptionsEl &&
         (modalOptionsEl.querySelector(".projects-filter-modal__option.is-selected") ||
           modalOptionsEl.querySelector(".projects-filter-modal__option"));
-      if (firstFocus) firstFocus.focus();
-    } else if (lastFocusEl && typeof lastFocusEl.focus === "function") {
-      lastFocusEl.focus();
+      focusEl(firstFocus);
+    } else {
+      unlockBodyScroll();
+      focusEl(lastFocusEl);
       lastFocusEl = null;
     }
   }
@@ -460,18 +523,33 @@
     filterEl.classList.toggle("is-client-active", !!activeClient);
     listEl.classList.toggle("is-client-filter-active", isFilterActive());
     if (clearBtn) clearBtn.hidden = !activeClient;
+    setResetVisible(!!activeClient);
     if (mobileBtn) {
       mobileBtn.classList.toggle("is-active", !!activeClient || modalOpen);
     }
     renderOptions();
   }
 
-  function selectClient(clientId, options) {
-    applyFilter(clientId || "", options);
-    setMenuOpen(false);
+  function clearClientFilter() {
+    applyFilter("", { scroll: false });
     setModalOpen(false);
-    if (isMobile() && mobileBtn) mobileBtn.focus();
-    else triggerEl.focus();
+    if (isMobile() && mobileBtn) focusEl(mobileBtn);
+    else focusEl(triggerEl);
+  }
+
+  function selectClient(clientId, options) {
+    var opts = options || {};
+    /* На мобиле: сначала закрыть модалку (restore scroll без smooth), потом фильтр без scroll */
+    if (isMobile()) {
+      opts = Object.assign({}, opts, { scroll: false });
+      setModalOpen(false);
+      applyFilter(clientId || "", opts);
+      if (mobileBtn) focusEl(mobileBtn);
+      return;
+    }
+    applyFilter(clientId || "", opts);
+    setMenuOpen(false);
+    focusEl(triggerEl);
   }
 
   function clearAllFilters(options) {
@@ -546,12 +624,11 @@
   });
 
   if (clearBtn) {
-    clearBtn.addEventListener("click", function () {
-      applyFilter("", { scroll: false });
-      setModalOpen(false);
-      if (isMobile() && mobileBtn) mobileBtn.focus();
-      else triggerEl.focus();
-    });
+    clearBtn.addEventListener("click", clearClientFilter);
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", clearClientFilter);
   }
 
   if (searchInput) {
