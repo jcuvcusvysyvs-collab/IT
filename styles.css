@@ -16501,12 +16501,12 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 @media (max-width: 900px) {
   .page-projects .page-projects__year-head,
   .page-projects .page-projects__item {
-    transform: translate3d(0, 1.1rem, 0);
+    transform: translate3d(0, 2rem, 0);
   }
 
   .page-projects .page-projects__year-head.is-visible,
   .page-projects .page-projects__item.is-visible {
-    transition-duration: 0.52s;
+    transition-duration: 0.7s;
   }
 }
 

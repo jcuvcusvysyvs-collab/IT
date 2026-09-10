@@ -45,15 +45,28 @@
     return;
   }
 
-  /* Ряд целиком: как только верх ряда входит в кадр — все 3 карточки сразу */
+  /* Секции — чуть раньше края; карточки проектов — только когда реально входят в кадр
+     (на мобиле ранний lead прятал анимацию за нижней границей экрана). */
+  function inFrame(top, bottom, leadPx) {
+    return top < vhRef() + leadPx && bottom > 8;
+  }
+
+  function vhRef() {
+    return window.innerHeight || document.documentElement.clientHeight;
+  }
+
   function update() {
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    var lead = mobileMq.matches ? 48 : 72;
+    var vh = vhRef();
+    var blockLead = mobileMq.matches ? 36 : 64;
+    /* Мобила: старт, когда верх уже ~12% экрана внутри — анимация видна при скролле.
+       Десктоп: лёгкий early, чтобы ряд из 3 успел начать до полного входа. */
+    var cardLead = mobileMq.matches ? -Math.round(vh * 0.12) : 28;
     var cols = getCols();
+    var rowStagger = cols === 1 ? 0 : cols === 2 ? 0.08 : 0.09;
 
     blocks.forEach(function (block) {
       var rect = block.getBoundingClientRect();
-      if (rect.top < vh + lead && rect.bottom > 4) show(block);
+      if (inFrame(rect.top, rect.bottom, blockLead)) show(block);
       else hide(block);
     });
 
@@ -64,7 +77,7 @@
         return;
       }
       var rect = head.getBoundingClientRect();
-      if (rect.top < vh + lead && rect.bottom > 4) show(head);
+      if (inFrame(rect.top, rect.bottom, cardLead)) show(head);
       else hide(head);
     });
 
@@ -88,11 +101,11 @@
           })
         );
         var rowBottom = Math.max(firstRect.bottom, lastRect.bottom);
-        var entering = rowTop < vh + lead && rowBottom > 8;
+        var entering = inFrame(rowTop, rowBottom, cardLead);
 
         row.forEach(function (el, idx) {
           if (entering) {
-            el.style.setProperty("--projects-row-delay", (idx * 0.09).toFixed(2) + "s");
+            el.style.setProperty("--projects-row-delay", (idx * rowStagger).toFixed(2) + "s");
             show(el);
           } else {
             el.style.removeProperty("--projects-row-delay");
