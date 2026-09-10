@@ -27794,8 +27794,8 @@ body.nav-mobile-open .cookie-banner {
 /* —— Scroll-reveal секций сервисов (как на «Инфраструктурные решения») —— */
 :is(.page-infra, .page-huawei) [data-infra-reveal] {
   --infra-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --infra-reveal-duration: 0.9s;
-  --infra-reveal-distance: 2.75rem;
+  --infra-reveal-duration: 0.72s;
+  --infra-reveal-distance: 1.75rem;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal] > .about-dce__header,
@@ -27879,7 +27879,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-clients__header,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__watch-header,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__case-hero {
-  transition-delay: 0.04s;
+  transition-delay: 0s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-scenarios,
@@ -27891,7 +27891,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__body,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__video-frame,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible.huawei-clients__marquee {
-  transition-delay: 0.16s;
+  transition-delay: 0.06s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__standards-block,
@@ -27900,7 +27900,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-scaling__notice-block,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-continuity__exp-block,
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__partner-block {
-  transition-delay: 0.28s;
+  transition-delay: 0.12s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
@@ -27913,8 +27913,8 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
 :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
 :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
-  --infra-reveal-distance: 2rem;
-  --infra-reveal-duration: 0.75s;
+  --infra-reveal-distance: 1.35rem;
+  --infra-reveal-duration: 0.6s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(1),
@@ -27927,7 +27927,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(1),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(1),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(1) {
-  transition-delay: 0.2s;
+  transition-delay: 0.05s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(2),
@@ -27940,7 +27940,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(2),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(2),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(2) {
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(3),
@@ -27953,7 +27953,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(3),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(3),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(3) {
-  transition-delay: 0.4s;
+  transition-delay: 0.15s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(4),
@@ -27966,7 +27966,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(4),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(4),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(4) {
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(5),
@@ -27979,7 +27979,7 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(5),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(5),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(5) {
-  transition-delay: 0.6s;
+  transition-delay: 0.25s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(6),
@@ -27992,20 +27992,20 @@ body.nav-mobile-open .cookie-banner {
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(6),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(6),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(6) {
-  transition-delay: 0.7s;
+  transition-delay: 0.3s;
 }
 
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(n + 7),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(n + 7),
 :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(n + 7) {
-  transition-delay: 0.78s;
+  transition-delay: 0.34s;
 }
 
 /* Мобилка: блок 01 уже торчит под hero — короче ход, раньше header */
 @media (max-width: 900px) {
   :is(.page-infra, .page-huawei) [data-infra-reveal] {
-    --infra-reveal-duration: 0.72s;
-    --infra-reveal-distance: 1.35rem;
+    --infra-reveal-duration: 0.62s;
+    --infra-reveal-distance: 1.15rem;
   }
 
   :is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
@@ -28018,8 +28018,8 @@ body.nav-mobile-open .cookie-banner {
   :is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
   :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
   :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
-    --infra-reveal-distance: 1.1rem;
-    --infra-reveal-duration: 0.6s;
+    --infra-reveal-distance: 0.95rem;
+    --infra-reveal-duration: 0.52s;
   }
 
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__header,
@@ -28039,7 +28039,7 @@ body.nav-mobile-open .cookie-banner {
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__body,
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__video-frame,
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible.huawei-clients__marquee {
-    transition-delay: 0.1s;
+    transition-delay: 0.04s;
   }
 
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__standards-block,
@@ -28048,7 +28048,7 @@ body.nav-mobile-open .cookie-banner {
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-scaling__notice-block,
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-continuity__exp-block,
   :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__partner-block {
-    transition-delay: 0.18s;
+    transition-delay: 0.08s;
   }
 
   /* На мобильной форме обратной связи reveal отключён */

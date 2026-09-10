@@ -24,26 +24,17 @@
     return;
   }
 
-  /* Триггер по верху блока в зоне чтения — не по isIntersecting:
-     у высоких секций IO с threshold:0 запускал анимацию ещё под экраном,
-     к моменту просмотра is-visible уже стоял (вниз «пусто», вверх — ок). */
-  function enterLine(index) {
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    if (mobileMq.matches) {
-      /* 01 торчит под hero — чуть раньше; остальные — когда заголовок уже в кадре */
-      return index === 0 ? vh * 0.88 : vh * 0.7;
-    }
-    return vh * 0.82;
-  }
-
+  /* Стартуем чуть до появления края в viewport — к моменту, когда
+     оболочка блока уже видна, контент уже в анимации, а не «пустой». */
   function update() {
     var vh = window.innerHeight || document.documentElement.clientHeight;
+    var lead = mobileMq.matches ? 40 : 56;
 
-    blocks.forEach(function (block, index) {
+    blocks.forEach(function (block) {
       var rect = block.getBoundingClientRect();
-      var inReadingZone = rect.top < enterLine(index) && rect.bottom > vh * 0.06;
+      var entering = rect.top < vh + lead && rect.bottom > 4;
 
-      if (inReadingZone) show(block);
+      if (entering) show(block);
       else hide(block);
     });
 
@@ -66,7 +57,6 @@
     mobileMq.addListener(requestUpdate);
   }
 
-  /* После layout hero/subnav — иначе первый замер врёт */
   requestUpdate();
   window.setTimeout(requestUpdate, 120);
   window.setTimeout(requestUpdate, 400);
