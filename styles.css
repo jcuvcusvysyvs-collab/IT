@@ -16541,6 +16541,125 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   }
 }
 
+/* Блок 01 «Ключевые проекты»: заметное появление header + карточек */
+.page-projects__showcase [data-infra-reveal] {
+  --infra-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --infra-reveal-duration: 1.05s;
+  --infra-reveal-distance: 3.5rem;
+}
+
+/* Сетка сама не анимируется — иначе opacity умножается с карточками и эффект «съедается» */
+.page-projects__showcase [data-infra-reveal] > .about-dce__grid,
+.page-projects__showcase [data-infra-reveal].is-visible > .about-dce__grid {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+.page-projects__showcase [data-infra-reveal] > .about-dce__header {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 2.25rem, 0);
+  transition: none;
+  will-change: opacity, transform;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible > .about-dce__header {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.85s var(--infra-reveal-ease),
+    transform 1s var(--infra-reveal-ease),
+    visibility 0s linear 0s;
+  transition-delay: 0s;
+}
+
+.page-projects__showcase [data-infra-reveal] .about-dce__card {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, var(--infra-reveal-distance), 0) scale(0.94);
+  transform-origin: 50% 90%;
+  transition: none;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity var(--infra-reveal-duration) var(--infra-reveal-ease),
+    transform var(--infra-reveal-duration) var(--infra-reveal-ease),
+    visibility 0s linear 0s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(1) {
+  transition-delay: 0.06s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(2) {
+  transition-delay: 0.14s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(3) {
+  transition-delay: 0.22s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(5) {
+  transition-delay: 0.38s;
+}
+
+.page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(n + 6) {
+  transition-delay: 0.44s;
+}
+
+@media (max-width: 900px) {
+  .page-projects__showcase [data-infra-reveal] {
+    --infra-reveal-duration: 0.95s;
+    --infra-reveal-distance: 3rem;
+  }
+
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(1) {
+    transition-delay: 0.04s;
+  }
+
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(3) {
+    transition-delay: 0.16s;
+  }
+
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(4) {
+    transition-delay: 0.22s;
+  }
+
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card:nth-child(5) {
+    transition-delay: 0.28s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-projects__showcase [data-infra-reveal] > .about-dce__header,
+  .page-projects__showcase [data-infra-reveal] .about-dce__card,
+  .page-projects__showcase [data-infra-reveal].is-visible > .about-dce__header,
+  .page-projects__showcase [data-infra-reveal].is-visible .about-dce__card {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 .page-projects__item-media {
   position: relative;
   display: flex;

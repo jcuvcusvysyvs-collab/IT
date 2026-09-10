@@ -57,6 +57,8 @@
     return;
   }
 
+  var projectsPage = document.body.classList.contains("page-projects");
+
   function vhRef() {
     return window.innerHeight || document.documentElement.clientHeight;
   }
@@ -68,14 +70,17 @@
   function update() {
     var vh = vhRef();
     var blockLead = mobileMq.matches ? 36 : 64;
-    /* Старт, когда ряд уже в кадре — движение видно целиком */
+    /* На «Проекты» блоки 01/02 — только когда уже в кадре (иначе анимация уходит за экран) */
+    var projectsBlockLead = mobileMq.matches ? -Math.round(vh * 0.1) : -Math.round(vh * 0.04);
     var cardLead = mobileMq.matches ? -Math.round(vh * 0.14) : -Math.round(vh * 0.06);
     var cols = getCols();
 
     blocks.forEach(function (block) {
+      if (projectsPage && block.classList.contains("is-visible")) return;
       var rect = block.getBoundingClientRect();
-      if (inFrame(rect.top, rect.bottom, blockLead)) show(block);
-      else hide(block);
+      var lead = projectsPage ? projectsBlockLead : blockLead;
+      if (inFrame(rect.top, rect.bottom, lead)) show(block);
+      else if (!projectsPage) hide(block);
     });
 
     yearHeads.forEach(function (head) {
