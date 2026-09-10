@@ -433,7 +433,7 @@
       }
 
       btn.addEventListener("click", function () {
-        selectClient(item.id, { scroll: !!item.id });
+        selectClient(item.id, { scroll: false });
       });
 
       li.appendChild(btn);
@@ -538,10 +538,9 @@
   }
 
   function selectClient(clientId, options) {
-    var opts = options || {};
-    /* На мобиле: сначала закрыть модалку (restore scroll без smooth), потом фильтр без scroll */
+    var opts = Object.assign({}, options || {}, { scroll: false });
+    /* На мобиле: сначала закрыть модалку, потом фильтр */
     if (isMobile()) {
-      opts = Object.assign({}, opts, { scroll: false });
       setModalOpen(false);
       applyFilter(clientId || "", opts);
       if (mobileBtn) focusEl(mobileBtn);
@@ -608,7 +607,7 @@
     } else if (e.key === "Enter" && focusIndex >= 0) {
       e.preventDefault();
       var btn = buttons[focusIndex];
-      selectClient(btn.dataset.clientId, { scroll: !!btn.dataset.clientId });
+      selectClient(btn.dataset.clientId, { scroll: false });
     } else if (e.key === "Escape") {
       e.preventDefault();
       setMenuOpen(false);
