@@ -16450,13 +16450,13 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
     0 12px 32px color-mix(in srgb, var(--text) 4%, transparent);
 }
 
-/* Плавное появление: на ПК — ряд целиком (3), на мобиле — по одной вертикально */
+/* Появление карточек: заметный подъём + fade, ряд целиком на ПК */
 .page-projects {
-  --projects-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --projects-reveal-opacity-dur: 0.82s;
-  --projects-reveal-move-dur: 0.98s;
-  --projects-reveal-y: 2.1rem;
-  --projects-reveal-scale: 0.978;
+  --projects-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --projects-reveal-opacity-dur: 0.95s;
+  --projects-reveal-move-dur: 1.15s;
+  --projects-reveal-y: 3.75rem;
+  --projects-reveal-scale: 0.94;
 }
 
 .page-projects .page-projects__year-head,
@@ -16464,7 +16464,7 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   opacity: 0;
   visibility: hidden;
   transform: translate3d(0, var(--projects-reveal-y), 0) scale(var(--projects-reveal-scale));
-  transform-origin: 50% 85%;
+  transform-origin: 50% 90%;
   transition: none;
   will-change: opacity, transform;
   pointer-events: none;
@@ -16472,8 +16472,8 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 }
 
 .page-projects .page-projects__year-head {
-  --projects-reveal-y: 1.2rem;
-  --projects-reveal-scale: 0.992;
+  --projects-reveal-y: 2rem;
+  --projects-reveal-scale: 0.97;
   transform-origin: 0 100%;
 }
 
@@ -16490,8 +16490,8 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 }
 
 .page-projects .page-projects__year-head.is-visible {
-  --projects-reveal-opacity-dur: 0.68s;
-  --projects-reveal-move-dur: 0.8s;
+  --projects-reveal-opacity-dur: 0.8s;
+  --projects-reveal-move-dur: 0.95s;
 }
 
 .page-projects [data-infra-reveal].is-visible .projects-filter {
@@ -16500,15 +16500,15 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   transform: none;
   pointer-events: auto;
   transition:
-    opacity 0.65s var(--projects-reveal-ease),
-    transform 0.8s var(--projects-reveal-ease);
+    opacity 0.7s var(--projects-reveal-ease),
+    transform 0.85s var(--projects-reveal-ease);
   transition-delay: 0.06s;
 }
 
 .page-projects [data-infra-reveal] .projects-filter {
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(0, 1rem, 0);
+  transform: translate3d(0, 1.25rem, 0);
   transition: none;
   will-change: opacity, transform;
   pointer-events: none;
@@ -16516,14 +16516,14 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 
 @media (max-width: 900px) {
   .page-projects {
-    --projects-reveal-opacity-dur: 0.78s;
-    --projects-reveal-move-dur: 0.9s;
-    --projects-reveal-y: 1.85rem;
-    --projects-reveal-scale: 0.982;
+    --projects-reveal-opacity-dur: 0.9s;
+    --projects-reveal-move-dur: 1.05s;
+    --projects-reveal-y: 3.25rem;
+    --projects-reveal-scale: 0.95;
   }
 
   .page-projects .page-projects__year-head {
-    --projects-reveal-y: 1rem;
+    --projects-reveal-y: 1.65rem;
   }
 }
 

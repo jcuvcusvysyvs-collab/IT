@@ -68,8 +68,8 @@
   function update() {
     var vh = vhRef();
     var blockLead = mobileMq.matches ? 36 : 64;
-    /* Старт чуть после входа в кадр — анимация читается целиком */
-    var cardLead = mobileMq.matches ? -Math.round(vh * 0.08) : 20;
+    /* Старт, когда ряд уже в кадре — движение видно целиком */
+    var cardLead = mobileMq.matches ? -Math.round(vh * 0.14) : -Math.round(vh * 0.06);
     var cols = getCols();
 
     blocks.forEach(function (block) {
