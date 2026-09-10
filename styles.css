@@ -10373,18 +10373,19 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     display: none;
   }
 
-  .page-section-subnav--menu-open .page-section-subnav__panel {
+  .page-section-subnav--menu-open .page-section-subnav__panel,
+  .page-section-subnav__panel.is-closing {
     display: block;
     position: fixed;
     top: var(--section-subnav-panel-top, var(--huawei-subnav-panel-top, 4.5rem));
     left: 0;
     right: 0;
-    z-index: 121;
+    z-index: 119;
     width: 100%;
     max-width: 40rem;
     margin-inline: auto;
     padding: 1.85rem 1.35rem 1.35rem;
-    border-radius: 18px;
+    border-radius: 0 0 18px 18px;
     background: #080a0f;
     box-shadow:
       0 16px 42px rgba(0, 0, 0, 0.38),
@@ -10392,9 +10393,10 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translate3d(0, 1.35rem, 0);
+    transform-origin: top center;
+    transform: translate3d(0, -110%, 0);
     transition:
-      opacity 0.34s ease,
+      opacity 0.32s ease,
       transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
       visibility 0.4s;
     will-change: transform, opacity;
@@ -10405,6 +10407,13 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     visibility: visible;
     pointer-events: auto;
     transform: translate3d(0, 0, 0);
+  }
+
+  .page-section-subnav__panel.is-closing {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(0, -110%, 0);
   }
 
   .page-section-subnav__backdrop {
@@ -10537,7 +10546,8 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
       inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
 
-  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open .page-section-subnav__panel {
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open .page-section-subnav__panel,
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav__panel.is-closing {
     background: var(--bg-elevated);
     border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
     box-shadow:
@@ -10725,6 +10735,10 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
   .page-section-subnav--menu-open .page-section-subnav__panel {
     transition-duration: 0.01ms;
     transform: none;
+  }
+
+  .page-section-subnav__panel.is-closing {
+    transition-duration: 0.01ms;
   }
 }
 .page-huawei #huawei-capabilities,

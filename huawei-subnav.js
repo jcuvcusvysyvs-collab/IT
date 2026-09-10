@@ -282,11 +282,11 @@
 
     document.documentElement.style.setProperty("--section-subnav-backdrop-top", subnavBottom + "px");
 
-    document.documentElement.style.setProperty("--section-subnav-panel-top", subnavBottom + 8 + "px");
+    document.documentElement.style.setProperty("--section-subnav-panel-top", subnavBottom + "px");
 
     document.documentElement.style.setProperty("--huawei-subnav-backdrop-top", subnavBottom + "px");
 
-    document.documentElement.style.setProperty("--huawei-subnav-panel-top", subnavBottom + 8 + "px");
+    document.documentElement.style.setProperty("--huawei-subnav-panel-top", subnavBottom + "px");
 
     return subnavBottom;
 
@@ -364,7 +364,16 @@
 
     document.body.style.paddingRight = "";
 
+    /* html { scroll-behavior: smooth } иначе анимирует «сверху вниз» к restoreY */
+    var htmlEl = document.documentElement;
+
+    var prevScrollBehavior = htmlEl.style.scrollBehavior;
+
+    htmlEl.style.scrollBehavior = "auto";
+
     window.scrollTo(0, lockedScrollY);
+
+    htmlEl.style.scrollBehavior = prevScrollBehavior;
 
     syncStickyState();
 
@@ -407,6 +416,8 @@
         menuCloseTimer = null;
 
       }
+
+      panel.classList.remove("is-closing");
 
       var pinTop = Math.round(subnav.getBoundingClientRect().top);
 
@@ -452,39 +463,46 @@
 
       panel.classList.remove("is-open");
 
+      panel.classList.add("is-closing");
+
+      updateOverlayGeometry();
+
+      /* Сразу возвращаем липкую ленту — не ждём анимацию панели */
+      subnav.style.transition = "none";
+
+      subnav.classList.remove("page-section-subnav--menu-open");
+
+      subnav.style.top = "";
+
+      removeSpacer();
+
+      unlockPageScroll();
+
+      subnav.classList.add("is-stuck");
+
+      syncSubnavHeight();
+
+      void subnav.offsetWidth;
+
+      subnav.style.transition = "";
+
       var animMs = getPanelAnimMs();
+
+      if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
 
       if (!animMs) {
 
-        subnav.classList.remove("page-section-subnav--menu-open");
-
-        subnav.style.top = "";
-
-        removeSpacer();
-
-        unlockPageScroll();
-
-        syncSubnavHeight();
+        panel.classList.remove("is-closing");
 
         return;
 
       }
 
-      if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
-
       menuCloseTimer = window.setTimeout(function () {
 
         menuCloseTimer = null;
 
-        subnav.classList.remove("page-section-subnav--menu-open");
-
-        subnav.style.top = "";
-
-        removeSpacer();
-
-        unlockPageScroll();
-
-        syncSubnavHeight();
+        panel.classList.remove("is-closing");
 
       }, animMs);
 
