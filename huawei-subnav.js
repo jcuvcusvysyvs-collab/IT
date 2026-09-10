@@ -56,6 +56,16 @@
 
   var stickyTicking = false;
 
+  var menuCloseTimer = null;
+
+  var PANEL_ANIM_MS = 400;
+
+  function getPanelAnimMs() {
+
+    return reducedMotionQuery.matches ? 0 : PANEL_ANIM_MS;
+
+  }
+
 
 
   function headerHeight() {
@@ -390,6 +400,14 @@
 
     if (shouldOpen) {
 
+      if (menuCloseTimer) {
+
+        window.clearTimeout(menuCloseTimer);
+
+        menuCloseTimer = null;
+
+      }
+
       var pinTop = Math.round(subnav.getBoundingClientRect().top);
 
 
@@ -399,6 +417,8 @@
       hideSiteHeader();
 
       subnav.style.top = pinTop + "px";
+
+      panel.classList.remove("is-open");
 
       subnav.classList.add("page-section-subnav--menu-open");
 
@@ -416,7 +436,13 @@
 
         updateActiveSectionLink();
 
-        window.requestAnimationFrame(showBackdrop);
+        window.requestAnimationFrame(function () {
+
+          panel.classList.add("is-open");
+
+          showBackdrop();
+
+        });
 
       });
 
@@ -424,15 +450,43 @@
 
       hideBackdrop();
 
-      subnav.classList.remove("page-section-subnav--menu-open");
+      panel.classList.remove("is-open");
 
-      subnav.style.top = "";
+      var animMs = getPanelAnimMs();
 
-      removeSpacer();
+      if (!animMs) {
 
-      unlockPageScroll();
+        subnav.classList.remove("page-section-subnav--menu-open");
 
-      syncSubnavHeight();
+        subnav.style.top = "";
+
+        removeSpacer();
+
+        unlockPageScroll();
+
+        syncSubnavHeight();
+
+        return;
+
+      }
+
+      if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
+
+      menuCloseTimer = window.setTimeout(function () {
+
+        menuCloseTimer = null;
+
+        subnav.classList.remove("page-section-subnav--menu-open");
+
+        subnav.style.top = "";
+
+        removeSpacer();
+
+        unlockPageScroll();
+
+        syncSubnavHeight();
+
+      }, animMs);
 
     }
 
