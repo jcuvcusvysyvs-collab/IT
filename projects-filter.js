@@ -46,9 +46,19 @@
   var lastFocusEl = null;
   var lockedScrollY = 0;
   var resetHideTimer = null;
+  var modalCloseTimer = null;
+  var MODAL_ANIM_MS = 400;
 
   function isMobile() {
     return mobileMq.matches;
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function getModalAnimMs() {
+    return prefersReducedMotion() ? 0 : MODAL_ANIM_MS;
   }
 
   function setResetVisible(show) {
@@ -460,10 +470,8 @@
     menuEl.hidden = !menuOpen;
 
     if (menuOpen) {
-      if (modalEl) {
-        modalOpen = false;
-        modalEl.hidden = true;
-        document.body.classList.remove("projects-filter-modal-open");
+      if (modalEl && (modalOpen || !modalEl.hidden)) {
+        setModalOpen(false);
       }
       renderOptions();
       var firstFocus =
@@ -481,8 +489,12 @@
     var nextOpen = !!open;
     if (nextOpen === modalOpen) return;
 
+    if (modalCloseTimer) {
+      window.clearTimeout(modalCloseTimer);
+      modalCloseTimer = null;
+    }
+
     modalOpen = nextOpen;
-    modalEl.hidden = !modalOpen;
 
     if (mobileBtn) {
       mobileBtn.setAttribute("aria-expanded", modalOpen ? "true" : "false");
@@ -498,16 +510,42 @@
       lastFocusEl = document.activeElement;
       lockBodyScroll();
       renderOptions();
+
+      modalEl.hidden = false;
+      modalEl.classList.remove("is-closing");
+      modalEl.classList.remove("is-open");
+      // force reflow so enter transition starts from closed state
+      void modalEl.offsetWidth;
+      window.requestAnimationFrame(function () {
+        modalEl.classList.add("is-open");
+      });
+
       var firstFocus =
         modalOptionsEl &&
         (modalOptionsEl.querySelector(".projects-filter-modal__option.is-selected") ||
           modalOptionsEl.querySelector(".projects-filter-modal__option"));
       focusEl(firstFocus);
-    } else {
-      unlockBodyScroll();
-      focusEl(lastFocusEl);
-      lastFocusEl = null;
+      return;
     }
+
+    modalEl.classList.remove("is-open");
+    modalEl.classList.add("is-closing");
+    unlockBodyScroll();
+    focusEl(lastFocusEl);
+    lastFocusEl = null;
+
+    var animMs = getModalAnimMs();
+    if (!animMs) {
+      modalEl.classList.remove("is-closing");
+      modalEl.hidden = true;
+      return;
+    }
+
+    modalCloseTimer = window.setTimeout(function () {
+      modalCloseTimer = null;
+      modalEl.classList.remove("is-closing");
+      if (!modalOpen) modalEl.hidden = true;
+    }, animMs);
   }
 
   function updateTriggerText() {
@@ -522,7 +560,12 @@
     filterEl.classList.toggle("is-search-active", !!activeQuery);
     filterEl.classList.toggle("is-client-active", !!activeClient);
     listEl.classList.toggle("is-client-filter-active", isFilterActive());
-    if (clearBtn) clearBtn.hidden = !activeClient;
+    if (clearBtn) {
+      var canClear = !!activeClient;
+      clearBtn.disabled = !canClear;
+      clearBtn.setAttribute("aria-disabled", canClear ? "false" : "true");
+      clearBtn.hidden = false;
+    }
     setResetVisible(!!activeClient);
     if (mobileBtn) {
       mobileBtn.classList.toggle("is-active", !!activeClient || modalOpen);
