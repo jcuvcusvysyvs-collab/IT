@@ -16354,10 +16354,17 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
+  z-index: 0;
 }
 
 .page-projects__year-group + .page-projects__year-group {
   margin-top: clamp(2.75rem, 5vw, 4rem);
+}
+
+.page-projects__year-group {
+  position: relative;
+  z-index: 0;
 }
 
 .page-projects__year-head {
@@ -16441,6 +16448,80 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   box-shadow:
     0 1px 0 color-mix(in srgb, var(--text) 4%, transparent) inset,
     0 12px 32px color-mix(in srgb, var(--text) 4%, transparent);
+}
+
+/* Плавное появление: ряд из 3 карточек целиком + заголовки годов */
+.page-projects .page-projects__year-head,
+.page-projects .page-projects__item {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 1.5rem, 0);
+  transition: none;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.page-projects .page-projects__year-head.is-visible,
+.page-projects .page-projects__item.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+  transition-delay: var(--projects-row-delay, 0s);
+}
+
+.page-projects .page-projects__year-head.is-visible {
+  transition-delay: 0s;
+}
+
+.page-projects [data-infra-reveal].is-visible .projects-filter {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.04s;
+}
+
+.page-projects [data-infra-reveal] .projects-filter {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 0.85rem, 0);
+  transition: none;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .page-projects .page-projects__year-head,
+  .page-projects .page-projects__item {
+    transform: translate3d(0, 1.1rem, 0);
+  }
+
+  .page-projects .page-projects__year-head.is-visible,
+  .page-projects .page-projects__item.is-visible {
+    transition-duration: 0.52s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-projects .page-projects__year-head,
+  .page-projects .page-projects__item,
+  .page-projects [data-infra-reveal] .projects-filter,
+  .page-projects [data-infra-reveal].is-visible .projects-filter {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    will-change: auto;
+    pointer-events: auto;
+  }
 }
 
 .page-projects__item-media {
@@ -16841,6 +16922,7 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 
 .projects-filter__combo {
   position: relative;
+  z-index: 60;
   min-width: 0;
 }
 
@@ -16906,7 +16988,7 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 
 .projects-filter__menu {
   position: absolute;
-  z-index: 40;
+  z-index: 61;
   top: 100%;
   left: 0;
   right: 0;
@@ -17391,6 +17473,7 @@ a.page-projects__item-client:hover {
 
 #projects-all .projects-filter {
   position: relative;
+  z-index: 50;
 }
 
 @media (max-width: 1080px) {
@@ -18932,29 +19015,22 @@ a.page-projects__item-client:hover {
 }
 
 .page-projects .projects-hero-stage[data-hero-grid] .projects-hero__background {
-  opacity: calc(1 - var(--projects-hero-fade) * 0.5);
+  opacity: calc(1 - var(--projects-hero-fade) * 0.62);
   transform: translate3d(0, calc(var(--projects-hero-shift) * -1.25rem), 0);
 }
 
 .page-projects .projects-hero-stage[data-hero-grid] .projects-hero__content {
   transform: translate3d(0, calc(var(--projects-hero-shift) * -1.5rem), 0);
-  opacity: calc(1 - var(--projects-hero-fade) * 0.35);
+  opacity: calc(1 - var(--projects-hero-fade) * 0.92);
 }
 
-.page-projects.projects-reveal-ready [data-projects-reveal]:not(.is-visible) {
-  opacity: 0;
-  transform: translate3d(0, var(--projects-reveal-shift), 0);
-}
-
-.page-projects.projects-reveal-ready [data-projects-reveal] {
-  transition:
-    opacity var(--projects-reveal-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform var(--projects-reveal-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
+/* Старый whole-block reveal отключён — используется infra-reveal (как на сервисах) */
+.page-projects.projects-reveal-ready [data-projects-reveal]:not(.is-visible),
+.page-projects.projects-reveal-ready [data-projects-reveal],
 .page-projects.projects-reveal-ready [data-projects-reveal].is-visible {
-  opacity: 1;
+  opacity: unset;
   transform: none;
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -27792,80 +27868,82 @@ body.nav-mobile-open .cookie-banner {
 
 
 /* —— Scroll-reveal секций сервисов (как на «Инфраструктурные решения») —— */
-:is(.page-infra, .page-huawei) [data-infra-reveal] {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] {
   --infra-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --infra-reveal-duration: 0.72s;
   --infra-reveal-distance: 1.75rem;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .about-dce__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-scenarios,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infra__cycle,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infra__standards-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .about-dce__grid,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__photo,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__intro,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__form,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .infosec-process,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infosec__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .scaling-process-stage,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-scaling__notice-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-continuity__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__partner-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__watch-header,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__video-frame,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__case-hero,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-module__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-module__body,
-:is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-clients__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].huawei-clients__marquee,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-scaling__benefit-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__process-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__tech-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-ops__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__platform-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .about-dce__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-scenarios,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infra__cycle,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infra__standards-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .about-dce__grid,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__photo,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__intro,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__form,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infosec-process,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infosec__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .scaling-process-stage,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-scaling__notice-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-continuity__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__partner-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__watch-header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__video-frame,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__case-hero,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-module__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-module__body,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-clients__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].huawei-clients__marquee,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-infra__example-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-scaling__benefit-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__process-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__tech-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-ops__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__platform-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .subpage-feature-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-partner-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-spec-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .about-dce__card {
   opacity: 0;
   transform: translate3d(0, var(--infra-reveal-distance), 0);
   transition: none;
   will-change: opacity, transform;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-scenarios,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__cycle,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__standards-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__grid,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__photo,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__intro,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__form,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infosec-process,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infosec__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .scaling-process-stage,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-scaling__notice-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-continuity__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__partner-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__watch-header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__video-frame,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__case-hero,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__body,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-clients__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible.huawei-clients__marquee,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-scenarios,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__cycle,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__standards-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__grid,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__photo,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__intro,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__form,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infosec-process,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infosec__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .scaling-process-stage,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-scaling__notice-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-continuity__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__partner-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__watch-header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__video-frame,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__case-hero,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__body,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-clients__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible.huawei-clients__marquee,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card {
   opacity: 1;
   transform: none;
   transition:
@@ -27873,188 +27951,191 @@ body.nav-mobile-open .cookie-banner {
     transform var(--infra-reveal-duration) var(--infra-reveal-ease);
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__photo,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-clients__header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__watch-header,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__case-hero {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__photo,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-clients__header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__watch-header,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__case-hero {
   transition-delay: 0s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-scenarios,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__cycle,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__grid,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__intro,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infosec-process,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .scaling-process-stage,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__body,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__video-frame,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible.huawei-clients__marquee {
-  transition-delay: 0.06s;
-}
-
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__standards-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__form,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infosec__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-scaling__notice-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-continuity__exp-block,
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__partner-block {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-scenarios,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__cycle,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__grid,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__intro,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infosec-process,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .scaling-process-stage,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__body,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__video-frame,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible.huawei-clients__marquee,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__standards-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__form,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infosec__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-scaling__notice-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-continuity__exp-block,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__partner-block {
   transition-delay: 0.12s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-scaling__benefit-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__process-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__tech-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-ops__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__pillar-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__platform-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
-:is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-infra__example-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-scaling__benefit-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__process-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__tech-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-ops__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__pillar-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__platform-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .subpage-feature-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-partner-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-spec-card,
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .about-dce__card {
   --infra-reveal-distance: 1.35rem;
   --infra-reveal-duration: 0.6s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(1),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(1) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(1),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(1) {
   transition-delay: 0.05s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(2),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(2) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(2),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(2) {
   transition-delay: 0.1s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(3),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(3) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(3),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(3) {
   transition-delay: 0.15s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(4),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(4) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(4),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(4) {
   transition-delay: 0.2s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(5),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(5) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(5),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(5) {
   transition-delay: 0.25s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(6),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(6) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-infra__example-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-scaling__benefit-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__process-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-continuity__tech-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-ops__pillar-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__pillar-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .page-asdu__platform-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(6),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(6) {
   transition-delay: 0.3s;
 }
 
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(n + 7),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(n + 7),
-:is(.page-infra, .page-huawei) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(n + 7) {
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .subpage-feature-card:nth-child(n + 7),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-partner-card:nth-child(n + 7),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .about-dce__card:nth-child(n + 7),
+:is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible .huawei-spec-card:nth-child(n + 7) {
   transition-delay: 0.34s;
 }
 
 /* Мобилка: блок 01 уже торчит под hero — короче ход, раньше header */
 @media (max-width: 900px) {
-  :is(.page-infra, .page-huawei) [data-infra-reveal] {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] {
     --infra-reveal-duration: 0.62s;
     --infra-reveal-distance: 1.15rem;
   }
 
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-scaling__benefit-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__process-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__tech-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-ops__pillar-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__pillar-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__platform-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-infra__example-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-scaling__benefit-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__process-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__tech-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-ops__pillar-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__pillar-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__platform-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .subpage-feature-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-partner-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-spec-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .about-dce__card {
     --infra-reveal-distance: 0.95rem;
     --infra-reveal-duration: 0.52s;
   }
 
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-clients__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__watch-header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__case-hero {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-clients__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__watch-header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__case-hero {
     transition-delay: 0s;
   }
 
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-scenarios,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__cycle,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .about-dce__grid,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__intro,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infosec-process,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .scaling-process-stage,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .huawei-module__body,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__video-frame,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible.huawei-clients__marquee {
-    transition-delay: 0.04s;
-  }
-
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infra__standards-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .infra-form-layout__form,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-infosec__exp-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-scaling__notice-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-continuity__exp-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].is-visible > .page-asdu__partner-block {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-scenarios,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__cycle,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .about-dce__grid,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__intro,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infosec-process,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .scaling-process-stage,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .huawei-module__body,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__video-frame,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible.huawei-clients__marquee,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infra__standards-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .infra-form-layout__form,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-infosec__exp-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-scaling__notice-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-continuity__exp-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].is-visible > .page-asdu__partner-block {
     transition-delay: 0.08s;
   }
 
   /* На мобильной форме обратной связи reveal отключён */
-  :is(.page-infra, .page-huawei) [data-infra-reveal].infra-form-layout > .infra-form-layout__photo,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].infra-form-layout > .infra-form-layout__intro,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].infra-form-layout > .infra-form-layout__form {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].infra-form-layout > .infra-form-layout__photo,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].infra-form-layout > .infra-form-layout__intro,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].infra-form-layout > .infra-form-layout__form {
     opacity: 1;
     transform: none;
     transition: none;
@@ -28068,37 +28149,38 @@ body.nav-mobile-open .cookie-banner {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .about-dce__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-scenarios,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infra__cycle,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infra__standards-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .about-dce__grid,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__photo,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__intro,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .infra-form-layout__form,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .infosec-process,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-infosec__exp-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .scaling-process-stage,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-scaling__notice-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-continuity__exp-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__partner-block,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__watch-header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__video-frame,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .page-asdu__case-hero,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-module__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-module__body,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] > .huawei-clients__header,
-  :is(.page-infra, .page-huawei) [data-infra-reveal].huawei-clients__marquee,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-infra__example-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-scaling__benefit-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__process-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-continuity__tech-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-ops__pillar-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__pillar-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .page-asdu__platform-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .subpage-feature-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-partner-card,
-  :is(.page-infra, .page-huawei) [data-infra-reveal] .huawei-spec-card {
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .about-dce__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-scenarios,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infra__cycle,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infra__standards-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .about-dce__grid,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__photo,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__intro,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infra-form-layout__form,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .infosec-process,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-infosec__exp-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .scaling-process-stage,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-scaling__notice-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-continuity__exp-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__partner-block,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__watch-header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__video-frame,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .page-asdu__case-hero,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-module__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-module__body,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] > .huawei-clients__header,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal].huawei-clients__marquee,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-infra__example-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-scaling__benefit-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__process-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-continuity__tech-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-ops__pillar-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__pillar-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .page-asdu__platform-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .subpage-feature-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-partner-card,
+  :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .huawei-spec-card,
+    :is(.page-infra, .page-huawei, .page-projects) [data-infra-reveal] .about-dce__card {
     opacity: 1;
     transform: none;
     transition: none;

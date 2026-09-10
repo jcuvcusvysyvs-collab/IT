@@ -183,6 +183,10 @@
     updateYearCounts();
     updateUI();
 
+    if (typeof window.refreshInfraReveal === "function") {
+      window.refreshInfraReveal();
+    }
+
     if (opts.updateUrl !== false) {
       var url = new URL(window.location.href);
       if (activeClient) {
