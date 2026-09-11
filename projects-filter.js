@@ -45,9 +45,12 @@
   var mobileMq = window.matchMedia(MOBILE_MQ);
   var lastFocusEl = null;
   var lockedScrollY = 0;
+  var scrollbarCompensation = 0;
   var resetHideTimer = null;
   var modalCloseTimer = null;
+  var modalOpenTimer = null;
   var MODAL_ANIM_MS = 520;
+  var SUBNAV_LIFT_MS = 520;
 
   function isMobile() {
     return mobileMq.matches;
@@ -59,6 +62,26 @@
 
   function getModalAnimMs() {
     return prefersReducedMotion() ? 0 : MODAL_ANIM_MS;
+  }
+
+  function getSubnavLiftMs() {
+    return prefersReducedMotion() ? 0 : SUBNAV_LIFT_MS;
+  }
+
+  function isSubnavStuck() {
+    var subnav = document.querySelector("[data-section-subnav]");
+    return !!(subnav && subnav.classList.contains("is-stuck"));
+  }
+
+  function clearModalTimers() {
+    if (modalCloseTimer) {
+      window.clearTimeout(modalCloseTimer);
+      modalCloseTimer = null;
+    }
+    if (modalOpenTimer) {
+      window.clearTimeout(modalOpenTimer);
+      modalOpenTimer = null;
+    }
   }
 
   function setResetVisible(show) {
@@ -97,22 +120,34 @@
     }
   }
 
+  function getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
+
+  function setSubnavAway(away) {
+    document.documentElement.classList.toggle("projects-filter-subnav-away", !!away);
+    document.body.classList.toggle("projects-filter-subnav-away", !!away);
+  }
+
   function lockBodyScroll() {
     lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    scrollbarCompensation = getScrollbarWidth();
     document.documentElement.classList.add("projects-filter-modal-open");
     document.body.classList.add("projects-filter-modal-open");
-    document.body.style.top = "-" + lockedScrollY + "px";
+    /* Без position:fixed — sticky-лента остаётся на месте и уезжает анимацией */
+    if (scrollbarCompensation > 0) {
+      document.body.style.paddingRight = scrollbarCompensation + "px";
+    }
   }
 
   function unlockBodyScroll() {
     var restoreY = lockedScrollY;
     var htmlEl = document.documentElement;
-    document.documentElement.classList.remove("projects-filter-modal-open");
-    document.body.classList.remove("projects-filter-modal-open");
-    document.body.style.top = "";
-    /* html { scroll-behavior: smooth } иначе анимирует «сверху вниз» к restoreY */
     var prevScrollBehavior = htmlEl.style.scrollBehavior;
     htmlEl.style.scrollBehavior = "auto";
+    document.documentElement.classList.remove("projects-filter-modal-open");
+    document.body.classList.remove("projects-filter-modal-open");
+    document.body.style.paddingRight = "";
     window.scrollTo(0, restoreY);
     htmlEl.style.scrollBehavior = prevScrollBehavior;
   }
@@ -489,10 +524,7 @@
     var nextOpen = !!open;
     if (nextOpen === modalOpen) return;
 
-    if (modalCloseTimer) {
-      window.clearTimeout(modalCloseTimer);
-      modalCloseTimer = null;
-    }
+    clearModalTimers();
 
     modalOpen = nextOpen;
 
@@ -514,20 +546,45 @@
       modalEl.hidden = false;
       modalEl.classList.remove("is-closing");
       modalEl.classList.remove("is-open");
-      // force reflow so enter transition starts from closed state
-      void modalEl.offsetWidth;
-      window.requestAnimationFrame(function () {
-        modalEl.classList.add("is-open");
-      });
+      setSubnavAway(false);
 
-      var firstFocus =
-        modalOptionsEl &&
-        (modalOptionsEl.querySelector(".projects-filter-modal__option.is-selected") ||
-          modalOptionsEl.querySelector(".projects-filter-modal__option"));
-      focusEl(firstFocus);
+      var liftMs = isSubnavStuck() ? getSubnavLiftMs() : 0;
+
+      function revealFilterSheet() {
+        if (!modalOpen) return;
+        void modalEl.offsetWidth;
+        window.requestAnimationFrame(function () {
+          if (!modalOpen) return;
+          modalEl.classList.add("is-open");
+        });
+
+        var firstFocus =
+          modalOptionsEl &&
+          (modalOptionsEl.querySelector(".projects-filter-modal__option.is-selected") ||
+            modalOptionsEl.querySelector(".projects-filter-modal__option"));
+        focusEl(firstFocus);
+      }
+
+      /* 1) сначала лента уезжает вверх, 2) потом открывается фильтр */
+      void document.body.offsetWidth;
+      window.requestAnimationFrame(function () {
+        if (!modalOpen) return;
+        setSubnavAway(true);
+
+        if (!liftMs) {
+          revealFilterSheet();
+          return;
+        }
+
+        modalOpenTimer = window.setTimeout(function () {
+          modalOpenTimer = null;
+          revealFilterSheet();
+        }, liftMs);
+      });
       return;
     }
 
+    /* 1) сначала закрывается фильтр, 2) потом лента выезжает сверху */
     void modalEl.offsetWidth;
     modalEl.classList.remove("is-open");
     modalEl.classList.add("is-closing");
@@ -535,20 +592,37 @@
     lastFocusEl = null;
 
     var animMs = getModalAnimMs();
-    if (!animMs) {
+    var liftBackMs = isSubnavStuck() || document.body.classList.contains("projects-filter-subnav-away")
+      ? getSubnavLiftMs()
+      : 0;
+
+    function finishClose() {
+      unlockBodyScroll();
+    }
+
+    function revealSubnavThenFinish() {
       modalEl.classList.remove("is-closing");
       modalEl.hidden = true;
-      unlockBodyScroll();
+      setSubnavAway(false);
+      if (!liftBackMs) {
+        finishClose();
+        return;
+      }
+      modalCloseTimer = window.setTimeout(function () {
+        modalCloseTimer = null;
+        if (!modalOpen) finishClose();
+      }, liftBackMs);
+    }
+
+    if (!animMs) {
+      revealSubnavThenFinish();
       return;
     }
 
     modalCloseTimer = window.setTimeout(function () {
       modalCloseTimer = null;
-      modalEl.classList.remove("is-closing");
-      if (!modalOpen) {
-        modalEl.hidden = true;
-        unlockBodyScroll();
-      }
+      if (modalOpen) return;
+      revealSubnavThenFinish();
     }, animMs);
   }
 

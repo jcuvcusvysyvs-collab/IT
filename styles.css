@@ -9977,7 +9977,9 @@ html[data-theme="dark"] .footer-widget #widget1 {
     0
     clamp(0.85rem, 1.6vw, 1.1rem);
   isolation: isolate;
-  transition: top 0.42s cubic-bezier(0.33, 1, 0.68, 1);
+  transition:
+    top 0.42s cubic-bezier(0.33, 1, 0.68, 1),
+    transform 0.52s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
@@ -9994,7 +9996,7 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
   left: 50%;
   width: 100vw;
   margin-left: -50vw;
-  background: color-mix(in srgb, #0a0e14 94%, transparent);
+  background: #0a0e14;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition:
@@ -10010,7 +10012,7 @@ html.page-section-subnav-force-header-hidden .page-section-subnav {
 }
 
 .page-section-subnav.is-stuck::before {
-  background: color-mix(in srgb, #0a0e14 98%, transparent);
+  background: #0a0e14;
   border-bottom-color: rgba(255, 255, 255, 0.12);
   box-shadow:
     0 10px 32px rgba(0, 0, 0, 0.32),
@@ -10493,7 +10495,7 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: color-mix(in srgb, #0a0e14 98%, transparent);
+    background: #0a0e14;
     pointer-events: none;
   }
 
@@ -17910,17 +17912,30 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
 }
 
 body.projects-filter-modal-open {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
   overflow: hidden;
   overscroll-behavior: none;
+  touch-action: none;
 }
 
 html.projects-filter-modal-open {
   overflow: hidden;
   overscroll-behavior: none;
+  touch-action: none;
+  scroll-behavior: auto !important;
+}
+
+/* Липкая лента уезжает вверх вместе со шторкой фильтра */
+body.projects-filter-subnav-away .page-section-subnav.is-stuck,
+html.projects-filter-subnav-away .page-section-subnav.is-stuck {
+  transform: translate3d(0, calc(-100% - 12px), 0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.projects-filter-subnav-away .page-section-subnav.is-stuck,
+  html.projects-filter-subnav-away .page-section-subnav.is-stuck {
+    transition-duration: 0.01ms;
+  }
 }
 
 @media (min-width: 721px) {
