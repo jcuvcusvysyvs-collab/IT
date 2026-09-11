@@ -47,7 +47,7 @@
   var lockedScrollY = 0;
   var resetHideTimer = null;
   var modalCloseTimer = null;
-  var MODAL_ANIM_MS = 400;
+  var MODAL_ANIM_MS = 520;
 
   function isMobile() {
     return mobileMq.matches;
@@ -528,9 +528,9 @@
       return;
     }
 
+    void modalEl.offsetWidth;
     modalEl.classList.remove("is-open");
     modalEl.classList.add("is-closing");
-    unlockBodyScroll();
     focusEl(lastFocusEl);
     lastFocusEl = null;
 
@@ -538,13 +538,17 @@
     if (!animMs) {
       modalEl.classList.remove("is-closing");
       modalEl.hidden = true;
+      unlockBodyScroll();
       return;
     }
 
     modalCloseTimer = window.setTimeout(function () {
       modalCloseTimer = null;
       modalEl.classList.remove("is-closing");
-      if (!modalOpen) modalEl.hidden = true;
+      if (!modalOpen) {
+        modalEl.hidden = true;
+        unlockBodyScroll();
+      }
     }, animMs);
   }
 

@@ -10003,7 +10003,9 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
     box-shadow 0.28s ease;
 }
 
-body:has(.site-header--hidden) .page-section-subnav {
+body:has(.site-header--hidden) .page-section-subnav,
+body.page-section-subnav-force-header-hidden .page-section-subnav,
+html.page-section-subnav-force-header-hidden .page-section-subnav {
   top: 0;
 }
 
@@ -10033,11 +10035,15 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
 }
 
 @media (max-width: 720px) {
-  body:has(.site-header--hidden) .page-section-subnav.is-stuck {
+  body:has(.site-header--hidden) .page-section-subnav.is-stuck,
+  body.page-section-subnav-force-header-hidden .page-section-subnav.is-stuck,
+  html.page-section-subnav-force-header-hidden .page-section-subnav.is-stuck {
     padding-top: calc(clamp(0.8rem, 1.5vw, 1rem) + env(safe-area-inset-top, 0px));
   }
 
-  body:has(.site-header--hidden) .page-section-subnav.is-stuck::before {
+  body:has(.site-header--hidden) .page-section-subnav.is-stuck::before,
+  body.page-section-subnav-force-header-hidden .page-section-subnav.is-stuck::before,
+  html.page-section-subnav-force-header-hidden .page-section-subnav.is-stuck::before {
     top: calc(-1 * env(safe-area-inset-top, 0px));
   }
 }
@@ -10358,6 +10364,51 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
       color 0.2s ease;
   }
 
+  .page-section-subnav__toggle-icon {
+    display: block;
+    flex-shrink: 0;
+    transition:
+      opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .page-section-subnav__toggle-icon--close {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-72deg) scale(0.82);
+    pointer-events: none;
+  }
+
+  .page-section-subnav__toggle {
+    position: relative;
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__toggle-icon--menu,
+  .page-section-subnav--panel-closing .page-section-subnav__toggle-icon--menu {
+    opacity: 0;
+    transform: rotate(72deg) scale(0.82);
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__toggle-icon--close,
+  .page-section-subnav--panel-closing .page-section-subnav__toggle-icon--close {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__toggle,
+  .page-section-subnav--panel-closing .page-section-subnav__toggle {
+    border-color: color-mix(in srgb, var(--subnav-link-hover, #fff) 28%, transparent);
+    background: color-mix(in srgb, var(--subnav-link-hover, #fff) 10%, transparent);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open .page-section-subnav__toggle,
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--panel-closing .page-section-subnav__toggle {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+    background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  }
+
   .page-section-subnav__toggle:hover,
   .page-section-subnav__toggle:focus-visible {
     border-color: color-mix(in srgb, var(--hero-pt-red, #e8232a) 35%, transparent);
@@ -10373,51 +10424,195 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     display: none;
   }
 
+  /* Открытое меню = лист от края до края (без зазоров сверху/слева/справа) */
+  .page-section-subnav--menu-open,
+  .page-section-subnav--panel-closing,
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open,
+  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--panel-closing,
+  [data-theme="dark"] .page-section-subnav.is-stuck.page-section-subnav--menu-open,
+  [data-theme="dark"] .page-section-subnav.is-stuck.page-section-subnav--panel-closing {
+    position: fixed;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1300;
+    display: block;
+    margin: 0;
+    padding: 0;
+    isolation: isolate;
+    overflow: visible;
+    /* Не сбрасываем фон залипшей ленты — иначе вспышка/синева при закрытии */
+    background: transparent;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transition: none;
+    transform: none !important;
+  }
+
+  .page-section-subnav--menu-open::before,
+  .page-section-subnav--panel-closing::before,
+  .page-section-subnav.is-stuck.page-section-subnav--menu-open::before,
+  .page-section-subnav.is-stuck.page-section-subnav--panel-closing::before {
+    /* Та же заливка, что у залипшей ленты — без смены цвета при закрытии */
+    content: "" !important;
+    display: block !important;
+    z-index: 0;
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__inner,
+  .page-section-subnav--panel-closing .page-section-subnav__inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: center;
+    column-gap: 0.65rem;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    /* Как у залипшей ленты — сама полоска не меняет размер и не анимируется */
+    padding:
+      calc(clamp(0.8rem, 1.5vw, 1rem) + env(safe-area-inset-top, 0px))
+      var(--layout-gutter)
+      clamp(0.65rem, 2vw, 0.85rem);
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+  }
+
+  /* Непрозрачный «щит» ленты: список выезжает из‑под неё */
+  .page-section-subnav--menu-open .page-section-subnav__inner::after,
+  .page-section-subnav--panel-closing .page-section-subnav__inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: color-mix(in srgb, #0a0e14 98%, transparent);
+    pointer-events: none;
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__inner::after,
+  html:not([data-theme="dark"]) .page-section-subnav--panel-closing .page-section-subnav__inner::after {
+    background: var(--safari-chrome-bg, var(--bg));
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__brand,
+  .page-section-subnav--panel-closing .page-section-subnav__brand {
+    position: relative;
+    z-index: 3;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 3.35rem;
+    color: #fff;
+  }
+
+  .page-section-subnav--menu-open .page-section-subnav__toggle,
+  .page-section-subnav--panel-closing .page-section-subnav__toggle {
+    position: relative;
+    z-index: 3;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    margin: 0;
+    color: #fff;
+  }
+
+  /* Выезд из‑под ленты — та же плавность, что у фильтра проектов */
   .page-section-subnav--menu-open .page-section-subnav__panel,
   .page-section-subnav__panel.is-closing {
     display: block;
-    position: fixed;
-    top: var(--section-subnav-panel-top, var(--huawei-subnav-panel-top, 4.5rem));
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    z-index: 119;
+    z-index: 1;
     width: 100%;
-    max-width: 40rem;
-    margin-inline: auto;
-    padding: 1.85rem 1.35rem 1.35rem;
-    border-radius: 0 0 18px 18px;
+    max-width: none;
+    margin: 0;
+    padding: 1.15rem 1.25rem 1.35rem;
+    overflow: hidden;
+    border: none;
+    border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
+    border-radius: 0 0 16px 16px;
     background: #080a0f;
-    box-shadow:
-      0 16px 42px rgba(0, 0, 0, 0.38),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    opacity: 0;
-    visibility: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+    opacity: 1;
+    visibility: visible;
     pointer-events: none;
+    transform: translate3d(0, -100%, 0);
     transform-origin: top center;
-    transform: translate3d(0, -110%, 0);
     transition:
-      opacity 0.32s ease,
-      transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
-      visibility 0.4s;
-    will-change: transform, opacity;
+      transform 0.52s cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
   }
 
   .page-section-subnav--menu-open .page-section-subnav__panel.is-open {
-    opacity: 1;
-    visibility: visible;
     pointer-events: auto;
     transform: translate3d(0, 0, 0);
   }
 
   .page-section-subnav__panel.is-closing {
-    opacity: 0;
-    visibility: hidden;
     pointer-events: none;
-    transform: translate3d(0, -110%, 0);
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__inner,
+  html:not([data-theme="dark"]) .page-section-subnav--panel-closing .page-section-subnav__inner {
+    color: var(--text);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  /* Пока лента «залипла» / меню открыто — шапка сайта не должна выезжать и сдвигать top ленты */
+  body.page-section-subnav-menu-open .site-header,
+  body.page-huawei-subnav-open .site-header,
+  body.page-section-subnav-force-header-hidden .site-header,
+  html.page-section-subnav-force-header-hidden .site-header {
+    transform: translate3d(0, -100%, 0) !important;
+    pointer-events: none !important;
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__brand,
+  html:not([data-theme="dark"]) .page-section-subnav--panel-closing .page-section-subnav__brand,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__toggle,
+  html:not([data-theme="dark"]) .page-section-subnav--panel-closing .page-section-subnav__toggle {
+    color: var(--text);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__panel,
+  html:not([data-theme="dark"]) .page-section-subnav__panel.is-closing {
+    border-top-color: var(--border);
+    background: var(--bg-elevated);
+    box-shadow: 0 16px 36px rgba(15, 18, 24, 0.12);
   }
 
   .page-section-subnav__backdrop {
-    transition: opacity 0.34s ease;
+    transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .page-section-subnav__backdrop.is-visible,
+  .page-section-subnav__backdrop.is-hiding {
+    display: block;
+  }
+
+  .page-section-subnav__backdrop.is-hiding {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   .page-huawei .page-section-subnav .projects-hero-switcher,
@@ -10538,22 +10733,12 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     background: color-mix(in srgb, var(--hero-pt-red, #e8232a) 7%, var(--bg-elevated));
   }
 
-  html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open::before {
-    background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
-    border-bottom-color: var(--border);
-    box-shadow:
-      0 6px 24px rgba(15, 18, 24, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  }
-
   html:not([data-theme="dark"]) .page-section-subnav.is-stuck.page-section-subnav--menu-open .page-section-subnav__panel,
   html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav__panel.is-closing {
     background: var(--bg-elevated);
-    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
-    box-shadow:
-      0 20px 48px rgba(15, 18, 24, 0.11),
-      0 8px 22px rgba(15, 18, 24, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    border: none;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 16px 36px rgba(15, 18, 24, 0.12);
   }
 
   html:not([data-theme="dark"]) .page-huawei .page-section-subnav.is-stuck .page-section-subnav__panel .projects-hero-switcher__item,
@@ -10642,19 +10827,37 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s ease;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.page-section-subnav__backdrop.is-visible,
+.page-section-subnav__backdrop.is-hiding {
+  display: block;
+  pointer-events: auto;
 }
 
 .page-section-subnav__backdrop.is-visible {
-  display: block;
   opacity: 1;
-  pointer-events: auto;
+}
+
+.page-section-subnav__backdrop.is-hiding {
+  opacity: 0;
+  pointer-events: none;
 }
 
 html:not([data-theme="dark"]) .page-section-subnav__backdrop {
   background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(18px) saturate(1.06);
   -webkit-backdrop-filter: blur(18px) saturate(1.06);
+}
+
+/* Меню открыто: блюр на весь экран под карточкой */
+body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-visible,
+body.page-huawei-subnav-open .page-section-subnav__backdrop.is-visible,
+body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-hiding,
+body.page-huawei-subnav-open .page-section-subnav__backdrop.is-hiding {
+  top: 0 !important;
+  z-index: 1290;
 }
 
 @media (max-width: 900px) {
@@ -10665,42 +10868,27 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
     transition: none;
   }
 
+  /* Пока меню на body — страница не должна перекрывать блюр */
   body.page-huawei-subnav-open .page-sticky-scope,
   body.page-section-subnav-menu-open .page-sticky-scope {
     position: relative;
-    z-index: 120;
-    isolation: isolate;
+    z-index: 1;
+    isolation: auto;
   }
 
   body.page-huawei-subnav-open .page-section-subnav__backdrop.is-visible,
-  body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-visible {
-    z-index: 118;
-  }
-
-  .page-section-subnav--menu-open {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 121;
-    margin: 0;
-    isolation: auto;
-    overflow: visible;
-    padding:
-      clamp(0.8rem, 1.5vw, 1rem)
-      0
-      clamp(0.65rem, 2vw, 0.85rem);
-    transition: none;
-  }
-
-  .page-section-subnav--menu-open::before {
-    transition: none;
+  body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-visible,
+  body.page-huawei-subnav-open .page-section-subnav__backdrop.is-hiding,
+  body.page-section-subnav-menu-open .page-section-subnav__backdrop.is-hiding {
+    top: 0 !important;
+    z-index: 1290;
   }
 
   .page-section-subnav__spacer {
     display: block;
     width: 100%;
     pointer-events: none;
+    overflow-anchor: none;
   }
 
   html.page-huawei-subnav-open,
@@ -10710,7 +10898,11 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
     overflow: hidden;
     touch-action: none;
     overscroll-behavior: none;
-    scrollbar-gutter: stable;
+  }
+
+  html.page-huawei-subnav-open,
+  html.page-section-subnav-menu-open {
+    scroll-behavior: auto !important;
   }
 
   .page-huawei .page-section-subnav__panel .projects-hero-switcher__item {
@@ -10732,13 +10924,11 @@ html:not([data-theme="dark"]) .page-section-subnav__backdrop {
     transition: none;
   }
 
-  .page-section-subnav--menu-open .page-section-subnav__panel {
-    transition-duration: 0.01ms;
-    transform: none;
-  }
-
-  .page-section-subnav__panel.is-closing {
-    transition-duration: 0.01ms;
+  .page-section-subnav--menu-open .page-section-subnav__panel,
+  .page-section-subnav__panel.is-closing,
+  .page-section-subnav__toggle-icon {
+    transition: none !important;
+    transform: none !important;
   }
 }
 .page-huawei #huawei-capabilities,
@@ -17544,7 +17734,7 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.34s ease;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
@@ -17570,13 +17760,32 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
   border-radius: 18px 18px 0 0;
   background: var(--bg-elevated);
   box-shadow: 0 -12px 40px color-mix(in srgb, var(--text) 16%, transparent);
-  transform: translate3d(0, 110%, 0);
-  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: transform;
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+  transition:
+    transform 0.52s cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform, opacity;
 }
 
 .projects-filter-modal.is-open .projects-filter-modal__panel {
   transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.projects-filter-modal.is-closing {
+  pointer-events: none;
+}
+
+.projects-filter-modal.is-closing .projects-filter-modal__panel {
+  transform: translate3d(0, 100%, 0);
+  opacity: 1;
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.projects-filter-modal.is-closing .projects-filter-modal__backdrop {
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {

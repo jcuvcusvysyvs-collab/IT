@@ -18,6 +18,112 @@
 
 
 
+  function enhanceToggleIcons() {
+
+    if (toggle.querySelector(".page-section-subnav__toggle-icon--close")) return;
+
+    var existingSvg = toggle.querySelector("svg");
+
+    if (existingSvg) {
+
+      existingSvg.classList.add(
+
+        "page-section-subnav__toggle-icon",
+
+        "page-section-subnav__toggle-icon--menu"
+
+      );
+
+    }
+
+    var closeIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+    closeIcon.setAttribute("class", "page-section-subnav__toggle-icon page-section-subnav__toggle-icon--close");
+
+    closeIcon.setAttribute("width", "16");
+
+    closeIcon.setAttribute("height", "16");
+
+    closeIcon.setAttribute("viewBox", "0 0 14 14");
+
+    closeIcon.setAttribute("fill", "none");
+
+    closeIcon.setAttribute("aria-hidden", "true");
+
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    path.setAttribute("d", "M3.5 3.5l7 7M10.5 3.5l-7 7");
+
+    path.setAttribute("stroke", "currentColor");
+
+    path.setAttribute("stroke-width", "1.5");
+
+    path.setAttribute("stroke-linecap", "round");
+
+    closeIcon.appendChild(path);
+
+    toggle.appendChild(closeIcon);
+
+    var label = toggle.querySelector(".visually-hidden");
+
+    if (!label) {
+
+      label = document.createElement("span");
+
+      label.className = "visually-hidden";
+
+      toggle.insertBefore(label, toggle.firstChild);
+
+    }
+
+    label.textContent = "Меню разделов";
+
+    toggle.setAttribute("aria-label", "Меню разделов");
+
+  }
+
+  enhanceToggleIcons();
+
+  var subnavInner = subnav.querySelector(".page-section-subnav__inner");
+  var subnavHomeParent = subnav.parentNode;
+  var subnavHomeNext = subnav.nextSibling;
+  var backdropHomeParent = null;
+  var backdropHomeNext = null;
+  var menuMountedToBody = false;
+
+  function placePanelForMobileMenu() {
+    if (!subnavInner || !panel) return;
+    /* Панель внутри inner — шапка и меню одна карточка */
+    if (panel.parentElement !== subnavInner) {
+      subnavInner.appendChild(panel);
+    }
+  }
+
+  function mountMenuToBody() {
+    if (menuMountedToBody) return;
+    document.body.appendChild(backdrop);
+    document.body.appendChild(subnav);
+    menuMountedToBody = true;
+  }
+
+  function restoreMenuFromBody() {
+    restoreMenuReplacingSpacer();
+  }
+
+  function syncToggleLabel(open) {
+
+    var label = toggle.querySelector(".visually-hidden");
+
+    var text = open ? "Закрыть меню" : "Меню разделов";
+
+    if (label) label.textContent = text;
+
+    toggle.setAttribute("aria-label", text);
+
+  }
+
+
+
   var mobileQuery = window.matchMedia("(max-width: 900px)");
 
   var reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -42,6 +148,10 @@
 
   }
 
+  backdropHomeParent = backdrop.parentNode;
+
+  backdropHomeNext = backdrop.nextSibling;
+
 
 
   var spacer = null;
@@ -58,7 +168,7 @@
 
   var menuCloseTimer = null;
 
-  var PANEL_ANIM_MS = 400;
+  var PANEL_ANIM_MS = 520;
 
   function getPanelAnimMs() {
 
@@ -123,11 +233,28 @@
 
 
   var lastSubnavHeight = 0;
+  var lockedBarHeight = 0;
 
   function syncSubnavHeight() {
+    /* Пока открыта модалка — не пишем высоту листа в --section-subnav-height:
+       иначе scroll-margin и вёрстка «прыгают» при закрытии. */
+    if (
+      isOpen ||
+      menuMountedToBody ||
+      subnav.classList.contains("page-section-subnav--menu-open") ||
+      subnav.classList.contains("page-section-subnav--panel-closing")
+    ) {
+      if (lockedBarHeight > 0 && lockedBarHeight !== lastSubnavHeight) {
+        lastSubnavHeight = lockedBarHeight;
+        document.documentElement.style.setProperty("--section-subnav-height", lockedBarHeight + "px");
+      }
+      return;
+    }
+
     var h = Math.round(subnav.getBoundingClientRect().height);
     if (h <= 0 || h === lastSubnavHeight) return;
     lastSubnavHeight = h;
+    lockedBarHeight = h;
     document.documentElement.style.setProperty("--section-subnav-height", h + "px");
   }
 
@@ -210,6 +337,7 @@
         }
       }
     }
+    syncForceHeaderHidden();
     syncSubnavHeight();
     updateActiveSectionLink();
   }
@@ -242,13 +370,41 @@
 
 
 
+  function setForceHeaderHidden(on) {
+
+    document.body.classList.toggle("page-section-subnav-force-header-hidden", !!on);
+
+    document.documentElement.classList.toggle("page-section-subnav-force-header-hidden", !!on);
+
+    if (on) hideSiteHeader();
+
+  }
+
+
+
+  function syncForceHeaderHidden() {
+
+    /* Пока меню открыто или лента залипла — шапка скрыта, иначе top ленты прыгает с 0 на высоту шапки */
+    var stuck = isOpen || isSubnavStuck() || subnav.classList.contains("is-stuck");
+    setForceHeaderHidden(stuck);
+
+  }
+
+
+
   function insertSpacer() {
 
     if (spacer) return;
 
+    var styles = window.getComputedStyle(subnav);
 
+    var height =
+      lockedBarHeight ||
+      Math.round(subnav.getBoundingClientRect().height) ||
+      Math.round(subnav.offsetHeight) ||
+      56;
 
-    var height = Math.round(subnav.getBoundingClientRect().height);
+    lockedBarHeight = height;
 
     spacer = document.createElement("div");
 
@@ -258,7 +414,19 @@
 
     spacer.style.height = height + "px";
 
-    subnav.parentNode.insertBefore(spacer, subnav);
+    /* Лента перекрывает hero отрицательным margin — спейсер должен его сохранить */
+    spacer.style.marginTop = styles.marginTop;
+    spacer.style.marginBottom = styles.marginBottom;
+    spacer.style.overflowAnchor = "none";
+
+    /* Атомарно: лента → спейсер, без кадра «двойной высоты» */
+    if (subnav.parentNode) {
+      subnav.parentNode.replaceChild(spacer, subnav);
+    }
+
+    lastSubnavHeight = height;
+
+    document.documentElement.style.setProperty("--section-subnav-height", height + "px");
 
   }
 
@@ -276,19 +444,69 @@
 
 
 
+  /* Возврат ленты на место спейсера — без двойной высоты и дырки в вёрстке */
+  function restoreMenuReplacingSpacer() {
+
+    if (!menuMountedToBody) return;
+
+    if (backdropHomeParent) {
+
+      if (backdropHomeNext && backdropHomeNext.parentNode === backdropHomeParent) {
+
+        backdropHomeParent.insertBefore(backdrop, backdropHomeNext);
+
+      } else {
+
+        backdropHomeParent.appendChild(backdrop);
+
+      }
+
+    }
+
+    if (spacer && spacer.parentNode) {
+
+      spacer.parentNode.replaceChild(subnav, spacer);
+
+      spacer = null;
+
+    } else if (subnavHomeParent) {
+
+      if (subnavHomeNext && subnavHomeNext.parentNode === subnavHomeParent) {
+
+        subnavHomeParent.insertBefore(subnav, subnavHomeNext);
+
+      } else {
+
+        subnavHomeParent.appendChild(subnav);
+
+      }
+
+    }
+
+    menuMountedToBody = false;
+
+  }
+
+
+
   function updateOverlayGeometry() {
 
-    var subnavBottom = Math.round(subnav.getBoundingClientRect().bottom);
+    var menuOpen =
+      subnav.classList.contains("page-section-subnav--menu-open") ||
+      document.body.classList.contains("page-section-subnav-menu-open");
 
-    document.documentElement.style.setProperty("--section-subnav-backdrop-top", subnavBottom + "px");
+    /* При открытом меню блюр на весь экран; иначе — под полоской */
+    var backdropTop = menuOpen ? 0 : Math.round(subnav.getBoundingClientRect().bottom);
 
-    document.documentElement.style.setProperty("--section-subnav-panel-top", subnavBottom + "px");
+    document.documentElement.style.setProperty("--section-subnav-backdrop-top", backdropTop + "px");
 
-    document.documentElement.style.setProperty("--huawei-subnav-backdrop-top", subnavBottom + "px");
+    document.documentElement.style.setProperty("--section-subnav-panel-top", backdropTop + "px");
 
-    document.documentElement.style.setProperty("--huawei-subnav-panel-top", subnavBottom + "px");
+    document.documentElement.style.setProperty("--huawei-subnav-backdrop-top", backdropTop + "px");
 
-    return subnavBottom;
+    document.documentElement.style.setProperty("--huawei-subnav-panel-top", backdropTop + "px");
+
+    return backdropTop;
 
   }
 
@@ -296,11 +514,9 @@
 
   function showBackdrop() {
 
-    if (updateOverlayGeometry() > 0) {
+    updateOverlayGeometry();
 
-      backdrop.classList.add("is-visible");
-
-    }
+    backdrop.classList.add("is-visible");
 
   }
 
@@ -308,7 +524,19 @@
 
   function hideBackdrop() {
 
-    backdrop.classList.remove("is-visible");
+    if (backdrop.classList.contains("is-visible")) {
+
+      backdrop.classList.add("is-hiding");
+
+      backdrop.classList.remove("is-visible");
+
+      window.setTimeout(function () {
+
+        backdrop.classList.remove("is-hiding");
+
+      }, getPanelAnimMs() || 0);
+
+    }
 
     document.documentElement.style.removeProperty("--section-subnav-backdrop-top");
 
@@ -332,7 +560,7 @@
 
   function lockPageScroll() {
 
-    lockedScrollY = window.scrollY;
+    lockedScrollY = window.scrollY || window.pageYOffset || 0;
 
     scrollbarCompensation = getScrollbarWidth();
 
@@ -340,17 +568,14 @@
 
     document.body.classList.add("page-section-subnav-menu-open", "page-huawei-subnav-open");
 
-
-
+    /* Без position:fixed на body: top:-Y даёт расхождение ~высоты ленты при unlock */
     if (scrollbarCompensation > 0) {
 
       document.body.style.paddingRight = scrollbarCompensation + "px";
 
     }
 
-
-
-    window.scrollTo(0, lockedScrollY);
+    hideSiteHeader();
 
   }
 
@@ -358,24 +583,28 @@
 
   function unlockPageScroll() {
 
+    var restoreY = lockedScrollY;
+
+    var htmlEl = document.documentElement;
+
+    setForceHeaderHidden(true);
+
+    var prevScrollBehavior = htmlEl.style.scrollBehavior;
+
+    htmlEl.style.scrollBehavior = "auto";
+
+    /* Сначала возвращаем scrollbar, потом снимаем компенсацию — иначе контент дёргается */
     document.documentElement.classList.remove("page-section-subnav-menu-open", "page-huawei-subnav-open");
 
     document.body.classList.remove("page-section-subnav-menu-open", "page-huawei-subnav-open");
 
     document.body.style.paddingRight = "";
 
-    /* html { scroll-behavior: smooth } иначе анимирует «сверху вниз» к restoreY */
-    var htmlEl = document.documentElement;
-
-    var prevScrollBehavior = htmlEl.style.scrollBehavior;
-
-    htmlEl.style.scrollBehavior = "auto";
-
-    window.scrollTo(0, lockedScrollY);
+    window.scrollTo(0, restoreY);
 
     htmlEl.style.scrollBehavior = prevScrollBehavior;
 
-    syncStickyState();
+    setForceHeaderHidden(true);
 
   }
 
@@ -405,6 +634,8 @@
 
     toggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
 
+    syncToggleLabel(shouldOpen);
+
 
 
     if (shouldOpen) {
@@ -419,27 +650,41 @@
 
       panel.classList.remove("is-closing");
 
-      var pinTop = Math.round(subnav.getBoundingClientRect().top);
+      subnav.classList.remove("page-section-subnav--panel-closing");
 
+      placePanelForMobileMenu();
 
+      /* Сначала прячем хедер — иначе высота ленты (safe-area) не совпадёт со спейсером */
+      setForceHeaderHidden(true);
+
+      void subnav.offsetHeight;
+
+      lockedBarHeight =
+        Math.round(subnav.getBoundingClientRect().height) ||
+        Math.round(subnav.offsetHeight) ||
+        lockedBarHeight ||
+        56;
 
       insertSpacer();
 
-      hideSiteHeader();
+      /* На body fixed всегда относительно окна — полоса не уезжает вверх */
+      mountMenuToBody();
 
-      subnav.style.top = pinTop + "px";
+      subnav.style.top = "0px";
+
+      subnav.style.left = "0px";
+
+      subnav.style.right = "0px";
 
       panel.classList.remove("is-open");
 
-      subnav.classList.add("page-section-subnav--menu-open");
+      subnav.classList.add("is-stuck", "page-section-subnav--menu-open");
 
       lockPageScroll();
 
 
 
       window.requestAnimationFrame(function () {
-
-        subnav.style.top = "0px";
 
         syncSubnavHeight();
 
@@ -461,38 +706,80 @@
 
       hideBackdrop();
 
+      subnav.classList.add("page-section-subnav--panel-closing");
+
+      subnav.style.transition = "none";
+
+      /* Как у фильтра: сначала reflow, потом снятие is-open + is-closing */
+      void panel.offsetWidth;
+
       panel.classList.remove("is-open");
 
       panel.classList.add("is-closing");
 
       updateOverlayGeometry();
 
-      /* Сразу возвращаем липкую ленту — не ждём анимацию панели */
-      subnav.style.transition = "none";
-
       subnav.classList.remove("page-section-subnav--menu-open");
-
-      subnav.style.top = "";
-
-      removeSpacer();
-
-      unlockPageScroll();
-
-      subnav.classList.add("is-stuck");
-
-      syncSubnavHeight();
-
-      void subnav.offsetWidth;
-
-      subnav.style.transition = "";
 
       var animMs = getPanelAnimMs();
 
       if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
 
+      function finishClose() {
+
+        /*
+          Важно: пока body position:fixed, в документе должен оставаться спейсер
+          той же высоты, что при lock. Иначе unlock восстанавливает scrollY
+          к другой вёрстке → контент прыгает (~высота ленты).
+        */
+        subnav.style.setProperty("position", "fixed");
+        subnav.style.setProperty("top", "0px");
+        subnav.style.setProperty("left", "0px");
+        subnav.style.setProperty("right", "0px");
+        subnav.style.setProperty("z-index", "1300");
+
+        panel.classList.remove("is-closing", "is-open");
+        subnav.classList.remove("page-section-subnav--panel-closing", "page-section-subnav--menu-open");
+        subnav.classList.add("is-stuck");
+
+        void subnav.offsetHeight;
+
+        /* Не меняем высоту спейсера при закрытии — иначе страница дёргается */
+        var barH = lockedBarHeight || Math.round(subnav.getBoundingClientRect().height) || 56;
+        lastSubnavHeight = barH;
+        document.documentElement.style.setProperty("--section-subnav-height", barH + "px");
+
+        if (spacer) {
+          spacer.style.height = barH + "px";
+        }
+
+        /* Сначала unlock при том же спейсере, что был при открытии */
+        unlockPageScroll();
+
+        /* Потом атомарно меняем спейсер на полоску */
+        subnav.style.removeProperty("position");
+        subnav.style.removeProperty("top");
+        subnav.style.removeProperty("left");
+        subnav.style.removeProperty("right");
+        subnav.style.removeProperty("z-index");
+        subnav.style.removeProperty("overflow-anchor");
+        subnav.style.transition = "";
+
+        restoreMenuReplacingSpacer();
+
+        setForceHeaderHidden(true);
+
+        window.requestAnimationFrame(function () {
+          setForceHeaderHidden(true);
+          syncSubnavHeight();
+          syncStickyState();
+        });
+
+      }
+
       if (!animMs) {
 
-        panel.classList.remove("is-closing");
+        finishClose();
 
         return;
 
@@ -502,7 +789,7 @@
 
         menuCloseTimer = null;
 
-        panel.classList.remove("is-closing");
+        finishClose();
 
       }, animMs);
 
