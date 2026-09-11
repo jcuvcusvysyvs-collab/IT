@@ -161,7 +161,14 @@
     return true;
   }
 
+  function setChromeAway(away) {
+    document.documentElement.classList.toggle("projects-filter-chrome-away", !!away);
+    document.body.classList.toggle("projects-filter-chrome-away", !!away);
+  }
+
   function setSubnavAway(away) {
+    /* Лента и кнопка «наверх» уходят/возвращаются синхронно */
+    setChromeAway(away);
     if (!pinnedSubnav) return;
     if (away) {
       pinnedSubnav.classList.add("page-section-subnav--filter-away");
@@ -658,9 +665,11 @@
     lastFocusEl = null;
 
     var animMs = getModalAnimMs();
-    var liftBackMs = pinnedSubnav ? getSubnavLiftMs() : 0;
+    /* Ждём возврат хрома (лента + «наверх»), даже если лента не была pinned */
+    var liftBackMs = getSubnavLiftMs();
 
     function finishClose() {
+      setChromeAway(false);
       unpinSubnavAfterFilter();
       unlockBodyScroll();
     }

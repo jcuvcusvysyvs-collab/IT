@@ -10366,36 +10366,84 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
       color 0.2s ease;
   }
 
-  .page-section-subnav__toggle-icon {
-    display: block;
-    flex-shrink: 0;
-    transition:
-      opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .page-section-subnav__toggle-icon--close {
-    position: absolute;
-    opacity: 0;
-    transform: rotate(-72deg) scale(0.82);
-    pointer-events: none;
-  }
-
   .page-section-subnav__toggle {
     position: relative;
   }
 
-  .page-section-subnav--menu-open .page-section-subnav__toggle-icon--menu,
-  .page-section-subnav--panel-closing .page-section-subnav__toggle-icon--menu {
-    opacity: 0;
-    transform: rotate(72deg) scale(0.82);
+  .page-section-subnav__toggle-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition:
+      opacity 0.35s ease-in-out,
+      transform 0.35s ease-in-out;
+    pointer-events: none;
   }
 
-  .page-section-subnav--menu-open .page-section-subnav__toggle-icon--close,
-  .page-section-subnav--panel-closing .page-section-subnav__toggle-icon--close {
+  .page-section-subnav__toggle-icon--menu {
     opacity: 1;
-    transform: none;
-    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .page-section-subnav__toggle-icon--close {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  .page-section-subnav__toggle-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 0.35s ease-in-out,
+      opacity 0.35s ease-in-out;
+  }
+
+  .page-section-subnav__toggle-x-group {
+    transform-box: view-box;
+    transform-origin: 9px 9px;
+    transform: scale(0.45) rotate(-90deg);
+    opacity: 0;
+    transition:
+      transform 0.35s ease-in-out,
+      opacity 0.35s ease-in-out;
+  }
+
+  /* Иконки: отдельный класс после mount+rAF, иначе transition срывается */
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-icon--menu {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-dot:nth-child(1) {
+    transform: translateY(4px) scale(0.2);
+    opacity: 0;
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-dot:nth-child(2) {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-dot:nth-child(3) {
+    transform: translateY(-4px) scale(0.2);
+    opacity: 0;
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-icon--close {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-x-group {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
   }
 
   .page-section-subnav--menu-open .page-section-subnav__toggle,
@@ -10668,7 +10716,7 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
   .page-projects .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   .page-about .page-section-subnav__panel .projects-hero-switcher__item.is-active,
   .page-infra .page-section-subnav__panel .projects-hero-switcher__item.is-active  {
-    border-radius: 999px;
+    border-radius: var(--radius-sm, 8px);
     padding: 0.55rem 1.35rem;
   }
 
@@ -10927,10 +10975,30 @@ body.page-huawei-subnav-open .page-section-subnav__backdrop.is-hiding {
   }
 
   .page-section-subnav--menu-open .page-section-subnav__panel,
-  .page-section-subnav__panel.is-closing,
-  .page-section-subnav__toggle-icon {
+  .page-section-subnav__panel.is-closing {
     transition: none !important;
     transform: none !important;
+  }
+
+  .page-section-subnav__toggle-icon,
+  .page-section-subnav__toggle-dot,
+  .page-section-subnav__toggle-x-group {
+    transition: none !important;
+  }
+
+  .page-section-subnav__toggle-icon--menu,
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-icon--menu {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .page-section-subnav__toggle-icon--close,
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-icon--close {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .page-section-subnav__toggle--icons-open .page-section-subnav__toggle-x-group {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 .page-huawei #huawei-capabilities,
@@ -28522,8 +28590,8 @@ html:has(body.page-404) {
   pointer-events: auto;
   transform: translate3d(0, 0, 0);
   transition:
-    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.28s ease,
+    transform 0.58s cubic-bezier(0.33, 0, 0.2, 1),
+    opacity 0.4s ease,
     visibility 0s linear 0s,
     background 0.2s ease,
     border-color 0.2s ease,
@@ -28566,13 +28634,34 @@ html:has(body.page-404) {
 }
 
 html.nav-mobile-open .scroll-top,
-body.nav-mobile-open .scroll-top,
-html.projects-filter-modal-open .scroll-top,
-body.projects-filter-modal-open .scroll-top {
+body.nav-mobile-open .scroll-top {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
   transform: translate3d(0, calc(100% + 1.5rem), 0) !important;
+}
+
+/* Вместе с липкой лентой: тот же 0.58s / easing; видимая кнопка только едет (без fade) */
+html.projects-filter-chrome-away .scroll-top,
+body.projects-filter-chrome-away .scroll-top {
+  pointer-events: none !important;
+  transform: translate3d(0, calc(100% + 1.5rem), 0) !important;
+  transition:
+    transform 0.58s cubic-bezier(0.33, 0, 0.2, 1),
+    opacity 0.45s ease,
+    visibility 0s linear 0.58s !important;
+}
+
+html.projects-filter-chrome-away .scroll-top:not(.is-visible),
+body.projects-filter-chrome-away .scroll-top:not(.is-visible) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+html.projects-filter-chrome-away .scroll-top.is-visible,
+body.projects-filter-chrome-away .scroll-top.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 @media (max-width: 720px) {

@@ -20,6 +20,14 @@
 
   function enhanceToggleIcons() {
 
+    var oldClose = toggle.querySelector(".page-section-subnav__toggle-icon--close");
+
+    if (oldClose && !oldClose.querySelector(".page-section-subnav__toggle-x-group")) {
+
+      oldClose.remove();
+
+    }
+
     if (toggle.querySelector(".page-section-subnav__toggle-icon--close")) return;
 
     var existingSvg = toggle.querySelector("svg");
@@ -34,33 +42,61 @@
 
       );
 
+      var dots = existingSvg.querySelectorAll("circle");
+
+      for (var i = 0; i < dots.length; i += 1) {
+
+        dots[i].classList.add("page-section-subnav__toggle-dot");
+
+        dots[i].setAttribute("data-dot", String(i + 1));
+
+      }
+
     }
 
     var closeIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
     closeIcon.setAttribute("class", "page-section-subnav__toggle-icon page-section-subnav__toggle-icon--close");
 
-    closeIcon.setAttribute("width", "16");
+    closeIcon.setAttribute("width", "18");
 
-    closeIcon.setAttribute("height", "16");
+    closeIcon.setAttribute("height", "18");
 
-    closeIcon.setAttribute("viewBox", "0 0 14 14");
+    closeIcon.setAttribute("viewBox", "0 0 18 18");
 
     closeIcon.setAttribute("fill", "none");
 
     closeIcon.setAttribute("aria-hidden", "true");
 
-    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    var xGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-    path.setAttribute("d", "M3.5 3.5l7 7M10.5 3.5l-7 7");
+    xGroup.setAttribute("class", "page-section-subnav__toggle-x-group");
 
-    path.setAttribute("stroke", "currentColor");
+    var lineA = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-    path.setAttribute("stroke-width", "1.5");
+    lineA.setAttribute("d", "M5 5l8 8");
 
-    path.setAttribute("stroke-linecap", "round");
+    lineA.setAttribute("stroke", "currentColor");
 
-    closeIcon.appendChild(path);
+    lineA.setAttribute("stroke-width", "1.6");
+
+    lineA.setAttribute("stroke-linecap", "round");
+
+    var lineB = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    lineB.setAttribute("d", "M13 5L5 13");
+
+    lineB.setAttribute("stroke", "currentColor");
+
+    lineB.setAttribute("stroke-width", "1.6");
+
+    lineB.setAttribute("stroke-linecap", "round");
+
+    xGroup.appendChild(lineA);
+
+    xGroup.appendChild(lineB);
+
+    closeIcon.appendChild(xGroup);
 
     toggle.appendChild(closeIcon);
 
@@ -622,11 +658,13 @@
 
 
 
-  function setOpen(open) {
+  function setOpen(open, options) {
+
+    var immediate = !!(options && options.immediate);
 
     var shouldOpen = open && mobileQuery.matches;
 
-    if (shouldOpen === isOpen) return;
+    if (shouldOpen === isOpen) return Promise.resolve();
 
 
 
@@ -678,6 +716,8 @@
 
       panel.classList.remove("is-open");
 
+      toggle.classList.remove("page-section-subnav__toggle--icons-open");
+
       subnav.classList.add("is-stuck", "page-section-subnav--menu-open");
 
       lockPageScroll();
@@ -692,9 +732,14 @@
 
         updateActiveSectionLink();
 
+        /* Кадр со «точками», затем морф в крестик — иначе после mount transition не играет */
+        void toggle.offsetWidth;
+
         window.requestAnimationFrame(function () {
 
           panel.classList.add("is-open");
+
+          toggle.classList.add("page-section-subnav__toggle--icons-open");
 
           showBackdrop();
 
@@ -702,9 +747,17 @@
 
       });
 
-    } else {
+      return Promise.resolve();
+
+    }
+
+
+
+    return new Promise(function (resolve) {
 
       hideBackdrop();
+
+      toggle.classList.remove("page-section-subnav__toggle--icons-open");
 
       subnav.classList.add("page-section-subnav--panel-closing");
 
@@ -721,7 +774,8 @@
 
       subnav.classList.remove("page-section-subnav--menu-open");
 
-      var animMs = getPanelAnimMs();
+      /* При переходе по якорю закрываем сразу — иначе overflow:hidden блокирует scrollTo */
+      var animMs = immediate ? 0 : getPanelAnimMs();
 
       if (menuCloseTimer) window.clearTimeout(menuCloseTimer);
 
@@ -740,6 +794,7 @@
 
         panel.classList.remove("is-closing", "is-open");
         subnav.classList.remove("page-section-subnav--panel-closing", "page-section-subnav--menu-open");
+        toggle.classList.remove("page-section-subnav__toggle--icons-open");
         subnav.classList.add("is-stuck");
 
         void subnav.offsetHeight;
@@ -773,6 +828,7 @@
           setForceHeaderHidden(true);
           syncSubnavHeight();
           syncStickyState();
+          resolve();
         });
 
       }
@@ -793,7 +849,7 @@
 
       }, animMs);
 
-    }
+    });
 
   }
 
@@ -1080,19 +1136,10 @@
 
     if (isOpen) {
 
-      setOpen(false);
+      /* Сначала плавно закрываем меню и снимаем overflow:hidden, потом скролл */
+      return setOpen(false).then(function () {
 
-      return new Promise(function (resolve) {
-
-        window.requestAnimationFrame(function () {
-
-          window.requestAnimationFrame(function () {
-
-            finishNavigation().then(resolve);
-
-          });
-
-        });
+        return finishNavigation();
 
       });
 
