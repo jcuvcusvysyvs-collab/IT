@@ -50,7 +50,9 @@
   var modalCloseTimer = null;
   var modalOpenTimer = null;
   var MODAL_ANIM_MS = 520;
-  var SUBNAV_LIFT_MS = 520;
+  var SUBNAV_LIFT_MS = 580;
+  var pinnedSubnav = null;
+  var subnavSpacer = null;
 
   function isMobile() {
     return mobileMq.matches;
@@ -66,11 +68,6 @@
 
   function getSubnavLiftMs() {
     return prefersReducedMotion() ? 0 : SUBNAV_LIFT_MS;
-  }
-
-  function isSubnavStuck() {
-    var subnav = document.querySelector("[data-section-subnav]");
-    return !!(subnav && subnav.classList.contains("is-stuck"));
   }
 
   function clearModalTimers() {
@@ -124,9 +121,74 @@
     return window.innerWidth - document.documentElement.clientWidth;
   }
 
+  function getSubnavEl() {
+    return document.querySelector("[data-section-subnav]");
+  }
+
+  function isSubnavStuck() {
+    var subnav = getSubnavEl();
+    return !!(subnav && subnav.classList.contains("is-stuck"));
+  }
+
+  /* Sticky + transform = рывок (sticky срывается). Сначала фиксируем ленту, потом анимируем. */
+  function pinSubnavForFilter() {
+    var subnav = getSubnavEl();
+    if (!subnav || !subnav.classList.contains("is-stuck")) return false;
+    if (pinnedSubnav) return true;
+
+    var rect = subnav.getBoundingClientRect();
+    if (rect.bottom <= 0 || rect.height < 8) return false;
+
+    var styles = window.getComputedStyle(subnav);
+    var height = Math.round(rect.height) || 56;
+
+    subnavSpacer = document.createElement("div");
+    subnavSpacer.className = "page-section-subnav__spacer page-section-subnav__spacer--filter";
+    subnavSpacer.setAttribute("aria-hidden", "true");
+    subnavSpacer.style.height = height + "px";
+    subnavSpacer.style.marginTop = styles.marginTop;
+    subnavSpacer.style.marginBottom = styles.marginBottom;
+    subnavSpacer.style.pointerEvents = "none";
+
+    if (subnav.parentNode) {
+      subnav.parentNode.insertBefore(subnavSpacer, subnav);
+    }
+
+    subnav.classList.add("is-stuck", "page-section-subnav--filter-pinned");
+    subnav.style.top = Math.round(rect.top) + "px";
+    pinnedSubnav = subnav;
+    void subnav.offsetHeight;
+    return true;
+  }
+
   function setSubnavAway(away) {
-    document.documentElement.classList.toggle("projects-filter-subnav-away", !!away);
-    document.body.classList.toggle("projects-filter-subnav-away", !!away);
+    if (!pinnedSubnav) return;
+    if (away) {
+      pinnedSubnav.classList.add("page-section-subnav--filter-away");
+    } else {
+      pinnedSubnav.classList.remove("page-section-subnav--filter-away");
+    }
+  }
+
+  function unpinSubnavAfterFilter() {
+    if (!pinnedSubnav) {
+      if (subnavSpacer && subnavSpacer.parentNode) {
+        subnavSpacer.parentNode.removeChild(subnavSpacer);
+      }
+      subnavSpacer = null;
+      return;
+    }
+
+    var subnav = pinnedSubnav;
+    subnav.classList.remove("page-section-subnav--filter-away", "page-section-subnav--filter-pinned");
+    subnav.style.top = "";
+    subnav.style.transform = "";
+
+    if (subnavSpacer && subnavSpacer.parentNode) {
+      subnavSpacer.parentNode.removeChild(subnavSpacer);
+    }
+    subnavSpacer = null;
+    pinnedSubnav = null;
   }
 
   function lockBodyScroll() {
@@ -134,7 +196,6 @@
     scrollbarCompensation = getScrollbarWidth();
     document.documentElement.classList.add("projects-filter-modal-open");
     document.body.classList.add("projects-filter-modal-open");
-    /* Без position:fixed — sticky-лента остаётся на месте и уезжает анимацией */
     if (scrollbarCompensation > 0) {
       document.body.style.paddingRight = scrollbarCompensation + "px";
     }
@@ -540,6 +601,9 @@
       menuEl.hidden = true;
 
       lastFocusEl = document.activeElement;
+
+      /* Сначала фиксируем ленту на экране — иначе transform срывает sticky рывком */
+      var canLift = pinSubnavForFilter();
       lockBodyScroll();
       renderOptions();
 
@@ -548,7 +612,7 @@
       modalEl.classList.remove("is-open");
       setSubnavAway(false);
 
-      var liftMs = isSubnavStuck() ? getSubnavLiftMs() : 0;
+      var liftMs = canLift ? getSubnavLiftMs() : 0;
 
       function revealFilterSheet() {
         if (!modalOpen) return;
@@ -565,21 +629,23 @@
         focusEl(firstFocus);
       }
 
-      /* 1) сначала лента уезжает вверх, 2) потом открывается фильтр */
-      void document.body.offsetWidth;
+      /* 1) лента плавно уезжает вверх, 2) потом открывается фильтр */
       window.requestAnimationFrame(function () {
         if (!modalOpen) return;
-        setSubnavAway(true);
+        window.requestAnimationFrame(function () {
+          if (!modalOpen) return;
+          setSubnavAway(true);
 
-        if (!liftMs) {
-          revealFilterSheet();
-          return;
-        }
+          if (!liftMs) {
+            revealFilterSheet();
+            return;
+          }
 
-        modalOpenTimer = window.setTimeout(function () {
-          modalOpenTimer = null;
-          revealFilterSheet();
-        }, liftMs);
+          modalOpenTimer = window.setTimeout(function () {
+            modalOpenTimer = null;
+            revealFilterSheet();
+          }, liftMs);
+        });
       });
       return;
     }
@@ -592,11 +658,10 @@
     lastFocusEl = null;
 
     var animMs = getModalAnimMs();
-    var liftBackMs = isSubnavStuck() || document.body.classList.contains("projects-filter-subnav-away")
-      ? getSubnavLiftMs()
-      : 0;
+    var liftBackMs = pinnedSubnav ? getSubnavLiftMs() : 0;
 
     function finishClose() {
+      unpinSubnavAfterFilter();
       unlockBodyScroll();
     }
 
