@@ -1,7 +1,8 @@
 /**
- * Фильтр и поиск заказчика — projects.html?client=<id> | ?q=<query>
- * Desktop: объединённый бар (поиск + дропдаун). Mobile: поиск + кнопка → модалка.
- * Режимы взаимно исключающие.
+ * Фильтр и поиск заказчика — projects.html?client=<id>[,id2] | ?q=<query>
+ * Мультивыбор заказчиков (галочки) + «Применить».
+ * Desktop: поиск + дропдаун. Mobile: поиск + кнопка → модалка.
+ * Режимы взаимно исключающие (поиск ИЛИ заказчики).
  */
 (function () {
   var PARAM_CLIENT = "client";
@@ -20,6 +21,9 @@
   var optionsEl = document.getElementById("projects-filter-options");
   var modalOptionsEl = document.getElementById("projects-filter-modal-options");
   var clearBtn = document.getElementById("projects-filter-clear");
+  var menuClearBtn = document.getElementById("projects-filter-menu-clear");
+  var applyBtn = document.getElementById("projects-filter-apply");
+  var menuApplyBtn = document.getElementById("projects-filter-menu-apply");
   var resetBtn = document.getElementById("projects-filter-reset");
   var listEl = document.getElementById("projects-list");
   var searchWrap = document.getElementById("projects-filter-search");
@@ -34,7 +38,8 @@
 
   if (!filterEl || !comboEl || !triggerEl || !menuEl || !optionsEl || !listEl) return;
 
-  var activeClient = "";
+  var activeClients = [];
+  var draftClients = [];
   var activeQuery = "";
   var clients = [];
   var clientNames = {};
@@ -81,6 +86,10 @@
     }
   }
 
+  function hasActiveClients() {
+    return activeClients.length > 0;
+  }
+
   function setResetVisible(show) {
     if (!resetBtn) return;
 
@@ -94,7 +103,7 @@
       resetBtn.setAttribute("aria-hidden", "false");
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
-          if (activeClient) resetBtn.classList.add("is-visible");
+          if (hasActiveClients()) resetBtn.classList.add("is-visible");
         });
       });
       return;
@@ -104,7 +113,7 @@
     resetBtn.setAttribute("aria-hidden", "true");
     resetHideTimer = window.setTimeout(function () {
       resetHideTimer = null;
-      if (!activeClient) resetBtn.hidden = true;
+      if (!hasActiveClients()) resetBtn.hidden = true;
     }, 320);
   }
 
@@ -123,11 +132,6 @@
 
   function getSubnavEl() {
     return document.querySelector("[data-section-subnav]");
-  }
-
-  function isSubnavStuck() {
-    var subnav = getSubnavEl();
-    return !!(subnav && subnav.classList.contains("is-stuck"));
   }
 
   /* Sticky + transform = рывок (sticky срывается). Сначала фиксируем ленту, потом анимируем. */
@@ -167,7 +171,6 @@
   }
 
   function setSubnavAway(away) {
-    /* Лента и кнопка «наверх» уходят/возвращаются синхронно */
     setChromeAway(away);
     if (!pinnedSubnav) return;
     if (away) {
@@ -266,7 +269,22 @@
     return name ? normalizeClientKey(name) : "";
   }
 
-  function resolveClientParam(clientId) {
+  function cloneIds(ids) {
+    return (ids || []).slice();
+  }
+
+  function clientsToParam(ids) {
+    return (ids || []).filter(Boolean).join(",");
+  }
+
+  function hasClientInList(clientId) {
+    if (!clientId) return false;
+    return clients.some(function (client) {
+      return client.id === clientId;
+    });
+  }
+
+  function resolveOneClientParam(clientId) {
     if (!clientId) return "";
     if (hasClientInList(clientId)) return clientId;
 
@@ -277,6 +295,30 @@
     }
 
     return "";
+  }
+
+  function resolveClientParams(raw) {
+    if (!raw) return [];
+    if (Array.isArray(raw)) {
+      return raw
+        .map(function (id) {
+          return resolveOneClientParam(String(id || "").trim());
+        })
+        .filter(Boolean)
+        .filter(function (id, index, arr) {
+          return arr.indexOf(id) === index;
+        });
+    }
+
+    return String(raw)
+      .split(",")
+      .map(function (part) {
+        return resolveOneClientParam(part.trim());
+      })
+      .filter(Boolean)
+      .filter(function (id, index, arr) {
+        return arr.indexOf(id) === index;
+      });
   }
 
   function assignClientKeys() {
@@ -297,12 +339,71 @@
     return "проектов";
   }
 
+  function pluralClients(n) {
+    var mod10 = n % 10;
+    var mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 14) return "заказчиков";
+    if (mod10 === 1) return "заказчик";
+    if (mod10 >= 2 && mod10 <= 4) return "заказчика";
+    return "заказчиков";
+  }
+
   function formatProjectCount(n) {
     return n + " " + pluralProjects(n);
   }
 
   function isFilterActive() {
-    return !!(activeClient || activeQuery);
+    return !!(hasActiveClients() || activeQuery);
+  }
+
+  function isDraftSelected(id) {
+    return draftClients.indexOf(id) !== -1;
+  }
+
+  function syncOptionButton(btn) {
+    if (!btn) return;
+    var selected = isDraftSelected(btn.dataset.clientId || "");
+    btn.classList.toggle("is-selected", selected);
+    btn.setAttribute("aria-selected", selected ? "true" : "false");
+  }
+
+  function syncOptionButtons() {
+    optionsEl.querySelectorAll(".projects-filter__option").forEach(syncOptionButton);
+    if (modalOptionsEl) {
+      modalOptionsEl
+        .querySelectorAll(".projects-filter-modal__option")
+        .forEach(syncOptionButton);
+    }
+  }
+
+  function toggleDraftClient(id) {
+    if (!id) return;
+    var idx = draftClients.indexOf(id);
+    if (idx === -1) draftClients.push(id);
+    else draftClients.splice(idx, 1);
+    syncDraftClearButtons();
+    /* Не пересобираем список на клике — иначе кнопка уходит из DOM
+       и document-click считает это кликом «снаружи» и закрывает меню. */
+    syncOptionButtons();
+  }
+
+  function syncDraftClearButtons() {
+    var canClear = draftClients.length > 0;
+    [clearBtn, menuClearBtn].forEach(function (btn) {
+      if (!btn) return;
+      btn.disabled = !canClear;
+      btn.setAttribute("aria-disabled", canClear ? "false" : "true");
+    });
+  }
+
+  function syncDraftUI() {
+    syncDraftClearButtons();
+    renderOptions();
+  }
+
+  function beginDraftFromActive() {
+    draftClients = cloneIds(activeClients);
+    syncDraftClearButtons();
   }
 
   function updateYearCounts() {
@@ -335,6 +436,12 @@
     if (c && c.name) return stripHtml(c.name);
 
     return id;
+  }
+
+  function getClientsLabel(ids) {
+    if (!ids || !ids.length) return ALL_LABEL;
+    if (ids.length === 1) return getClientFullName(ids[0]);
+    return ids.length + " " + pluralClients(ids.length);
   }
 
   function loadClients() {
@@ -371,10 +478,10 @@
       });
   }
 
-  function itemMatchesClient(item, clientId) {
-    if (!clientId) return true;
+  function itemMatchesClients(item, clientIds) {
+    if (!clientIds || !clientIds.length) return true;
     var key = item.getAttribute("data-project-client-key") || getItemClientKey(item);
-    return key === clientId;
+    return clientIds.indexOf(key) !== -1;
   }
 
   function itemMatchesQuery(item, query) {
@@ -386,15 +493,8 @@
 
   function itemMatches(item) {
     if (activeQuery) return itemMatchesQuery(item, activeQuery);
-    if (activeClient) return itemMatchesClient(item, activeClient);
+    if (hasActiveClients()) return itemMatchesClients(item, activeClients);
     return true;
-  }
-
-  function hasClientInList(clientId) {
-    if (!clientId) return true;
-    return clients.some(function (client) {
-      return client.id === clientId;
-    });
   }
 
   function syncSearchInput() {
@@ -428,24 +528,29 @@
 
   function applyFilters(state, options) {
     var opts = options || {};
-    var nextClient = state && "client" in state ? state.client || "" : activeClient;
+    var nextClients =
+      state && "clients" in state
+        ? resolveClientParams(state.clients)
+        : cloneIds(activeClients);
     var nextQuery = state && "query" in state ? sanitizeQuery(state.query) : activeQuery;
 
-    if (opts.mode === "query" || (state && "query" in state && !("client" in state))) {
+    if (opts.mode === "query" || (state && "query" in state && !("clients" in state))) {
       activeQuery = nextQuery;
-      activeClient = "";
-    } else if (opts.mode === "client" || (state && "client" in state && !("query" in state))) {
-      activeClient = nextClient || "";
+      activeClients = [];
+    } else if (opts.mode === "client" || (state && "clients" in state && !("query" in state))) {
+      activeClients = nextClients;
       activeQuery = "";
-    } else if (state && "query" in state && "client" in state) {
+    } else if (state && "query" in state && "clients" in state) {
       if (nextQuery) {
         activeQuery = nextQuery;
-        activeClient = "";
+        activeClients = [];
       } else {
-        activeClient = nextClient || "";
+        activeClients = nextClients;
         activeQuery = "";
       }
     }
+
+    draftClients = cloneIds(activeClients);
 
     var visibleCount = 0;
 
@@ -471,8 +576,9 @@
 
     if (opts.updateUrl !== false) {
       var url = new URL(window.location.href);
-      if (activeClient) {
-        url.searchParams.set(PARAM_CLIENT, activeClient);
+      var clientParam = clientsToParam(activeClients);
+      if (clientParam) {
+        url.searchParams.set(PARAM_CLIENT, clientParam);
         url.searchParams.delete(PARAM_QUERY);
       } else if (activeQuery) {
         url.searchParams.set(PARAM_QUERY, activeQuery);
@@ -483,20 +589,23 @@
       }
       url.hash = "projects-all";
       history.replaceState(
-        { client: activeClient, q: activeQuery },
+        { client: clientParam, clients: cloneIds(activeClients), q: activeQuery },
         "",
         url.toString()
       );
     }
 
-    if (opts.scroll && (activeClient || activeQuery)) {
+    if (opts.scroll && (hasActiveClients() || activeQuery)) {
       var top = filterEl.getBoundingClientRect().top + window.scrollY - 96;
       window.scrollTo({ top: top, behavior: opts.scroll === "smooth" ? "smooth" : "auto" });
     }
   }
 
-  function applyFilter(clientId, options) {
-    applyFilters({ client: clientId || "" }, Object.assign({ mode: "client" }, options || {}));
+  function applyFilter(clientIds, options) {
+    applyFilters(
+      { clients: Array.isArray(clientIds) ? clientIds : clientIds ? [clientIds] : [] },
+      Object.assign({ mode: "client" }, options || {})
+    );
   }
 
   function applySearch(query, options) {
@@ -525,11 +634,11 @@
     if (!targetEl) return;
     targetEl.replaceChildren();
 
-    var visible = [{ id: "", name: ALL_LABEL }].concat(clients);
-    visible.forEach(function (item) {
+    clients.forEach(function (item) {
       var li = document.createElement("li");
       li.setAttribute("role", "presentation");
 
+      var selected = isDraftSelected(item.id);
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className =
@@ -538,15 +647,30 @@
           : "projects-filter__option";
       btn.setAttribute("role", "option");
       btn.dataset.clientId = item.id;
-      btn.textContent = item.name;
-      btn.setAttribute("aria-selected", item.id === activeClient ? "true" : "false");
+      btn.setAttribute("aria-selected", selected ? "true" : "false");
+      if (selected) btn.classList.add("is-selected");
 
-      if (item.id === activeClient) {
-        btn.classList.add("is-selected");
-      }
+      var check = document.createElement("span");
+      check.className =
+        targetEl === modalOptionsEl
+          ? "projects-filter-modal__check"
+          : "projects-filter__check";
+      check.setAttribute("aria-hidden", "true");
 
-      btn.addEventListener("click", function () {
-        selectClient(item.id, { scroll: false });
+      var label = document.createElement("span");
+      label.className =
+        targetEl === modalOptionsEl
+          ? "projects-filter-modal__option-label"
+          : "projects-filter__option-label";
+      label.textContent = item.name;
+
+      btn.appendChild(check);
+      btn.appendChild(label);
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleDraftClient(item.id);
       });
 
       li.appendChild(btn);
@@ -576,6 +700,7 @@
       if (modalEl && (modalOpen || !modalEl.hidden)) {
         setModalOpen(false);
       }
+      beginDraftFromActive();
       renderOptions();
       var firstFocus =
         optionsEl.querySelector(".projects-filter__option.is-selected") ||
@@ -583,6 +708,7 @@
       if (firstFocus) firstFocus.focus();
     } else {
       focusIndex = -1;
+      draftClients = cloneIds(activeClients);
     }
   }
 
@@ -598,7 +724,7 @@
 
     if (mobileBtn) {
       mobileBtn.setAttribute("aria-expanded", modalOpen ? "true" : "false");
-      mobileBtn.classList.toggle("is-active", modalOpen || !!activeClient);
+      mobileBtn.classList.toggle("is-active", modalOpen || hasActiveClients());
     }
 
     if (modalOpen) {
@@ -609,9 +735,9 @@
 
       lastFocusEl = document.activeElement;
 
-      /* Сначала фиксируем ленту на экране — иначе transform срывает sticky рывком */
       var canLift = pinSubnavForFilter();
       lockBodyScroll();
+      beginDraftFromActive();
       renderOptions();
 
       modalEl.hidden = false;
@@ -636,7 +762,6 @@
         focusEl(firstFocus);
       }
 
-      /* 1) лента плавно уезжает вверх, 2) потом открывается фильтр */
       window.requestAnimationFrame(function () {
         if (!modalOpen) return;
         window.requestAnimationFrame(function () {
@@ -657,15 +782,14 @@
       return;
     }
 
-    /* 1) сначала закрывается фильтр, 2) потом лента выезжает сверху */
     void modalEl.offsetWidth;
     modalEl.classList.remove("is-open");
     modalEl.classList.add("is-closing");
     focusEl(lastFocusEl);
     lastFocusEl = null;
+    draftClients = cloneIds(activeClients);
 
     var animMs = getModalAnimMs();
-    /* Ждём возврат хрома (лента + «наверх»), даже если лента не была pinned */
     var liftBackMs = getSubnavLiftMs();
 
     function finishClose() {
@@ -702,7 +826,7 @@
 
   function updateTriggerText() {
     if (triggerTextEl) {
-      triggerTextEl.textContent = getClientFullName(activeClient);
+      triggerTextEl.textContent = getClientsLabel(activeClients);
     }
   }
 
@@ -710,44 +834,48 @@
     updateTriggerText();
     filterEl.classList.toggle("is-active", isFilterActive());
     filterEl.classList.toggle("is-search-active", !!activeQuery);
-    filterEl.classList.toggle("is-client-active", !!activeClient);
+    filterEl.classList.toggle("is-client-active", hasActiveClients());
     listEl.classList.toggle("is-client-filter-active", isFilterActive());
-    if (clearBtn) {
-      var canClear = !!activeClient;
-      clearBtn.disabled = !canClear;
-      clearBtn.setAttribute("aria-disabled", canClear ? "false" : "true");
-      clearBtn.hidden = false;
-    }
-    setResetVisible(!!activeClient);
+    setResetVisible(hasActiveClients());
     if (mobileBtn) {
-      mobileBtn.classList.toggle("is-active", !!activeClient || modalOpen);
+      mobileBtn.classList.toggle("is-active", hasActiveClients() || modalOpen);
     }
-    renderOptions();
+    syncDraftClearButtons();
+    if (menuOpen || modalOpen) {
+      renderOptions();
+    }
   }
 
-  function clearClientFilter() {
-    applyFilter("", { scroll: false });
-    setModalOpen(false);
-    if (isMobile() && mobileBtn) focusEl(mobileBtn);
-    else focusEl(triggerEl);
+  function clearDraftSelection() {
+    draftClients = [];
+    syncDraftUI();
   }
 
-  function selectClient(clientId, options) {
-    var opts = Object.assign({}, options || {}, { scroll: false });
-    /* На мобиле: сначала закрыть модалку, потом фильтр */
+  function applyDraftAndClose() {
+    var next = cloneIds(draftClients);
     if (isMobile()) {
       setModalOpen(false);
-      applyFilter(clientId || "", opts);
+      applyFilter(next, { scroll: false });
       if (mobileBtn) focusEl(mobileBtn);
       return;
     }
-    applyFilter(clientId || "", opts);
+    applyFilter(next, { scroll: false });
     setMenuOpen(false);
     focusEl(triggerEl);
   }
 
+  function clearClientFilter() {
+    draftClients = [];
+    applyFilter([], { scroll: false });
+    setModalOpen(false);
+    setMenuOpen(false);
+    if (isMobile() && mobileBtn) focusEl(mobileBtn);
+    else focusEl(triggerEl);
+  }
+
   function clearAllFilters(options) {
-    applyFilters({ client: "", query: "" }, Object.assign({ mode: "query" }, options || {}));
+    draftClients = [];
+    applyFilters({ clients: [], query: "" }, Object.assign({ mode: "query" }, options || {}));
   }
 
   function focusOptionAt(index) {
@@ -799,10 +927,10 @@
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       focusOptionAt(focusIndex <= 0 ? 0 : focusIndex - 1);
-    } else if (e.key === "Enter" && focusIndex >= 0) {
+    } else if ((e.key === "Enter" || e.key === " ") && focusIndex >= 0) {
       e.preventDefault();
       var btn = buttons[focusIndex];
-      selectClient(btn.dataset.clientId, { scroll: false });
+      toggleDraftClient(btn.dataset.clientId);
     } else if (e.key === "Escape") {
       e.preventDefault();
       setMenuOpen(false);
@@ -812,13 +940,26 @@
 
   document.addEventListener("click", function (e) {
     if (!menuOpen) return;
-    if (!comboEl.contains(e.target)) {
-      setMenuOpen(false);
-    }
+    var path = typeof e.composedPath === "function" ? e.composedPath() : [];
+    var inside =
+      (path.length && path.indexOf(comboEl) !== -1) || comboEl.contains(e.target);
+    if (!inside) setMenuOpen(false);
   });
 
   if (clearBtn) {
-    clearBtn.addEventListener("click", clearClientFilter);
+    clearBtn.addEventListener("click", clearDraftSelection);
+  }
+
+  if (menuClearBtn) {
+    menuClearBtn.addEventListener("click", clearDraftSelection);
+  }
+
+  if (applyBtn) {
+    applyBtn.addEventListener("click", applyDraftAndClose);
+  }
+
+  if (menuApplyBtn) {
+    menuApplyBtn.addEventListener("click", applyDraftAndClose);
   }
 
   if (resetBtn) {
@@ -895,8 +1036,8 @@
       return;
     }
 
-    if (activeClient) {
-      applyFilter("");
+    if (hasActiveClients()) {
+      applyFilter([], { scroll: false });
       if (isMobile() && mobileBtn) mobileBtn.focus();
       else triggerEl.focus();
     }
@@ -925,13 +1066,15 @@
     var rawQ = sanitizeQuery(
       (e.state && e.state.q) || url.searchParams.get(PARAM_QUERY) || ""
     );
-    var rawClient =
-      (e.state && e.state.client) || url.searchParams.get(PARAM_CLIENT) || "";
+    var rawClients =
+      (e.state && (e.state.clients || e.state.client)) ||
+      url.searchParams.get(PARAM_CLIENT) ||
+      "";
 
     if (rawQ) {
       applySearch(rawQ, { updateUrl: false });
     } else {
-      applyFilter(resolveClientParam(rawClient), { updateUrl: false });
+      applyFilter(resolveClientParams(rawClients), { updateUrl: false });
     }
   });
 
@@ -948,7 +1091,7 @@
 
     var url = new URL(window.location.href);
     var fromQuery = sanitizeQuery(url.searchParams.get(PARAM_QUERY) || "");
-    var fromClient = resolveClientParam(url.searchParams.get(PARAM_CLIENT) || "");
+    var fromClients = resolveClientParams(url.searchParams.get(PARAM_CLIENT) || "");
     var shouldScroll = window.location.hash === "#projects-all" ? "auto" : "smooth";
 
     if (fromQuery) {
@@ -956,13 +1099,13 @@
         updateUrl: false,
         scroll: shouldScroll,
       });
-    } else if (fromClient) {
-      applyFilter(fromClient, {
+    } else if (fromClients.length) {
+      applyFilter(fromClients, {
         updateUrl: false,
         scroll: shouldScroll,
       });
     } else {
-      applyFilters({ client: "", query: "" }, { mode: "query", updateUrl: false });
+      applyFilters({ clients: [], query: "" }, { mode: "query", updateUrl: false });
     }
   }
 

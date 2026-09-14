@@ -17833,7 +17833,9 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 }
 
 .projects-filter__option {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
   width: 100%;
   margin: 0;
   padding: 0.62rem 0.85rem;
@@ -17862,9 +17864,91 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
 }
 
 .projects-filter__option.is-selected {
-  background: color-mix(in srgb, var(--accent) 14%, var(--bg));
-  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  color: var(--text);
   font-weight: 600;
+}
+
+.projects-filter__check {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.12rem;
+  border: 1.5px solid color-mix(in srgb, var(--text) 28%, var(--border));
+  border-radius: 4px;
+  background: var(--bg-elevated, var(--bg));
+  transition:
+    border-color 0.12s,
+    background-color 0.12s,
+    box-shadow 0.12s;
+}
+
+.projects-filter__option.is-selected .projects-filter__check {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2L4.8 8.5L9.5 3.5' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 0.72rem 0.72rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.projects-filter__option-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.projects-filter__menu-footer {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0.5rem;
+  padding: 0.65rem 0.7rem 0.7rem;
+  border-top: 1px solid var(--border);
+}
+
+.projects-filter__menu-clear,
+.projects-filter__menu-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.62rem 0.75rem;
+  border-radius: 8px;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s, opacity 0.15s;
+}
+
+.projects-filter__menu-clear {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.projects-filter__menu-clear:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  color: var(--accent);
+}
+
+.projects-filter__menu-clear:disabled,
+.projects-filter__menu-clear[aria-disabled="true"] {
+  opacity: 0.42;
+  color: var(--text-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.projects-filter__menu-apply {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.projects-filter__menu-apply:hover {
+  background: var(--accent-hover, color-mix(in srgb, var(--accent) 88%, #000));
+  border-color: var(--accent-hover, color-mix(in srgb, var(--accent) 88%, #000));
 }
 
 @media (min-width: 721px) {
@@ -18052,7 +18136,9 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
 }
 
 .projects-filter-modal__option {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   width: 100%;
   margin: 0;
   padding: 0.85rem 1.15rem;
@@ -18076,17 +18162,49 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
 }
 
 .projects-filter-modal__option.is-selected {
-  background: color-mix(in srgb, var(--accent) 12%, var(--bg));
-  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  color: var(--text);
   font-weight: 600;
 }
 
+.projects-filter-modal__check {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.1rem;
+  border: 1.5px solid color-mix(in srgb, var(--text) 28%, var(--border));
+  border-radius: 5px;
+  background: var(--bg-elevated, var(--bg));
+  transition:
+    border-color 0.12s,
+    background-color 0.12s;
+}
+
+.projects-filter-modal__option.is-selected .projects-filter-modal__check {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2L4.8 8.5L9.5 3.5' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 0.78rem 0.78rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.projects-filter-modal__option-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .projects-filter-modal__footer {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 0.55rem;
   padding: 0.65rem 1.1rem calc(0.9rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border);
 }
 
-.projects-filter-modal__clear {
+.projects-filter-modal__clear,
+.projects-filter-modal__apply {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -18094,15 +18212,18 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
   width: 100%;
   margin: 0;
   padding: 0.75rem 0.9rem;
-  border: 1px solid var(--border);
   border-radius: 10px;
-  background: var(--bg);
   font-family: var(--font-text);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text);
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s, background 0.15s, opacity 0.15s;
+}
+
+.projects-filter-modal__clear {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
 }
 
 .projects-filter-modal__clear:hover:not(:disabled) {
@@ -18116,6 +18237,17 @@ html:not([data-theme="dark"]) .projects-filter-modal__backdrop {
   color: var(--text-muted);
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.projects-filter-modal__apply {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.projects-filter-modal__apply:hover {
+  background: var(--accent-hover, color-mix(in srgb, var(--accent) 88%, #000));
+  border-color: var(--accent-hover, color-mix(in srgb, var(--accent) 88%, #000));
 }
 
 body.projects-filter-modal-open {
@@ -18222,6 +18354,34 @@ html.projects-filter-modal-open {
 
 .page-projects__list.is-client-filter-active .page-projects__item:not(.is-filtered-out) {
   scroll-margin-top: 7rem;
+}
+
+/* Активный фильтр/поиск: один общий список без заголовков годов */
+.page-projects__list.is-client-filter-active {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.6vw, 1.15rem);
+}
+
+.page-projects__list.is-client-filter-active .page-projects__year-group:not(.is-filtered-empty),
+.page-projects__list.is-client-filter-active .page-projects__items {
+  display: contents;
+}
+
+.page-projects__list.is-client-filter-active .page-projects__year-head {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .page-projects__list.is-client-filter-active {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page-projects__list.is-client-filter-active {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Заказчики с несколькими проектами — быстрый вход */

@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260914-subnav-menu-from-hero-contrast-v61" />
+    <link rel="stylesheet" href="styles.css?v=20260914-projects-filter-flat-list-v66" />
     <link rel="stylesheet" href="projects.css?v=20260914-subnav-menu-from-hero-contrast-v61" />
     <script>
       (function () {
@@ -572,7 +572,7 @@
                       aria-haspopup="listbox"
                       aria-expanded="false"
                       aria-controls="projects-filter-menu"
-                      aria-label="Фильтр по заказчику"
+                      aria-label="Фильтр по заказчикам"
                     >
                       <span class="projects-filter__trigger-text" id="projects-filter-trigger-text">Все заказчики</span>
                       <span class="projects-filter__trigger-icon" aria-hidden="true">
@@ -588,7 +588,7 @@
                       aria-haspopup="dialog"
                       aria-expanded="false"
                       aria-controls="projects-filter-modal"
-                      aria-label="Фильтр по заказчику"
+                      aria-label="Фильтр по заказчикам"
                     >
                       <svg class="projects-filter__mobile-btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M3 5.5h3.2M10.8 5.5H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -599,8 +599,32 @@
                         <circle cx="10" cy="14.5" r="1.85" stroke="currentColor" stroke-width="1.5"/>
                       </svg>
                     </button>
-                    <div class="projects-filter__menu" id="projects-filter-menu" role="listbox" hidden>
-                      <ul class="projects-filter__options" id="projects-filter-options" role="presentation"></ul>
+                    <div class="projects-filter__menu" id="projects-filter-menu" hidden>
+                      <ul
+                        class="projects-filter__options"
+                        id="projects-filter-options"
+                        role="listbox"
+                        aria-multiselectable="true"
+                        aria-label="Заказчики"
+                      ></ul>
+                      <div class="projects-filter__menu-footer">
+                        <button
+                          type="button"
+                          class="projects-filter__menu-clear"
+                          id="projects-filter-menu-clear"
+                          disabled
+                          aria-disabled="true"
+                        >
+                          Сбросить
+                        </button>
+                        <button
+                          type="button"
+                          class="projects-filter__menu-apply"
+                          id="projects-filter-menu-apply"
+                        >
+                          Применить
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -654,6 +678,7 @@
                     class="projects-filter-modal__options"
                     id="projects-filter-modal-options"
                     role="listbox"
+                    aria-multiselectable="true"
                     aria-label="Список заказчиков"
                   ></ul>
                   <div class="projects-filter-modal__footer">
@@ -664,10 +689,14 @@
                       disabled
                       aria-disabled="true"
                     >
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                        <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
-                      </svg>
-                      <span>Сбросить фильтр</span>
+                      Сбросить
+                    </button>
+                    <button
+                      type="button"
+                      class="projects-filter-modal__apply"
+                      id="projects-filter-apply"
+                    >
+                      Применить
                     </button>
                   </div>
                 </div>
@@ -1671,7 +1700,7 @@
     <script defer src="subpage-hero.js"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
     <script defer src="page-projects-cards.js"></script>
-    <script defer src="projects-filter.js?v=20260914-subnav-hero-menu-title-v55"></script>
+    <script defer src="projects-filter.js?v=20260914-projects-multi-client-filter-v65"></script>
     <script defer src="infra-reveal.js?v=20260910-projects-block01-reveal-v6"></script>
     <script defer src="huawei-subnav.js?v=20260914-ios-overscroll-header-v62"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
