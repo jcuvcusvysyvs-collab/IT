@@ -53,13 +53,13 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subn
 }
 
 @media (max-width: 900px) {
-  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item {
-    color: color-mix(in srgb, var(--text) 72%, transparent);
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item {
+    color: var(--text);
   }
 
-  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item.is-active {
     color: var(--text);
   }
 }
@@ -164,12 +164,12 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-vis
     object-position: left center;
   }
 
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item {
     color: var(--text);
   }
 
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:hover,
+  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:focus-visible {
     color: var(--text);
     background: transparent;
   }
