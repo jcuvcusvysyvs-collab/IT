@@ -1,0 +1,46 @@
+# DC Engineering — Apache (рег.ру)
+# Домен не зашит: работает и на engiineer.space, и на dce.su
+
+Options -Indexes
+
+# Кастомная 404
+ErrorDocument 404 /404.html
+
+# HTTPS (если SSL уже включён в панели)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Не отдавать конфиг почты напрямую
+<Files "send-form.config.php">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</Files>
+
+# Кэш статики; HTML без долгого кэша
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html?)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|woff2?|mp4|webm)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# MIME на всякий случай
+<IfModule mod_mime.c>
+  AddType video/mp4 .mp4
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+</IfModule>

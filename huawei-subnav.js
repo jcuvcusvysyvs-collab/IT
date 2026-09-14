@@ -718,6 +718,11 @@
 
       toggle.classList.remove("page-section-subnav__toggle--icons-open");
 
+      /* До is-stuck: на hero лента тёмная — не красить название в --text */
+      var openedFromHero = !subnav.classList.contains("is-stuck") && !isSubnavStuck();
+
+      subnav.classList.toggle("page-section-subnav--menu-from-hero", openedFromHero);
+
       subnav.classList.add("is-stuck", "page-section-subnav--menu-open");
 
       lockPageScroll();
@@ -793,7 +798,11 @@
         subnav.style.setProperty("z-index", "1300");
 
         panel.classList.remove("is-closing", "is-open");
-        subnav.classList.remove("page-section-subnav--panel-closing", "page-section-subnav--menu-open");
+        subnav.classList.remove(
+          "page-section-subnav--panel-closing",
+          "page-section-subnav--menu-open",
+          "page-section-subnav--menu-from-hero"
+        );
         toggle.classList.remove("page-section-subnav__toggle--icons-open");
         subnav.classList.add("is-stuck");
 

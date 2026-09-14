@@ -5,3 +5,6 @@ desktop.ini
 .env
 .env.*
 node_modules/
+
+# Архивы для заливки на хостинг (рег.ру) — локально нужны, в git не кладём
+deploy-*.zip

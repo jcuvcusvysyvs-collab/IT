@@ -190,7 +190,11 @@
     options = options || {};
 
     if (/[?&]sent=1(?:&|$)/.test(location.search)) {
-      setStatus(statusEl, "success", "Спасибо! Если это первая заявка, подтвердите адрес в письме на " + TEST_INBOX + " (проверьте «Спам»). Следующие заявки придут автоматически.");
+      setStatus(
+        statusEl,
+        "success",
+        "Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время."
+      );
     }
 
     form.addEventListener("submit", function (event) {
@@ -223,7 +227,7 @@
       }
 
       if (STATIC_HOST) {
-        setStatus(statusEl, "pending", "Отправляем заявку на " + TEST_INBOX + "...");
+        setStatus(statusEl, "pending", "Отправляем заявку...");
         window.setTimeout(function () {
           submitViaFormsubmit(form);
         }, 200);
@@ -235,7 +239,7 @@
           setStatus(
             statusEl,
             "success",
-            "Спасибо! Заявка отправлена на " + TEST_INBOX + "."
+            "Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время."
           );
           form.reset();
           var interestsValue = document.getElementById("infra-interests-value");
@@ -244,7 +248,7 @@
         .catch(function (error) {
           var code = error && error.code;
           if (code === "php_missing" || code === "php_not_running" || code === "mail_disabled") {
-            setStatus(statusEl, "pending", "Отправляем заявку на " + TEST_INBOX + "...");
+            setStatus(statusEl, "pending", "Отправляем заявку...");
             submitViaFormsubmit(form);
             return;
           }
@@ -258,12 +262,12 @@
     });
   }
 
-  bindForm("contacts-form", "contacts-form-status");
+  bindForm("contacts-form", "contacts-form-status", { mail: true });
   bindForm("infra-form", "infra-form-status", { mail: true });
-  bindForm("infosec-form", "infosec-form-status");
-  bindForm("scaling-form", "scaling-form-status");
-  bindForm("continuity-form", "continuity-form-status");
-  bindForm("ops-form", "ops-form-status");
-  bindForm("asdu-form", "asdu-form-status");
+  bindForm("infosec-form", "infosec-form-status", { mail: true });
+  bindForm("scaling-form", "scaling-form-status", { mail: true });
+  bindForm("continuity-form", "continuity-form-status", { mail: true });
+  bindForm("ops-form", "ops-form-status", { mail: true });
+  bindForm("asdu-form", "asdu-form-status", { mail: true });
   preventConsentTextSelection();
 })();

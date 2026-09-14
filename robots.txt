@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+# Тестовый хост engiineer.space — закрыт от индексации
+Sitemap: https://engiineer.space/sitemap.xml

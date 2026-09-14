@@ -10643,6 +10643,43 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
     color: var(--text);
   }
 
+  /*
+    Открыли меню ещё на hero (лента не успела «залипнуть»): фон остаётся тёмным,
+    а is-stuck включал светлую тему текста — название пропадало. Держим белый хром.
+  */
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--menu-open::before,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing::before,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__inner::after,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__inner::after {
+    background: #0a0e14;
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 10px 32px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__brand,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__brand,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__toggle,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__toggle {
+    color: #fff;
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__toggle,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__toggle {
+    color: #fff;
+    border-color: color-mix(in srgb, #fff 28%, transparent);
+    background: color-mix(in srgb, #fff 10%, transparent);
+  }
+
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__brand-icon,
+  html:not([data-theme="dark"]) .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__brand-icon {
+    background: #06080c;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 2px 10px rgba(232, 35, 42, 0.12);
+  }
+
   html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__panel,
   html:not([data-theme="dark"]) .page-section-subnav__panel.is-closing {
     border-top-color: var(--border);
