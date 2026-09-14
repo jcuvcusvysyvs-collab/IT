@@ -10,7 +10,7 @@
 .page-projects #main > .projects-hero.projects-hero--logos:first-child {
   margin-top: calc(-1 * var(--site-header-height, 5.5rem));
   box-sizing: border-box;
-  /* Только svh: 100dvh на iOS тянет тёмный hero под нижнюю панель Safari */
+  /* Как stage на infra/HUAWEI: опираемся на svh, без 100dvh под Safari */
   min-height: calc(100svh + var(--site-header-height, 5.5rem));
   height: calc(100svh + var(--site-header-height, 5.5rem));
 }
@@ -31,12 +31,27 @@
   background: var(--projects-hero-logos-bg);
   background-image: none;
   color: #fff;
-  /* Не color-scheme: dark — иначе Safari красит нижний хром в чёрный поверх светлой темы сайта */
 }
 
 /* Лента разделов на нижней границе hero — как на инфраструктуре / HUAWEI */
 .page-projects .page-sticky-scope > .page-section-subnav[data-section-subnav] {
   margin-top: calc(-1 * var(--hero-subnav-overlap, 4.75rem));
+}
+
+/* Плавный выход из тёмного hero в светлый контент — как .page-infra__showcase */
+.page-projects .page-projects__showcase.about-dce {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  border-top: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 48%, transparent) 14%,
+    color-mix(in srgb, var(--bg) 82%, transparent) 30%,
+    var(--bg) 46%,
+    var(--bg) 100%
+  );
 }
 
 .page-projects .projects-hero.projects-hero--logos::before {
@@ -292,39 +307,34 @@
 
 @media (max-width: 720px) {
   /*
-    Высокий hero (100svh), но светлая «подложка» снизу под полупрозрачную
-    панель Safari — иначе снова чёрная полоса, как с 100dvh.
+    Как на «Инфраструктурных решениях» / HUAWEI:
+    height:auto + min-height на svh (без фиксированного 100dvh).
+    Hero остаётся крупным (~92svh), но низ первого экрана уже светлый —
+    Safari не показывает чёрную полосу под адресной строкой.
   */
   .page-projects #main > .projects-hero.projects-hero--logos:first-child {
-    height: calc(100svh + var(--site-header-height, 5.5rem));
-    min-height: calc(100svh + var(--site-header-height, 5.5rem));
-    background-color: var(--bg, #f4f6fa);
+    height: auto;
+    min-height: calc(92svh + var(--site-header-height, 5.5rem));
+    background-color: var(--projects-hero-logos-bg, #0a0e14);
   }
 
   .page-projects .projects-hero.projects-hero--logos {
     --hero-subnav-overlap: 4.35rem;
-    --projects-hero-pad-bottom: 0;
-    --projects-safari-bottom-gap: max(5rem, calc(env(safe-area-inset-bottom, 0px) + 3.75rem));
+    --projects-hero-pad-bottom: calc(
+      var(--hero-subnav-overlap) + clamp(0.85rem, 2.5vw, 1.15rem)
+    );
     display: flex;
     flex-direction: column;
-    background: transparent;
-  }
-
-  .page-projects .projects-hero.projects-hero--logos::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: var(--projects-safari-bottom-gap);
-    z-index: 0;
-    pointer-events: none;
     background: var(--projects-hero-logos-bg, #0a0e14);
   }
 
+  .page-projects .projects-hero.projects-hero--logos::before {
+    content: none;
+    display: none;
+  }
+
   .page-projects .projects-hero.projects-hero--logos::after {
-    bottom: var(--projects-safari-bottom-gap);
+    inset: 0;
   }
 
   /* Текст сверху — кнопки поверх ленты */
@@ -378,10 +388,10 @@
     order: 2;
     z-index: 1;
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: 11rem;
     height: auto;
     margin: -2.75rem 0 0;
-    padding: 2.75rem 0 calc(var(--hero-subnav-overlap) + 0.35rem);
+    padding: 2.75rem 0 var(--projects-hero-pad-bottom, 4.7rem);
     overflow: hidden;
     opacity: 1;
     pointer-events: none;
@@ -411,7 +421,7 @@
 
   .projects-hero-logos__viewport {
     position: absolute;
-    inset: 0 var(--layout-gutter) calc(var(--hero-subnav-overlap) + var(--projects-safari-bottom-gap, 5rem));
+    inset: 0 var(--layout-gutter) calc(var(--hero-subnav-overlap) + 0.35rem);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
