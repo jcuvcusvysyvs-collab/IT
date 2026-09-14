@@ -77,10 +77,18 @@
     var pageColor = themeColorFor(theme);
     var subnav = document.querySelector("[data-section-subnav]");
     var header = document.querySelector(".site-header");
-    var subnavStuck = !!(subnav && subnav.classList.contains("is-stuck"));
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    if (scrollY < 0) scrollY = 0;
+    var subnavStuck = !!(subnav && subnav.classList.contains("is-stuck") && scrollY > 2);
     var headerHidden = !!(header && header.classList.contains("site-header--hidden"));
+    /* iOS overscroll: sticky top≈0 — не считаем ленту «у края», пока scrollY≈0 */
     var subnavAtTop =
-      !!(subnav && subnav.getBoundingClientRect && subnav.getBoundingClientRect().top <= 1);
+      !!(
+        subnav &&
+        scrollY > 2 &&
+        subnav.getBoundingClientRect &&
+        subnav.getBoundingClientRect().top <= 1
+      );
     var isAbout = document.body && document.body.classList.contains("page-about");
     var chromeColor = pageColor;
 

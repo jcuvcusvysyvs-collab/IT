@@ -277,6 +277,17 @@
 
     function update() {
       ticking = false;
+      var y = window.scrollY || window.pageYOffset || 0;
+      /* Overscroll вверх: не гасим фон/затемнение hero */
+      if (y <= 0) {
+        stage.style.setProperty("--hero-fade", "0");
+        stage.style.setProperty("--hero-shift", "0");
+        stage.style.setProperty("--projects-hero-fade", "0");
+        stage.style.setProperty("--projects-hero-shift", "0");
+        stage.classList.remove("is-scrolling");
+        return;
+      }
+
       var rect = stage.getBoundingClientRect();
       var range = Math.max(rect.height * 0.82, 1);
       var headerHeight =
@@ -340,10 +351,18 @@
 
     function updateStickyState() {
       ticking = false;
+      var y = window.scrollY || window.pageYOffset || 0;
+      if (y < 0) y = 0;
+
       var top = headerOffset();
       var scopeTop = scope.getBoundingClientRect().top;
       var stickyTop = sticky.getBoundingClientRect().top;
-      var isStuck = scopeTop <= top + 0.5 && stickyTop <= top + 1;
+      var engageY = Math.max(0, Math.round(scopeTop + y - top));
+      var isStuck =
+        y > 2 &&
+        y + 2 >= engageY &&
+        scopeTop <= top + 0.5 &&
+        stickyTop <= top + 1;
       var wasStuck = sticky.classList.contains("is-stuck");
       if (wasStuck !== isStuck) {
         sticky.classList.toggle("is-stuck", isStuck);

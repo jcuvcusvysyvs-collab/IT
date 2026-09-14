@@ -795,10 +795,19 @@
       /* На части страниц лента скрыта на desktop (display:none) — не блокируем шапку */
       if (subnav.getClientRects().length === 0) return false;
 
+      var y = window.scrollY || window.pageYOffset || 0;
+      if (y < 0) y = 0;
+      /* iOS pull-to-refresh: sticky-rect'ы лгут у верха — не прячем шапку */
+      if (y <= 2) return false;
+
       var headerHeight =
         parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue("--site-header-height")
         ) || 72;
+
+      var scopeTopDoc = scope.getBoundingClientRect().top + y;
+      var engageY = Math.max(0, Math.round(scopeTopDoc - headerHeight));
+      if (y + 2 < engageY) return false;
 
       return scope.getBoundingClientRect().top <= headerHeight + 0.5;
     }

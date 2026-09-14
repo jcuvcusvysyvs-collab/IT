@@ -254,16 +254,29 @@
 
 
 
+  function pageScrollY() {
+    var y = window.scrollY || window.pageYOffset || 0;
+    /* iOS rubber-band / pull-to-refresh может дать отрицательный scrollY */
+    return y < 0 ? 0 : y;
+  }
+
   function isSubnavStuck() {
+    /*
+      На iOS при тяге вниз (overscroll) sticky-rect'ы временно «лгут»
+      (top ≈ 0), и лента ложно считается залипшей → пропадает шапка.
+      Не считаем stuck, пока страница у самого верха / до точки залипания.
+    */
+    var y = pageScrollY();
+    if (y <= 2) return false;
+
+    var engageY = stickyAnchorY();
+    if (y + 2 < engageY) return false;
 
     var top = headerOffset();
-
     var scopeTop = scope.getBoundingClientRect().top;
-
     var stickyTop = subnav.getBoundingClientRect().top;
 
     return scopeTop <= top + 0.5 && stickyTop <= top + 1;
-
   }
 
 
@@ -407,13 +420,22 @@
 
 
   function setForceHeaderHidden(on) {
+    var wasForced = document.body.classList.contains(
+      "page-section-subnav-force-header-hidden"
+    );
 
     document.body.classList.toggle("page-section-subnav-force-header-hidden", !!on);
+    document.documentElement.classList.toggle(
+      "page-section-subnav-force-header-hidden",
+      !!on
+    );
 
-    document.documentElement.classList.toggle("page-section-subnav-force-header-hidden", !!on);
-
-    if (on) hideSiteHeader();
-
+    if (on) {
+      hideSiteHeader();
+    } else if (wasForced && !isOpen) {
+      /* Снимаем залипший --hidden после ложного stuck на overscroll */
+      showSiteHeader();
+    }
   }
 
 
