@@ -8428,7 +8428,7 @@ html[data-theme="dark"] .footer-widget #widget1 {
   width: 100%;
   max-width: var(--layout-max);
   margin: 0 auto;
-  padding: 1.15rem var(--layout-gutter) 1.35rem;
+  padding: 1.15rem var(--layout-gutter) calc(1.35rem + env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
   display: flex;
   align-items: center;

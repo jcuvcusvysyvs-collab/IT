@@ -10,10 +10,9 @@
 .page-projects #main > .projects-hero.projects-hero--logos:first-child {
   margin-top: calc(-1 * var(--site-header-height, 5.5rem));
   box-sizing: border-box;
+  /* Только svh: 100dvh на iOS тянет тёмный hero под нижнюю панель Safari */
   min-height: calc(100svh + var(--site-header-height, 5.5rem));
-  min-height: calc(100dvh + var(--site-header-height, 5.5rem));
   height: calc(100svh + var(--site-header-height, 5.5rem));
-  height: calc(100dvh + var(--site-header-height, 5.5rem));
 }
 
 .page-projects .projects-hero.projects-hero--logos {
@@ -32,7 +31,7 @@
   background: var(--projects-hero-logos-bg);
   background-image: none;
   color: #fff;
-  color-scheme: dark;
+  /* Не color-scheme: dark — иначе Safari красит нижний хром в чёрный поверх светлой темы сайта */
 }
 
 /* Лента разделов на нижней границе hero — как на инфраструктуре / HUAWEI */
@@ -292,12 +291,10 @@
 }
 
 @media (max-width: 720px) {
-  /* Полноэкранный hero */
+  /* Как infra: не растягивать тёмный hero на 100dvh под Safari bottom chrome */
   .page-projects #main > .projects-hero.projects-hero--logos:first-child {
-    height: calc(100svh + var(--site-header-height, 5.5rem));
-    height: calc(100dvh + var(--site-header-height, 5.5rem));
-    min-height: calc(100svh + var(--site-header-height, 5.5rem));
-    min-height: calc(100dvh + var(--site-header-height, 5.5rem));
+    height: auto;
+    min-height: calc(72svh + var(--site-header-height, 5.5rem));
   }
 
   .page-projects .projects-hero.projects-hero--logos {
