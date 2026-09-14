@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260914-subnav-hero-menu-title-v55" />
+    <link rel="stylesheet" href="styles.css?v=20260914-safari-theme-color-v56" />
     <link rel="stylesheet" href="about.css?v=20260902-achievement-grid-v1" />
     <script>
       (function () {
@@ -36,25 +36,32 @@
             r.removeAttribute("data-theme");
           }
         } catch (e) {}
-        function ensureMeta(name, content) {
-          var meta = document.querySelector('meta[name="' + name + '"]');
+        function ensureMeta(name, content, media) {
+          var sel = 'meta[name="' + name + '"]';
+          if (media) sel += '[media="' + media + '"]';
+          else sel += ':not([media])';
+          var meta = document.querySelector(sel);
           if (!meta) {
             meta = document.createElement("meta");
             meta.setAttribute("name", name);
+            if (media) meta.setAttribute("media", media);
             document.head.appendChild(meta);
           }
           meta.setAttribute("content", content);
         }
-        ensureMeta("theme-color", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
+        var chrome = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+        ensureMeta("theme-color", chrome);
+        ensureMeta("theme-color", chrome, "(prefers-color-scheme: light)");
+        ensureMeta("theme-color", chrome, "(prefers-color-scheme: dark)");
         ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
-        r.style.setProperty("--safari-chrome-bg", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
-        r.style.backgroundColor = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+        r.style.setProperty("--safari-chrome-bg", chrome);
+        r.style.backgroundColor = chrome;
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260904-theme-toggle3-v1"></script>
+    <script defer src="theme.js?v=20260914-safari-theme-color-v56"></script>
   </head>
   <body class="page-about">
     <a class="skip-link" href="#main">К основному содержимому</a>
@@ -1853,7 +1860,7 @@
 <script defer src="subpage-hero.js"></script>
     <script defer src="about-page.js?v=20260723-cert-lb"></script>
     <script defer src="nav.js?v=20260909-header-subnav-visible-v1"></script>
-    <script defer src="huawei-subnav.js?v=20260914-subnav-hero-menu-title-v55"></script>
+    <script defer src="huawei-subnav.js?v=20260914-safari-theme-color-v56"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
       <script defer src="footer-mos-widget.js?v=20260821-mos-widget-v3"></script>
       <script defer src="scroll-top.js?v=20260826-scroll-top-v2"></script>

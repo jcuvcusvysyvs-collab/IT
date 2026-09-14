@@ -53,15 +53,24 @@
     return theme === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
   }
 
-  function setMeta(name, content) {
+  function clearMetas(name) {
     var existing = document.querySelectorAll('meta[name="' + name + '"]');
     for (var i = 0; i < existing.length; i++) {
       existing[i].parentNode.removeChild(existing[i]);
     }
+  }
+
+  function appendMeta(name, content, media) {
     var meta = document.createElement("meta");
     meta.setAttribute("name", name);
     meta.setAttribute("content", content);
+    if (media) meta.setAttribute("media", media);
     document.head.appendChild(meta);
+  }
+
+  function setMeta(name, content) {
+    clearMetas(name);
+    appendMeta(name, content);
   }
 
   function syncSafariChrome(theme) {
@@ -85,6 +94,7 @@
     }
 
     root.style.setProperty("--safari-chrome-bg", chromeColor);
+    /* Фон страницы всегда = тема сайта (нижняя зона Safari / home indicator) */
     root.style.backgroundColor = pageColor;
 
     if (document.body) {
@@ -118,7 +128,15 @@
 
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
-    setMeta("theme-color", color);
+    /*
+      Safari на iPhone часто красит нижнюю панель по prefers-color-scheme ОС,
+      а не по теме сайта. Дублируем theme-color для light/dark media —
+      иначе при светлом сайте и тёмной системе снизу чёрная полоса.
+    */
+    clearMetas("theme-color");
+    appendMeta("theme-color", color);
+    appendMeta("theme-color", color, "(prefers-color-scheme: light)");
+    appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
     setMeta(
       "apple-mobile-web-app-status-bar-style",
       color === THEME_COLOR_DARK ? "black-translucent" : "default"

@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260914-subnav-hero-menu-title-v55" />
+    <link rel="stylesheet" href="styles.css?v=20260914-safari-theme-color-v56" />
     <link rel="stylesheet" href="projects.css?v=20260714-project-case-light" />
     <script>
       (function () {
@@ -36,25 +36,32 @@
             r.removeAttribute("data-theme");
           }
         } catch (e) {}
-        function ensureMeta(name, content) {
-          var meta = document.querySelector('meta[name="' + name + '"]');
+        function ensureMeta(name, content, media) {
+          var sel = 'meta[name="' + name + '"]';
+          if (media) sel += '[media="' + media + '"]';
+          else sel += ':not([media])';
+          var meta = document.querySelector(sel);
           if (!meta) {
             meta = document.createElement("meta");
             meta.setAttribute("name", name);
+            if (media) meta.setAttribute("media", media);
             document.head.appendChild(meta);
           }
           meta.setAttribute("content", content);
         }
-        ensureMeta("theme-color", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
+        var chrome = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+        ensureMeta("theme-color", chrome);
+        ensureMeta("theme-color", chrome, "(prefers-color-scheme: light)");
+        ensureMeta("theme-color", chrome, "(prefers-color-scheme: dark)");
         ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
-        r.style.setProperty("--safari-chrome-bg", dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
-        r.style.backgroundColor = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+        r.style.setProperty("--safari-chrome-bg", chrome);
+        r.style.backgroundColor = chrome;
         r.classList.add("is-loading");
         r.setAttribute("aria-busy", "true");
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260904-theme-toggle3-v1"></script>
+    <script defer src="theme.js?v=20260914-safari-theme-color-v56"></script>
   </head>
   <body class="page-project-case page-project-waterco-rcod-support">
     <a class="skip-link" href="#main">К основному содержимому</a>

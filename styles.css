@@ -253,6 +253,7 @@ html {
   touch-action: manipulation;
   -ms-touch-action: manipulation;
   background: var(--bg);
+  background-color: var(--bg);
 }
 
 body {
@@ -264,7 +265,9 @@ body {
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
+  background-color: var(--bg);
   min-height: 100dvh;
+  min-height: -webkit-fill-available;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
