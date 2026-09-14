@@ -291,17 +291,40 @@
 }
 
 @media (max-width: 720px) {
-  /* Полноэкранный hero на «маленьком» viewport (svh), без 100dvh под панель Safari */
+  /*
+    Высокий hero (100svh), но светлая «подложка» снизу под полупрозрачную
+    панель Safari — иначе снова чёрная полоса, как с 100dvh.
+  */
   .page-projects #main > .projects-hero.projects-hero--logos:first-child {
     height: calc(100svh + var(--site-header-height, 5.5rem));
     min-height: calc(100svh + var(--site-header-height, 5.5rem));
+    background-color: var(--bg, #f4f6fa);
   }
 
   .page-projects .projects-hero.projects-hero--logos {
     --hero-subnav-overlap: 4.35rem;
     --projects-hero-pad-bottom: 0;
+    --projects-safari-bottom-gap: max(5rem, calc(env(safe-area-inset-bottom, 0px) + 3.75rem));
     display: flex;
     flex-direction: column;
+    background: transparent;
+  }
+
+  .page-projects .projects-hero.projects-hero--logos::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: var(--projects-safari-bottom-gap);
+    z-index: 0;
+    pointer-events: none;
+    background: var(--projects-hero-logos-bg, #0a0e14);
+  }
+
+  .page-projects .projects-hero.projects-hero--logos::after {
+    bottom: var(--projects-safari-bottom-gap);
   }
 
   /* Текст сверху — кнопки поверх ленты */
@@ -388,7 +411,7 @@
 
   .projects-hero-logos__viewport {
     position: absolute;
-    inset: 0 var(--layout-gutter) calc(var(--hero-subnav-overlap) + 0.35rem);
+    inset: 0 var(--layout-gutter) calc(var(--hero-subnav-overlap) + var(--projects-safari-bottom-gap, 5rem));
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
