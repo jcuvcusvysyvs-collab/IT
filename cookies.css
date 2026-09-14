@@ -714,7 +714,8 @@ html:not([data-theme="dark"]) .page-cookies .page-section-subnav .page-section-s
   background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
 }
 
-html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-subnav--menu-open::before {
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-subnav--menu-open::before,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-subnav--panel-closing::before {
   background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
   border-bottom-color: var(--border);
   box-shadow:
@@ -722,13 +723,63 @@ html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-su
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
-html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel {
+/*
+  Меню с hero: не берём тёмный «щит» Huawei — лента cookies всегда светлая,
+  иначе название «Настройки cookie» становится невидимым.
+*/
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--menu-open::before,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing::before,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__inner::after,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__inner::after {
+  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow:
+    0 6px 24px rgba(15, 18, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__brand,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__brand,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__toggle,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__toggle {
+  color: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__toggle,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__toggle {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
+  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__brand-icon,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__brand-icon {
+  background: transparent;
+  box-shadow: none;
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__panel,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero .page-section-subnav__panel.is-closing {
   background: var(--bg-elevated);
   border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  border-top-color: var(--border);
   box-shadow:
     0 20px 48px rgba(15, 18, 24, 0.11),
     0 8px 22px rgba(15, 18, 24, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item {
+  color: var(--text);
+}
+
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item:hover,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
+html:not([data-theme="dark"]) .page-cookies .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item.is-active {
+  color: var(--text);
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-cookies .page-section-subnav .projects-hero-switcher {
