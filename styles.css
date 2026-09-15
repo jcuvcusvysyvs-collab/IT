@@ -1963,13 +1963,21 @@ body.callback-modal-open {
   }
 }
 
-/* На время VT глушим цветовые transition — иначе вспышка до клип-паса */
+/* На время VT: без цветовых transition; маркью логотипов — только пауза (не сброс duration) */
 html.theme-vt-active,
-html.theme-vt-active *,
-html.theme-vt-active *::before,
-html.theme-vt-active *::after {
+html.theme-vt-active body,
+html.theme-vt-active .site-header,
+html.theme-vt-active .page-section-subnav,
+html.theme-vt-active .theme-switch__btn {
   transition: none !important;
-  animation-duration: 0.001ms !important;
+}
+
+html.theme-vt-active .projects-hero-logos__track,
+html.theme-vt-active .clients-showcase__track,
+html.theme-vt-active .huawei-clients__track,
+html.theme-vt-active [data-clients-marquee] [class*="__track"] {
+  animation-play-state: paused !important;
+  will-change: auto !important;
 }
 
 .theme-switch__icon {

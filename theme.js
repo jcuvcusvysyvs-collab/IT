@@ -285,34 +285,41 @@
     themeTransitionBusy = true;
     root.classList.add("theme-vt-active");
 
-    var transition = document.startViewTransition(function () {
-      applyTheme(nextTheme);
-      syncToggle(nextTheme);
-    });
-
-    transition.ready
-      .then(function () {
-        document.documentElement.animate([keyframes.from, keyframes.to], {
-          duration: TRANSITION_MS,
-          easing: "cubic-bezier(0.32, 0.72, 0, 1)",
-          fill: "both",
-          pseudoElement: "::view-transition-new(root)",
-        });
-      })
-      .catch(function () {
-        /* ignore */
+    function startVt() {
+      var transition = document.startViewTransition(function () {
+        applyTheme(nextTheme);
+        syncToggle(nextTheme);
       });
 
-    function cleanup() {
-      themeTransitionBusy = false;
-      root.classList.remove("theme-vt-active");
+      transition.ready
+        .then(function () {
+          document.documentElement.animate([keyframes.from, keyframes.to], {
+            duration: TRANSITION_MS,
+            easing: "cubic-bezier(0.32, 0.72, 0, 1)",
+            fill: "both",
+            pseudoElement: "::view-transition-new(root)",
+          });
+        })
+        .catch(function () {
+          /* ignore */
+        });
+
+      function cleanup() {
+        themeTransitionBusy = false;
+        root.classList.remove("theme-vt-active");
+      }
+
+      if (transition.finished && typeof transition.finished.then === "function") {
+        transition.finished.then(cleanup).catch(cleanup);
+      } else {
+        window.setTimeout(cleanup, TRANSITION_MS + 80);
+      }
     }
 
-    if (transition.finished && typeof transition.finished.then === "function") {
-      transition.finished.then(cleanup).catch(cleanup);
-    } else {
-      window.setTimeout(cleanup, TRANSITION_MS + 80);
-    }
+    /* 2× rAF: pause маркью успевает примениться до снимка VT */
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(startVt);
+    });
   }
 
   applyResolved();
