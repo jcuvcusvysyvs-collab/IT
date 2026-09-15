@@ -115,10 +115,10 @@
         subnav.getBoundingClientRect &&
         subnav.getBoundingClientRect().top <= 1
       );
-    var isAbout = document.body && document.body.classList.contains("page-about");
     var chromeColor = pageColor;
 
-    if (theme === "light" && subnav && !subnavStuck && !isAbout) {
+    /* Тёмный full-bleed hero (в т.ч. «О компании»): светлая тема → тёмный chrome, пока лента не sticky */
+    if (theme === "light" && subnav && !subnavStuck) {
       chromeColor = THEME_COLOR_DARK;
     }
 
@@ -146,7 +146,7 @@
     if (subnav) {
       if (subnavStuck || subnavAtTop) {
         subnav.style.backgroundColor = pageColor;
-      } else if (theme === "light" && !isAbout) {
+      } else if (theme === "light") {
         subnav.style.backgroundColor = THEME_COLOR_DARK;
       } else {
         subnav.style.removeProperty("background-color");

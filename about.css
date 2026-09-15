@@ -1,20 +1,12 @@
 /* Страница «О компании» — липкая лента (как на «Проекты») */
 
 /*
-  Исключение: на «О компании» лента не принудительно тёмная поверх hero.
-  Цвет полностью следует теме пользователя (светлая / тёмная).
+  На тёмном hero лента тёмная (как infra/HUAWEI).
+  Светлая тема включается только после закрепления (.is-stuck).
 */
-html:not([data-theme="dark"]) .page-about .page-section-subnav {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck {
   --subnav-link: color-mix(in srgb, var(--text) 68%, transparent);
   --subnav-link-hover: var(--text);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav::before {
-  background: color-mix(in srgb, var(--bg) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 8px 28px rgba(15, 18, 24, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck::before {
@@ -25,18 +17,18 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck::before 
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
-html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__brand {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__brand {
   color: var(--text);
 }
 
-html:not([data-theme="dark"]) .page-about .page-section-subnav .page-section-subnav__toggle {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__toggle {
   color: var(--text);
   border-color: color-mix(in srgb, var(--text) 14%, var(--border));
   background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
 }
 
-html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subnav--menu-open::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subnav--panel-closing::before {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck.page-section-subnav--menu-open::before,
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck.page-section-subnav--panel-closing::before {
   background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
   border-bottom-color: var(--border);
   box-shadow:
@@ -44,23 +36,16 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subn
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
-/* Как cookies: светлая лента, даже если меню открыли ещё на hero */
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__inner::after,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__inner::after {
+/* Меню с hero: панель светлая; бренд/тогл на тёмном hero остаются светлыми */
+html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open:not(.is-stuck)::before,
+html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing:not(.is-stuck)::before,
+html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open:not(.is-stuck) .page-section-subnav__inner::after,
+html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing:not(.is-stuck) .page-section-subnav__inner::after {
   background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
   border-bottom-color: var(--border);
   box-shadow:
     0 6px 24px rgba(15, 18, 24, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__brand,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__brand,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__toggle,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing .page-section-subnav__toggle {
-  color: var(--text);
 }
 
 html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__toggle,
@@ -148,7 +133,7 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .
   object-fit: contain;
 }
 
-html:not([data-theme="dark"]) .page-about .page-section-subnav__brand-icon {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__brand-icon {
   background: transparent;
   box-shadow: none;
 }
@@ -164,8 +149,8 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav__brand-icon {
   box-shadow: var(--focus-ring);
 }
 
-html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:hover,
-html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-visible {
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__toggle:hover,
+html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__toggle:focus-visible {
   color: var(--text);
   border-color: color-mix(in srgb, var(--text) 28%, var(--border));
   background: color-mix(in srgb, var(--text) 6%, var(--bg-elevated));
@@ -300,3 +285,313 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav__toggle:focus-vis
   }
 }
 
+
+
+/* ——— Full-viewport about hero ——— */
+.page-about {
+  --about-hero-bg: #050a14;
+  --about-hero-title: #fff;
+  --about-hero-lead: rgba(255, 255, 255, 0.84);
+  --about-hero-accent: #5b9fd4;
+  --hero-subnav-overlap: 4.75rem;
+}
+
+.page-about .page-about__hero-stage {
+  --hero-header-clearance: calc(
+    var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px)
+  );
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--about-hero-bg);
+  color-scheme: dark;
+  padding-top: var(--hero-header-clearance);
+  padding-bottom: 0;
+}
+
+.page-about #main > .projects-hero-stage:first-child {
+  padding-top: var(--hero-header-clearance);
+}
+
+.page-about .page-about__hero-stage .projects-hero__background {
+  position: absolute;
+  inset: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--about-hero-bg);
+}
+
+.page-about .page-about__hero-stage .projects-hero__background::before {
+  content: none;
+  display: none;
+}
+
+.page-about .page-about__hero-stage .projects-hero__background::after {
+  content: none;
+  display: none;
+}
+
+.page-about .page-about__hero-stage[data-hero-grid] {
+  pointer-events: auto;
+  --hero-fade: 0;
+  --hero-shift: 0;
+}
+
+.page-about .page-about__hero-stage[data-hero-grid] .projects-hero__background {
+  opacity: calc(1 - var(--hero-fade) * 0.5);
+  transform: translate3d(0, calc(var(--hero-shift) * -1.1rem), 0);
+}
+
+.page-about .page-about__hero-stage[data-hero-grid] .projects-hero__content {
+  transform: translate3d(0, calc(var(--hero-shift) * -1.35rem), 0);
+  opacity: calc(1 - var(--hero-fade) * 0.9);
+  position: relative;
+  z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-about .page-about__hero-stage[data-hero-grid] .projects-hero__background,
+  .page-about .page-about__hero-stage[data-hero-grid] .projects-hero__content {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Контент hero — как на infra */
+.page-about .projects-hero.subpage-hero--about {
+  --hero-subnav-overlap: 4.75rem;
+  --projects-hero-pad-top: clamp(3.75rem, 8vh, 5.5rem);
+  --projects-hero-pad-bottom: calc(
+    var(--hero-subnav-overlap) + clamp(1.35rem, 2.8vw, 2.15rem)
+  );
+  --projects-hero-crumbs-gap: clamp(1.5rem, 3.5vw, 2.25rem);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  padding: var(--projects-hero-pad-top) 0 var(--projects-hero-pad-bottom);
+  overflow: visible;
+  background: transparent;
+  color: var(--about-hero-title);
+  color-scheme: dark;
+  pointer-events: auto;
+}
+
+.page-about .projects-hero.subpage-hero--about::before,
+.page-about .projects-hero.subpage-hero--about::after {
+  content: none;
+  display: none;
+}
+
+.page-about .projects-hero--yandex .subpage-hero__inner,
+.page-about .projects-hero__inner--left {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: 0 var(--layout-gutter);
+  flex: none;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.page-about .projects-hero__inner--left a {
+  pointer-events: auto;
+}
+
+.page-about .projects-hero--yandex .projects-hero__content,
+.page-about .projects-hero--yandex .subpage-hero__content {
+  align-items: flex-start;
+  text-align: left;
+  max-width: min(36rem, 100%);
+  margin-inline: 0;
+  gap: clamp(1.15rem, 2.4vw, 1.85rem);
+}
+
+.page-about .projects-hero .subpage-breadcrumbs {
+  margin: 0 0 var(--projects-hero-crumbs-gap);
+  width: 100%;
+}
+
+.page-about .projects-hero .subpage-hero__title,
+.page-about .projects-hero--yandex .projects-hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.2rem, 0.6vw, 0.45rem);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.1rem, 8.5vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.012em;
+  color: var(--about-hero-title);
+  text-align: left;
+  text-wrap: balance;
+  text-shadow: none;
+}
+
+.page-about .projects-hero .subpage-hero__lead,
+.page-about .projects-hero--yandex .projects-hero__lead {
+  margin: 0;
+  max-width: min(32rem, 100%);
+  font-family: var(--font-text);
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-weight: 450;
+  line-height: 1.62;
+  letter-spacing: 0.016em;
+  color: var(--about-hero-lead);
+  text-align: left;
+  text-wrap: balance;
+  text-shadow: none;
+}
+
+.page-about .page-about__hero .subpage-breadcrumbs__link,
+.page-about .page-about__hero .subpage-breadcrumbs__item,
+.page-about .page-about__hero .subpage-breadcrumbs__sep {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.page-about .page-about__hero .subpage-breadcrumbs__link:hover,
+.page-about .page-about__hero .subpage-breadcrumbs__link:focus-visible {
+  color: #fff;
+}
+
+.page-about .page-about__hero .subpage-breadcrumbs__item[aria-current="page"] {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.page-about .projects-hero .subpage-breadcrumbs__item {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.page-about .projects-hero .subpage-breadcrumbs__item:not(:first-child)::before {
+  content: "";
+  display: block;
+  width: 0.4375rem;
+  height: 0.6875rem;
+  margin: 0 0.8rem;
+  background-color: rgba(255, 255, 255, 0.42);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Cpath fill='%23000' d='M1.5 1.2 6.8 6 1.5 10.8 3.1 6z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Cpath fill='%23000' d='M1.5 1.2 6.8 6 1.5 10.8 3.1 6z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: transparent;
+  opacity: 0.85;
+}
+
+.page-about .projects-hero .subpage-breadcrumbs__link::after {
+  display: none;
+}
+
+.page-about .projects-hero-actions {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem 1rem;
+  margin-top: clamp(0.15rem, 0.45vw, 0.35rem);
+  pointer-events: auto;
+}
+
+.page-about .projects-hero-actions .btn {
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border-width: 0.5px;
+  padding: 0.875rem 1.75rem;
+}
+
+.page-about .projects-hero .subpage-hero__actions .btn--ghost-light {
+  font-weight: 500;
+  color: color-mix(in srgb, #fff 78%, transparent);
+  border-color: color-mix(in srgb, #fff 22%, transparent);
+  background: color-mix(in srgb, #fff 4%, transparent);
+}
+
+.page-about .projects-hero .subpage-hero__actions .btn--ghost-light:hover {
+  color: #fff;
+  border-color: color-mix(in srgb, var(--about-hero-accent) 42%, transparent);
+  background: color-mix(in srgb, var(--about-hero-accent) 14%, transparent);
+}
+
+.page-about .projects-hero .subpage-hero__actions .btn--ghost-light:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--about-hero-accent) 45%, transparent);
+}
+
+.page-about .subpage-hero__eyebrow {
+  color: color-mix(in srgb, #ffffff 88%, var(--accent) 12%);
+}
+
+.page-about .subpage-hero__eyebrow-dot {
+  background: var(--accent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 48%, transparent);
+}
+
+.page-about__showcase.about-dce {
+  border-top: none;
+}
+
+@media (max-width: 960px) {
+  .page-about .projects-hero--yandex .projects-hero__content,
+  .page-about .projects-hero--yandex .subpage-hero__content {
+    max-width: min(28rem, 100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .page-about #main > .projects-hero-stage:first-child {
+    height: auto;
+    min-height: calc(78svh + var(--site-header-height, 5.5rem));
+    min-height: calc(78dvh + var(--site-header-height, 5.5rem));
+  }
+
+  .page-about {
+    --hero-subnav-overlap: 4.75rem;
+  }
+
+  .page-about .projects-hero.subpage-hero--about {
+    --projects-hero-pad-bottom: calc(
+      var(--hero-subnav-overlap) + clamp(1.15rem, 3.5vw, 1.75rem)
+    );
+  }
+
+  .page-about .projects-hero .subpage-hero__title,
+  .page-about .projects-hero--yandex .projects-hero__title {
+    font-size: clamp(2.65rem, 12vw, 3.6rem);
+  }
+
+  .page-about .projects-hero .subpage-hero__lead,
+  .page-about .projects-hero--yandex .projects-hero__lead {
+    font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+  }
+}

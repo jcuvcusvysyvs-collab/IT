@@ -18,8 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260915-theme-vt-logos-pause-v69" />
-    <link rel="stylesheet" href="about.css?v=20260914-cookies-menu-from-hero-light-v63" />
+    <link rel="stylesheet" href="styles.css?v=20260915-about-hero-no-mask-v85" />
+    <link rel="stylesheet" href="about.css?v=20260915-about-hero-no-mask-v85" />
     <script>
       (function () {
         var r = document.documentElement;
@@ -61,7 +61,7 @@
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260915-theme-vt-logos-pause-v69"></script>
+    <script defer src="theme.js?v=20260915-about-hero-lattice-v73"></script>
   </head>
   <body class="page-about">
     <a class="skip-link" href="#main">К основному содержимому</a>
@@ -248,34 +248,42 @@
 
     <main id="main">
 
-      <!-- ① Hero: тёмный фон, заголовок, кнопки -->
-      <header class="subpage-hero subpage-hero--about projects-hero" data-subpage-hero aria-labelledby="about-page-title">
-        <div class="subpage-hero__inner">
-          <div class="subpage-hero__content">
-            <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
-              <ol class="subpage-breadcrumbs__list">
-                <li class="subpage-breadcrumbs__item">
-                  <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
-                </li>
-                <li class="subpage-breadcrumbs__item" aria-current="page">
-                  <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
-                  О компании
-                </li>
-              </ol>
-            </nav>
-            <h1 id="about-page-title" class="subpage-hero__title">
-              <span class="subpage-hero__title-line">О компании</span>
-            </h1>
-            <p class="subpage-hero__lead">
-              Инжиниринг вычислительных комплексов и&nbsp;корпоративных сетей передачи данных с&nbsp;2005&nbsp;года.
-            </p>
-            <div class="subpage-hero__actions">
-              <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
-              <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="index.html#projects">Наши проекты</a>
+      <!-- ① Hero -->
+      <div class="projects-hero-stage projects-hero-stage--photo page-about__hero-stage" data-hero-grid>
+        <div class="projects-hero__background" aria-hidden="true"></div>
+
+        <header
+          class="subpage-hero subpage-hero--about projects-hero projects-hero--photo projects-hero--yandex page-about__hero"
+          data-subpage-hero
+          aria-labelledby="about-page-title"
+        >
+          <div class="subpage-hero__inner projects-hero__inner--left">
+            <div class="subpage-hero__content projects-hero__content">
+              <nav class="subpage-breadcrumbs" aria-label="Хлебные крошки">
+                <ol class="subpage-breadcrumbs__list">
+                  <li class="subpage-breadcrumbs__item">
+                    <a class="subpage-breadcrumbs__link" href="index.html#top">Главная</a>
+                  </li>
+                  <li class="subpage-breadcrumbs__item" aria-current="page">
+                    <span class="subpage-breadcrumbs__sep" aria-hidden="true">/</span>
+                    О компании
+                  </li>
+                </ol>
+              </nav>
+              <h1 id="about-page-title" class="subpage-hero__title projects-hero__title">
+                <span class="subpage-hero__title-line">О компании</span>
+              </h1>
+              <p class="subpage-hero__lead projects-hero__lead">
+                Инжиниринг вычислительных комплексов и&nbsp;корпоративных сетей передачи данных с&nbsp;2005&nbsp;года.
+              </p>
+              <div class="projects-hero-actions subpage-hero__actions">
+                <a class="btn btn--lg hero-pt__cta subpage-hero__cta" href="contacts.html">Связаться</a>
+                <a class="btn btn--lg btn--ghost-light subpage-hero__cta" href="index.html#projects">Наши проекты</a>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       <div class="page-sticky-scope">
         <div class="page-section-subnav" data-section-subnav>
@@ -1857,7 +1865,8 @@
         </div>
       </div>
     </footer>
-<script defer src="subpage-hero.js"></script>
+<script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
+<script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
     <script defer src="about-page.js?v=20260723-cert-lb"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
     <script defer src="huawei-subnav.js?v=20260914-ios-overscroll-header-v62"></script>
