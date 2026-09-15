@@ -1926,6 +1926,52 @@ body.callback-modal-open {
   box-shadow: var(--focus-ring);
 }
 
+/*
+  Анимация смены темы (View Transitions):
+  новая тема раскрывается поверх старой кругом/треугольником/fade от клика —
+  без вспышки и без смешивания слоёв.
+*/
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+    display: block;
+  }
+
+  ::view-transition-image-pair(root) {
+    isolation: auto;
+  }
+
+  /* Старый кадр остаётся под новым, пока круг не раскроется */
+  html[data-theme-transition="circle"]::view-transition-old(root),
+  html[data-theme-transition="triangle"]::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  html[data-theme-transition="circle"]::view-transition-new(root),
+  html[data-theme-transition="triangle"]::view-transition-new(root) {
+    z-index: 2;
+  }
+
+  html[data-theme-transition="fade"]::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  html[data-theme-transition="fade"]::view-transition-new(root) {
+    z-index: 2;
+  }
+}
+
+/* На время VT глушим цветовые transition — иначе вспышка до клип-паса */
+html.theme-vt-active,
+html.theme-vt-active *,
+html.theme-vt-active *::before,
+html.theme-vt-active *::after {
+  transition: none !important;
+  animation-duration: 0.001ms !important;
+}
+
 .theme-switch__icon {
   display: block;
   width: 100%;
