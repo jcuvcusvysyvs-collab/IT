@@ -684,6 +684,20 @@
     if (modalOptionsEl) fillOptionsList(modalOptionsEl);
   }
 
+  var menuCloseTimer = null;
+  var MENU_ANIM_MS = 340;
+
+  function getMenuAnimMs() {
+    return prefersReducedMotion() ? 0 : MENU_ANIM_MS;
+  }
+
+  function clearMenuCloseTimer() {
+    if (menuCloseTimer) {
+      window.clearTimeout(menuCloseTimer);
+      menuCloseTimer = null;
+    }
+  }
+
   function setMenuOpen(open) {
     if (isMobile()) {
       if (open) setModalOpen(true);
@@ -691,25 +705,61 @@
       return;
     }
 
-    menuOpen = !!open;
-    comboEl.classList.toggle("is-open", menuOpen);
+    var nextOpen = !!open;
+    if (nextOpen === menuOpen && !menuEl.classList.contains("is-closing")) return;
+
+    clearMenuCloseTimer();
+    menuOpen = nextOpen;
     triggerEl.setAttribute("aria-expanded", menuOpen ? "true" : "false");
-    menuEl.hidden = !menuOpen;
 
     if (menuOpen) {
       if (modalEl && (modalOpen || !modalEl.hidden)) {
         setModalOpen(false);
       }
+
       beginDraftFromActive();
       renderOptions();
+
+      menuEl.hidden = false;
+      menuEl.classList.remove("is-closing", "is-open");
+      comboEl.classList.add("is-open");
+
+      /* Два кадра: сначала стартовое состояние, потом is-open — иначе transition срывается */
+      void menuEl.offsetWidth;
+      window.requestAnimationFrame(function () {
+        if (!menuOpen) return;
+        window.requestAnimationFrame(function () {
+          if (!menuOpen) return;
+          menuEl.classList.add("is-open");
+        });
+      });
+
       var firstFocus =
         optionsEl.querySelector(".projects-filter__option.is-selected") ||
         optionsEl.querySelector(".projects-filter__option");
       if (firstFocus) firstFocus.focus();
-    } else {
-      focusIndex = -1;
-      draftClients = cloneIds(activeClients);
+      return;
     }
+
+    comboEl.classList.remove("is-open");
+    menuEl.classList.remove("is-open");
+    menuEl.classList.add("is-closing");
+    focusIndex = -1;
+    draftClients = cloneIds(activeClients);
+
+    var animMs = getMenuAnimMs();
+    if (!animMs) {
+      menuEl.classList.remove("is-closing");
+      menuEl.hidden = true;
+      return;
+    }
+
+    menuCloseTimer = window.setTimeout(function () {
+      menuCloseTimer = null;
+      if (menuOpen) return;
+      menuEl.classList.remove("is-closing");
+      menuEl.hidden = true;
+    }, animMs);
   }
 
   function setModalOpen(open) {
@@ -728,9 +778,11 @@
     }
 
     if (modalOpen) {
+      clearMenuCloseTimer();
       menuOpen = false;
       comboEl.classList.remove("is-open");
       triggerEl.setAttribute("aria-expanded", "false");
+      menuEl.classList.remove("is-open", "is-closing");
       menuEl.hidden = true;
 
       lastFocusEl = document.activeElement;
@@ -1045,9 +1097,10 @@
 
   function onViewportChange() {
     if (isMobile()) {
-      setMenuOpen(false);
+      clearMenuCloseTimer();
       menuOpen = false;
       comboEl.classList.remove("is-open");
+      menuEl.classList.remove("is-open", "is-closing");
       menuEl.hidden = true;
       triggerEl.setAttribute("aria-expanded", "false");
     } else {

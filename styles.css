@@ -17818,10 +17818,48 @@ html:not([data-theme="dark"]) .page-projects .about-dce__card.about-dce__card--h
   box-shadow:
     0 1px 0 color-mix(in srgb, var(--text) 4%, transparent) inset,
     0 12px 36px color-mix(in srgb, var(--text) 12%, transparent);
+  transform-origin: top right;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, -0.55rem, 0) scale(0.98);
+  transition:
+    opacity 0.28s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.34s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0.34s;
+  will-change: transform, opacity;
+}
+
+.projects-filter__combo.is-open .projects-filter__menu,
+.projects-filter__menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.projects-filter__menu.is-closing {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, -0.4rem, 0) scale(0.985);
 }
 
 .projects-filter__menu[hidden] {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-filter__menu {
+    transition: none;
+    transform: none;
+  }
+
+  .projects-filter__combo.is-open .projects-filter__menu,
+  .projects-filter__menu.is-open,
+  .projects-filter__menu.is-closing {
+    transform: none;
+  }
 }
 
 .projects-filter__options {
