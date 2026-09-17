@@ -1,124 +1,131 @@
 (function () {
-  var strip = document.querySelector("[data-services-carousel]");
-  if (!strip) return;
-
-  var prev = document.querySelector("[data-services-carousel-prev]");
-  var next = document.querySelector("[data-services-carousel-next]");
-  var progress = document.querySelector("[data-services-carousel-progress]");
-  var progressFill = progress && progress.querySelector(".services-showcase__divider-fill");
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var scrollRaf = null;
-  var activeRaf = null;
-  var slides = Array.prototype.slice.call(strip.querySelectorAll(".services-slide"));
-
-  function slideStep() {
-    var slide = strip.querySelector(".services-slide");
-    var gap = parseFloat(getComputedStyle(strip).gap) || 16;
-    if (slide) return slide.getBoundingClientRect().width + gap;
-    return Math.min(strip.clientWidth * 0.88, 380);
-  }
-
-  /* Шаг прокрутки = «страница»: целое число слайдов, помещающихся в окно (минимум 1).
-     Без этого на широких экранах одна кнопка двигает на один слайд из пяти — приходится кликать 3 раза. */
-  function pageStep() {
-    var step = slideStep();
-    var perPage = Math.max(1, Math.floor(strip.clientWidth / step));
-    return perPage * step;
-  }
-
-  function scrollByDir(dir) {
-    strip.scrollBy({
-      left: dir * pageStep(),
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-  }
-
-  /* Базовое заполнение — чтобы прогресс на старте не выглядел «пустым»; диапазон 0..1 маппится в MIN..1 */
   var PROGRESS_MIN = 0.25;
 
-  function setProgress(visual) {
-    var value = visual.toFixed(4);
-    if (progress) progress.style.setProperty("--services-carousel-scroll", value);
-    if (progressFill) progressFill.style.transform = "scaleX(" + value + ")";
-  }
+  function initCarousel(strip) {
+    if (!strip) return;
 
-  function updateActiveSlide() {
-    if (!slides.length) return;
-    var stripRect = strip.getBoundingClientRect();
-    var target = stripRect.left + Math.min(24, stripRect.width * 0.08);
-    var best = null;
-    var bestDist = Infinity;
+    var root = strip.closest("[data-services-carousel-root]") || document;
+    var prev = root.querySelector("[data-services-carousel-prev]");
+    var next = root.querySelector("[data-services-carousel-next]");
+    var progress = root.querySelector("[data-services-carousel-progress]");
+    var progressFill =
+      progress && progress.querySelector(".services-showcase__divider-fill");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var scrollRaf = null;
+    var activeRaf = null;
+    var slides = Array.prototype.slice.call(strip.querySelectorAll(".services-slide"));
 
-    for (var i = 0; i < slides.length; i++) {
-      var rect = slides[i].getBoundingClientRect();
-      var dist = Math.abs(rect.left - target);
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = slides[i];
+    function slideStep() {
+      var slide = strip.querySelector(".services-slide");
+      var gap = parseFloat(getComputedStyle(strip).gap) || 16;
+      if (slide) return slide.getBoundingClientRect().width + gap;
+      return Math.min(strip.clientWidth * 0.88, 380);
+    }
+
+    /* Шаг прокрутки = «страница»: целое число слайдов, помещающихся в окно (минимум 1).
+       Без этого на широких экранах одна кнопка двигает на один слайд из пяти — приходится кликать 3 раза. */
+    function pageStep() {
+      var step = slideStep();
+      var perPage = Math.max(1, Math.floor(strip.clientWidth / step));
+      return perPage * step;
+    }
+
+    function scrollByDir(dir) {
+      strip.scrollBy({
+        left: dir * pageStep(),
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    }
+
+    function setProgress(visual) {
+      var value = visual.toFixed(4);
+      if (progress) progress.style.setProperty("--services-carousel-scroll", value);
+      if (progressFill) progressFill.style.transform = "scaleX(" + value + ")";
+    }
+
+    function updateActiveSlide() {
+      if (!slides.length) return;
+      var stripRect = strip.getBoundingClientRect();
+      var target = stripRect.left + Math.min(24, stripRect.width * 0.08);
+      var best = null;
+      var bestDist = Infinity;
+
+      for (var i = 0; i < slides.length; i++) {
+        var rect = slides[i].getBoundingClientRect();
+        var dist = Math.abs(rect.left - target);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = slides[i];
+        }
+      }
+
+      for (var j = 0; j < slides.length; j++) {
+        slides[j].classList.toggle("is-active", slides[j] === best);
       }
     }
 
-    for (var j = 0; j < slides.length; j++) {
-      slides[j].classList.toggle("is-active", slides[j] === best);
+    function scheduleActiveSlide() {
+      if (activeRaf !== null) return;
+      activeRaf = window.requestAnimationFrame(function () {
+        activeRaf = null;
+        updateActiveSlide();
+      });
     }
-  }
 
-  function scheduleActiveSlide() {
-    if (activeRaf !== null) return;
-    activeRaf = window.requestAnimationFrame(function () {
-      activeRaf = null;
-      updateActiveSlide();
+    function updateState() {
+      var max = strip.scrollWidth - strip.clientWidth;
+      var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, strip.scrollLeft / max));
+      var visual = PROGRESS_MIN + ratio * (1 - PROGRESS_MIN);
+      setProgress(visual);
+
+      /* Дизейблим стрелки на крайних позициях — без этого пользователь жмёт «вперёд» в пустоту */
+      var atStart = strip.scrollLeft <= 1;
+      var atEnd = max <= 0 || strip.scrollLeft >= max - 1;
+      if (prev) prev.disabled = atStart;
+      if (next) next.disabled = atEnd;
+      scheduleActiveSlide();
+    }
+
+    function scheduleUpdateState() {
+      if (scrollRaf !== null) return;
+      scrollRaf = window.requestAnimationFrame(function () {
+        scrollRaf = null;
+        updateState();
+      });
+    }
+
+    strip.addEventListener("scroll", scheduleUpdateState, { passive: true });
+    if ("onscrollend" in strip) {
+      strip.addEventListener("scrollend", updateState, { passive: true });
+    }
+    window.addEventListener("resize", updateState);
+    if (typeof ResizeObserver !== "undefined") {
+      new ResizeObserver(updateState).observe(strip);
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateState).catch(updateState);
+    } else {
+      window.addEventListener("load", updateState);
+    }
+    updateState();
+
+    if (prev) prev.addEventListener("click", function () { scrollByDir(-1); });
+    if (next) next.addEventListener("click", function () { scrollByDir(1); });
+
+    strip.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollByDir(-1);
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollByDir(1);
+      }
     });
   }
 
-  function updateState() {
-    var max = strip.scrollWidth - strip.clientWidth;
-    var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, strip.scrollLeft / max));
-    var visual = PROGRESS_MIN + ratio * (1 - PROGRESS_MIN);
-    setProgress(visual);
-
-    /* Дизейблим стрелки на крайних позициях — без этого пользователь жмёт «вперёд» в пустоту */
-    var atStart = strip.scrollLeft <= 1;
-    var atEnd = max <= 0 || strip.scrollLeft >= max - 1;
-    if (prev) prev.disabled = atStart;
-    if (next) next.disabled = atEnd;
-    scheduleActiveSlide();
+  var strips = document.querySelectorAll("[data-services-carousel]");
+  for (var i = 0; i < strips.length; i++) {
+    initCarousel(strips[i]);
   }
-
-  function scheduleUpdateState() {
-    if (scrollRaf !== null) return;
-    scrollRaf = window.requestAnimationFrame(function () {
-      scrollRaf = null;
-      updateState();
-    });
-  }
-
-  strip.addEventListener("scroll", scheduleUpdateState, { passive: true });
-  if ("onscrollend" in strip) {
-    strip.addEventListener("scrollend", updateState, { passive: true });
-  }
-  window.addEventListener("resize", updateState);
-  if (typeof ResizeObserver !== "undefined") {
-    new ResizeObserver(updateState).observe(strip);
-  }
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(updateState).catch(updateState);
-  } else {
-    window.addEventListener("load", updateState);
-  }
-  updateState();
-
-  if (prev) prev.addEventListener("click", function () { scrollByDir(-1); });
-  if (next) next.addEventListener("click", function () { scrollByDir(1); });
-
-  strip.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      scrollByDir(-1);
-    }
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      scrollByDir(1);
-    }
-  });
 })();

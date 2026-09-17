@@ -300,6 +300,10 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   --hero-header-clearance: calc(
     var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px)
   );
+  --hero-grid-lit: 60, 130, 190;
+  --hero-grid-lit-a: 0;
+  --hero-grid-glow: 3, 36, 119;
+  --hero-grid-glow-a: 0;
   position: relative;
   z-index: 2;
   isolation: isolate;
@@ -325,17 +329,53 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: var(--about-hero-bg);
+  background: transparent;
 }
 
-.page-about .page-about__hero-stage .projects-hero__background::before {
-  content: none;
-  display: none;
+.page-about .page-about__hero-stage.projects-hero-stage--photo .projects-hero__background::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -4% -6%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: image-set(
+    url("images/Company.webp?v=20260916-hq") type("image/webp"),
+    url("images/Company.jpg") type("image/jpeg")
+  );
+  background-position: 55% 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.96) saturate(1.02) contrast(1.04);
+  transform: scale(1.05);
+  transform-origin: 55% 42%;
+  opacity: 1;
 }
 
-.page-about .page-about__hero-stage .projects-hero__background::after {
-  content: none;
-  display: none;
+.page-about .page-about__hero-stage.projects-hero-stage--photo .projects-hero__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 52%,
+      color-mix(in srgb, var(--about-hero-bg) 18%, transparent) 70%,
+      color-mix(in srgb, var(--about-hero-bg) 52%, transparent) 82%,
+      color-mix(in srgb, var(--about-hero-bg) 84%, transparent) 92%,
+      var(--about-hero-bg) 100%
+    ),
+    radial-gradient(ellipse 68% 88% at 78% 48%, transparent 28%, rgba(5, 10, 20, 0.42) 100%),
+    linear-gradient(
+      105deg,
+      rgba(5, 10, 20, 0.96) 0%,
+      rgba(5, 10, 20, 0.78) 28%,
+      rgba(5, 10, 20, 0.42) 48%,
+      rgba(5, 10, 20, 0.12) 68%,
+      transparent 100%
+    );
 }
 
 .page-about .page-about__hero-stage[data-hero-grid] {
@@ -559,6 +599,297 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 
 .page-about__showcase.about-dce {
   border-top: none;
+}
+
+/* ——— Блок 01: О нас ——— */
+.about-intro__body {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding:
+    0
+    clamp(1.5rem, 3.2vw, 2.25rem)
+    clamp(2rem, 4vw, 2.85rem);
+  box-sizing: border-box;
+}
+
+.about-intro__story {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  font-family: var(--font-text);
+  font-size: clamp(1.0625rem, 1.45vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+  color: #0d1117;
+  text-wrap: pretty;
+}
+
+[data-theme="dark"] .about-intro__story {
+  color: #eef2f8;
+}
+
+.about-intro__hl {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .about-intro__hl {
+  color: color-mix(in srgb, var(--accent) 72%, #fff 28%);
+}
+
+/* ——— Блок 02: Наша экспертиза (bento) ——— */
+.about-expertise {
+  --expertise-gap: clamp(0.65rem, 1.2vw, 0.85rem);
+  --expertise-radius: 14px;
+  --expertise-card-bg: color-mix(in srgb, var(--bg-elevated) 78%, var(--bg) 22%);
+  --expertise-stat: var(--accent);
+  --expertise-dot: rgba(55, 72, 104, 0.4);
+  /* Виньетка поверх сетки: к центру плавное высветление */
+  --expertise-vignette: radial-gradient(
+    ellipse 84% 78% at 52% 48%,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.78) 18%,
+    rgba(255, 255, 255, 0.42) 42%,
+    rgba(255, 255, 255, 0.14) 64%,
+    transparent 84%
+  );
+  --expertise-card-border: color-mix(in srgb, var(--border) 82%, var(--accent) 18%);
+  --expertise-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 1px 2px rgba(13, 17, 23, 0.03),
+    0 8px 22px rgba(3, 36, 119, 0.05);
+}
+
+[data-theme="dark"] .about-expertise {
+  --expertise-card-bg: color-mix(in srgb, var(--bg-elevated) 78%, #000 22%);
+  --expertise-dot: rgba(160, 174, 198, 0.32);
+  /* К центру плавное затемнение сетки */
+  --expertise-vignette: radial-gradient(
+    ellipse 84% 78% at 52% 48%,
+    rgba(0, 0, 0, 0.86) 0%,
+    rgba(0, 0, 0, 0.62) 20%,
+    rgba(0, 0, 0, 0.32) 44%,
+    rgba(0, 0, 0, 0.1) 66%,
+    transparent 86%
+  );
+  --expertise-card-border: color-mix(in srgb, var(--border) 88%, rgba(255, 255, 255, 0.08) 12%);
+  --expertise-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.about-expertise__header {
+  padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
+}
+
+.about-expertise__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: minmax(8.5rem, auto);
+  gap: var(--expertise-gap);
+  padding: 0 clamp(1rem, 2.2vw, 1.5rem) clamp(1.15rem, 2.4vw, 1.65rem);
+  align-items: stretch;
+}
+
+.about-expertise__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1.1rem, 2vw, 1.45rem);
+  border-radius: var(--expertise-radius);
+  background-color: var(--expertise-card-bg);
+  background-image:
+    var(--expertise-vignette),
+    radial-gradient(
+      circle at center,
+      var(--expertise-dot) 0,
+      color-mix(in srgb, var(--expertise-dot) 70%, transparent) 0.9px,
+      transparent 1.45px
+    );
+  background-size: auto, 14px 14px;
+  background-position: 0 0, 0 0;
+  border: 1px solid var(--expertise-card-border);
+  box-shadow: var(--expertise-card-shadow);
+  overflow: hidden;
+}
+
+/* Feature — справа на 2 ряда: дата-центр */
+.about-expertise__card--feature {
+  grid-column: 5 / span 2;
+  grid-row: 1 / span 2;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  padding: clamp(0.5rem, 1.2vw, 0.85rem);
+  min-height: 8.5rem;
+  overflow: hidden;
+}
+
+.about-expertise__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+.about-expertise__visual-img {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  border: 0;
+  background: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Stats — крупные цифры акцентом */
+.about-expertise__card--stat {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  min-height: 8.5rem;
+}
+
+.about-expertise__card--stat .about-expertise__stat-label {
+  max-width: 14rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about-expertise__card--a {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+.about-expertise__card--b {
+  grid-column: 3 / span 2;
+  grid-row: 1;
+}
+
+.about-expertise__card--c {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+}
+
+.about-expertise__card--e {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+
+.about-expertise__card--h {
+  grid-column: 4 / span 3;
+  grid-row: 3;
+}
+
+.about-expertise__card--h .about-expertise__stat-label {
+  max-width: 18rem;
+}
+
+.about-expertise__stat-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.35rem, 6.5vw, 4.85rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--expertise-stat);
+}
+
+.about-expertise__stat-plus {
+  margin-left: 0.05em;
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: super;
+  line-height: 1;
+}
+
+.about-expertise__stat-label {
+  margin: 0;
+  max-width: 16rem;
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+@media (max-width: 1100px) {
+  .about-expertise__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .about-expertise__card--feature {
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 2;
+  }
+
+  .about-expertise__card--a {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  .about-expertise__card--b {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+
+  .about-expertise__card--c {
+    grid-column: 1 / span 4;
+    grid-row: 3;
+  }
+
+  .about-expertise__card--e {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+  }
+
+  .about-expertise__card--h {
+    grid-column: 3 / span 2;
+    grid-row: 4;
+  }
+}
+
+@media (max-width: 720px) {
+  .about-expertise__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .about-expertise__card--feature,
+  .about-expertise__card--a,
+  .about-expertise__card--b,
+  .about-expertise__card--c,
+  .about-expertise__card--e,
+  .about-expertise__card--h {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .about-expertise__card--feature {
+    min-height: 12rem;
+  }
+
+  .about-expertise__visual-img {
+    max-width: 21rem;
+  }
+
+  .about-expertise__stat-value {
+    font-size: clamp(2.9rem, 13.5vw, 3.75rem);
+  }
 }
 
 @media (max-width: 960px) {

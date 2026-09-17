@@ -132,7 +132,7 @@
   --bg: #0a0e14;
   --bg-elevated: #121a24;
   --text: #eef2f8;
-  --text-muted: #94a3b8;
+  --text-muted: #eef2f8;
   --border: #243044;
   --accent: #3d6fd4;
   --accent-hover: #5f8ee8;
@@ -824,7 +824,7 @@ html:not([data-theme="dark"]) .nav-toggle {
 [data-theme="dark"] #submenu-projects .nav-submenu-links,
 [data-theme="dark"] #submenu-about .nav-submenu-links {
   --text: #eef2f8;
-  --text-muted: #94a3b8;
+  --text-muted: #eef2f8;
   --accent: #3d6fd4;
   --accent-hover: #5f8ee8;
   --border: #243044;
@@ -1101,7 +1101,7 @@ body.nav-mega-open .nav-mega-backdrop {
 #submenu-services .nav-submenu-links--rich {
   --svc-menu-bg: #ffffff;
   --svc-menu-title: #0d1117;
-  --svc-menu-desc: #5c6678;
+  --svc-menu-desc: #0d1117;
   --svc-menu-hover: #f3f6fa;
   --svc-menu-active-bg: #eef3f9;
   --svc-menu-active-ring: #c8d5e6;
@@ -1109,7 +1109,7 @@ body.nav-mega-open .nav-mega-backdrop {
   --svc-menu-icon-ring: #e2e9f2;
   --svc-menu-divider: #e8edf3;
   --text: #0d1117;
-  --text-muted: #5c6678;
+  --text-muted: #0d1117;
   --accent: #032477;
   --accent-hover: #1a3f9e;
   --border: #dde3ed;
@@ -1123,7 +1123,7 @@ body.nav-mega-open .nav-mega-backdrop {
 [data-theme="dark"] #submenu-services .nav-submenu-links--rich {
   --svc-menu-bg: #121a24;
   --svc-menu-title: #eef2f8;
-  --svc-menu-desc: #94a3b8;
+  --svc-menu-desc: #eef2f8;
   --svc-menu-hover: rgba(91, 155, 212, 0.1);
   --svc-menu-active-bg: rgba(91, 155, 212, 0.14);
   --svc-menu-active-ring: rgba(91, 155, 212, 0.34);
@@ -1131,7 +1131,7 @@ body.nav-mega-open .nav-mega-backdrop {
   --svc-menu-icon-ring: rgba(255, 255, 255, 0.1);
   --svc-menu-divider: rgba(255, 255, 255, 0.08);
   --text: #eef2f8;
-  --text-muted: #94a3b8;
+  --text-muted: #eef2f8;
   --accent: #3d6fd4;
   --accent-hover: #5f8ee8;
   --border: #243044;
@@ -1209,7 +1209,7 @@ body.nav-mega-open .nav-mega-backdrop {
   font-size: 0.8125rem;
   font-weight: 400;
   line-height: 1.48;
-  color: var(--svc-menu-desc, #5c6678);
+  color: var(--svc-menu-desc, #0d1117);
 }
 
 .nav-submenu-card:hover,
@@ -5571,7 +5571,7 @@ html:not([data-theme="dark"]) .services-slide--asdu:hover .services-slide__link 
   font-size: clamp(0.9375rem, 1.25vw, 1rem);
   font-weight: 400;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--text);
   text-wrap: pretty;
 }
 
@@ -9529,7 +9529,7 @@ html[data-theme="dark"] .footer-widget #widget1 {
   .nav-submenu-links--rich .nav-submenu-card__desc {
     font-size: 0.8125rem;
     line-height: 1.48;
-    color: var(--svc-menu-desc, #5c6678);
+    color: var(--svc-menu-desc, #0d1117);
   }
 
   .nav-submenu-links::before,
@@ -14793,7 +14793,7 @@ body.cert-lightbox-open {
   font-family: var(--font-text);
   font-size: clamp(0.9375rem, 1.15vw, 1rem);
   line-height: 1.76;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .page-about__prose-wrap p:last-child {
@@ -15976,7 +15976,7 @@ html.sw-detail-open {
 .page-about__career-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  align-items: center;
+  align-items: start;
   gap: clamp(2rem, 4.5vw, 4rem);
 }
 
@@ -16005,6 +16005,8 @@ html.sw-detail-open {
   align-items: flex-start;
   gap: 0;
   max-width: 26rem;
+  /* Чуть выше — к первой строке крупного текста слева */
+  margin-top: -0.28em;
 }
 
 .page-about__career-copy {

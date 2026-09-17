@@ -15,11 +15,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600;700&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260915-about-hero-no-mask-v85" />
-    <link rel="stylesheet" href="about.css?v=20260915-about-hero-no-mask-v85" />
+    <link rel="stylesheet" href="styles.css?v=20260917-career-align-v107" />
+    <link rel="stylesheet" href="about.css?v=20260917-career-align-v107" />
+    <link rel="preload" href="images/Company.webp?v=20260916-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
         var r = document.documentElement;
@@ -196,6 +197,12 @@
                 <div class="nav-submenu-panel">
                   <ul class="nav-submenu-links" role="menu">
                   <li role="none">
+                    <a href="#about-us" role="menuitem">О нас</a>
+                  </li>
+                  <li role="none">
+                    <a href="#about-content" role="menuitem">Экспертиза</a>
+                  </li>
+                  <li role="none">
                     <a href="#about-partners" role="menuitem">Наши партнёры</a>
                   </li>
                   <li role="none">
@@ -312,7 +319,8 @@
             <div class="page-section-subnav__panel" id="about-subnav-panel">
               <nav class="projects-hero-switcher page-section-subnav__nav" aria-label="Разделы страницы о компании">
                 <div class="projects-hero-switcher__track">
-                  <a class="projects-hero-switcher__item" href="#about-content">О компании</a>
+                  <a class="projects-hero-switcher__item" href="#about-us">О нас</a>
+                  <a class="projects-hero-switcher__item" href="#about-content">Экспертиза</a>
                   <a class="projects-hero-switcher__item" href="#about-partners">Партнёры</a>
                   <a class="projects-hero-switcher__item" href="#certificates">Сертификаты</a>
                   <a class="projects-hero-switcher__item" href="#career">Карьера</a>
@@ -322,139 +330,117 @@
           </div>
         </div>
 
-      <!-- Блок 01: О компании + достижения -->
-      <section class="section about-dce page-about__showcase" id="about-content" aria-labelledby="about-h-01">
+      <!-- Блок 01: О нас -->
+      <section class="section about-dce page-about__showcase" id="about-us" aria-labelledby="about-h-01">
         <div class="about-dce__inner">
-          <article class="about-dce__block" data-about-reveal>
+          <article class="about-dce__block about-intro" data-about-reveal>
             <header class="about-dce__header">
               <span class="about-dce__index" aria-hidden="true">01</span>
               <div class="about-dce__intro">
-                <p class="about-dce__eyebrow" aria-hidden="true">О компании</p>
+                <p class="about-dce__eyebrow" aria-hidden="true">Компания</p>
                 <h2 id="about-h-01" class="about-dce__title">
-                  Мы&nbsp;— <span class="about-dce__brand">инженеры</span>
+                  О&nbsp;<span class="about-dce__brand">нас</span>
                 </h2>
                 <p class="about-dce__lead">
-                  Проектируем, внедряем, оптимизируем, поддерживаем, эксплуатируем ИТ-инфраструктуры
-                  в&nbsp;интересах наших Заказчиков.
+                  Инженерная компания полного цикла: проектируем, внедряем
+                  и&nbsp;сопровождаем ИТ-инфраструктуру под задачи заказчика.
                 </p>
               </div>
             </header>
-
-            <!-- Карточки достижений и ценностей -->
-            <div class="about-dce__grid page-about__achievement-grid" role="list">
-
-              <!-- Hero: экспертиза + метрики -->
-              <article class="about-dce__card about-dce__card--hero" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">01</span>
-                  Экспертиза
-                </p>
-                <h3 class="about-dce__card-title">Наша команда</h3>
-                <p class="page-about__card-text">
-                  имеет опыт реализации крупных, сложных, географически распределённых систем
-                  и&nbsp;решений в&nbsp;условиях ограниченного времени и&nbsp;дефицита ресурсов.
-                  Доступная к&nbsp;распространению информация приведена в&nbsp;разделе
-                  <a class="page-about__link page-about__link--arrow" href="projects.html">
-                    Проекты
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </a>
-                </p>
-                <div class="page-about__hero-stats" aria-label="Показатели">
-                  <div class="page-about__hero-stat">
-                    <span class="about-dce__stat-value about-dce__stat-value--lg">200<span class="about-dce__stat-plus">+</span></span>
-                    <span class="about-dce__stat-label">реализованных проектов</span>
-                  </div>
-                  <div class="page-about__hero-stat">
-                    <span class="about-dce__stat-value about-dce__stat-value--lg">20<span class="about-dce__stat-plus">+</span></span>
-                    <span class="about-dce__stat-label">лет на рынке</span>
-                  </div>
-                  <div class="page-about__hero-stat">
-                    <span class="about-dce__stat-value about-dce__stat-value--lg">300<span class="about-dce__stat-plus">+</span></span>
-                    <span class="about-dce__stat-label">дипломов и&nbsp;сертификатов</span>
-                  </div>
-                  <div class="page-about__hero-stat">
-                    <span class="about-dce__stat-value about-dce__stat-value--lg">20<span class="about-dce__stat-plus">+</span></span>
-                    <span class="about-dce__stat-label">партнёров-производителей</span>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Сертификация -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">02</span>
-                  Сертификация
-                </p>
-                <h3 class="about-dce__card-title">20+ производителей</h3>
-                <p class="page-about__card-text">
-                  Наши знания и&nbsp;опыт работы с&nbsp;продуктами отечественных и&nbsp;мировых производителей
-                  подтвержден персональными инженерными сертификатами
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">300<span class="about-dce__stat-plus">+</span></span>
-                  <span class="about-dce__stat-label">дипломов и сертификатов</span>
-                </div>
-              </article>
-
-              <!-- Гибкость -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">03</span>
-                  Гибкость
-                </p>
-                <h3 class="about-dce__card-title">Мобильность</h3>
-                <p class="page-about__card-text">
-                  От&nbsp;запроса до&nbsp;коммерческого предложения&nbsp;— дни, не&nbsp;недели. Короткие
-                  административные процессы, без лишних согласований.
-                </p>
-              </article>
-
-              <!-- Надёжность -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">04</span>
-                  Надёжность
-                </p>
-                <h3 class="about-dce__card-title">Высококритичные системы</h3>
-                <p class="page-about__card-text">
-                  Последовательность, аккуратность и&nbsp;точность при работе с&nbsp;системами, где цена
-                  простоя высока&nbsp;— рефлексы, а&nbsp;не&nbsp;правила.
-                </p>
-              </article>
-
-              <!-- Ответственность -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">05</span>
-                  Ответственность
-                </p>
-                <h3 class="about-dce__card-title">Полный цикл</h3>
-                <p class="page-about__card-text">
-                  Подстраиваемся под процессы и&nbsp;проблемы заказчика с&nbsp;полной ответственностью
-                  за&nbsp;результат.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">6<span class="about-dce__stat-plus">+</span></span>
-                  <span class="about-dce__stat-label">мес. средний цикл проекта</span>
-                </div>
-              </article>
-
+            <div class="about-intro__body">
+              <p class="about-intro__story">
+                <span class="about-intro__hl">DC&nbsp;Engineering</span>&nbsp;— инженерная компания, которая проектирует, внедряет
+                и&nbsp;сопровождает ИТ-инфраструктуру: от&nbsp;вычислительных комплексов
+                и&nbsp;систем хранения данных до&nbsp;сетей передачи данных и&nbsp;контуров
+                информационной безопасности. За&nbsp;<span class="about-intro__hl">20&nbsp;лет</span>
+                мы&nbsp;прошли путь от&nbsp;отдельных инфраструктурных проектов до&nbsp;полного цикла:
+                проектирование, поставка, монтаж, сопровождение и&nbsp;сервис.
+                Сегодня в&nbsp;портфеле&nbsp;— более&nbsp;<span class="about-intro__hl">70&nbsp;проектов</span>
+                в&nbsp;год и&nbsp;<span class="about-intro__hl">31&nbsp;действующий сервисный контракт</span>,
+                а&nbsp;средний профильный стаж специалистов команды&nbsp;—
+                <span class="about-intro__hl">16&nbsp;лет</span>. Это не&nbsp;отдел продаж
+                с&nbsp;подрядчиками на&nbsp;аутсорсе: решения ведут инженеры, которые отвечают
+                за&nbsp;них на&nbsp;всех этапах&nbsp;— от&nbsp;ТЗ до&nbsp;эксплуатации.
+              </p>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- Блок 02: Партнёры — вендоры и ПО -->
-      <section class="section about-dce about-dce--alt" id="about-partners" aria-labelledby="about-h-02">
+      <!-- Блок 02: Наша экспертиза (bento, как PT) -->
+      <section class="section about-dce about-dce--alt" id="about-content" aria-labelledby="about-h-02">
+        <div class="about-dce__inner">
+          <article class="about-dce__block about-expertise" data-about-reveal>
+            <header class="about-dce__header about-expertise__header">
+              <span class="about-dce__index" aria-hidden="true">02</span>
+              <div class="about-dce__intro">
+                <p class="about-dce__eyebrow" aria-hidden="true">Экспертиза</p>
+                <h2 id="about-h-02" class="about-dce__title">
+                  Наша <span class="about-dce__brand">экспертиза</span>
+                </h2>
+                <p class="about-dce__lead">
+                  Знаем инфраструктуру изнутри&nbsp;— от&nbsp;проекта до&nbsp;эксплуатации&nbsp;—
+                  и&nbsp;берём на&nbsp;себя результат в&nbsp;интересах заказчика.
+                </p>
+              </div>
+            </header>
+
+            <div class="about-expertise__grid" role="list">
+              <!-- Feature — место под визуал -->
+              <article class="about-expertise__card about-expertise__card--feature" role="listitem">
+                <div class="about-expertise__visual" aria-hidden="true">
+                  <img
+                    class="about-expertise__visual-img"
+                    src="images/data_center.svg?v=20260916-dc-blink-v4"
+                    alt=""
+                    width="492"
+                    height="500"
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </div>
+              </article>
+
+              <!-- Stats -->
+              <article class="about-expertise__card about-expertise__card--stat about-expertise__card--a" role="listitem">
+                <p class="about-expertise__stat-value"><span class="about-expertise__stat-num" data-count="20">00</span><span class="about-expertise__stat-plus">+</span></p>
+                <p class="about-expertise__stat-label">лет практического опыта на&nbsp;рынке ИТ-инфраструктур</p>
+              </article>
+
+              <article class="about-expertise__card about-expertise__card--stat about-expertise__card--b" role="listitem">
+                <p class="about-expertise__stat-value"><span class="about-expertise__stat-num" data-count="200">00</span><span class="about-expertise__stat-plus">+</span></p>
+                <p class="about-expertise__stat-label">реализованных проектов разного масштаба</p>
+              </article>
+
+              <!-- Statement + 300+ -->
+              <article class="about-expertise__card about-expertise__card--stat about-expertise__card--c" role="listitem">
+                <p class="about-expertise__stat-value"><span class="about-expertise__stat-num" data-count="300">00</span><span class="about-expertise__stat-plus">+</span></p>
+                <p class="about-expertise__stat-label">дипломов и&nbsp;профессиональных сертификатов</p>
+              </article>
+
+              <article class="about-expertise__card about-expertise__card--stat about-expertise__card--e" role="listitem">
+                <p class="about-expertise__stat-value"><span class="about-expertise__stat-num" data-count="20">00</span><span class="about-expertise__stat-plus">+</span></p>
+                <p class="about-expertise__stat-label">партнёров-производителей в&nbsp;экосистеме</p>
+              </article>
+
+              <article class="about-expertise__card about-expertise__card--stat about-expertise__card--h" role="listitem">
+                <p class="about-expertise__stat-value"><span class="about-expertise__stat-num" data-count="6">00</span><span class="about-expertise__stat-plus">+</span></p>
+                <p class="about-expertise__stat-label">месяцев&nbsp;— средний цикл проекта под ответственность за&nbsp;результат</p>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Блок 03: Партнёры — вендоры и ПО -->
+      <section class="section about-dce" id="about-partners" aria-labelledby="about-h-03">
         <div class="about-dce__inner">
           <article class="about-dce__block">
             <header class="about-dce__header">
-              <span class="about-dce__index" aria-hidden="true">02</span>
+              <span class="about-dce__index" aria-hidden="true">03</span>
               <div class="about-dce__intro">
                 <p class="about-dce__eyebrow" aria-hidden="true">Экосистема</p>
-                <h2 id="about-h-02" class="about-dce__title">
+                <h2 id="about-h-03" class="about-dce__title">
                   Наши <span class="about-dce__brand">партнёры</span>
                 </h2>
                 <p class="about-dce__lead">
@@ -1371,15 +1357,15 @@
         </div>
       </section>
 
-      <!-- Блок 03: Лицензии и сертификаты -->
-      <section class="section about-dce" id="certificates" aria-labelledby="about-h-03">
+      <!-- Блок 04: Лицензии и сертификаты -->
+      <section class="section about-dce about-dce--alt" id="certificates" aria-labelledby="about-h-04">
         <div class="about-dce__inner">
           <article class="about-dce__block">
             <header class="about-dce__header">
-              <span class="about-dce__index" aria-hidden="true">03</span>
+              <span class="about-dce__index" aria-hidden="true">04</span>
               <div class="about-dce__intro">
                 <p class="about-dce__eyebrow" aria-hidden="true">Документы</p>
-                <h2 id="about-h-03" class="about-dce__title">
+                <h2 id="about-h-04" class="about-dce__title">
                   Лицензии и&nbsp;<span class="about-dce__brand">сертификаты</span>
                 </h2>
                 <p class="about-dce__lead">
@@ -1631,15 +1617,15 @@
         </div>
       </section>
 
-      <!-- Блок 04: Карьера -->
-      <section class="section about-dce" id="career" aria-labelledby="about-h-04">
+      <!-- Блок 05: Карьера -->
+      <section class="section about-dce" id="career" aria-labelledby="about-h-05">
         <div class="about-dce__inner">
           <article class="about-dce__block">
             <header class="about-dce__header">
-              <span class="about-dce__index" aria-hidden="true">04</span>
+              <span class="about-dce__index" aria-hidden="true">05</span>
               <div class="about-dce__intro">
                 <p class="about-dce__eyebrow" aria-hidden="true">О компании</p>
-                <h2 id="about-h-04" class="about-dce__title">
+                <h2 id="about-h-05" class="about-dce__title">
                   <span class="about-dce__brand">Карьера</span>
                 </h2>
               </div>
@@ -1821,6 +1807,8 @@
             <nav class="footer-nav" aria-label="О компании">
               <h2 class="footer-heading">Компания</h2>
               <ul class="footer-nav-list">
+                <li><a href="about.html#about-us">О&nbsp;нас</a></li>
+                <li><a href="about.html#about-content">Экспертиза</a></li>
                 <li><a href="about.html#about-partners">Наши партнёры</a></li>
                 <li><a href="about.html#certificates">Лицензии и&nbsp;сертификаты</a></li>
                 <li><a href="about.html#career">Карьера</a></li>
@@ -1867,7 +1855,7 @@
     </footer>
 <script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
 <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
-    <script defer src="about-page.js?v=20260723-cert-lb"></script>
+    <script defer src="about-page.js?v=20260916-about-no-iso-v54"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
     <script defer src="huawei-subnav.js?v=20260914-ios-overscroll-header-v62"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>

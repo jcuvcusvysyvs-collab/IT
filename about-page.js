@@ -1,12 +1,14 @@
 (function () {
-  var block = document.querySelector(".page-about__showcase .about-dce__block[data-about-reveal]");
-  if (!block) return;
+  var blocks = document.querySelectorAll(".page-about .about-dce__block[data-about-reveal]");
+  if (!blocks.length) return;
 
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
-    block.classList.add("is-visible");
+    blocks.forEach(function (block) {
+      block.classList.add("is-visible");
+    });
     return;
   }
 
@@ -21,7 +23,9 @@
     { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
   );
 
-  observer.observe(block);
+  blocks.forEach(function (block) {
+    observer.observe(block);
+  });
 })();
 
 (function () {
@@ -184,4 +188,94 @@
       closeLightbox();
     }
   });
+})();
+
+(function () {
+  var grid = document.querySelector(".about-expertise__grid");
+  if (!grid) return;
+
+  var nums = grid.querySelectorAll(".about-expertise__stat-num[data-count]");
+  if (!nums.length) return;
+
+  var reduceMotion =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function valueAt(t, target) {
+    var tail = Math.min(10, target);
+    var head = target - tail;
+
+    // Большая часть времени — на последние 10 чисел
+    var split = head <= 0 ? 0 : 0.36;
+
+    if (head > 0 && t < split) {
+      return head * easeInOutCubic(t / split);
+    }
+
+    var u = split >= 1 ? 1 : (t - split) / (1 - split);
+    // Почти линейно по хвосту, лёгкое торможение в самом конце
+    var eased = u * 0.78 + (1 - Math.pow(1 - u, 2)) * 0.22;
+    return head + tail * eased;
+  }
+
+  function formatValue(value, target) {
+    var n = Math.round(value);
+    if (n >= target) return String(target);
+    var digits = String(target).length;
+    return String(n).padStart(Math.max(2, digits), "0");
+  }
+
+  function setFinal(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    if (!isFinite(target)) return;
+    el.textContent = String(target);
+  }
+
+  function animateAll() {
+    nums.forEach(function (el, index) {
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (!isFinite(target)) return;
+
+      el.textContent = formatValue(0, target);
+
+      window.setTimeout(function () {
+        var started = null;
+        var duration = 2300 + Math.min(target, 300) * 2.3;
+
+        function frame(now) {
+          if (started === null) started = now;
+          var t = Math.min(1, (now - started) / duration);
+          el.textContent = formatValue(valueAt(t, target), target);
+          if (t < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            setFinal(el);
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }, 90 * index);
+    });
+  }
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    nums.forEach(setFinal);
+    return;
+  }
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        animateAll();
+      });
+    },
+    { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.2 }
+  );
+
+  observer.observe(grid);
 })();
