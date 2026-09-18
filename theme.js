@@ -115,16 +115,21 @@
         subnav.getBoundingClientRect &&
         subnav.getBoundingClientRect().top <= 1
       );
-    var isAbout = document.body && document.body.classList.contains("page-about");
     var chromeColor = pageColor;
 
-    /* Dark hero chrome for infra/HUAWEI/projects. About: keep theme-colored safe-area. */
-    if (theme === "light" && subnav && !subnavStuck && !isAbout) {
+    /* Dark full-bleed hero: light theme → dark Safari chrome until subnav is sticky (same as infra). */
+    if (theme === "light" && subnav && !subnavStuck) {
       chromeColor = THEME_COLOR_DARK;
     }
 
     root.style.setProperty("--safari-chrome-bg", chromeColor);
-    root.style.backgroundColor = pageColor;
+    /* Over dark hero: html matches chrome (Safari overscroll top/bottom). */
+    root.style.backgroundColor = chromeColor;
+    if (chromeColor === THEME_COLOR_DARK) {
+      root.setAttribute("data-safari-chrome", "dark");
+    } else {
+      root.removeAttribute("data-safari-chrome");
+    }
 
     if (document.body) {
       document.body.style.backgroundColor = pageColor;
@@ -138,7 +143,7 @@
 
     if (header) {
       if (!subnavStuck && !subnavAtTop && !headerHidden) {
-        header.style.backgroundColor = pageColor;
+        header.style.backgroundColor = chromeColor;
       } else {
         header.style.removeProperty("background-color");
       }
@@ -147,7 +152,7 @@
     if (subnav) {
       if (subnavStuck || subnavAtTop) {
         subnav.style.backgroundColor = pageColor;
-      } else if (theme === "light" && !isAbout) {
+      } else if (theme === "light") {
         subnav.style.backgroundColor = THEME_COLOR_DARK;
       } else {
         subnav.style.removeProperty("background-color");
@@ -157,15 +162,17 @@
 
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
+    syncSafariChrome(theme);
+    var chrome =
+      (root.style.getPropertyValue("--safari-chrome-bg") || "").trim() || color;
     clearMetas("theme-color");
-    appendMeta("theme-color", color);
-    appendMeta("theme-color", color, "(prefers-color-scheme: light)");
-    appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
+    appendMeta("theme-color", chrome);
+    appendMeta("theme-color", chrome, "(prefers-color-scheme: light)");
+    appendMeta("theme-color", chrome, "(prefers-color-scheme: dark)");
     setMeta(
       "apple-mobile-web-app-status-bar-style",
-      color === THEME_COLOR_DARK ? "black-translucent" : "default"
+      chrome === THEME_COLOR_DARK ? "black-translucent" : "default"
     );
-    syncSafariChrome(theme);
   }
 
   function applyTheme(theme) {

@@ -900,10 +900,12 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 }
 
 @media (max-width: 720px) {
+  /* Как infra: hero на весь экран — иначе снизу белая safe-area */
   .page-about #main > .projects-hero-stage:first-child {
-    height: auto;
-    min-height: calc(78svh + var(--site-header-height, 5.5rem));
-    min-height: calc(78dvh + var(--site-header-height, 5.5rem));
+    height: calc(100svh + var(--site-header-height, 5.5rem));
+    height: calc(100dvh + var(--site-header-height, 5.5rem));
+    min-height: calc(100svh + var(--site-header-height, 5.5rem));
+    min-height: calc(100dvh + var(--site-header-height, 5.5rem));
   }
 
   .page-about {

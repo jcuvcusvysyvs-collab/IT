@@ -603,6 +603,25 @@ html:not([data-theme="dark"]) .header-inner::after {
   display: none;
 }
 
+/* Dark full-bleed hero (infra/about/…): no light glass wash in Safari safe-area */
+html[data-safari-chrome="dark"] .header-inner::after {
+  content: none !important;
+  display: none !important;
+}
+
+html[data-safari-chrome="dark"] .header-inner::before {
+  background-color: #0a0e14;
+  background-image: none;
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+html[data-safari-chrome="dark"] .site-header {
+  background-color: #0a0e14;
+}
+
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .header-inner::before {
     background-image: var(--header-pill-glass-tint);
