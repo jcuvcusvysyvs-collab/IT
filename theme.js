@@ -117,11 +117,8 @@
       );
     var chromeColor = pageColor;
 
-    /* Тёмный full-bleed hero (в т.ч. «О компании»): светлая тема → тёмный chrome, пока лента не sticky */
-    if (theme === "light" && subnav && !subnavStuck) {
-      chromeColor = THEME_COLOR_DARK;
-    }
-
+    /* Safari top/bottom chrome follows selected theme.
+       Dark hero + ribbon stay dark via CSS; do not force OS chrome dark in light theme. */
     root.style.setProperty("--safari-chrome-bg", chromeColor);
     root.style.backgroundColor = pageColor;
 
@@ -146,9 +143,8 @@
     if (subnav) {
       if (subnavStuck || subnavAtTop) {
         subnav.style.backgroundColor = pageColor;
-      } else if (theme === "light") {
-        subnav.style.backgroundColor = THEME_COLOR_DARK;
       } else {
+        /* Hero ribbon: dark from CSS ::before, not from html/theme-color */
         subnav.style.removeProperty("background-color");
       }
     }
