@@ -8737,13 +8737,23 @@ html[data-theme="dark"] .footer-widget #widget1 {
     inset: 0;
     top: var(--site-header-height, 3.65rem);
     z-index: 89;
-    background: rgba(8, 12, 18, 0.16);
-    backdrop-filter: blur(12px) saturate(1.02);
-    -webkit-backdrop-filter: blur(12px) saturate(1.02);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.32s ease, visibility 0.32s ease;
+  }
+
+  .nav-mobile-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 12, 18, 0.16);
+    backdrop-filter: blur(12px) saturate(1.02);
+    -webkit-backdrop-filter: blur(12px) saturate(1.02);
+    pointer-events: none;
   }
 
   .nav-mobile-backdrop.is-visible {
@@ -8752,7 +8762,7 @@ html[data-theme="dark"] .footer-widget #widget1 {
     pointer-events: auto;
   }
 
-  [data-theme="dark"] .nav-mobile-backdrop {
+  [data-theme="dark"] .nav-mobile-backdrop::before {
     background: rgba(0, 0, 0, 0.28);
   }
 
@@ -8782,10 +8792,9 @@ html[data-theme="dark"] .footer-widget #widget1 {
     align-items: stretch;
     gap: 0;
     padding: 0.5rem 0 1rem;
-    background-color: var(--nav-mobile-glass-bg);
-    background-image: var(--nav-mobile-glass-tint);
-    backdrop-filter: var(--nav-mobile-glass-backdrop);
-    -webkit-backdrop-filter: var(--nav-mobile-glass-backdrop);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border: none;
     border-top: 1px solid var(--nav-mobile-glass-border);
     box-shadow: var(--nav-mobile-glass-inset), var(--nav-mobile-glass-shadow);
@@ -8804,8 +8813,21 @@ html[data-theme="dark"] .footer-widget #widget1 {
   }
 
   .nav-menu::before {
-    content: none;
-    display: none;
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--nav-mobile-glass-bg);
+    background-image: var(--nav-mobile-glass-tint);
+    backdrop-filter: var(--nav-mobile-glass-backdrop);
+    -webkit-backdrop-filter: var(--nav-mobile-glass-backdrop);
+  }
+
+  .nav-menu > * {
+    position: relative;
+    z-index: 1;
   }
 
   .nav.is-open .nav-menu {
@@ -9301,8 +9323,12 @@ html[data-theme="dark"] .footer-widget #widget1 {
     border-radius: 0;
   }
 
+  /* Safari 26 samples background-color on position:fixed at the viewport edge.
+     Keep the header itself transparent; paint lives on .header-inner::before.
+     html/body --safari-chrome-bg is what actually tints the status bar. */
   .site-header {
-    background-color: var(--safari-chrome-bg, var(--bg));
+    background: transparent;
+    background-color: transparent;
   }
 
   .header-inner::before {
@@ -10085,12 +10111,9 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
-html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
-  background-color: var(--safari-chrome-bg, var(--bg));
-}
-
+html:not([data-theme="dark"]) .page-section-subnav.is-stuck,
 [data-theme="dark"] .page-section-subnav.is-stuck {
-  background-color: var(--safari-chrome-bg, var(--bg));
+  background-color: transparent;
 }
 
 @media (max-width: 720px) {

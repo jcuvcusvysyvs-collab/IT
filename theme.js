@@ -104,50 +104,16 @@
     var pageColor = themeColorFor(theme);
     var subnav = document.querySelector("[data-section-subnav]");
     var header = document.querySelector(".site-header");
-    var scrollY = window.scrollY || window.pageYOffset || 0;
-    if (scrollY < 0) scrollY = 0;
-    var subnavStuck = !!(subnav && subnav.classList.contains("is-stuck") && scrollY > 2);
-    var headerHidden = !!(header && header.classList.contains("site-header--hidden"));
-    var subnavAtTop =
-      !!(
-        subnav &&
-        scrollY > 2 &&
-        subnav.getBoundingClientRect &&
-        subnav.getBoundingClientRect().top <= 1
-      );
-    var chromeColor = pageColor;
 
-    /* Safari top/bottom chrome follows selected theme.
-       Dark hero + ribbon stay dark via CSS; do not force OS chrome dark in light theme. */
-    root.style.setProperty("--safari-chrome-bg", chromeColor);
+    /* Safari 26 ignores theme-color and samples html/body (live) unless a
+       position:fixed/sticky element at the edge has its own background. */
+    root.style.setProperty("--safari-chrome-bg", pageColor);
     root.style.backgroundColor = pageColor;
-
     if (document.body) {
       document.body.style.backgroundColor = pageColor;
     }
-
-    if (!isMobile()) {
-      if (header) header.style.removeProperty("background-color");
-      if (subnav) subnav.style.removeProperty("background-color");
-      return;
-    }
-
-    if (header) {
-      if (!subnavStuck && !subnavAtTop && !headerHidden) {
-        header.style.backgroundColor = pageColor;
-      } else {
-        header.style.removeProperty("background-color");
-      }
-    }
-
-    if (subnav) {
-      if (subnavStuck || subnavAtTop) {
-        subnav.style.backgroundColor = pageColor;
-      } else {
-        /* Hero ribbon: dark from CSS ::before, not from html/theme-color */
-        subnav.style.removeProperty("background-color");
-      }
-    }
+    if (header) header.style.removeProperty("background-color");
+    if (subnav) subnav.style.removeProperty("background-color");
   }
 
   var lastThemeColor = null;
