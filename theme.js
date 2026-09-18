@@ -100,20 +100,58 @@
     appendMeta(name, content);
   }
 
+  function ensureTintShims() {
+    if (!document.body) return null;
+    var top = document.getElementById("dc-safari-tint-top");
+    var bottom = document.getElementById("dc-safari-tint-bottom");
+    if (!top) {
+      top = document.createElement("div");
+      top.id = "dc-safari-tint-top";
+      top.className = "dc-safari-tint dc-safari-tint--top";
+      top.setAttribute("aria-hidden", "true");
+      document.body.appendChild(top);
+    }
+    if (!bottom) {
+      bottom = document.createElement("div");
+      bottom.id = "dc-safari-tint-bottom";
+      bottom.className = "dc-safari-tint dc-safari-tint--bottom";
+      bottom.setAttribute("aria-hidden", "true");
+      document.body.appendChild(bottom);
+    }
+    return { top: top, bottom: bottom };
+  }
+
+  function paintTintShim(el, color) {
+    if (!el) return;
+    el.style.backgroundColor = color;
+    /* Safari 26 resamples fixed edge fills on geometry changes, not CSS vars. */
+    var parent = el.parentNode;
+    if (parent) parent.appendChild(el);
+  }
+
   function syncSafariChrome(theme) {
     var pageColor = themeColorFor(theme);
     var subnav = document.querySelector("[data-section-subnav]");
     var header = document.querySelector(".site-header");
 
-    /* Safari 26 ignores theme-color and samples html/body (live) unless a
-       position:fixed/sticky element at the edge has its own background. */
     root.style.setProperty("--safari-chrome-bg", pageColor);
     root.style.backgroundColor = pageColor;
     if (document.body) {
       document.body.style.backgroundColor = pageColor;
     }
-    if (header) header.style.removeProperty("background-color");
+    if (header) {
+      header.style.removeProperty("background-color");
+      header.style.background = "none";
+    }
     if (subnav) subnav.style.removeProperty("background-color");
+
+    if (isMobile()) {
+      var shims = ensureTintShims();
+      if (shims) {
+        paintTintShim(shims.top, pageColor);
+        paintTintShim(shims.bottom, pageColor);
+      }
+    }
   }
 
   var lastThemeColor = null;

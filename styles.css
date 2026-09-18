@@ -256,6 +256,10 @@ html {
   background-color: var(--bg);
 }
 
+.dc-safari-tint {
+  display: none;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -9323,16 +9327,50 @@ html[data-theme="dark"] .footer-widget #widget1 {
     border-radius: 0;
   }
 
-  /* Safari 26 samples background-color on position:fixed at the viewport edge.
-     Keep the header itself transparent; paint lives on .header-inner::before.
-     html/body --safari-chrome-bg is what actually tints the status bar. */
+  /* Safari 26 Liquid Glass: do not give the fixed header a transparent
+     background-color — it gets sampled and the dark hero shows through.
+     Visual fill is opaque on ::before; edge tint comes from .dc-safari-tint. */
   .site-header {
-    background: transparent;
-    background-color: transparent;
+    background: none;
+    background-color: unset;
   }
 
   .header-inner::before {
     top: calc(-1 * env(safe-area-inset-top, 0px));
+    background-color: var(--safari-chrome-bg, var(--bg));
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  html:not([data-theme="dark"]) .header-inner::after {
+    content: none;
+    display: none;
+  }
+
+  .dc-safari-tint {
+    display: block;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    min-height: 12px;
+    pointer-events: none;
+    z-index: 2147483646;
+    background-color: var(--safari-chrome-bg, var(--bg));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    opacity: 1;
+  }
+
+  .dc-safari-tint--top {
+    top: 0;
+    height: env(safe-area-inset-top, 12px);
+  }
+
+  .dc-safari-tint--bottom {
+    right: 0;
+    bottom: -8px;
+    height: 12px;
   }
 
   .logo {
