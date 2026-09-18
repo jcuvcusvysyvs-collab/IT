@@ -804,25 +804,104 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 }
 
 @media (max-width: 720px) {
-  /* Hero height — как у infra (глобальный #main > .projects-hero-stage) */
+  /* Как infra: короче full-bleed 100dvh — иначе лента упирается в низ экрана */
+  .page-about #main > .projects-hero-stage:first-child {
+    height: auto;
+    max-width: 100%;
+    overflow-x: clip;
+    min-height: calc(72svh + var(--site-header-height, 5.5rem));
+    min-height: calc(72dvh + var(--site-header-height, 5.5rem));
+    padding-top: max(
+      var(--hero-header-clearance),
+      calc(
+        var(--site-header-height, 5.5rem) + env(safe-area-inset-top, 0px) + clamp(2.75rem, 6vh, 3.75rem)
+      )
+    );
+  }
+
+  .page-about .page-about__hero-stage {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  .page-about .page-about__hero-stage .projects-hero__background {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .page-about .page-about__hero-stage.projects-hero-stage--photo .projects-hero__background::before {
+    inset: -2% -8% -6% -8%;
+    background-position: 55% 28%;
+    transform: scale(1.12);
+    transform-origin: 55% 30%;
+    filter: brightness(0.7) saturate(0.9);
+  }
+
+  .page-about .page-about__hero-stage.projects-hero-stage--photo .projects-hero__background::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 10, 20, 0.88) 0%,
+        rgba(5, 10, 20, 0.55) 22%,
+        rgba(5, 10, 20, 0.35) 48%,
+        rgba(5, 10, 20, 0.78) 100%
+      ),
+      radial-gradient(ellipse 70% 90% at 72% 50%, transparent 30%, rgba(5, 10, 20, 0.65) 100%),
+      linear-gradient(to right, rgba(5, 10, 20, 0.92) 0%, rgba(5, 10, 20, 0.55) 50%, transparent 100%);
+  }
 
   .page-about {
     --hero-subnav-overlap: 4.75rem;
   }
 
   .page-about .projects-hero.subpage-hero--about {
+    --projects-hero-pad-top: clamp(1.15rem, 3vh, 1.75rem);
     --projects-hero-pad-bottom: calc(
       var(--hero-subnav-overlap) + clamp(1.15rem, 3.5vw, 1.75rem)
     );
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    padding-top: var(--projects-hero-pad-top);
+  }
+
+  .page-about .projects-hero--yandex .subpage-hero__inner,
+  .page-about .projects-hero__inner--left {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Чуть шире gutter, чем базовый 1.15rem — контент не в край */
+    padding-inline: max(var(--layout-gutter), 1.35rem);
+  }
+
+  .page-about .projects-hero--yandex .projects-hero__content,
+  .page-about .projects-hero--yandex .subpage-hero__content {
+    max-width: 100%;
+  }
+
+  .page-about .page-about__hero-stage[data-hero-grid] .projects-hero__content {
+    transform: none;
   }
 
   .page-about .projects-hero .subpage-hero__title,
   .page-about .projects-hero--yandex .projects-hero__title {
-    font-size: clamp(2.65rem, 12vw, 3.6rem);
+    font-size: clamp(2.2rem, 9.6vw, 2.75rem);
+    letter-spacing: 0.006em;
+    max-width: 100%;
   }
 
   .page-about .projects-hero .subpage-hero__lead,
   .page-about .projects-hero--yandex .projects-hero__lead {
-    font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+    max-width: 100%;
+    font-size: clamp(1.05rem, 4.2vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: normal;
+  }
+
+  .page-about .projects-hero .subpage-breadcrumbs {
+    max-width: 100%;
   }
 }
