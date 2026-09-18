@@ -106,13 +106,7 @@
     var header = document.querySelector(".site-header");
     var scrollY = window.scrollY || window.pageYOffset || 0;
     if (scrollY < 0) scrollY = 0;
-
-    var stuckClass = !!(subnav && subnav.classList.contains("is-stuck"));
-    var menuEngaged = !!(
-      subnav &&
-      (subnav.classList.contains("page-section-subnav--menu-open") ||
-        subnav.classList.contains("page-section-subnav--panel-closing"))
-    );
+    var subnavStuck = !!(subnav && subnav.classList.contains("is-stuck") && scrollY > 2);
     var headerHidden = !!(header && header.classList.contains("site-header--hidden"));
     var subnavAtTop =
       !!(
@@ -121,23 +115,15 @@
         subnav.getBoundingClientRect &&
         subnav.getBoundingClientRect().top <= 1
       );
+    var isAbout = document.body && document.body.classList.contains("page-about");
+    var chromeColor = pageColor;
 
-    /*
-      Тёмный chrome только над full-bleed hero в светлой теме.
-      Как только лента sticky / меню / уехали со hero — chrome = цвет темы
-      (иначе сверху/снизу остаются тёмные safe-area блоки после смены темы).
-    */
-    var overDarkHero =
-      theme === "light" &&
-      !!subnav &&
-      !stuckClass &&
-      !menuEngaged &&
-      !subnavAtTop &&
-      scrollY <= 2;
-    var chromeColor = overDarkHero ? THEME_COLOR_DARK : pageColor;
+    /* Dark hero chrome for infra/HUAWEI/projects. About: keep theme-colored safe-area. */
+    if (theme === "light" && subnav && !subnavStuck && !isAbout) {
+      chromeColor = THEME_COLOR_DARK;
+    }
 
     root.style.setProperty("--safari-chrome-bg", chromeColor);
-    /* Низ (home indicator) и фон страницы всегда в цвете темы */
     root.style.backgroundColor = pageColor;
 
     if (document.body) {
@@ -151,11 +137,7 @@
     }
 
     if (header) {
-      if (headerHidden) {
-        header.style.removeProperty("background-color");
-      } else if (overDarkHero) {
-        header.style.backgroundColor = THEME_COLOR_DARK;
-      } else if (!stuckClass && !subnavAtTop && !menuEngaged) {
+      if (!subnavStuck && !subnavAtTop && !headerHidden) {
         header.style.backgroundColor = pageColor;
       } else {
         header.style.removeProperty("background-color");
@@ -163,9 +145,9 @@
     }
 
     if (subnav) {
-      if (stuckClass || subnavAtTop || menuEngaged) {
+      if (subnavStuck || subnavAtTop) {
         subnav.style.backgroundColor = pageColor;
-      } else if (theme === "light") {
+      } else if (theme === "light" && !isAbout) {
         subnav.style.backgroundColor = THEME_COLOR_DARK;
       } else {
         subnav.style.removeProperty("background-color");
@@ -173,29 +155,17 @@
     }
   }
 
-  var lastThemeColorMeta = "";
-  var lastStatusBarStyle = "";
-
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
+    clearMetas("theme-color");
+    appendMeta("theme-color", color);
+    appendMeta("theme-color", color, "(prefers-color-scheme: light)");
+    appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
+    setMeta(
+      "apple-mobile-web-app-status-bar-style",
+      color === THEME_COLOR_DARK ? "black-translucent" : "default"
+    );
     syncSafariChrome(theme);
-    var chrome =
-      (root.style.getPropertyValue("--safari-chrome-bg") || "").trim() || color;
-    var statusStyle =
-      chrome === THEME_COLOR_DARK ? "black-translucent" : "default";
-
-    if (color !== lastThemeColorMeta) {
-      clearMetas("theme-color");
-      appendMeta("theme-color", color);
-      appendMeta("theme-color", color, "(prefers-color-scheme: light)");
-      appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
-      lastThemeColorMeta = color;
-    }
-
-    if (statusStyle !== lastStatusBarStyle) {
-      setMeta("apple-mobile-web-app-status-bar-style", statusStyle);
-      lastStatusBarStyle = statusStyle;
-    }
   }
 
   function applyTheme(theme) {
@@ -338,8 +308,6 @@
       function cleanup() {
         themeTransitionBusy = false;
         root.classList.remove("theme-vt-active");
-        /* После VT заново синхронизируем safe-area chrome (sticky / theme-color) */
-        syncThemeColor(currentTheme());
       }
 
       if (transition.finished && typeof transition.finished.then === "function") {

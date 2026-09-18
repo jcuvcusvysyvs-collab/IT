@@ -381,10 +381,9 @@
       var wasStuck = subnav.classList.contains("is-stuck");
       if (wasStuck !== stuck) {
         subnav.classList.toggle("is-stuck", stuck);
-      }
-      /* Всегда: safe-area chrome зависит и от scrollY, не только от is-stuck */
-      if (window.dcSiteTheme && typeof window.dcSiteTheme.refreshThemeColor === "function") {
-        window.dcSiteTheme.refreshThemeColor();
+        if (window.dcSiteTheme && typeof window.dcSiteTheme.refreshThemeColor === "function") {
+          window.dcSiteTheme.refreshThemeColor();
+        }
       }
     }
     syncForceHeaderHidden();
