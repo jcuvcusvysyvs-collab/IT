@@ -51,9 +51,8 @@
         }
         var chrome = dark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
         ensureMeta("theme-color", chrome);
-        ensureMeta("theme-color", chrome, "(prefers-color-scheme: light)");
-        ensureMeta("theme-color", chrome, "(prefers-color-scheme: dark)");
         ensureMeta("apple-mobile-web-app-status-bar-style", dark ? "black-translucent" : "default");
+        r.style.colorScheme = dark ? "dark" : "light";
         r.style.setProperty("--safari-chrome-bg", chrome);
         r.style.backgroundColor = chrome;
         r.classList.add("is-loading");
@@ -61,7 +60,7 @@
       })();
     </script>
     <script defer src="page-loader.js?v=20260827-loader-v2"></script>
-    <script defer src="theme.js?v=20260918-light-chrome-v114"></script>
+    <script defer src="theme.js?v=20260918-safari-chrome-v115"></script>
   </head>
   <body class="page-infra">
     <a class="skip-link" href="#main">К основному содержимому</a>

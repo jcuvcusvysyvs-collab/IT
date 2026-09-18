@@ -150,16 +150,52 @@
     }
   }
 
+  var lastThemeColor = null;
+
+  function pokeThemeColorMeta(color) {
+    var nodes = document.querySelectorAll('meta[name="theme-color"]');
+    var primary = null;
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+      if (!nodes[i].hasAttribute("media")) {
+        primary = nodes[i];
+        break;
+      }
+    }
+    for (i = 0; i < nodes.length; i++) {
+      if (nodes[i] !== primary) {
+        nodes[i].parentNode.removeChild(nodes[i]);
+      }
+    }
+    if (!primary) {
+      primary = document.createElement("meta");
+      primary.setAttribute("name", "theme-color");
+      document.head.appendChild(primary);
+    } else {
+      primary.removeAttribute("media");
+    }
+    /* Safari iOS: media-query theme-color follows OS, not the site toggle.
+       A single tag + content nudge is what actually repaints top/bottom chrome. */
+    var changed = lastThemeColor !== color;
+    lastThemeColor = color;
+    if (!changed) {
+      primary.setAttribute("content", color);
+      return;
+    }
+    primary.setAttribute("content", color === THEME_COLOR_DARK ? "#0b0f15" : "#f3f5f9");
+    window.requestAnimationFrame(function () {
+      primary.setAttribute("content", color);
+    });
+  }
+
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
-    clearMetas("theme-color");
-    appendMeta("theme-color", color);
-    appendMeta("theme-color", color, "(prefers-color-scheme: light)");
-    appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
+    pokeThemeColorMeta(color);
     setMeta(
       "apple-mobile-web-app-status-bar-style",
       color === THEME_COLOR_DARK ? "black-translucent" : "default"
     );
+    root.style.colorScheme = theme === "dark" ? "dark" : "light";
     syncSafariChrome(theme);
   }
 
@@ -169,6 +205,7 @@
     } else {
       root.removeAttribute("data-theme");
     }
+    root.style.colorScheme = theme === "dark" ? "dark" : "light";
     syncThemeColor(theme);
   }
 
@@ -272,6 +309,9 @@
       return;
     }
 
+    /* Safari chrome sits outside the VT snapshot — paint it before the animation. */
+    syncThemeColor(nextTheme);
+
     var point = resolvePointer(event, switchEl);
     var x = point.x;
     var y = point.y;
@@ -303,6 +343,7 @@
       function cleanup() {
         themeTransitionBusy = false;
         root.classList.remove("theme-vt-active");
+        syncThemeColor(nextTheme);
       }
 
       if (transition.finished && typeof transition.finished.then === "function") {
