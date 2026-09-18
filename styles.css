@@ -10086,11 +10086,12 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck::before {
 }
 
 html:not([data-theme="dark"]) .page-section-subnav.is-stuck {
-  background-color: var(--safari-chrome-bg, var(--bg));
+  /* Цвет темы, не --safari-chrome-bg: иначе после смены темы лента/safe-area остаются тёмными */
+  background-color: var(--bg);
 }
 
 [data-theme="dark"] .page-section-subnav.is-stuck {
-  background-color: var(--safari-chrome-bg, var(--bg));
+  background-color: var(--bg);
 }
 
 @media (max-width: 720px) {
@@ -10606,7 +10607,7 @@ html:not([data-theme="dark"]) .page-section-subnav.is-stuck .page-section-subnav
 
   html:not([data-theme="dark"]) .page-section-subnav--menu-open .page-section-subnav__inner::after,
   html:not([data-theme="dark"]) .page-section-subnav--panel-closing .page-section-subnav__inner::after {
-    background: var(--safari-chrome-bg, var(--bg));
+    background: var(--bg);
   }
 
   .page-section-subnav--menu-open .page-section-subnav__brand,

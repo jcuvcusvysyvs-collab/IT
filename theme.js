@@ -106,7 +106,13 @@
     var header = document.querySelector(".site-header");
     var scrollY = window.scrollY || window.pageYOffset || 0;
     if (scrollY < 0) scrollY = 0;
-    var subnavStuck = !!(subnav && subnav.classList.contains("is-stuck") && scrollY > 2);
+
+    var stuckClass = !!(subnav && subnav.classList.contains("is-stuck"));
+    var menuEngaged = !!(
+      subnav &&
+      (subnav.classList.contains("page-section-subnav--menu-open") ||
+        subnav.classList.contains("page-section-subnav--panel-closing"))
+    );
     var headerHidden = !!(header && header.classList.contains("site-header--hidden"));
     var subnavAtTop =
       !!(
@@ -115,14 +121,23 @@
         subnav.getBoundingClientRect &&
         subnav.getBoundingClientRect().top <= 1
       );
-    var chromeColor = pageColor;
 
-    /* Тёмный full-bleed hero (в т.ч. «О компании»): светлая тема → тёмный chrome, пока лента не sticky */
-    if (theme === "light" && subnav && !subnavStuck) {
-      chromeColor = THEME_COLOR_DARK;
-    }
+    /*
+      Тёмный chrome только над full-bleed hero в светлой теме.
+      Как только лента sticky / меню / уехали со hero — chrome = цвет темы
+      (иначе сверху/снизу остаются тёмные safe-area блоки после смены темы).
+    */
+    var overDarkHero =
+      theme === "light" &&
+      !!subnav &&
+      !stuckClass &&
+      !menuEngaged &&
+      !subnavAtTop &&
+      scrollY <= 2;
+    var chromeColor = overDarkHero ? THEME_COLOR_DARK : pageColor;
 
     root.style.setProperty("--safari-chrome-bg", chromeColor);
+    /* Низ (home indicator) и фон страницы всегда в цвете темы */
     root.style.backgroundColor = pageColor;
 
     if (document.body) {
@@ -136,7 +151,11 @@
     }
 
     if (header) {
-      if (!subnavStuck && !subnavAtTop && !headerHidden) {
+      if (headerHidden) {
+        header.style.removeProperty("background-color");
+      } else if (overDarkHero) {
+        header.style.backgroundColor = THEME_COLOR_DARK;
+      } else if (!stuckClass && !subnavAtTop && !menuEngaged) {
         header.style.backgroundColor = pageColor;
       } else {
         header.style.removeProperty("background-color");
@@ -144,7 +163,7 @@
     }
 
     if (subnav) {
-      if (subnavStuck || subnavAtTop) {
+      if (stuckClass || subnavAtTop || menuEngaged) {
         subnav.style.backgroundColor = pageColor;
       } else if (theme === "light") {
         subnav.style.backgroundColor = THEME_COLOR_DARK;
@@ -154,17 +173,29 @@
     }
   }
 
+  var lastThemeColorMeta = "";
+  var lastStatusBarStyle = "";
+
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
-    clearMetas("theme-color");
-    appendMeta("theme-color", color);
-    appendMeta("theme-color", color, "(prefers-color-scheme: light)");
-    appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
-    setMeta(
-      "apple-mobile-web-app-status-bar-style",
-      color === THEME_COLOR_DARK ? "black-translucent" : "default"
-    );
     syncSafariChrome(theme);
+    var chrome =
+      (root.style.getPropertyValue("--safari-chrome-bg") || "").trim() || color;
+    var statusStyle =
+      chrome === THEME_COLOR_DARK ? "black-translucent" : "default";
+
+    if (color !== lastThemeColorMeta) {
+      clearMetas("theme-color");
+      appendMeta("theme-color", color);
+      appendMeta("theme-color", color, "(prefers-color-scheme: light)");
+      appendMeta("theme-color", color, "(prefers-color-scheme: dark)");
+      lastThemeColorMeta = color;
+    }
+
+    if (statusStyle !== lastStatusBarStyle) {
+      setMeta("apple-mobile-web-app-status-bar-style", statusStyle);
+      lastStatusBarStyle = statusStyle;
+    }
   }
 
   function applyTheme(theme) {
@@ -307,6 +338,8 @@
       function cleanup() {
         themeTransitionBusy = false;
         root.classList.remove("theme-vt-active");
+        /* После VT заново синхронизируем safe-area chrome (sticky / theme-color) */
+        syncThemeColor(currentTheme());
       }
 
       if (transition.finished && typeof transition.finished.then === "function") {
