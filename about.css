@@ -1,101 +1,5 @@
-/* Страница «О компании» — липкая лента (как на «Проекты») */
-
-/*
-  На тёмном hero лента тёмная (как infra/HUAWEI).
-  Светлая тема включается только после закрепления (.is-stuck).
-*/
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck {
-  --subnav-link: color-mix(in srgb, var(--text) 68%, transparent);
-  --subnav-link-hover: var(--text);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck::before {
-  background: color-mix(in srgb, var(--bg) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 8px 28px rgba(15, 18, 24, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__brand {
-  color: var(--text);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-section-subnav__toggle {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
-  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck.page-section-subnav--menu-open::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck.page-section-subnav--panel-closing::before {
-  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 6px 24px rgba(15, 18, 24, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-/* Меню с hero: панель светлая; бренд/тогл на тёмном hero остаются светлыми */
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open:not(.is-stuck)::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing:not(.is-stuck)::before,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open:not(.is-stuck) .page-section-subnav__inner::after,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--panel-closing:not(.is-stuck) .page-section-subnav__inner::after {
-  background: color-mix(in srgb, var(--bg-elevated) 99%, transparent);
-  border-bottom-color: var(--border);
-  box-shadow:
-    0 6px 24px rgba(15, 18, 24, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__toggle,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__toggle {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--text) 14%, var(--border));
-  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--menu-open .page-section-subnav__brand-icon,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.is-stuck.page-section-subnav--panel-closing .page-section-subnav__brand-icon {
-  background: transparent;
-  box-shadow: none;
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav.page-section-subnav--menu-open .page-section-subnav__panel,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero.page-section-subnav--menu-open .page-section-subnav__panel,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .page-section-subnav__panel.is-closing {
-  background: var(--bg-elevated);
-  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
-  border-top-color: var(--border);
-  box-shadow:
-    0 20px 48px rgba(15, 18, 24, 0.11),
-    0 8px 22px rgba(15, 18, 24, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.96);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item {
-  color: var(--text);
-}
-
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item:hover,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-html:not([data-theme="dark"]) .page-about .page-section-subnav--menu-from-hero .page-section-subnav__panel .projects-hero-switcher__item.is-active {
-  color: var(--text);
-  background: transparent;
-  box-shadow: none;
-}
-
-@media (max-width: 900px) {
-  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item {
-    color: var(--text);
-  }
-
-  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:hover,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item:focus-visible,
-  html:not([data-theme="dark"]) .page-about .page-section-subnav:not(.page-section-subnav--menu-from-hero) .page-section-subnav__panel .projects-hero-switcher__item.is-active {
-    color: var(--text);
-  }
-}
+/* Страница «О компании» — липкая лента: тема/chrome как у infra (styles.css).
+   Здесь только раскладка/бренд, без полупрозрачных фонов safe-area. */
 
 .page-about .page-section-subnav .projects-hero-switcher {
   width: auto;
@@ -900,13 +804,7 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 }
 
 @media (max-width: 720px) {
-  /* Как infra: hero на весь экран — иначе снизу белая safe-area */
-  .page-about #main > .projects-hero-stage:first-child {
-    height: calc(100svh + var(--site-header-height, 5.5rem));
-    height: calc(100dvh + var(--site-header-height, 5.5rem));
-    min-height: calc(100svh + var(--site-header-height, 5.5rem));
-    min-height: calc(100dvh + var(--site-header-height, 5.5rem));
-  }
+  /* Hero height — как у infra (глобальный #main > .projects-hero-stage) */
 
   .page-about {
     --hero-subnav-overlap: 4.75rem;
