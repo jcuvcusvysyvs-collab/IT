@@ -96,8 +96,22 @@
   }
 
   function setMeta(name, content) {
+    var existing = document.querySelectorAll('meta[name="' + name + '"]');
+    if (
+      existing.length === 1 &&
+      !existing[0].hasAttribute("media") &&
+      existing[0].getAttribute("content") === content
+    ) {
+      return;
+    }
     clearMetas(name);
     appendMeta(name, content);
+  }
+
+  function isIOS() {
+    var ua = navigator.userAgent || "";
+    if (/iPad|iPhone|iPod/.test(ua)) return true;
+    return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
   }
 
   function ensureTintShims() {
@@ -189,7 +203,7 @@
     if (isMobile()) {
       /* theme-color is what paints Safari's bottom bar as a solid rectangle.
          Drop it so the toolbar stays Liquid Glass across the theme switch. */
-      clearMetas("theme-color");
+      if (document.querySelector('meta[name="theme-color"]')) clearMetas("theme-color");
       setMeta("apple-mobile-web-app-status-bar-style", "black-translucent");
     } else {
       pokeThemeColorMeta(color);
@@ -305,6 +319,8 @@
 
     if (
       prefersReducedMotion() ||
+      isIOS() ||
+      isMobile() ||
       typeof document.startViewTransition !== "function"
     ) {
       applyTheme(nextTheme);
