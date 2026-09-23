@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400;500;600&family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260917-light-text-black-v69" />
+    <link rel="stylesheet" href="styles.css?v=20260923-projects-orbit-v164" />
     <link rel="stylesheet" href="projects.css?v=20260914-subnav-menu-from-hero-contrast-v61" />
     <script>
       (function () {
@@ -405,10 +405,9 @@
       <section class="section about-dce page-projects__showcase" id="projects-featured" aria-labelledby="projects-h-01">
         <div class="about-dce__inner">
           <article class="about-dce__block" data-infra-reveal>
-            <header class="about-dce__header">
+            <header class="about-dce__header projects-orbit__head">
               <span class="about-dce__index" aria-hidden="true">01</span>
               <div class="about-dce__intro">
-                <p class="about-dce__eyebrow" aria-hidden="true">Избранные</p>
                 <h2 id="projects-h-01" class="about-dce__title">
                   Ключевые <span class="about-dce__brand">проекты</span>
                 </h2>
@@ -418,99 +417,99 @@
               </div>
             </header>
 
-            <div class="about-dce__grid" role="list">
-
-              <!-- Hero card: Здание ОКО -->
-              <article class="about-dce__card about-dce__card--hero about-dce__card--hero-photo" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">01</span>
-                  Государственный сектор
-                </p>
-                <h3 class="about-dce__card-title">Здание ОКО, Москва&#8209;Сити</h3>
-                <p class="about-dce__card-customer">Правительство Москвы</p>
-                <p class="page-about__card-text">
-                  Проектирование и&nbsp;создание распределённой ИТ-инфраструктуры для всех подразделений Правительства Москвы, размещённых в&nbsp;башне.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">2016&ndash;2017</span>
-                  <span class="about-dce__stat-label">Москва</span>
+            <div class="projects-orbit">
+              <div class="projects-orbit__stage">
+              <article class="projects-orbit__card projects-orbit__card--photo">
+                <div class="projects-orbit__photo">
+                  <img src="images/key_projects/key_project_01.png" alt="Иллюстрация проекта для АО «НСПК»" width="1200" height="675" decoding="async" />
                 </div>
-                <a class="page-about__card-cta" href="project-oko.html">
-                  Подробнее
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </article>
-
-              <!-- Card 02: Гиперконвергентная инфраструктура -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">02</span>
-                  Финансы
-                </p>
-                <h3 class="about-dce__card-title">Гиперконвергентная инфраструктура</h3>
-                <p class="page-about__card-text" style="font-weight:600;">АО «Банк ДОМ.РФ», АО «ДОМ.РФ»</p>
-                <p class="page-about__card-text">
-                  Создание гиперконвергентной инфраструктуры с&nbsp;режимом active-active между двумя дата-центрами.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">2021</span>
-                  <span class="about-dce__stat-label">Москва</span>
+                <div class="projects-orbit__body">
+                  <p class="projects-orbit__kicker">АО «НСПК»</p>
+                  <h3 class="projects-orbit__title">Проектирование архивного центра обработки данных</h3>
+                  <p class="projects-orbit__meta">Москва, 2026</p>
                 </div>
               </article>
+              <div class="projects-orbit__switch" role="tablist" aria-label="Ключевые проекты">
+                <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="АО «НСПК»"><span class="projects-orbit__switch-num">01</span><span class="projects-orbit__switch-name">НСПК</span></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="АО «Мосводоканал»"><span class="projects-orbit__switch-num">02</span><span class="projects-orbit__switch-name">Мосводоканал</span></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="ГБУ «Мосгоргеотрест»"><span class="projects-orbit__switch-num">03</span><span class="projects-orbit__switch-name">Мосгоргеотрест</span></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="ПАО «Яковлев», Иркутский авиационный завод"><span class="projects-orbit__switch-num">04</span><span class="projects-orbit__switch-name">Яковлев</span></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="ФКУ «Росдоринформсвязь»"><span class="projects-orbit__switch-num">05</span><span class="projects-orbit__switch-name">Росдоринформсвязь</span></button>
+              </div>
+              </div>
 
-              <!-- Card 03: Поддержка двух дата-центров -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">03</span>
-                  Нефтепереработка
-                </p>
-                <h3 class="about-dce__card-title">Поддержка двух дата-центров</h3>
-                <p class="page-about__card-text" style="font-weight:600;">ПАО «Саратовский НПЗ»</p>
-                <p class="page-about__card-text">
-                  Саратов и&nbsp;Москва: Huawei OceanStor, HPE, Fujitsu, Dell, SuperMicro, Cisco, ленточные библиотеки.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">2024&ndash;2027</span>
-                  <span class="about-dce__stat-label">Саратов&nbsp;- Москва</span>
+              <div class="projects-orbit__stack">
+                <div class="projects-orbit__rail" role="tablist" aria-label="Разделы проекта">
+                  <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="Задача"></button>
+                  <button type="button" role="tab" aria-selected="false" aria-label="Решение"></button>
+                  <button type="button" role="tab" aria-selected="false" aria-label="Результат"></button>
                 </div>
-              </article>
+                <div class="projects-orbit__viewport">
+                  <div class="projects-orbit__track">
+                <article class="projects-orbit__fold is-active">
+                  <button type="button" class="projects-orbit__fold-btn" aria-expanded="true">
+                    <span class="projects-orbit__fold-num" aria-hidden="true">01</span>
+                    <span class="projects-orbit__fold-title">Задача</span>
+                    <svg class="projects-orbit__fold-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div class="projects-orbit__fold-panel">
+                    <div class="projects-orbit__fold-inner">
+                      <p class="projects-orbit__text">
+                        Спроектировать центр обработки данных, территориально удаленный от&nbsp;существующих ЦОД московского региона, для безопасного хранения резервных копий промышленных данных, и&nbsp;оценить бюджет, сроки и&nbsp;трудозатраты его построения.
+                      </p>
+                      <p class="projects-orbit__label">Требования заказчика</p>
+                      <ul class="projects-orbit__list">
+                        <li>Защита копий от&nbsp;изменения и&nbsp;удаления</li>
+                        <li>Отсутствие единых точек отказа</li>
+                        <li>Периодическая проверка целостности</li>
+                        <li>Копия не&nbsp;старше 48&nbsp;часов</li>
+                        <li>Хранение двух состояний данных</li>
+                        <li>Запас на&nbsp;двукратный рост объема</li>
+                        <li>Площадка уровня Tier&nbsp;III</li>
+                        <li>Приоритет отечественных решений</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
 
-              <!-- Card 04: Корпоративная сеть -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">04</span>
-                  Федеральная структура
-                </p>
-                <h3 class="about-dce__card-title">Корпоративная сеть</h3>
-                <p class="page-about__card-text" style="font-weight:600;">Фонд социального страхования РФ</p>
-                <p class="page-about__card-text">
-                  Создание универсальной, высокопроизводительной и&nbsp;отказоустойчивой сети передачи данных.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">2019</span>
-                  <span class="about-dce__stat-label">Москва</span>
+                <article class="projects-orbit__fold">
+                  <button type="button" class="projects-orbit__fold-btn" aria-expanded="false">
+                    <span class="projects-orbit__fold-num" aria-hidden="true">02</span>
+                    <span class="projects-orbit__fold-title">Решение</span>
+                    <svg class="projects-orbit__fold-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div class="projects-orbit__fold-panel">
+                    <div class="projects-orbit__fold-inner">
+                      <ul class="projects-orbit__list">
+                        <li>Предпроектное обследование существующих ЦОД и&nbsp;информационных систем: интервью, сбор исходных данных, оценка объёмов данных и&nbsp;используемых технологий хранения.</li>
+                        <li>Разработка целевого дизайна и&nbsp;архитектуры сети со&nbsp;схемами L2–L3, эскизный проект с&nbsp;основными техническими и&nbsp;организационными решениями.</li>
+                        <li>Разработка процедур доставки, хранения и&nbsp;восстановления данных; требования к&nbsp;количеству, типу и&nbsp;емкости каналов связи между московскими ЦОД и&nbsp;архивной площадкой.</li>
+                        <li>Формирование технического задания на&nbsp;реализацию и&nbsp;бюджетных спецификаций оборудования, ПО&nbsp;и&nbsp;работ по&nbsp;внедрению с&nbsp;разбивкой по&nbsp;позициям.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="projects-orbit__fold">
+                  <button type="button" class="projects-orbit__fold-btn" aria-expanded="false">
+                    <span class="projects-orbit__fold-num" aria-hidden="true">03</span>
+                    <span class="projects-orbit__fold-title">Результат</span>
+                    <svg class="projects-orbit__fold-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div class="projects-orbit__fold-panel">
+                    <div class="projects-orbit__fold-inner">
+                      <p class="projects-orbit__text">
+                        Заказчику переданы проектные решения и&nbsp;рабочая документация, разработанные в&nbsp;соответствии с&nbsp;ГОСТ&nbsp;34 и&nbsp;РД&nbsp;50-34.698-90, а&nbsp;также бюджетная оценка проекта построения архивного ЦОД.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+                  </div>
                 </div>
-              </article>
-
-              <!-- Card 05: Резервный дата-центр -->
-              <article class="about-dce__card" role="listitem">
-                <p class="about-dce__card-kicker" aria-hidden="true">
-                  <span class="about-dce__card-num">05</span>
-                  Медицина
-                </p>
-                <h3 class="about-dce__card-title">Резервный дата-центр</h3>
-                <p class="page-about__card-text" style="font-weight:600;">ООО «ИНВИТРО»</p>
-                <p class="page-about__card-text">
-                  Аудит существующей инфраструктуры, анализ вариантов и&nbsp;создание резервного ЦОД.
-                </p>
-                <div class="about-dce__card-stat">
-                  <span class="about-dce__stat-value">2018</span>
-                  <span class="about-dce__stat-label">Москва</span>
+                <div class="projects-orbit__scroll" aria-hidden="true">
+                  <span class="projects-orbit__scroll-thumb"></span>
                 </div>
-              </article>
-
+              </div>
             </div>
           </article>
         </div>
@@ -1703,6 +1702,494 @@
         if (!set) return;
         track.appendChild(set.cloneNode(true));
       });
+    </script>
+    <script>
+      (function () {
+        var orbit = document.querySelector(".projects-orbit");
+        var stack = document.querySelector(".projects-orbit__stack");
+        if (!orbit || !stack) return;
+        var viewport = stack.querySelector(".projects-orbit__viewport");
+        var track = stack.querySelector(".projects-orbit__track");
+        var dots = Array.prototype.slice.call(stack.querySelectorAll(".projects-orbit__rail button"));
+        var tabs = Array.prototype.slice.call(orbit.querySelectorAll(".projects-orbit__switch button"));
+        var photo = orbit.querySelector(".projects-orbit__photo");
+        var img = photo.querySelector("img");
+        var kicker = orbit.querySelector(".projects-orbit__kicker");
+        var title = orbit.querySelector(".projects-orbit__title");
+        var meta = orbit.querySelector(".projects-orbit__meta");
+        var index = 0;
+        var scroll = 0;
+        var project = 0;
+        var lock = false;
+        var busy = false;
+        var peek = 148;
+        var fade = 64;
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var icon = '<svg class="projects-orbit__fold-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        var snapshot = {
+          html: track.innerHTML,
+          kicker: kicker.textContent,
+          title: title.textContent,
+          meta: meta.textContent,
+          src: img.getAttribute("src"),
+          alt: img.getAttribute("alt")
+        };
+        var projects = [
+          null,
+          {
+            kicker: "АО «Мосводоканал»",
+            title: "Развитие и поддержание работоспособности единой ИТ-инфраструктуры",
+            meta: "Москва, 2023–2027",
+            image: "images/key_projects/key_project_02.png",
+            alt: "Иллюстрация проекта для АО «Мосводоканал»",
+            sections: [
+              {
+                title: "Задача",
+                paragraphs: ["Обеспечение бесперебойной работы всех компонентов единой информационно-технологической инфраструктуры предприятия и доступности сервисов для пользователей на уровне, закрепленном соглашением об уровне сервиса."]
+              },
+              {
+                title: "Решение",
+                items: [
+                  "Обследование состояния компонентов инфраструктуры, в том числе с точки зрения информационной безопасности, и аналитическое заключение по его итогам; создание детального плана-графика работ.",
+                  "Настройка компонентов единой информационно-технологической инфраструктуры по результатам обследования, аудит соответствия систем проектным решениям, актуализация технической документации.",
+                  "Техническая поддержка и рутинные операции с серверными компонентами, изменение настроек серверов и сервисов по требованиям заказчика.",
+                  "Обновления программного обеспечения Microsoft: ежемесячный список актуальных обновлений, тестирование, согласование графика, установка и откат при сбоях.",
+                  "Контроль резервного копирования и аварийного восстановления серверов, корректировка расписаний.",
+                  "Решение инцидентов по SLA через АС «Сервис Деск» заказчика с ежемесячной отчетностью."
+                ]
+              },
+              {
+                title: "Результат",
+                paragraphs: ["Обеспечена бесперебойная работа всех компонентов единой информационно-технологической инфраструктуры предприятия, включающей серверную инфраструктуру на VMware vSphere, сервисы Microsoft (Active Directory, Exchange, Lync, SQL Server, System Center Configuration Manager и Operations Manager, центры сертификации, терминальные службы) и средства защиты «Лаборатории Касперского»."]
+              }
+            ]
+          },
+          {
+            kicker: "ГБУ «Мосгоргеотрест»",
+            title: "Проектирование резервного центра обработки данных",
+            meta: "Москва, 2025",
+            image: "images/key_projects/key_project_03.png",
+            alt: "Иллюстрация проекта для ГБУ «Мосгоргеотрест»",
+            sections: [
+              {
+                title: "Задача",
+                paragraphs: ["Разработать проект резервного ЦОД для обеспечения отказоустойчивости информационных систем учреждения."]
+              },
+              {
+                title: "Решение",
+                items: [
+                  "Разработка и согласование графика производства работ с распределением зон ответственности исполнителя и заказчика.",
+                  "Предпроектное обследование существующей ИТ-инфраструктуры: анализ проектной и рабочей документации, сбор сведений о составе и состоянии оборудования и ПО, выявление сбоев и архитектурных ограничений.",
+                  "Определение текущих и целевых параметров доступности систем (RPO/RTO), классов защищенности и утилизации оборудования.",
+                  "Разработка и согласование решения по резервному ЦОД.",
+                  "Разработка комплекта проектной документации."
+                ]
+              },
+              {
+                title: "Результат",
+                paragraphs: ["Создана проектная документация в составе: отчет о предпроектном обследовании, архитектурная схема, схема подключений, пояснительная записка к техническому проекту, описание комплекса технических средств, описание программного обеспечения, руководство администратора, спецификация оборудования и ПО, план аварийного восстановления, программа и методика испытаний, протокол испытаний, проекты актов определения классов защищенности информационных систем. Проект охватывает подсистемы хранения данных, сети передачи данных, сети хранения данных, сетевого экранирования, виртуализации вычислительных ресурсов, служебных сервисов Microsoft, виртуализации рабочих мест (VDI), резервного копирования и управления базами данных."]
+              }
+            ]
+          },
+          {
+            kicker: "ПАО «Яковлев», Иркутский авиационный завод",
+            title: "Техническая поддержка сетевой инфраструктуры завода",
+            meta: "Иркутск, 2024",
+            image: "images/key_projects/key_project_04.png",
+            alt: "Иллюстрация проекта для ПАО «Яковлев», Иркутский авиационный завод",
+            sections: [
+              {
+                title: "Задача",
+                paragraphs: ["Обеспечить работоспособность активного сетевого оборудования и программно-аппаратного комплекса локальной вычислительной сети авиационного завода."]
+              },
+              {
+                title: "Решение",
+                items: [
+                  "Прием и регистрация заявок по электронной почте и телефону службы поддержки.",
+                  "Классификация обращений по уровню критичности.",
+                  "Восстановление работоспособности оборудования, в том числе с выездом инженеров на площадку завода.",
+                  "Взаимодействие со специалистами производителя оборудования."
+                ]
+              },
+              {
+                title: "Результат",
+                paragraphs: ["Обеспечена поддержка активного сетевого оборудования и программно-аппаратного комплекса ЛВС завода в течение 12 месяцев: коммутаторы уровня ядра и распределения Extreme Networks VSP 8404 и VSP 7254XSQ; ПАК сервисов ЛВС на сервере Dell PowerEdge R440 с VMware vSphere."]
+              }
+            ]
+          },
+          {
+            kicker: "ФКУ «Росдоринформсвязь»",
+            title: "Импортозамещение платформы виртуализации ЦОД Росавтодора",
+            meta: "Москва, 2025",
+            image: "images/key_projects/key_project_05.png",
+            alt: "Иллюстрация проекта для ФКУ «Росдоринформсвязь»",
+            sections: [
+              {
+                title: "Задача",
+                paragraphs: ["Заместить ПО управления платформой виртуализации в ЦОД Росавтодора (VMware vSphere)"]
+              },
+              {
+                title: "Решение",
+                items: [
+                  "Анализ исходной документации, архитектуры существующей виртуальной среды и конфигурации серверов.",
+                  "Разработка методики поэтапной миграции виртуальных машин.",
+                  "Настройка хранилищ на хостах виртуализации, установка и настройка серверов миграции.",
+                  "Миграция виртуальных машин информационных систем и инфраструктурных сервисов Росавтодора.",
+                  "Проведение приемо-сдаточных испытаний."
+                ]
+              },
+              {
+                title: "Результат",
+                paragraphs: [
+                  "Создана документация в составе: методика миграции виртуальных машин; руководство по установке и настройке ПО, включая настройки безопасности; руководство администратора ПО; протокол приемо-сдаточных испытаний.",
+                  "ЦОД Росавтодора переведен с VMware vSphere на отечественную платформу виртуализации zVirt."
+                ]
+              }
+            ]
+          }
+        ];
+
+        var stage = orbit.querySelector(".projects-orbit__stage");
+        var scroller = stack.querySelector(".projects-orbit__scroll");
+        var thumb = scroller ? scroller.querySelector(".projects-orbit__scroll-thumb") : null;
+
+        function folds() {
+          return Array.prototype.slice.call(track.querySelectorAll(".projects-orbit__fold"));
+        }
+
+        function pad(n) {
+          return n < 10 ? "0" + n : String(n);
+        }
+
+        function measure() {
+          var list = folds();
+          var card = list[index];
+          if (!card) return null;
+          var showPeek = index < list.length - 1;
+          var cardH = card.offsetHeight;
+          var tail = showPeek ? peek : 16;
+          var beside = false;
+          if (stage) {
+            var photoBox = stage.getBoundingClientRect();
+            var stackBox = stack.getBoundingClientRect();
+            beside = stackBox.left >= photoBox.right - 8;
+          }
+          var room = beside && stage ? stage.offsetHeight : cardH + tail;
+          var height = Math.min(room, cardH + tail);
+          var maxScroll = Math.max(0, cardH - height);
+          var fadePx = 0;
+          if (maxScroll > scroll + 1) fadePx = fade;
+          else if (showPeek && height > cardH + 8) fadePx = fade;
+          return { card: card, height: height, maxScroll: maxScroll, fadePx: fadePx };
+        }
+
+        function layout() {
+          var box = measure();
+          if (!box) return;
+          if (stage) {
+            var photoBox = stage.getBoundingClientRect();
+            var stackBox = stack.getBoundingClientRect();
+            stack.style.minHeight = stackBox.left >= photoBox.right - 8 ? stage.offsetHeight + "px" : "";
+          }
+          scroll = Math.max(0, Math.min(scroll, box.maxScroll));
+          viewport.style.height = box.height + "px";
+          viewport.style.setProperty("--orbit-fade", box.fadePx ? box.fadePx + "px" : "0px");
+          track.style.transform = "translateY(-" + (box.card.offsetTop + scroll) + "px)";
+          if (scroller && thumb) {
+            var overflow = box.maxScroll > 1;
+            scroller.classList.toggle("is-on", overflow);
+            if (overflow) {
+              var inset = 18;
+              var trackH = Math.max(48, box.height - inset * 2);
+              var ratio = box.height / (box.height + box.maxScroll);
+              var thumbH = Math.max(28, Math.min(trackH - 8, trackH * ratio));
+              var travel = Math.max(0, trackH - thumbH);
+              scroller.style.top = inset + "px";
+              scroller.style.height = trackH + "px";
+              thumb.style.height = thumbH + "px";
+              thumb.style.transform = "translateY(" + (scroll / box.maxScroll) * travel + "px)";
+            }
+          }
+        }
+
+        function go(next) {
+          var list = folds();
+          index = Math.max(0, Math.min(list.length - 1, next));
+          scroll = 0;
+          layout();
+          list.forEach(function (fold, i) {
+            fold.classList.toggle("is-active", i === index);
+            fold.classList.toggle("is-next", i === index + 1);
+            var btn = fold.querySelector(".projects-orbit__fold-btn");
+            if (btn) btn.setAttribute("aria-expanded", i === index ? "true" : "false");
+          });
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle("is-active", i === index);
+            dot.setAttribute("aria-selected", i === index ? "true" : "false");
+          });
+        }
+
+        var photoToken = 0;
+
+        function currentPhoto() {
+          return photo.querySelector("img:not(.is-leave)") || photo.querySelector("img");
+        }
+
+        function setPhoto(src, alt) {
+          var images = photo.querySelectorAll("img");
+          var node = images[0];
+          var n;
+          for (n = 1; n < images.length; n++) images[n].parentNode.removeChild(images[n]);
+          if (!node) {
+            node = document.createElement("img");
+            node.width = 1200;
+            node.height = 675;
+            node.decoding = "async";
+            photo.appendChild(node);
+          }
+          node.className = "";
+          if (src) {
+            node.src = src;
+            node.alt = alt || "";
+            node.hidden = false;
+            photo.classList.remove("is-empty");
+          } else {
+            node.hidden = true;
+            node.alt = "";
+            photo.classList.add("is-empty");
+          }
+        }
+
+        function crossfadePhoto(src, alt) {
+          var token = ++photoToken;
+          var current = currentPhoto();
+          var finish = function (next) {
+            window.setTimeout(function () {
+              if (token !== photoToken) return;
+              if (current && current.parentNode) current.parentNode.removeChild(current);
+              if (next) next.classList.remove("is-enter", "is-in");
+            }, 820);
+          };
+          if (!src) {
+            if (current) current.classList.add("is-leave");
+            photo.classList.add("is-empty");
+            finish(null);
+            return;
+          }
+          photo.classList.remove("is-empty");
+          var next = document.createElement("img");
+          next.className = "is-enter";
+          next.alt = alt || "";
+          next.width = 1200;
+          next.height = 675;
+          next.decoding = "async";
+          var started = false;
+          var begin = function () {
+            if (started || token !== photoToken) return;
+            started = true;
+            photo.appendChild(next);
+            void next.offsetWidth;
+            next.classList.add("is-in");
+            if (current) current.classList.add("is-leave");
+            finish(next);
+          };
+          next.addEventListener("load", begin, { once: true });
+          next.addEventListener("error", begin, { once: true });
+          next.src = src;
+          if (next.complete && next.naturalWidth) begin();
+        }
+
+        function sectionNode(section, i) {
+          var article = document.createElement("article");
+          article.className = "projects-orbit__fold" + (i === 0 ? " is-active" : "");
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "projects-orbit__fold-btn";
+          button.setAttribute("aria-expanded", i === 0 ? "true" : "false");
+          var num = document.createElement("span");
+          num.className = "projects-orbit__fold-num";
+          num.setAttribute("aria-hidden", "true");
+          num.textContent = pad(i + 1);
+          var name = document.createElement("span");
+          name.className = "projects-orbit__fold-title";
+          name.textContent = section.title;
+          button.appendChild(num);
+          button.appendChild(name);
+          button.insertAdjacentHTML("beforeend", icon);
+          var panel = document.createElement("div");
+          panel.className = "projects-orbit__fold-panel";
+          var inner = document.createElement("div");
+          inner.className = "projects-orbit__fold-inner";
+          (section.paragraphs || []).forEach(function (text) {
+            var p = document.createElement("p");
+            p.className = "projects-orbit__text";
+            p.textContent = text;
+            inner.appendChild(p);
+          });
+          if (section.label) {
+            var label = document.createElement("p");
+            label.className = "projects-orbit__label";
+            label.textContent = section.label;
+            inner.appendChild(label);
+          }
+          if (section.items && section.items.length) {
+            var ul = document.createElement("ul");
+            ul.className = "projects-orbit__list";
+            section.items.forEach(function (text) {
+              var li = document.createElement("li");
+              li.textContent = text;
+              ul.appendChild(li);
+            });
+            inner.appendChild(ul);
+          }
+          panel.appendChild(inner);
+          article.appendChild(button);
+          article.appendChild(panel);
+          return article;
+        }
+
+        function applyProject(i, keepPhoto) {
+          if (i === 0) {
+            kicker.textContent = snapshot.kicker;
+            title.textContent = snapshot.title;
+            meta.textContent = snapshot.meta;
+            if (!keepPhoto) setPhoto(snapshot.src, snapshot.alt);
+            track.innerHTML = snapshot.html;
+            return;
+          }
+          var data = projects[i];
+          kicker.textContent = data.kicker;
+          title.textContent = data.title;
+          meta.textContent = data.meta;
+          if (!keepPhoto) setPhoto(data.image, data.alt);
+          track.innerHTML = "";
+          data.sections.forEach(function (section, n) {
+            track.appendChild(sectionNode(section, n));
+          });
+        }
+
+        function markTabs(i) {
+          tabs.forEach(function (tab, n) {
+            var on = n === i;
+            tab.classList.toggle("is-active", on);
+            tab.setAttribute("aria-selected", on ? "true" : "false");
+          });
+        }
+
+        function showProject(i) {
+          if (busy || i === project || !projects[i] && i !== 0) return;
+          if (tabs[i] && tabs[i].disabled) return;
+          var dir = i > project ? "forward" : "back";
+          var data = i === 0 ? snapshot : projects[i];
+          busy = true;
+          project = i;
+          markTabs(i);
+          if (reduce) {
+            applyProject(i);
+            go(0);
+            busy = false;
+            return;
+          }
+          photo.classList.remove("is-forward", "is-back");
+          photo.classList.add(dir === "forward" ? "is-forward" : "is-back");
+          crossfadePhoto(i === 0 ? snapshot.src : data.image, i === 0 ? snapshot.alt : data.alt);
+          orbit.classList.add("is-switching");
+          window.setTimeout(function () {
+            applyProject(i, true);
+            go(0);
+            orbit.classList.remove("is-switching");
+          }, 240);
+          window.setTimeout(function () { busy = false; }, 820);
+        }
+
+        dots.forEach(function (dot, i) {
+          dot.addEventListener("click", function () { go(i); });
+        });
+
+        track.addEventListener("click", function (e) {
+          var fold = e.target.closest ? e.target.closest(".projects-orbit__fold") : null;
+          if (!fold || !track.contains(fold)) return;
+          var list = folds();
+          var i = list.indexOf(fold);
+          if (i > -1 && i !== index) go(i);
+        });
+
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener("click", function () { showProject(i); });
+        });
+
+        orbit.querySelector(".projects-orbit__switch").addEventListener("keydown", function (e) {
+          var enabled = tabs.filter(function (tab) { return !tab.disabled; });
+          var current = enabled.indexOf(tabs[project]);
+          var dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+          if (!dir || current < 0) return;
+          e.preventDefault();
+          var next = enabled[(current + dir + enabled.length) % enabled.length];
+          showProject(tabs.indexOf(next));
+          next.focus();
+        });
+
+        viewport.addEventListener("wheel", function (e) {
+          if (Math.abs(e.deltaY) < 8) return;
+          var dir = e.deltaY > 0 ? 1 : -1;
+          var box = measure();
+          var step = Math.max(64, Math.min(160, Math.abs(e.deltaY)));
+          if (box && dir > 0 && scroll < box.maxScroll - 1) {
+            e.preventDefault();
+            scroll = Math.min(box.maxScroll, scroll + step);
+            layout();
+            return;
+          }
+          if (box && dir < 0 && scroll > 1) {
+            e.preventDefault();
+            scroll = Math.max(0, scroll - step);
+            layout();
+            return;
+          }
+          var list = folds();
+          var next = index + dir;
+          if (next < 0 || next >= list.length) return;
+          e.preventDefault();
+          if (lock) return;
+          lock = true;
+          go(next);
+          window.setTimeout(function () { lock = false; }, 680);
+        }, { passive: false });
+
+        var touchY = 0;
+        viewport.addEventListener("touchstart", function (e) {
+          touchY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        viewport.addEventListener("touchend", function (e) {
+          var dy = touchY - e.changedTouches[0].clientY;
+          if (Math.abs(dy) < 42) return;
+          var box = measure();
+          if (box && dy > 0 && scroll < box.maxScroll - 1) {
+            scroll = Math.min(box.maxScroll, scroll + box.height * 0.55);
+            layout();
+            return;
+          }
+          if (box && dy < 0 && scroll > 1) {
+            scroll = Math.max(0, scroll - box.height * 0.55);
+            layout();
+            return;
+          }
+          var list = folds();
+          var next = index + (dy > 0 ? 1 : -1);
+          if (next < 0 || next >= list.length) return;
+          go(next);
+        }, { passive: true });
+
+        window.addEventListener("resize", function () { layout(); });
+        img.addEventListener("load", function () { layout(); });
+        if (window.ResizeObserver && stage) {
+          new ResizeObserver(function () { layout(); }).observe(stage);
+        }
+
+        function start() { go(0); }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
+        else start();
+      })();
     </script>
     <script defer src="subpage-hero.js"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
