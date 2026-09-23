@@ -120,9 +120,8 @@
   function paintTintShim(el, color) {
     if (!el) return;
     el.style.backgroundColor = color;
-    /* Safari 26 resamples fixed edge fills on geometry changes, not CSS vars. */
-    var parent = el.parentNode;
-    if (parent) parent.appendChild(el);
+    /* Do not move the node. A geometry change makes Safari 26 resample the
+       bottom edge and paint a solid toolbar for a second or two. */
   }
 
   function syncSafariChrome(theme) {
@@ -131,10 +130,10 @@
     var header = document.querySelector(".site-header");
 
     root.style.setProperty("--safari-chrome-bg", pageColor);
-    root.style.backgroundColor = pageColor;
-    if (document.body) {
-      document.body.style.backgroundColor = pageColor;
-    }
+    /* Inline colors override --bg and Safari treats that write as a new
+       solid sample. Let the stylesheet variable follow data-theme instead. */
+    root.style.removeProperty("background-color");
+    if (document.body) document.body.style.removeProperty("background-color");
     if (header) {
       header.style.removeProperty("background-color");
       header.style.background = "none";
@@ -187,11 +186,18 @@
 
   function syncThemeColor(theme) {
     var color = themeColorFor(theme);
-    pokeThemeColorMeta(color);
-    setMeta(
-      "apple-mobile-web-app-status-bar-style",
-      color === THEME_COLOR_DARK ? "black-translucent" : "default"
-    );
+    if (isMobile()) {
+      /* theme-color is what paints Safari's bottom bar as a solid rectangle.
+         Drop it so the toolbar stays Liquid Glass across the theme switch. */
+      clearMetas("theme-color");
+      setMeta("apple-mobile-web-app-status-bar-style", "black-translucent");
+    } else {
+      pokeThemeColorMeta(color);
+      setMeta(
+        "apple-mobile-web-app-status-bar-style",
+        color === THEME_COLOR_DARK ? "black-translucent" : "default"
+      );
+    }
     root.style.colorScheme = theme === "dark" ? "dark" : "light";
     syncSafariChrome(theme);
   }

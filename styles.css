@@ -1936,6 +1936,13 @@ body.callback-modal-open {
   без вспышки и без смешивания слоёв.
 */
 @supports (view-transition-name: none) {
+  /* Safari 26 samples this fixed layer and turns the bottom bar solid
+     for the length of the theme animation. backdrop-filter opts it out. */
+  ::view-transition {
+    -webkit-backdrop-filter: saturate(1.001);
+    backdrop-filter: saturate(1.001);
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
