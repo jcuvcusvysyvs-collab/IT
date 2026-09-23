@@ -9367,10 +9367,9 @@ html[data-theme="dark"] .footer-widget #widget1 {
     height: env(safe-area-inset-top, 12px);
   }
 
+  /* Do not sample a solid strip into Safari's bottom toolbar. */
   .dc-safari-tint--bottom {
-    right: 0;
-    bottom: -8px;
-    height: 12px;
+    display: none !important;
   }
 
   .logo {

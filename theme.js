@@ -102,8 +102,11 @@
 
   function ensureTintShims() {
     if (!document.body) return null;
-    var top = document.getElementById("dc-safari-tint-top");
+    /* Bottom shim is what Safari 26 samples into a solid toolbar rectangle.
+       Leave the bottom edge unpainted so the bar stays Liquid Glass. */
     var bottom = document.getElementById("dc-safari-tint-bottom");
+    if (bottom && bottom.parentNode) bottom.parentNode.removeChild(bottom);
+    var top = document.getElementById("dc-safari-tint-top");
     if (!top) {
       top = document.createElement("div");
       top.id = "dc-safari-tint-top";
@@ -111,14 +114,7 @@
       top.setAttribute("aria-hidden", "true");
       document.body.appendChild(top);
     }
-    if (!bottom) {
-      bottom = document.createElement("div");
-      bottom.id = "dc-safari-tint-bottom";
-      bottom.className = "dc-safari-tint dc-safari-tint--bottom";
-      bottom.setAttribute("aria-hidden", "true");
-      document.body.appendChild(bottom);
-    }
-    return { top: top, bottom: bottom };
+    return { top: top };
   }
 
   function paintTintShim(el, color) {
@@ -147,10 +143,7 @@
 
     if (isMobile()) {
       var shims = ensureTintShims();
-      if (shims) {
-        paintTintShim(shims.top, pageColor);
-        paintTintShim(shims.bottom, pageColor);
-      }
+      if (shims) paintTintShim(shims.top, pageColor);
     }
   }
 
