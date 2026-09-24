@@ -244,8 +244,7 @@
   function formatValue(value, target) {
     var n = Math.round(value);
     if (n >= target) return String(target);
-    var digits = String(target).length;
-    return String(n).padStart(Math.max(2, digits), "0");
+    return String(n);
   }
 
   function setFinal(el) {

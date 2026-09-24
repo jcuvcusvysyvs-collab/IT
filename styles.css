@@ -20870,7 +20870,104 @@ a.page-projects__item-client:hover {
   }
 }
 
+.projects-orbit__slides {
+  display: none;
+}
+
 @media (max-width: 860px) {
+  .projects-orbit {
+    display: block;
+    padding: 0.35rem 1rem 1.85rem 0;
+  }
+
+  .projects-orbit__stage,
+  .projects-orbit__stack {
+    display: none;
+  }
+
+  .projects-orbit__slides {
+    display: block;
+  }
+
+  .projects-orbit__slides-track {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.2rem var(--layout-gutter) 0.35rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--layout-gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .projects-orbit__slides-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects-orbit__slides-track:focus-visible {
+    outline: none;
+  }
+
+  .projects-orbit__slide {
+    flex: 0 0 min(22rem, calc(100% - 2.6rem));
+    width: min(22rem, calc(100% - 2.6rem));
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    height: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .projects-orbit__slide .projects-orbit__body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 2.5rem 4.2rem auto;
+    row-gap: 0.55rem;
+    align-content: end;
+    height: auto;
+    margin: 0;
+    padding: 0 1.05rem 1rem;
+    box-sizing: border-box;
+  }
+
+  .projects-orbit__slide .projects-orbit__kicker {
+    align-self: end;
+    justify-self: start;
+    height: auto;
+    max-height: 2.5rem;
+    margin: 0;
+    padding: 0.32rem 0.75rem;
+    white-space: normal;
+    line-height: 1.25;
+    overflow: hidden;
+  }
+
+  .projects-orbit__slide .projects-orbit__title {
+    align-self: start;
+    height: auto;
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+    overflow: hidden;
+  }
+
+  .projects-orbit__slide .projects-orbit__meta {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
   .projects-orbit {
     grid-template-columns: 1fr;
   }
@@ -20883,6 +20980,14 @@ a.page-projects__item-client:hover {
     height: auto;
     min-height: 0;
     aspect-ratio: 1200 / 675;
+  }
+
+  .projects-orbit__slide.projects-orbit__card--photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .projects-orbit__slide .projects-orbit__photo img {
+    object-position: center center;
   }
 
   .projects-orbit__stack {
