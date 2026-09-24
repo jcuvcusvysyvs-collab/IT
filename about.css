@@ -816,7 +816,14 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 
   .about-expertise__card--feature {
     min-height: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
+  }
+
+  .about-expertise__card--feature::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
   }
 
   .about-expertise__visual {
