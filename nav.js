@@ -3,37 +3,37 @@
     "infrastructure-solutions.html": {
       title: "Инфраструктурные решения",
       desc: "Вычислительные комплексы, СХД, сети передачи данных и встраивание в текущий ИТ-ландшафт.",
-      image: "images/menu_01.png",
+      image: "images/menu_01.webp",
     },
     "information-security.html": {
       title: "Информационная безопасность",
       desc: "Контуры безопасности, соответствие регуляторным требованиям и сопровождение сертифицированных решений.",
-      image: "images/menu_02.png",
+      image: "images/menu_02.webp",
     },
     "scaling-without-procurement.html": {
       title: "Масштабирование без закупок",
       desc: "Рост ёмкости и отказоустойчивости за счёт архитектуры, без проведения закупочных процедур.",
-      image: "images/menu_03.png",
+      image: "images/menu_03.webp",
     },
     "business-continuity.html": {
       title: "Обеспечение непрерывности",
       desc: "Проектирование отказоустойчивости, резервирование и планы восстановления после сбоев.",
-      image: "images/menu_04.png",
+      image: "images/menu_04.webp",
     },
     "operations-support.html": {
       title: "Эксплуатация и сопровождение",
       desc: "Поддержка, мониторинг, обновления и развитие инфраструктуры под согласованным SLA.",
-      image: "images/menu_05.png",
+      image: "images/menu_05.webp",
     },
     "huawei-service-center.html": {
       title: "Сервисный центр HUAWEI",
       desc: "Официальный сервис и поддержка оборудования Huawei: диагностика, ремонт и сопровождение.",
-      image: "images/menu_06.png",
+      image: "images/menu_06.webp",
     },
     "asdu-datacenter.html": {
       title: "АСДУ",
       desc: "Автоматизированные системы диспетчерского управления на базе SCADA+",
-      image: "images/menu_07.png",
+      image: "images/menu_07.webp",
     },
   };
 

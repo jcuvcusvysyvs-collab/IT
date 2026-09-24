@@ -19,7 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260923-safari-theme-hold-v71" />
-    <link rel="stylesheet" href="about.css?v=20260918-safari26-tint-v117" />
+    <link rel="stylesheet" href="about.css?v=20260924-about-video-scroll" />
     <link rel="preload" href="images/Company.webp?v=20260916-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -295,7 +295,7 @@
           <div class="page-section-subnav__inner page-section-subnav__inner--huawei">
             <a class="page-section-subnav__brand" href="#about-page-title">
               <span class="page-section-subnav__brand-icon" aria-hidden="true">
-                <img src="images/menu_08.png" alt="" width="40" height="40" decoding="async" />
+                <img src="images/menu_08.webp" alt="" width="40" height="40" decoding="async" />
               </span>
               <span class="page-section-subnav__brand-text">
                 <span class="page-section-subnav__brand-title">О компании</span>
@@ -346,19 +346,11 @@
               </div>
             </header>
             <div class="about-intro__body">
-              <p class="about-intro__story">
+              <p class="about-intro__story about-intro__story--lead">
                 <span class="about-intro__hl">DC&nbsp;Engineering</span>&nbsp;— инженерная компания, которая проектирует, внедряет
                 и&nbsp;сопровождает ИТ-инфраструктуру: от&nbsp;вычислительных комплексов
                 и&nbsp;систем хранения данных до&nbsp;сетей передачи данных и&nbsp;контуров
-                информационной безопасности. За&nbsp;<span class="about-intro__hl">20&nbsp;лет</span>
-                мы&nbsp;прошли путь от&nbsp;отдельных инфраструктурных проектов до&nbsp;полного цикла:
-                проектирование, поставка, монтаж, сопровождение и&nbsp;сервис.
-                Сегодня в&nbsp;портфеле&nbsp;— более&nbsp;<span class="about-intro__hl">70&nbsp;проектов</span>
-                в&nbsp;год и&nbsp;<span class="about-intro__hl">31&nbsp;действующий сервисный контракт</span>,
-                а&nbsp;средний профильный стаж специалистов команды&nbsp;—
-                <span class="about-intro__hl">16&nbsp;лет</span>. Это не&nbsp;отдел продаж
-                с&nbsp;подрядчиками на&nbsp;аутсорсе: решения ведут инженеры, которые отвечают
-                за&nbsp;них на&nbsp;всех этапах&nbsp;— от&nbsp;ТЗ до&nbsp;эксплуатации.
+                информационной безопасности.
               </p>
             </div>
           </article>
@@ -387,15 +379,16 @@
               <!-- Feature — место под визуал -->
               <article class="about-expertise__card about-expertise__card--feature" role="listitem">
                 <div class="about-expertise__visual" aria-hidden="true">
-                  <img
+                  <video
                     class="about-expertise__visual-img"
-                    src="images/data_center.svg?v=20260916-dc-blink-v4"
-                    alt=""
-                    width="492"
-                    height="500"
-                    decoding="async"
-                    loading="lazy"
-                  />
+                    src="video/about_001.web.mp4"
+                    poster="images/about_1.png"
+                    muted
+                    loop
+                    playsinline
+                    autoplay
+                    preload="auto"
+                  ></video>
                 </div>
               </article>
 
@@ -1854,7 +1847,7 @@
 <script defer src="huawei-subnav.js?v=20260914-ios-overscroll-header-v62"></script>
 <script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
 <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
-    <script defer src="about-page.js?v=20260916-about-no-iso-v54"></script>
+    <script defer src="about-page.js?v=20260924-about-video"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
       <script defer src="footer-mos-widget.js?v=20260821-mos-widget-v3"></script>

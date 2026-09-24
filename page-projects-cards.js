@@ -2,7 +2,7 @@
  * Карточки каталога проектов.
  */
 (function () {
-  const VERSION = "185";
+  const VERSION = "186";
   const DEFAULT_HREF = "contacts.html";
 
   const legalPrefix =
@@ -60,11 +60,20 @@
 
     if (/[·,]/.test(meta)) {
       const parts = meta.split(/[·,]/).map((p) => p.trim()).filter(Boolean);
-      place = parts[0] || "";
-      years = parts.slice(1).join(" ");
+      const lastYear = normalizeYears(parts[parts.length - 1] || "");
+      const lastIsYear = /^(?:до\s+)?\d{4}(?:–\d{2,4})?$/.test(lastYear);
+      if (parts.length > 1 && lastIsYear) {
+        place = parts.slice(0, -1).join(", ");
+        years = lastYear;
+      } else {
+        place = parts[0] || "";
+        years = parts.slice(1).join(" ");
+      }
     }
 
-    years = normalizeYears(years || yearGroupLabel);
+    years = /^(?:до\s+)?\d{4}(?:–\d{2,4})?$/.test(years)
+      ? years
+      : normalizeYears(years || yearGroupLabel);
 
     if (place && years) return `${place}, ${years}`;
     if (place) return place;

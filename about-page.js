@@ -1,4 +1,24 @@
 (function () {
+  var video = document.querySelector(".about-expertise__visual video");
+  if (!video) return;
+  var reduce =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) {
+    video.removeAttribute("autoplay");
+    video.pause();
+    return;
+  }
+  video.muted = true;
+  video.addEventListener("ended", function () {
+    video.currentTime = 0;
+    var again = video.play();
+    if (again && typeof again.catch === "function") again.catch(function () {});
+  });
+  var play = video.play();
+  if (play && typeof play.catch === "function") play.catch(function () {});
+})();
+
+(function () {
   var blocks = document.querySelectorAll(".page-about .about-dce__block[data-about-reveal]");
   if (!blocks.length) return;
 

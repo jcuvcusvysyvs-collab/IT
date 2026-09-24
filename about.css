@@ -509,38 +509,48 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 .about-intro__body {
   display: block;
   width: 100%;
+  max-width: none;
   margin: 0;
   padding:
     0
     clamp(1.5rem, 3.2vw, 2.25rem)
-    clamp(2rem, 4vw, 2.85rem);
+    clamp(2.15rem, 4vw, 2.85rem);
   box-sizing: border-box;
 }
 
-.about-intro__story {
+.about-intro__story,
+.about-intro__story--lead {
   margin: 0;
-  max-width: none;
   width: 100%;
+  max-width: none;
   font-family: var(--font-text);
-  font-size: clamp(1.0625rem, 1.45vw, 1.25rem);
-  font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: -0.011em;
-  color: #0d1117;
+  font-size: clamp(1.15rem, 1.55vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.018em;
+  color: var(--text);
   text-wrap: pretty;
 }
 
 [data-theme="dark"] .about-intro__story {
-  color: #eef2f8;
+  color: #e8eef6;
 }
 
 .about-intro__hl {
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 650;
 }
 
-[data-theme="dark"] .about-intro__hl {
-  color: color-mix(in srgb, var(--accent) 72%, #fff 28%);
+.about-intro__num {
+  color: var(--accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="dark"] .about-intro__hl,
+[data-theme="dark"] .about-intro__num {
+  color: color-mix(in srgb, var(--accent) 55%, #fff 45%);
 }
 
 /* ——— Блок 02: Наша экспертиза (bento) ——— */
@@ -621,35 +631,39 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   overflow: hidden;
 }
 
-/* Feature — справа на 2 ряда: дата-центр */
+/* Feature — справа на 2 ряда */
 .about-expertise__card--feature {
   grid-column: 5 / span 2;
   grid-row: 1 / span 2;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 0;
-  padding: clamp(0.5rem, 1.2vw, 0.85rem);
-  min-height: 8.5rem;
+  align-self: stretch;
+  display: block;
+  padding: 0;
+  min-height: 0;
   overflow: hidden;
+  background: transparent;
+  background-image: none;
+  transform: none;
+  /* Ролик иначе рисуется отдельной плоскостью и на кадр отстаёт от скролла */
+  -webkit-mask-image: -webkit-radial-gradient(circle, #fff 100%, #000 100%);
+  mask-image: radial-gradient(circle, #fff 100%, #000 100%);
 }
 
 .about-expertise__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  width: 100%;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  line-height: 0;
 }
 
-.about-expertise__visual-img {
+.about-expertise__card--feature .about-expertise__visual-img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  max-width: 26rem;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
   border: 0;
   background: transparent;
   user-select: none;
@@ -663,6 +677,23 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   text-align: center;
   gap: 0.75rem;
   min-height: 8.5rem;
+  background-color: #f6f8fc;
+  background-image:
+    radial-gradient(ellipse 90% 78% at 50% 0%, rgba(3, 36, 119, 0.08), transparent 64%),
+    radial-gradient(circle at center, rgba(55, 72, 104, 0.26) 0.65px, transparent 1.15px);
+  background-size: auto, 18px 18px;
+  background-position: 0 0, 0 0;
+  border-color: color-mix(in srgb, var(--accent) 14%, var(--border));
+}
+
+[data-theme="dark"] .about-expertise__card--stat {
+  background-color: #101826;
+  background-image:
+    radial-gradient(ellipse 92% 80% at 50% 12%, rgba(61, 111, 212, 0.2), transparent 60%),
+    radial-gradient(circle at center, rgba(176, 196, 224, 0.18) 0.7px, transparent 1.2px);
+  background-size: auto, 18px 18px;
+  border-color: rgba(130, 158, 204, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .about-expertise__card--stat .about-expertise__stat-label {
@@ -784,11 +815,14 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   }
 
   .about-expertise__card--feature {
-    min-height: 12rem;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
   }
 
-  .about-expertise__visual-img {
-    max-width: 21rem;
+  .about-expertise__visual {
+    position: absolute;
+    inset: 0;
+    height: auto;
   }
 
   .about-expertise__stat-value {
