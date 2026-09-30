@@ -7,6 +7,10 @@
 (function () {
   var PARAM_CLIENT = "client";
   var PARAM_QUERY = "q";
+  var PARAM_FROM = "from";
+  var PARAM_TO = "to";
+  var PERIOD_MIN = 2014;
+  var PERIOD_MAX = 2027;
   var ALL_LABEL = "Все заказчики";
   var QUERY_MAX = 80;
   var SEARCH_DEBOUNCE_MS = 200;
@@ -25,9 +29,19 @@
   var applyBtn = document.getElementById("projects-filter-apply");
   var menuApplyBtn = document.getElementById("projects-filter-menu-apply");
   var resetBtn = document.getElementById("projects-filter-reset");
+  var periodFromInput = document.getElementById("projects-period-from");
+  var periodToInput = document.getElementById("projects-period-to");
+  var periodFromLabel = document.getElementById("projects-period-from-label");
+  var periodToLabel = document.getElementById("projects-period-to-label");
+  var periodFill = document.getElementById("projects-period-fill");
+  var periodBanner = document.getElementById("projects-period-banner");
+  var periodBannerFrom = document.getElementById("projects-period-banner-from");
+  var periodBannerTo = document.getElementById("projects-period-banner-to");
+  var periodBannerCount = document.getElementById("projects-period-banner-count");
   var listEl = document.getElementById("projects-list");
   var searchWrap = document.getElementById("projects-filter-search");
   var searchInput = document.getElementById("projects-search");
+  var searchToggle = document.getElementById("projects-filter-search-toggle");
   var searchClearBtn = document.getElementById("projects-search-clear");
   var emptyEl = document.getElementById("projects-filter-empty");
   var emptyTextEl = document.getElementById("projects-filter-empty-text");
@@ -41,6 +55,9 @@
   var activeClients = [];
   var draftClients = [];
   var activeQuery = "";
+  var periodFrom = PERIOD_MIN;
+  var periodTo = PERIOD_MAX;
+  var optionQuery = "";
   var clients = [];
   var clientNames = {};
   var menuOpen = false;
@@ -103,7 +120,7 @@
       resetBtn.setAttribute("aria-hidden", "false");
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
-          if (hasActiveClients()) resetBtn.classList.add("is-visible");
+          if (hasActiveClients() || sideFiltersSet()) resetBtn.classList.add("is-visible");
         });
       });
       return;
@@ -113,7 +130,7 @@
     resetBtn.setAttribute("aria-hidden", "true");
     resetHideTimer = window.setTimeout(function () {
       resetHideTimer = null;
-      if (!hasActiveClients()) resetBtn.hidden = true;
+      if (!hasActiveClients() && !sideFiltersSet()) resetBtn.hidden = true;
     }, 320);
   }
 
@@ -388,11 +405,11 @@
   }
 
   function syncDraftClearButtons() {
-    var canClear = draftClients.length > 0;
-    [clearBtn, menuClearBtn].forEach(function (btn) {
+    var hasDraft = draftClients.length > 0;
+    [clearBtn, menuClearBtn, applyBtn, menuApplyBtn].forEach(function (btn) {
       if (!btn) return;
-      btn.disabled = !canClear;
-      btn.setAttribute("aria-disabled", canClear ? "false" : "true");
+      btn.disabled = !hasDraft;
+      btn.setAttribute("aria-disabled", hasDraft ? "false" : "true");
     });
   }
 
@@ -484,17 +501,236 @@
     return clientIds.indexOf(key) !== -1;
   }
 
+  var CLIENT_SEARCH_ALIASES = {
+    "ЗАО «Татфондбанк»": ["ТФБ", "ЗАО ТФБ"],
+    "Московский городской фонд обязательного медицинского страхования": ["МГФОМС", "ГУ МГФОМС"],
+    "АО «НПФ Сбербанка»": ["Акционерное общество «Негосударственный Пенсионный Фонд Сбербанка»", "СберНПФ"],
+    "ГБУ Финансово-хозяйственное управление Мэрии Москвы": ["ГБУ «ФХУ»", "Государственное бюджетное учреждение города Москвы «Финансово-хозяйственное управление»"],
+    "Правительство Москвы": ["Мэрия", "Портал Мэра и Правительства Москвы", "Мос.ру"],
+    "ЗАО «Америабанк»": ["Закрытое Акционерное Общество «Америабанк»"],
+    "ГУП «Мосгортранс»": ["Государственное унитарное предприятие города Москвы «Мосгортранс»"],
+    "ООО «ИНВИТРО»": ["Общество с ограниченной ответственностью «Независимая лаборатория ИНВИТРО»", "ООО «Независимая лаборатория ИНВИТРО»"],
+    "ФАУ «Главгосэкспертиза России»": ["Федеральное автономное учреждение «Главное управление государственной экспертизы»", "ФАУ «Главное управление государственной экспертизы»"],
+    "Медиаскоп": ["АО «Медиаскоп»", "Акционерное общество «Медиаскоп»"],
+    "Фонд социального страхования РФ": ["Фонд пенсионного и социального страхования Российской Федерации", "Социальный фонд России", "СФР"],
+    "РТК Цифровые технологии": ["ООО «РТК ЦТ»", "Общество с ограниченной ответственностью «РТК Цифровые Технологии»"],
+    "ОДК «Авиадвигатель»": ["АО «ОДК-Авиадвигатель»", "Акционерное общество «ОДК-Авиадвигатель»", "ОДК"],
+    "ООО «ИТЛ ГРУПП»": ["ИТЛ"],
+    "ООО «Системный софт»": ["софт"],
+    "ООО «Кунатек»": ["кунатек"],
+    "АО «Банк ДОМ.РФ», АО «ДОМ.РФ»": ["Акционерное общество «Банк ДОМ.РФ»"],
+    "Пенсионный фонд Российской Федерации": ["Фонд пенсионного и социального страхования Российской Федерации", "Социальный фонд России", "СФР", "ПФР", "Пенсионный фонд Российской Федерации"],
+    "ГБУЗ ОТ «Медицинский информационно-аналитический центр» Владимирской области": ["ГБУЗ ВО «МИАЦ»", "ГБУЗ ОТ «МИАЦ» Владимирской области"],
+    "Банк России": ["ЦБ"],
+    "ГУП «Москоллектор»": ["Государственное унитарное предприятие города Москвы по эксплуатации коммуникационных коллекторов «Москоллектор»"],
+    "АО «Мосводоканал»": ["Акционерное общество «Мосводоканал»"],
+    "ДИТ Москвы": ["Департамент информационных технологий города Москвы", "Департамент Информационных Технологий Города Москвы"],
+    "ФГБУ «НМИЦ ТО им. Н.Н. Приорова»": ["ФГБУ «НМИЦ ТО им. Н.Н. Приорова» Минздрава России", "Федеральное государственное бюджетное учреждение «Национальный медицинский исследовательский центр травматологии и ортопедии имени Н.Н. Приорова» Министерства здравоохранения Российской Федерации"],
+    "ФГБУ «НЦЭСМП» Минздрава России": ["федеральное государственное бюджетное учреждение «Научный центр экспертизы средств медицинского применения» Министерства здравоохранения Российской Федерации"],
+    "ФКУ «Росдоринформсвязь»": ["Федеральное казенное учреждение «Информационно-аналитический центр Федерального дорожного агентства»", "Росавтодор"],
+    "Министерство энергетики Российской Федерации": ["Минэнерго России", "МЭ РФ"],
+    "ГБУ «Мосгоргеотрест»": ["МГГТ", "Государственное бюджетное учреждение города Москвы «Московский городской трест геолого-геодезических и картографических работ»"],
+    "ПАО «Россети Московский регион»": ["Публичное акционерное общество «Россети Московский регион»", "ПАО «Россети МР»"],
+    "ПАО БАНК ВТБ": ["банк"],
+    "ФГОБУ ВО «Финансовый университет при Правительстве Российской Федерации»": ["Финансовый университет", "Финуниверситет", "ФГОБУ ВО «Финансовый университет при Правительстве Российской Федерации»", "МФИ", "Московский финансовый институт"],
+    "Росфинмониторинг": ["Федеральная служба по финансовому мониторингу", "ФСФМ"],
+    "ПАО «Россети Урал»": ["Публичное акционерное общество «Россети Урал»", "ПАО «МРСК Урала»"],
+    "ПАО «Саратовский НПЗ»": ["Публичное акционерное общество «Саратовский нефтеперерабатывающий завод»", "СНПЗ"],
+    "ФГБУ «РГБ»": ["Федеральное государственное бюджетное учреждение «Российская государственная библиотека»", "библиотека", "Российская государственная библиотека", "Библиотека им. В. И. Ленина"],
+    "АО «СО ЕЭС»": ["Акционерное общество «Системный оператор Единой энергетической системы»", "АО «Системный оператор Единой энергетической системы»"],
+    "ООО «ОТР-БИТ»": ["Общество с ограниченной ответственностью «ОТР-Безопасность Информационных Технологий»"],
+    "АО «РНПК»": ["Акционерное общество «Рязанская нефтеперерабатывающая компания»", "Рязанский нефтеперерабатывающий завод", "РНПЗ"],
+    "АО «Тандер»": ["магнит", "Акционерное общество «Тандер»", "ПАО «Магнит»"],
+    "ООО «ГПМ РТВ»": ["ООО «ГПМ Развлекательное телевидение»", "«Газпром-Медиа Развлекательное телевидение»", "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ «ГПМ РАЗВЛЕКАТЕЛЬНОЕ ТЕЛЕВИДЕНИЕ»"],
+    "АО «ТНТ-Телесеть»": ["Акционерное общество «ТНТ-Телесеть»", "«Твоё новое телевидение»", "ТНТ"],
+    "ПАО АКБ «ПЕРЕСВЕТ»": ["банк пересвет", "Акционерный коммерческий банк «ПЕРЕСВЕТ»"],
+    "ФГУП ГлавУпДК при МИД России": ["Федеральное государственное унитарное предприятие «Главное производственно-коммерческое управление по обслуживанию дипломатического корпуса при Министерстве иностранных дел Российской Федерации»", "ГлавУпДК при МИД России"],
+    "ФГУП «Госкорпорация по ОрВД»": ["Федеральное государственное унитарное предприятие «Государственная корпорация по организации воздушного движения в Российской Федерации»", "Госкорпорация по ОрВД"],
+    "АО «Банк Интеза»": ["Акционерное общество «Банк Интеза»"],
+    "АО «НСПК»": ["Акционерное общество «Национальная система платежных карт»"],
+    "АО «Центральная пригородная пассажирская компания»": ["ЦППК"],
+    "АО «Всероссийский банк развития регионов»": ["ВБРР"],
+    "ООО «Газпром Нефтехим Салават»": ["Салаватнефтеоргсинтез", "Общество с ограниченной ответственностью «Газпром нефтехим Салават»"],
+    "ФБУ РФЦСЭ при Минюсте России": ["Федеральное бюджетное учреждение Российский Федеральный центр судебной экспертизы имени профессора А.Р. Шляхова при Министерстве юстиции Российской Федерации"],
+    "ПАО «Яковлев», Иркутский авиационный завод": ["ОАК яковлев"],
+    "ООО «Форвард Энерго»": ["Публичное акционерное общество «Форвард Энерго»", "ФЭ"],
+    "ГК «ТАГРАС»": ["Холдинг «ТАГРАС»"],
+    "ОГКУ «Центр информационно-технического обслуживания»": ["ЦИТО", "ОГКУ «ЦИТО»", "Областное государственное казённое учреждение «Центр информационно-технического обслуживания»", "ЦИТО Челябинской области"],
+    "ООО «РусГидро ИТ сервис»": ["Общество с ограниченной ответственностью «РусГидро ИТ сервис»", "ООО «Гидросервис»"]
+  };
+
+  var clientAliasIndex = null;
+
+  function getClientAliases(name) {
+    if (!clientAliasIndex) {
+      clientAliasIndex = {};
+      Object.keys(CLIENT_SEARCH_ALIASES).forEach(function (key) {
+        clientAliasIndex[normalizeForSearch(key)] = CLIENT_SEARCH_ALIASES[key];
+      });
+    }
+    return clientAliasIndex[normalizeForSearch(name)] || [];
+  }
+
+  function clientNameMatches(name, query) {
+    if (!query) return true;
+    var q = normalizeForSearch(query);
+    if (!q) return true;
+    if (normalizeForSearch(name).indexOf(q) !== -1) return true;
+    var aliases = getClientAliases(name);
+    for (var i = 0; i < aliases.length; i++) {
+      if (normalizeForSearch(aliases[i]).indexOf(q) !== -1) return true;
+    }
+    return false;
+  }
+
   function itemMatchesQuery(item, query) {
     if (!query) return true;
     var name = getItemClientName(item);
     if (!name) return false;
-    return normalizeForSearch(name).indexOf(normalizeForSearch(query)) !== -1;
+    return clientNameMatches(name, query);
   }
 
   function itemMatches(item) {
+    if (!itemMatchesPeriod(item)) return false;
+    if (!itemMatchesVendor(item)) return false;
     if (activeQuery) return itemMatchesQuery(item, activeQuery);
     if (hasActiveClients()) return itemMatchesClients(item, activeClients);
     return true;
+  }
+
+  var VENDOR_RULES = {
+    huawei: /Huawei|OceanStor|FusionServer/i,
+    hpe: /\bHPE\b/i,
+    cisco: /Cisco/i,
+    "dell-emc": /Dell|EMC/i,
+    astra: /AstraLinux|Astra Linux/i,
+    fujitsu: /Fujitsu/i,
+    brocade: /Brocade/i,
+    netapp: /NetApp/i,
+    zvirt: /zVirt/i,
+    nec: /\bNEC\b/,
+    redos: /RED\s+OS|РЕД\s+ОС/i,
+    bulat: /BULAT|БУЛАТ/i,
+    vmware: /VMware|vSphere|vCenter/i,
+    microsoft: /Microsoft|Windows Server|Hyper-V|Active Directory|MS Exchange|MS SQL|SQL Server/i,
+    vmmanager: /VMmanager/i,
+    termidesk: /Termidesk|Термидеск/i,
+    spacevm: /SpaceVM/i,
+    citrix: /Citrix/i,
+    mellanox: /Mellanox/i,
+    veeam: /Veeam/i,
+    cyberbackup: /Кибер\s+Бэкап|Кибербэкап|Cyber\s+Backup/i,
+    commvault: /CommVault/i,
+    rupost: /RuPost/i,
+    communigate: /CommuniGate/i
+  };
+  var activeVendors = [];
+
+  function vendorIsSet() {
+    return activeVendors.length > 0;
+  }
+
+  function sideFiltersSet() {
+    return periodIsSet() || vendorIsSet();
+  }
+
+  function itemMatchesVendor(item) {
+    if (!vendorIsSet()) return true;
+    var marked = (item.getAttribute("data-vendors") || "").split(/\s+/);
+    var descEl = item.querySelector(".page-projects__item-desc");
+    var text = descEl ? descEl.textContent || "" : "";
+    for (var i = 0; i < activeVendors.length; i++) {
+      var id = activeVendors[i];
+      if (marked.indexOf(id) !== -1) return true;
+      var rule = VENDOR_RULES[id];
+      if (rule && rule.test(text)) return true;
+    }
+    return false;
+  }
+
+  function syncVendorButtons() {
+    var box = document.getElementById("projects-vendors");
+    if (!box) return;
+    box.querySelectorAll(".projects-vendors__option").forEach(function (btn) {
+      var on = activeVendors.indexOf(btn.getAttribute("data-vendor")) !== -1;
+      btn.classList.toggle("is-selected", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function periodIsSet() {
+    return periodFrom > PERIOD_MIN || periodTo < PERIOD_MAX;
+  }
+
+  function itemYearRange(item) {
+    var meta = item.querySelector(".page-projects__item-meta, .page-projects__item-tag");
+    var text = meta ? meta.textContent || "" : "";
+    var found = text.match(/20\d{2}/g);
+    if (!found || !found.length) return null;
+    var start = parseInt(found[0], 10);
+    var end = parseInt(found[found.length - 1], 10);
+    return { start: start, end: end };
+  }
+
+  function itemMatchesPeriod(item) {
+    if (!periodIsSet()) return true;
+    var range = itemYearRange(item);
+    if (!range) return false;
+    return range.end >= periodFrom && range.start <= periodTo;
+  }
+
+  function projectsWord(n) {
+    var n100 = Math.abs(n) % 100;
+    var n10 = n100 % 10;
+    if (n100 >= 11 && n100 <= 14) return "проектов";
+    if (n10 === 1) return "проект";
+    if (n10 >= 2 && n10 <= 4) return "проекта";
+    return "проектов";
+  }
+
+  function paintPeriod(visibleCount) {
+    if (periodFromLabel) periodFromLabel.textContent = String(periodFrom);
+    if (periodToLabel) periodToLabel.textContent = String(periodTo);
+    if (periodFromInput) periodFromInput.value = String(periodFrom);
+    if (periodToInput) periodToInput.value = String(periodTo);
+    if (periodFill) {
+      var span = PERIOD_MAX - PERIOD_MIN;
+      var fromRatio = (periodFrom - PERIOD_MIN) / span;
+      var toRatio = (PERIOD_MAX - periodTo) / span;
+      periodFill.style.left = "calc(11px + (100% - 22px) * " + fromRatio + ")";
+      periodFill.style.right = "calc(11px + (100% - 22px) * " + toRatio + ")";
+    }
+    var active = periodIsSet();
+    if (periodBanner) periodBanner.hidden = !active;
+    if (!active) return;
+    if (periodBannerFrom) periodBannerFrom.textContent = String(periodFrom);
+    if (periodBannerTo) periodBannerTo.textContent = String(periodTo);
+    if (periodBannerCount && typeof visibleCount === "number") {
+      periodBannerCount.textContent = visibleCount + " " + projectsWord(visibleCount);
+    }
+  }
+
+  function readPeriodFromUrl(url) {
+    var from = parseInt(url.searchParams.get(PARAM_FROM) || "", 10);
+    var to = parseInt(url.searchParams.get(PARAM_TO) || "", 10);
+    if (!from || from < PERIOD_MIN) from = PERIOD_MIN;
+    if (!to || to > PERIOD_MAX) to = PERIOD_MAX;
+    if (from > to) from = to;
+    periodFrom = from;
+    periodTo = to;
+  }
+
+  function onPeriodInput(event) {
+    var from = parseInt(periodFromInput.value, 10);
+    var to = parseInt(periodToInput.value, 10);
+    if (from > to) {
+      if (event && event.target === periodFromInput) to = from;
+      else from = to;
+    }
+    periodFrom = from;
+    periodTo = to;
+    if (event && event.target) event.target.style.zIndex = "4";
+    applyFilters({}, { scroll: false });
   }
 
   function syncSearchInput() {
@@ -512,7 +748,7 @@
 
   function updateEmptyState(visibleCount) {
     if (!emptyEl) return;
-    var show = isFilterActive() && visibleCount === 0;
+    var show = (isFilterActive() || sideFiltersSet()) && visibleCount === 0;
     emptyEl.hidden = !show;
     if (emptyTextEl) {
       emptyTextEl.textContent = show
@@ -568,6 +804,8 @@
     updateYearCounts();
     updateUI();
     updateEmptyState(visibleCount);
+    paintPeriod(visibleCount);
+    syncVendorButtons();
     syncSearchInput();
 
     if (typeof window.refreshInfraReveal === "function") {
@@ -587,6 +825,13 @@
         url.searchParams.delete(PARAM_CLIENT);
         url.searchParams.delete(PARAM_QUERY);
       }
+      if (periodIsSet()) {
+        url.searchParams.set(PARAM_FROM, String(periodFrom));
+        url.searchParams.set(PARAM_TO, String(periodTo));
+      } else {
+        url.searchParams.delete(PARAM_FROM);
+        url.searchParams.delete(PARAM_TO);
+      }
       url.hash = "projects-all";
       history.replaceState(
         { client: clientParam, clients: cloneIds(activeClients), q: activeQuery },
@@ -596,9 +841,111 @@
     }
 
     if (opts.scroll && (hasActiveClients() || activeQuery)) {
-      var top = filterEl.getBoundingClientRect().top + window.scrollY - 96;
-      window.scrollTo({ top: top, behavior: opts.scroll === "smooth" ? "smooth" : "auto" });
+      scrollToFirstResult(opts.scroll);
     }
+  }
+
+  function layoutViewportTop(el) {
+    var y = 0;
+    var node = el;
+    while (node) {
+      y += node.offsetTop || 0;
+      node = node.offsetParent;
+    }
+    return y - (window.scrollY || window.pageYOffset || 0);
+  }
+
+  function scrollToFirstResult(behavior) {
+    var first = listEl.querySelector(".page-projects__item:not(.is-filtered-out)");
+    if (!first) return;
+
+    var gap = 28;
+    function chromeLine() {
+      var edge = 0;
+      var head = document.querySelector(".site-header");
+      var bar = document.querySelector(".page-section-subnav");
+      if (head && !head.classList.contains("site-header--hidden")) {
+        var headBottom = head.getBoundingClientRect().bottom;
+        if (headBottom > edge) edge = headBottom;
+      }
+      if (bar) {
+        var barBottom = bar.getBoundingClientRect().bottom;
+        if (barBottom > edge) edge = barBottom;
+      }
+      return edge + gap;
+    }
+
+    var chrome = chromeLine();
+
+    var top = layoutViewportTop(first);
+    if (top >= chrome - 8) return;
+
+    var target = Math.max(0, Math.round(top + window.scrollY - chrome));
+    var start = window.scrollY || window.pageYOffset || 0;
+    var change = target - start;
+    if (Math.abs(change) < 2) return;
+
+    var htmlEl = document.documentElement;
+    var scroller = document.scrollingElement || htmlEl;
+    var prevBehavior = htmlEl.style.scrollBehavior;
+    htmlEl.style.scrollBehavior = "auto";
+
+    function jump(y) {
+      scroller.scrollTop = y;
+    }
+
+    function restoreBehavior() {
+      htmlEl.style.scrollBehavior = prevBehavior;
+    }
+
+    if (behavior === "auto" || prefersReducedMotion()) {
+      jump(target);
+      restoreBehavior();
+      return;
+    }
+
+    var duration = Math.min(680, Math.max(320, Math.abs(change) * 0.42));
+    var t0 = window.performance.now();
+    var stopped = false;
+
+    function stopEarly() {
+      stopped = true;
+    }
+
+    window.addEventListener("wheel", stopEarly, { passive: true });
+    window.addEventListener("touchmove", stopEarly, { passive: true });
+
+    function finish(correct) {
+      window.removeEventListener("wheel", stopEarly);
+      window.removeEventListener("touchmove", stopEarly);
+      if (correct && !stopped) {
+        var card = listEl.querySelector(".page-projects__item:not(.is-filtered-out)");
+        if (card) {
+          var delta = layoutViewportTop(card) - chromeLine();
+          if (Math.abs(delta) > 6) jump((window.scrollY || 0) + delta);
+        }
+      }
+      restoreBehavior();
+    }
+
+    function frame(now) {
+      if (stopped) {
+        finish(false);
+        return;
+      }
+      var p = Math.min(1, (now - t0) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      jump(Math.round(start + change * eased));
+      if (p < 1) {
+        window.requestAnimationFrame(frame);
+        return;
+      }
+      window.requestAnimationFrame(function () {
+        finish(true);
+      });
+    }
+
+    window.requestAnimationFrame(frame);
   }
 
   function applyFilter(clientIds, options) {
@@ -635,6 +982,7 @@
     targetEl.replaceChildren();
 
     clients.forEach(function (item) {
+      if (targetEl !== modalOptionsEl && !clientNameMatches(item.name, optionQuery)) return;
       var li = document.createElement("li");
       li.setAttribute("role", "presentation");
 
@@ -676,6 +1024,13 @@
       li.appendChild(btn);
       targetEl.appendChild(li);
     });
+
+    if (targetEl !== modalOptionsEl && optionQuery && !targetEl.children.length) {
+      var empty = document.createElement("li");
+      empty.className = "projects-filter__options-empty";
+      empty.textContent = "Ничего не найдено";
+      targetEl.appendChild(empty);
+    }
   }
 
   function renderOptions() {
@@ -698,6 +1053,45 @@
     }
   }
 
+  function fitMenuToBlock() {
+    if (!menuEl || isMobile()) return;
+    if (!menuOpen || !filterEl) {
+      menuEl.style.maxHeight = "";
+      return;
+    }
+    var field = filterEl.querySelector(".projects-filter__search");
+    var block = document.getElementById("projects-all");
+    if (!field || !block) return;
+    var cap = 22 * (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16);
+    var limit = Math.min(window.innerHeight - 16, block.getBoundingClientRect().bottom - 12);
+    var space = limit - field.getBoundingClientRect().bottom;
+    menuEl.style.maxHeight = Math.round(Math.min(cap, Math.max(0, space))) + "px";
+  }
+
+  function pinFilter() {
+    if (!filterEl || isMobile()) return;
+    var subnav = document.querySelector(".page-section-subnav");
+    var top = "";
+    if (subnav && subnav.classList.contains("is-stuck")) {
+      top = Math.round(subnav.getBoundingClientRect().bottom + 12) + "px";
+    }
+    if (filterEl.style.top !== top) filterEl.style.top = top;
+    if (filterEl.style.height) filterEl.style.height = "";
+    if (filterEl.style.maxHeight) filterEl.style.maxHeight = "";
+  }
+
+  window.addEventListener("scroll", function () {
+    pinFilter();
+    if (menuOpen) fitMenuToBlock();
+  }, { passive: true });
+
+  window.addEventListener("resize", function () {
+    pinFilter();
+    if (menuOpen) fitMenuToBlock();
+  });
+
+  pinFilter();
+
   function setMenuOpen(open) {
     if (isMobile()) {
       if (open) setModalOpen(true);
@@ -711,6 +1105,7 @@
     clearMenuCloseTimer();
     menuOpen = nextOpen;
     triggerEl.setAttribute("aria-expanded", menuOpen ? "true" : "false");
+    if (searchInput) searchInput.setAttribute("aria-expanded", menuOpen ? "true" : "false");
 
     if (menuOpen) {
       if (modalEl && (modalOpen || !modalEl.hidden)) {
@@ -722,7 +1117,10 @@
 
       menuEl.hidden = false;
       menuEl.classList.remove("is-closing", "is-open");
+      menuEl.style.maxHeight = "";
       comboEl.classList.add("is-open");
+      fitMenuToBlock();
+      if (!menuOpen) return;
 
       /* Два кадра: сначала стартовое состояние, потом is-open — иначе transition срывается */
       void menuEl.offsetWidth;
@@ -731,21 +1129,24 @@
         window.requestAnimationFrame(function () {
           if (!menuOpen) return;
           menuEl.classList.add("is-open");
+          fitMenuToBlock();
         });
       });
-
-      var firstFocus =
-        optionsEl.querySelector(".projects-filter__option.is-selected") ||
-        optionsEl.querySelector(".projects-filter__option");
-      if (firstFocus) firstFocus.focus();
       return;
     }
 
     comboEl.classList.remove("is-open");
     menuEl.classList.remove("is-open");
     menuEl.classList.add("is-closing");
+    menuEl.style.maxHeight = "";
     focusIndex = -1;
     draftClients = cloneIds(activeClients);
+    if (optionQuery) {
+      optionQuery = "";
+      if (searchInput && !activeQuery) searchInput.value = "";
+      if (searchClearBtn) searchClearBtn.hidden = !activeQuery;
+      if (searchWrap) searchWrap.classList.toggle("is-active", !!activeQuery);
+    }
 
     var animMs = getMenuAnimMs();
     if (!animMs) {
@@ -888,7 +1289,7 @@
     filterEl.classList.toggle("is-search-active", !!activeQuery);
     filterEl.classList.toggle("is-client-active", hasActiveClients());
     listEl.classList.toggle("is-client-filter-active", isFilterActive());
-    setResetVisible(hasActiveClients());
+    setResetVisible(hasActiveClients() || sideFiltersSet());
     if (mobileBtn) {
       mobileBtn.classList.toggle("is-active", hasActiveClients() || modalOpen);
     }
@@ -900,10 +1301,11 @@
 
   function clearDraftSelection() {
     draftClients = [];
-    syncDraftUI();
+    applyFilter([], { scroll: false });
   }
 
   function applyDraftAndClose() {
+    if (!draftClients.length) return;
     var next = cloneIds(draftClients);
     if (isMobile()) {
       setModalOpen(false);
@@ -913,11 +1315,18 @@
     }
     applyFilter(next, { scroll: false });
     setMenuOpen(false);
-    focusEl(triggerEl);
+    blockFocusOpen = true;
+    focusEl(searchInput || triggerEl);
+    window.requestAnimationFrame(function () {
+      scrollToFirstResult("smooth");
+    });
   }
 
   function clearClientFilter() {
     draftClients = [];
+    periodFrom = PERIOD_MIN;
+    periodTo = PERIOD_MAX;
+    activeVendors = [];
     applyFilter([], { scroll: false });
     setModalOpen(false);
     setMenuOpen(false);
@@ -927,6 +1336,9 @@
 
   function clearAllFilters(options) {
     draftClients = [];
+    periodFrom = PERIOD_MIN;
+    periodTo = PERIOD_MAX;
+    activeVendors = [];
     applyFilters({ clients: [], query: "" }, Object.assign({ mode: "query" }, options || {}));
   }
 
@@ -949,6 +1361,31 @@
     }
     setMenuOpen(!menuOpen);
   });
+
+  if (searchWrap) {
+    searchWrap.addEventListener("pointerdown", function (e) {
+      if (isMobile()) return;
+      var target = e.target;
+      if (!target || !target.closest) return;
+      if (target.closest(".projects-filter__search-toggle")) return;
+      if (target.closest(".projects-filter__search-clear")) return;
+      blockFocusOpen = false;
+      if (!menuOpen) setMenuOpen(true);
+    });
+  }
+
+  if (searchToggle) {
+    searchToggle.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+    });
+    searchToggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isMobile()) return;
+      setMenuOpen(!menuOpen);
+      if (menuOpen && searchInput) searchInput.focus();
+    });
+  }
 
   if (mobileBtn) {
     mobileBtn.addEventListener("click", function () {
@@ -994,7 +1431,9 @@
     if (!menuOpen) return;
     var path = typeof e.composedPath === "function" ? e.composedPath() : [];
     var inside =
-      (path.length && path.indexOf(comboEl) !== -1) || comboEl.contains(e.target);
+      (path.length && (path.indexOf(comboEl) !== -1 || (searchWrap && path.indexOf(searchWrap) !== -1))) ||
+      comboEl.contains(e.target) ||
+      (searchWrap && searchWrap.contains(e.target));
     if (!inside) setMenuOpen(false);
   });
 
@@ -1018,7 +1457,56 @@
     resetBtn.addEventListener("click", clearClientFilter);
   }
 
+  if (periodFromInput && periodToInput) {
+    periodToInput.style.zIndex = "3";
+    periodFromInput.addEventListener("input", onPeriodInput);
+    periodToInput.addEventListener("input", onPeriodInput);
+  }
+
+  var vendorsBox = document.getElementById("projects-vendors");
+  if (vendorsBox) {
+    vendorsBox.addEventListener("click", function (e) {
+      var btn = e.target.closest(".projects-vendors__option");
+      if (!btn || !vendorsBox.contains(btn)) return;
+      var id = btn.getAttribute("data-vendor");
+      if (!id) return;
+      var idx = activeVendors.indexOf(id);
+      if (idx === -1) activeVendors.push(id);
+      else activeVendors.splice(idx, 1);
+      applyFilters({}, { scroll: false });
+      if (vendorIsSet()) {
+        window.requestAnimationFrame(function () {
+          scrollToFirstResult("smooth");
+        });
+      }
+    });
+  }
+
+  var blockFocusOpen = false;
+
+  window.addEventListener("blur", function () {
+    blockFocusOpen = true;
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") blockFocusOpen = true;
+  });
+
   if (searchInput) {
+    searchInput.addEventListener("pointerdown", function () {
+      blockFocusOpen = false;
+      if (!isMobile() && !menuOpen && document.activeElement === searchInput) setMenuOpen(true);
+    });
+
+    searchInput.addEventListener("focus", function () {
+      if (blockFocusOpen) {
+        blockFocusOpen = false;
+        return;
+      }
+      if (isMobile() || menuOpen) return;
+      setMenuOpen(true);
+    });
+
     searchInput.addEventListener("input", function () {
       var raw = String(searchInput.value || "").replace(/[\u0000-\u001F\u007F]/g, "");
       if (raw.length > QUERY_MAX) raw = raw.slice(0, QUERY_MAX);
@@ -1032,14 +1520,26 @@
       var hasText = !!raw.replace(/\s+/g, " ").trim();
       if (searchClearBtn) searchClearBtn.hidden = !hasText;
       if (searchWrap) searchWrap.classList.toggle("is-active", hasText);
-      scheduleSearchFromInput();
+      if (isMobile()) {
+        scheduleSearchFromInput();
+        return;
+      }
+      optionQuery = raw.replace(/\s+/g, " ").trim();
+      if (!menuOpen) setMenuOpen(true);
+      else renderOptions();
     });
 
     searchInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault();
-        flushSearchFromInput();
+        if (isMobile()) flushSearchFromInput();
       } else if (e.key === "Escape") {
+        if (menuOpen && !isMobile()) {
+          e.preventDefault();
+          e.stopPropagation();
+          setMenuOpen(false);
+          return;
+        }
         e.preventDefault();
         if (activeQuery || searchInput.value) {
           applySearch("", { scroll: false });
@@ -1050,6 +1550,17 @@
 
   if (searchClearBtn) {
     searchClearBtn.addEventListener("click", function () {
+      if (!isMobile()) {
+        optionQuery = "";
+        if (searchInput) {
+          searchInput.value = "";
+          searchInput.focus();
+        }
+        searchClearBtn.hidden = true;
+        if (searchWrap) searchWrap.classList.remove("is-active");
+        renderOptions();
+        return;
+      }
       applySearch("", { scroll: false });
       if (searchInput) searchInput.focus();
     });
@@ -1066,6 +1577,7 @@
   }
 
   document.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") blockFocusOpen = false;
     if (e.key !== "Escape") return;
 
     if (modalOpen) {
@@ -1076,7 +1588,9 @@
 
     if (menuOpen) {
       setMenuOpen(false);
-      triggerEl.focus();
+      blockFocusOpen = true;
+      if (!isMobile() && searchInput) searchInput.focus();
+      else triggerEl.focus();
       return;
     }
 
@@ -1125,8 +1639,10 @@
       "";
 
     if (rawQ) {
+      readPeriodFromUrl(url);
       applySearch(rawQ, { updateUrl: false });
     } else {
+      readPeriodFromUrl(url);
       applyFilter(resolveClientParams(rawClients), { updateUrl: false });
     }
   });
@@ -1143,6 +1659,7 @@
     filterEl.hidden = false;
 
     var url = new URL(window.location.href);
+    readPeriodFromUrl(url);
     var fromQuery = sanitizeQuery(url.searchParams.get(PARAM_QUERY) || "");
     var fromClients = resolveClientParams(url.searchParams.get(PARAM_CLIENT) || "");
     var shouldScroll = window.location.hash === "#projects-all" ? "auto" : "smooth";
