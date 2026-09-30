@@ -524,12 +524,17 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   width: 100%;
   max-width: none;
   font-family: var(--font-text);
-  font-size: clamp(1.15rem, 1.55vw, 1.35rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
   font-weight: 500;
   line-height: 1.55;
   letter-spacing: -0.018em;
   color: var(--text);
   text-wrap: pretty;
+}
+
+.about-intro__story-rest {
+  display: block;
+  margin-top: 0.45em;
 }
 
 [data-theme="dark"] .about-intro__story {
@@ -538,7 +543,7 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
 
 .about-intro__hl {
   color: var(--accent);
-  font-weight: 650;
+  font-weight: inherit;
 }
 
 .about-intro__num {
@@ -548,9 +553,176 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   letter-spacing: -0.03em;
 }
 
-[data-theme="dark"] .about-intro__hl,
 [data-theme="dark"] .about-intro__num {
   color: color-mix(in srgb, var(--accent) 55%, #fff 45%);
+}
+
+.about-history {
+  margin-top: clamp(2.4rem, 4.5vw, 3.4rem);
+}
+
+.about-history__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.15rem;
+}
+
+.about-history__title {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.about-history__nav {
+  display: flex;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.about-history__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.about-history__nav-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.about-history__nav-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--accent);
+}
+
+.about-history__nav-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.about-history__nav-btn:disabled {
+  opacity: 0.38;
+  cursor: default;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.about-history__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: auto;
+}
+
+.about-history__viewport.is-dragging {
+  cursor: auto;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.about-history__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.about-history__track {
+  display: flex;
+  align-items: stretch;
+  gap: 0.85rem;
+}
+
+.about-history__card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc((100% - 1.7rem) / 3);
+  box-sizing: border-box;
+  min-height: 100%;
+  margin: 0;
+  padding: 1.55rem 1.45rem 1.65rem;
+  scroll-snap-align: start;
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: 16px;
+  background: var(--bg-elevated);
+}
+
+.about-history__year {
+  margin: 0 0 1.05rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.2rem, 2.9vw, 2.75rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.about-history__card--empty .about-history__year {
+  margin-bottom: 0;
+}
+
+.about-history__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-history__list li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.15rem;
+  font-family: var(--font-text);
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.012em;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.about-history__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.48em;
+  left: 0;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .about-history__card {
+    flex-basis: calc((100% - 0.85rem) / 2);
+  }
+}
+
+@media (max-width: 680px) {
+  .about-history__card {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-history__viewport {
+    scroll-behavior: auto;
+  }
 }
 
 /* ——— Блок 02: Наша экспертиза (bento) ——— */

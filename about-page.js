@@ -1,4 +1,133 @@
 (function () {
+  var root = document.querySelector("[data-about-history]");
+  if (!root) return;
+  var viewport = root.querySelector(".about-history__viewport");
+  var track = root.querySelector(".about-history__track");
+  var prev = root.querySelector("[data-history-prev]");
+  var next = root.querySelector("[data-history-next]");
+  if (!viewport || !track || !prev || !next) return;
+
+  var reduce =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function cardLeft(card) {
+    return card.getBoundingClientRect().left - viewport.getBoundingClientRect().left + viewport.scrollLeft;
+  }
+
+  function nearestIndex() {
+    var cards = track.querySelectorAll(".about-history__card");
+    var left = viewport.scrollLeft;
+    var index = 0;
+    for (var i = 0; i < cards.length; i++) {
+      if (cardLeft(cards[i]) <= left + 12) index = i;
+    }
+    return index;
+  }
+
+  function update() {
+    var max = viewport.scrollWidth - viewport.clientWidth;
+    prev.disabled = viewport.scrollLeft <= 2;
+    next.disabled = viewport.scrollLeft >= max - 2;
+  }
+
+  function move(dir) {
+    var cards = track.querySelectorAll(".about-history__card");
+    var index = Math.max(0, Math.min(cards.length - 1, nearestIndex() + dir));
+    viewport.scrollTo({
+      left: cardLeft(cards[index]),
+      behavior: reduce ? "auto" : "smooth"
+    });
+  }
+
+  prev.addEventListener("click", function () {
+    move(-1);
+  });
+  next.addEventListener("click", function () {
+    move(1);
+  });
+
+  var dragging = false;
+  var dragged = false;
+  var pointerId = null;
+  var startX = 0;
+  var startScroll = 0;
+
+  function snapNearest(left) {
+    var cards = track.querySelectorAll(".about-history__card");
+    if (!cards.length) return;
+    var index = 0;
+    var best = Infinity;
+    for (var i = 0; i < cards.length; i++) {
+      var dist = Math.abs(cardLeft(cards[i]) - left);
+      if (dist < best) {
+        best = dist;
+        index = i;
+      }
+    }
+    var max = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    viewport.scrollTo({
+      left: Math.min(cardLeft(cards[index]), max),
+      behavior: reduce ? "auto" : "smooth"
+    });
+  }
+
+  function endDrag(event) {
+    if (!dragging || event.pointerId !== pointerId) return;
+    var wasDrag = dragged;
+    var left = viewport.scrollLeft;
+    dragging = false;
+    pointerId = null;
+    viewport.classList.remove("is-dragging");
+    if (viewport.hasPointerCapture && event.pointerId != null && viewport.hasPointerCapture(event.pointerId)) {
+      viewport.releasePointerCapture(event.pointerId);
+    }
+    if (wasDrag) snapNearest(left);
+    update();
+  }
+
+  viewport.addEventListener("pointerdown", function (event) {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+    dragging = true;
+    dragged = false;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startScroll = viewport.scrollLeft;
+    viewport.classList.add("is-dragging");
+    if (viewport.setPointerCapture) {
+      try {
+        viewport.setPointerCapture(event.pointerId);
+      } catch (err) {}
+    }
+  });
+
+  viewport.addEventListener("pointermove", function (event) {
+    if (!dragging || event.pointerId !== pointerId) return;
+    var dx = event.clientX - startX;
+    if (Math.abs(dx) > 3) dragged = true;
+    viewport.scrollLeft = startScroll - dx;
+    update();
+  });
+
+  viewport.addEventListener("pointerup", endDrag);
+  viewport.addEventListener("pointercancel", endDrag);
+  viewport.addEventListener(
+    "click",
+    function (event) {
+      if (!dragged) return;
+      dragged = false;
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true
+  );
+
+  viewport.addEventListener("scroll", update, { passive: true });
+  viewport.addEventListener("scrollend", update);
+  window.addEventListener("resize", update);
+  update();
+})();
+
+(function () {
   var video = document.querySelector(".about-expertise__visual video");
   if (!video) return;
   var reduce =

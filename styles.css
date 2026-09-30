@@ -11272,7 +11272,7 @@ body.page-huawei-subnav-open .page-section-subnav__backdrop.is-hiding {
 .page-about #career,
 .page-infra #infra-intro,
 .page-infra #infra-approach,
-.page-infra #infra-examples,
+.page-infra :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples),
 .page-infosec #infosec-intro,
 .page-infosec #infosec-approach,
 .page-infosec #infosec-examples,
@@ -24332,6 +24332,212 @@ html:not([data-theme="dark"]) .infra-std-banner__logo img.infra-std-banner__logo
 
 .page-infra__example-card {
   min-height: 100%;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__examples-grid {
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-card {
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: default;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-card::after,
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-card:hover::after {
+  content: none;
+  display: none;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-card:hover {
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 11.75rem;
+  width: 11.75rem;
+  min-height: 8.75rem;
+  height: auto;
+  align-self: stretch;
+  background: #fff;
+  border-bottom: 0;
+  border-right: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img {
+  width: 72%;
+  height: 62%;
+  max-height: 5.75rem;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo:hover .page-infra__example-logo__img {
+  transform: scale(1.06);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img--dark {
+  display: none;
+}
+
+[data-theme="dark"] :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo {
+  background: #111821;
+  border-bottom-color: color-mix(in srgb, var(--border) 55%, transparent);
+}
+
+[data-theme="dark"] :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img--light {
+  display: none;
+}
+
+[data-theme="dark"] :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img--dark {
+  display: block;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-body {
+  --infra-example-inline: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+  padding: 1.05rem 1.45rem 0.95rem var(--infra-example-inline);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-title {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+  color: var(--text);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-desc {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.8125rem, 0.92vw, 0.875rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+  padding: 0;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-meta {
+  min-width: 0;
+  font-family: var(--font-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  color: color-mix(in srgb, var(--text) 58%, transparent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  min-height: 2.4rem;
+  padding: 0.65rem 1.15rem;
+  border: 0.5px solid color-mix(in srgb, var(--border) 55%, var(--text) 28%);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font-family: "Onest", var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, gap 0.2s ease;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-more svg {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  transition: transform 0.2s ease;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-more:hover {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--accent);
+  gap: 0.65rem;
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-more:hover svg {
+  transform: translateX(3px);
+}
+
+:is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-more:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img {
+    transition: none;
+  }
+}
+
+@media (max-width: 680px) {
+  :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-card {
+    flex-direction: column;
+  }
+
+  :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo {
+    flex-basis: auto;
+    width: 100%;
+    height: 9.25rem;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  }
+
+  :is(#infra-examples, #infosec-examples, #continuity-examples, #ops-examples) .page-infra__example-logo__img {
+    width: 64%;
+    height: 76%;
+    max-height: none;
+  }
 }
 
 /* ——— Страница «Информационная безопасность» ——— */

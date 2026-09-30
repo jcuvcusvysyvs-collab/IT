@@ -19,7 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260923-safari-theme-hold-v71" />
-    <link rel="stylesheet" href="about.css?v=20260924-about-dots-static" />
+    <link rel="stylesheet" href="about.css?v=20260930-history-cursor" />
     <link rel="preload" href="images/Company.webp?v=20260916-hq" as="image" type="image/webp" fetchpriority="high" />
     <script>
       (function () {
@@ -348,10 +348,60 @@
             <div class="about-intro__body">
               <p class="about-intro__story about-intro__story--lead">
                 <span class="about-intro__hl">DC&nbsp;Engineering</span>&nbsp;— инженерная компания, которая проектирует, внедряет
-                и&nbsp;сопровождает ИТ-инфраструктуру: от&nbsp;вычислительных комплексов
+                и&nbsp;сопровождает ИТ-инфраструктуру:<span class="about-intro__story-rest">от&nbsp;вычислительных комплексов
                 и&nbsp;систем хранения данных до&nbsp;сетей передачи данных и&nbsp;контуров
-                информационной безопасности.
+                информационной безопасности.</span>
               </p>
+              <div class="about-history" data-about-history>
+                <div class="about-history__head">
+                  <h3 class="about-history__title">История компании</h3>
+                  <div class="about-history__nav">
+                    <button type="button" class="about-history__nav-btn" data-history-prev aria-label="Предыдущие периоды" disabled>
+                      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button type="button" class="about-history__nav-btn" data-history-next aria-label="Следующие периоды">
+                      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="about-history__viewport">
+                  <div class="about-history__track">
+                    <article class="about-history__card">
+                      <h4 class="about-history__year">2012-2014</h4>
+                      <ul class="about-history__list">
+                        <li>Трое инженеров, прошедших путь в крупных интеграторах от технического специалиста до руководителя направления, собрали гибкую команду для решения нестандартных задач и основали собственную компанию</li>
+                        <li>Заложенные в первые годы профессиональные подходы положили начало технически и финансово успешной череде проектов для крупных государственных структур и промышленных предприятий</li>
+                        <li>Были спроектированы и реализованы распределённые ИТ-инфраструктуры с околонулевым временем восстановления и потери данных</li>
+                        <li>Основные заказчики: МГФОМС, Мосводоканал, ДИТ Москвы, НПФ «Сбербанка»</li>
+                      </ul>
+                    </article>
+                    <article class="about-history__card">
+                      <h4 class="about-history__year">2015-2017</h4>
+                      <ul class="about-history__list">
+                        <li>Закрепление позиций на рынке, адаптация стратегии согласно первым результатам, ребрендинг с фокусированием компетенций на масштабных инфраструктурных решениях уровня enterprise, рождение бренда Data Center Engineering</li>
+                        <li>Стабильный ежегодный рост выручки в два раза. Непрерывное обучение и сертификация – на 18 ведущих технических специалистов более 150 курсов и 250 сертификатов</li>
+                        <li>Получение партнёрских статусов крупных производителей: IBM, Cisco, DellEMC, HPE, NetApp, Hitachi, VMware, Microsoft, Fujitsu, Veeam, Commvault и другие</li>
+                        <li>Основные заказчики: Ростелеком, Правительство Москвы, ФАУ «Главгосэкспертиза России», Мосгортранс, РФИ Минприроды России</li>
+                      </ul>
+                    </article>
+                    <article class="about-history__card">
+                      <h4 class="about-history__year">2018-2020</h4>
+                      <ul class="about-history__list">
+                        <li>Расширение географии присутствия за пределы Москвы и МО: 15 проектов в 6-ти регионах. Появление заказчиков из разных отраслей: промышленность, финансы, образование и т.д.</li>
+                        <li>Заказчики возвращаются после первого опыта работы с компанией. Доля повторных продаж более 30%</li>
+                        <li>Сохранение и расширение команды, дистанционная работа, сотрудники в других городах</li>
+                        <li>Основные заказчики: ДИТ Москвы, АО «Мосводоканал», Фонд социального страхования РФ, АО «ОДК-Авиадвигатель», НИУ «ВШЭ», Крупный банк</li>
+                      </ul>
+                    </article>
+                    <article class="about-history__card about-history__card--empty">
+                      <h4 class="about-history__year">2021-2023</h4>
+                    </article>
+                    <article class="about-history__card about-history__card--empty">
+                      <h4 class="about-history__year">2024-2026</h4>
+                    </article>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -1847,7 +1897,7 @@
 <script defer src="huawei-subnav.js?v=20260914-ios-overscroll-header-v62"></script>
 <script defer src="projects-hero-grid.js?v=20260723-subnav-stable"></script>
 <script defer src="subpage-hero.js?v=20260818-hero-reveal-v1"></script>
-    <script defer src="about-page.js?v=20260924-about-dots-static"></script>
+    <script defer src="about-page.js?v=20260930-history-drag2"></script>
     <script defer src="nav.js?v=20260914-ios-overscroll-header-v62"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>
       <script defer src="footer-mos-widget.js?v=20260821-mos-widget-v3"></script>
