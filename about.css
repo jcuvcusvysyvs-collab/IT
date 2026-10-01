@@ -524,17 +524,17 @@ html:not([data-theme="dark"]) .page-about .page-section-subnav.is-stuck .page-se
   width: 100%;
   max-width: none;
   font-family: var(--font-text);
-  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.28rem);
   font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: -0.018em;
+  line-height: 1.52;
+  letter-spacing: -0.02em;
   color: var(--text);
   text-wrap: pretty;
 }
 
 .about-intro__story-rest {
   display: block;
-  margin-top: 0.45em;
+  margin-top: 0.5em;
 }
 
 [data-theme="dark"] .about-intro__story {

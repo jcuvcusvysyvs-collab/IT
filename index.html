@@ -26,7 +26,7 @@
         rel="stylesheet"
       />
     </noscript>
-    <link rel="stylesheet" href="styles.css?v=20260923-safari-theme-hold-v71" />
+    <link rel="stylesheet" href="styles.css?v=20261002-geo-pin-square" />
     <link
       rel="preload"
       href="video/data-center-hero-mobile.mp4?v=20260818-m720p"
@@ -857,10 +857,26 @@
 
           <div class="home-geo__body">
             <aside class="home-geo__clients" aria-label="Заказчики проектов">
+              <div class="home-geo__clients-tools">
+                <label class="home-geo__search">
+                  <span class="visually-hidden">Найти заказчика</span>
+                  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                    <circle cx="7" cy="7" r="4.25" fill="none" stroke="currentColor" stroke-width="1.4" />
+                    <path d="M10.2 10.2L13 13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                  </svg>
+                  <input type="search" data-geo-search placeholder="Найти" autocomplete="off" enterkeyhint="search" />
+                </label>
+                <div class="home-geo__sort" data-geo-sort role="radiogroup" aria-label="Сортировка заказчиков">
+                  <button type="button" data-sort="fresh" aria-pressed="true">Новые</button>
+                  <button type="button" data-sort="old" aria-pressed="false">Старые</button>
+                  <button type="button" data-sort="alpha" aria-pressed="false">А–Я</button>
+                </div>
+              </div>
               <div class="home-geo__logos-scroll">
                 <ul class="home-geo__logos" data-geo-logos></ul>
+                <p class="home-geo__logos-empty" data-geo-logos-empty hidden>Ничего не найдено</p>
               </div>
-              <a class="home-geo__clients-btn" href="projects.html">
+              <a class="home-geo__clients-btn" href="projects.html#projects-all">
                 Все проекты
                 <svg viewBox="0 0 14 14" width="14" height="14" fill="none" aria-hidden="true">
                   <path
@@ -917,13 +933,13 @@
                   <div class="home-geo__card-body" data-geo-card-body>
                     <p class="home-geo__card-desc" data-geo-card-desc></p>
                   </div>
-                  <div class="home-geo__card-nav" data-geo-card-nav hidden>
+                  <div class="home-geo__card-nav" data-geo-card-nav hidden role="group" aria-label="Переключение проектов">
                     <button type="button" class="home-geo__card-arrow" data-geo-card-prev aria-label="Предыдущий проект">
                       <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
                         <path d="M10 3.5L5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </button>
-                    <span class="home-geo__card-count" data-geo-card-count></span>
+                    <span class="home-geo__card-count" data-geo-card-count aria-live="polite"></span>
                     <button type="button" class="home-geo__card-arrow" data-geo-card-next aria-label="Следующий проект">
                       <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
                         <path d="M6 3.5L10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1094,6 +1110,7 @@
             <nav class="footer-nav" aria-label="О компании">
               <h2 class="footer-heading">Компания</h2>
               <ul class="footer-nav-list">
+                <li><a href="about.html#about-us">О&nbsp;нас</a></li>
                 <li><a href="about.html#about-content">Экспертиза</a></li>
                 <li><a href="about.html#about-partners">Наши партнёры</a></li>
                 <li><a href="about.html#certificates">Лицензии и&nbsp;сертификаты</a></li>
@@ -1141,8 +1158,8 @@
     </footer>
 <script defer src="hero-pt.js?v=20260820-vf2"></script>
     <script defer src="services-carousel.js?v=20260916-carousel-multi-v1"></script>
-    <script defer src="home-geo-data.js?v=20260907-geo-data-js-v1"></script>
-    <script defer src="home-geo.js?v=20260908-geo-pins-no-num-v1"></script>
+    <script defer src="home-geo-data.js?v=20261001-geo-catalog"></script>
+    <script defer src="home-geo.js?v=20261002-geo-pin-square"></script>
     <script defer src="clients-marquee.js?v=20260820-slow-hover-v1"></script>
     <script defer src="nav.js?v=20260909-header-subnav-visible-v1"></script>
       <script defer src="footer-dot-matrix.js?v=20260821-footer-rail-v1"></script>

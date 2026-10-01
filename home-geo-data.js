@@ -52,6 +52,14 @@ window.HOME_GEO_DATA = {
           "cities": [
             "Москва"
           ]
+        },
+        {
+          "desc": "Импортозамещение платформы виртуализации ЦОД Росавтодора",
+          "year": "2025",
+          "href": "project-rdi-zvirt.html",
+          "cities": [
+            "Москва"
+          ]
         }
       ]
     },
@@ -84,6 +92,30 @@ window.HOME_GEO_DATA = {
           "desc": "Обследование распределённой инфраструктуры, разработка рекомендаций и дорожной карты",
           "year": "2023",
           "href": "project-mggt-infra.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Проектирование резервного центра обработки данных",
+          "year": "2025",
+          "href": "project-mggt-backup.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Комплексное техническое сопровождение информационной инфраструктуры",
+          "year": "2025",
+          "href": "project-mggt-support.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Организация переезда ИТ-инфраструктуры",
+          "year": "2024",
+          "href": "project-mggt-move.html",
           "cities": [
             "Москва"
           ]
@@ -508,6 +540,30 @@ window.HOME_GEO_DATA = {
           "cities": [
             "Москва"
           ]
+        },
+        {
+          "desc": "Развитие и поддержание работоспособности единой ИТ-инфраструктуры",
+          "year": "2023–2027",
+          "href": "project-mosvodokanal-infra.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Обследование ИТ-инфраструктуры центра обработки данных и технический проект",
+          "year": "2024–2025",
+          "href": "project-mosvodokanal-dc.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Сервисное обслуживание распределенного центра обработки данных",
+          "year": "2018",
+          "href": "project-mosvodokanal-service.html",
+          "cities": [
+            "Москва"
+          ]
         }
       ]
     },
@@ -543,6 +599,14 @@ window.HOME_GEO_DATA = {
           "desc": "Технологическая и экономическая экспертиза проектов развития ИТ-инфраструктуры и результатов исполнения контрактов",
           "year": "2017–2018",
           "href": "project-dit-moscow.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Техническая и технологическая экспертиза закупок вычислительной техники",
+          "year": "2019–2020",
+          "href": "project-dit-moscow-procurement.html",
           "cities": [
             "Москва"
           ]
@@ -676,6 +740,14 @@ window.HOME_GEO_DATA = {
           "desc": "Развитие системы доступа в Интернет распределённой федеральной инфраструктуры периметральных средств безопасности Росавтодора",
           "year": "2022",
           "href": "project-krok.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Пусконаладка инфраструктуры вычислительного кластера",
+          "year": "2024",
+          "href": "project-krok-cluster.html",
           "cities": [
             "Москва"
           ]
@@ -915,6 +987,14 @@ window.HOME_GEO_DATA = {
           "cities": [
             "Москва"
           ]
+        },
+        {
+          "desc": "Модернизация распределенной системы хранения данных",
+          "year": "2021",
+          "href": "project-glavgosexpertiza-storage.html",
+          "cities": [
+            "Москва"
+          ]
         }
       ]
     },
@@ -950,6 +1030,14 @@ window.HOME_GEO_DATA = {
           "desc": "Модернизация серверной инфраструктуры, внедрение СХД BULAT",
           "year": "2018",
           "href": "project-mosgortrans-bulat.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Обследование серверной и сетевой инфраструктуры",
+          "year": "2019",
+          "href": "project-mosgortrans-survey.html",
           "cities": [
             "Москва"
           ]
@@ -1109,6 +1197,462 @@ window.HOME_GEO_DATA = {
           "href": "project-tatfundbank.html",
           "cities": [
             "Казань"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c53",
+      "client": "АО «Телекомпания НТВ»",
+      "logo": "images/project_70.webp",
+      "logoDark": "images/project_70.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Техническая поддержка систем хранения и серверов Huawei",
+          "year": "2026–2027",
+          "href": "project-ntv.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c54",
+      "client": "АО «НСПК»",
+      "logo": "images/project_69.webp",
+      "logoDark": "images/project_69.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Проектирование архивного центра обработки данных",
+          "year": "2026",
+          "href": "project-nspk-archive.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c55",
+      "client": "АО «Банк Интеза»",
+      "logo": "images/project_68.webp",
+      "logoDark": "images/project_68.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Развертывание защищенной среды виртуализации zVirt",
+          "year": "2026",
+          "href": "project-bank-inteza.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c56",
+      "client": "ОГКУ «Центр информационно-технического обслуживания»",
+      "logo": "images/project_81.webp",
+      "logoDark": "images/project_81.webp",
+      "cities": [
+        "Челябинск"
+      ],
+      "projects": [
+        {
+          "desc": "Техническое обслуживание сетевого оборудования органов власти региона",
+          "year": "2025–2026",
+          "href": "project-chelyabinsk-network.html",
+          "cities": [
+            "Челябинск"
+          ]
+        },
+        {
+          "desc": "Техническое обслуживание систем хранения данных и серверов",
+          "year": "2023–2026",
+          "href": "project-chelyabinsk-ito.html",
+          "cities": [
+            "Челябинск"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c57",
+      "client": "АО «Центральная пригородная пассажирская компания»",
+      "logo": "images/project_71.webp",
+      "logoDark": "images/project_71.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Техническое обслуживание серверного, сетевого и инженерного оборудования",
+          "year": "2025–2026",
+          "href": "project-cppk.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c58",
+      "client": "Департамент труда и социальной защиты населения города Москвы",
+      "logo": "images/project_34.webp",
+      "logoDark": "images/dark/project_34_dark.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Монтаж и пусконаладка ИТ-инфраструктуры на отечественном оборудовании",
+          "year": "2024",
+          "href": "project-dszn-moscow.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c59",
+      "client": "ГК «ТАГРАС»",
+      "logo": "images/project_80.webp",
+      "logoDark": "images/project_80.webp",
+      "cities": [
+        "Казань"
+      ],
+      "projects": [
+        {
+          "desc": "Внедрение инфраструктурных элементов частного облака",
+          "year": "2024",
+          "href": "project-tagras.html",
+          "cities": [
+            "Казань"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c60",
+      "client": "ООО «Форвард Энерго»",
+      "logo": "images/project_79.webp",
+      "logoDark": "images/project_79.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Миграция ИТ-сервисов в новый домен Active Directory",
+          "year": "2024",
+          "href": "project-forward-energo.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c61",
+      "client": "ПАО «Яковлев», Иркутский авиационный завод",
+      "logo": "images/project_white_78.webp",
+      "logoDark": "images/project_black_78.webp",
+      "cities": [
+        "Иркутск"
+      ],
+      "projects": [
+        {
+          "desc": "Техническая поддержка сетевой инфраструктуры завода",
+          "year": "2024",
+          "href": "project-yakovlev.html",
+          "cities": [
+            "Иркутск"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c62",
+      "client": "ФБУ РФЦСЭ при Минюсте России",
+      "logo": "images/project_76.webp",
+      "logoDark": "images/project_76.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Модернизация и импортозамещение комплекса управления ведомственным контентом",
+          "year": "2024",
+          "href": "project-rfcsse.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c63",
+      "client": "ООО «Газпром Нефтехим Салават»",
+      "logo": "images/project_75.webp",
+      "logoDark": "images/project_75.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Создание ИТ-инфраструктуры для информационной системы BIMeister",
+          "year": "2024",
+          "href": "project-gazprom-salavat.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c64",
+      "client": "ПАО «Россети Московский регион»",
+      "logo": "images/project_74.webp",
+      "logoDark": "images/project_74.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Оценка надежности и катастрофоустойчивости ЦОД и СХД",
+          "year": "2024",
+          "href": "project-rosseti-moscow.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Эксплуатационно-техническое обслуживание системы межсетевого экранирования",
+          "year": "2023",
+          "href": "project-rosseti-moscow-firewall.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c65",
+      "client": "АО «Всероссийский банк развития регионов»",
+      "logo": "images/project_white_72.webp",
+      "logoDark": "images/project_black_72.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Техническая поддержка систем хранения данных Huawei",
+          "year": "2024",
+          "href": "project-vbrr.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c66",
+      "client": "ООО «РусГидро ИТ сервис»",
+      "logo": "images/project_83.webp",
+      "logoDark": "images/project_83.webp",
+      "cities": [
+        "Москва",
+        "Жигулевск"
+      ],
+      "projects": [
+        {
+          "desc": "Техническое обслуживание ИТ-инфраструктуры основного и резервного ЦОД",
+          "year": "2023–2024",
+          "href": "project-rushydro-it.html",
+          "cities": [
+            "Москва",
+            "Жигулевск"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c67",
+      "client": "Банк России",
+      "logo": "images/project_86.webp",
+      "logoDark": "images/project_86.webp",
+      "cities": [
+        "Москва",
+        "Санкт-Петербург",
+        "Нижний Новгород"
+      ],
+      "projects": [
+        {
+          "desc": "Проектирование, монтаж и пусконаладка вычислительной инфраструктуры",
+          "year": "2023",
+          "href": "project-bank-russia.html",
+          "cities": [
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Частное облако Банка России: развёртывание в Санкт-Петербурге и Нижнем Новгороде",
+          "year": "2019",
+          "href": "project-bank-russia-cloud.html",
+          "cities": [
+            "Санкт-Петербург",
+            "Нижний Новгород",
+            "Москва"
+          ]
+        },
+        {
+          "desc": "Частное облако Банка России: проектирование вычислительной инфраструктуры и запуск московских ЦОД",
+          "year": "2018",
+          "href": "project-bank-russia-moscow.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c68",
+      "client": "ФГОБУ ВО «Финансовый университет при Правительстве Российской Федерации»",
+      "logo": "images/project_85.webp",
+      "logoDark": "images/project_85.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Техническая поддержка серверного оборудования и систем хранения HPE",
+          "year": "2023",
+          "href": "project-finuniversity-hpe.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c69",
+      "client": "ПАО БАНК ВТБ",
+      "logo": "images/project_white_84.webp",
+      "logoDark": "images/project_black_84.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Техническая документация по расширению ЛВС центров обработки данных",
+          "year": "2023",
+          "href": "project-vtb-lan.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c70",
+      "client": "Росфинмониторинг",
+      "logo": "images/project_87.webp",
+      "logoDark": "images/project_87.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Создание информационной системы «Международный центр оценки рисков»",
+          "year": "2021",
+          "href": "project-rosfinmonitoring.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c71",
+      "client": "ГБУЗ ОТ «Медицинский информационно-аналитический центр» Владимирской области",
+      "logo": "images/project_89.webp",
+      "logoDark": "images/project_89.webp",
+      "cities": [
+        "Владимир"
+      ],
+      "projects": [
+        {
+          "desc": "Развертывание серверного комплекса виртуализации",
+          "year": "2020",
+          "href": "project-vladimir-miac.html",
+          "cities": [
+            "Владимир"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c72",
+      "client": "Пенсионный фонд Российской Федерации",
+      "logo": "images/project_88.webp",
+      "logoDark": "images/project_88.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Актуализация технического проекта типового комплекса АИС ПФР-2",
+          "year": "2020",
+          "href": "project-pfr-ais.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c73",
+      "client": "ГУП «Москоллектор»",
+      "logo": "images/project_white_90.webp",
+      "logoDark": "images/project_black_90.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Создание катастрофоустойчивой ИТ-инфраструктуры",
+          "year": "2018",
+          "href": "project-moscollector.html",
+          "cities": [
+            "Москва"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c74",
+      "client": "Московский городской фонд обязательного медицинского страхования",
+      "logo": "images/project_91.webp",
+      "logoDark": "images/project_91.webp",
+      "cities": [
+        "Москва"
+      ],
+      "projects": [
+        {
+          "desc": "Развитие центрального аппаратно-программного комплекса АИС ОМС",
+          "year": "2015",
+          "href": "project-mgfoms.html",
+          "cities": [
+            "Москва"
           ]
         }
       ]
@@ -1334,6 +1878,22 @@ window.HOME_GEO_DATA = {
       "y": 51.3,
       "groups": [
         2
+      ]
+    },
+    {
+      "city": "Казань",
+      "x": 20.6,
+      "y": 54.8,
+      "groups": [
+        1
+      ]
+    },
+    {
+      "city": "Владимир",
+      "x": 17.1,
+      "y": 47.6,
+      "groups": [
+        1
       ]
     }
   ]
