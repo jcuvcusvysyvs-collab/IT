@@ -1261,8 +1261,8 @@ window.HOME_GEO_DATA = {
     {
       "id": "c56",
       "client": "ОГКУ «Центр информационно-технического обслуживания»",
-      "logo": "images/project_81.webp",
-      "logoDark": "images/project_81.webp",
+      "logo": "images/project_81_fit.webp",
+      "logoDark": "images/project_81_fit.webp",
       "cities": [
         "Челябинск"
       ],

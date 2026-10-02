@@ -68,6 +68,22 @@
     return "проектов";
   }
 
+  function markerMarkup(count) {
+    var wide = count >= 10 ? " home-geo__pin-count--wide" : "";
+    return (
+      '<span class="home-geo__pin-mark" aria-hidden="true">' +
+      '<svg class="home-geo__pin-shape" viewBox="0 0 64 64" focusable="false" aria-hidden="true">' +
+      '<path fill="currentColor" d="M32,0C18.564,0,7.672,10.892,7.672,24.328C7.672,42.622,32,64,32,64s24.328-20.903,24.328-39.672C56.328,10.892,45.436,0,32,0z"/>' +
+      '<circle cx="32" cy="24.17" r="14.4" fill="#fff"/>' +
+      "</svg>" +
+      '<span class="home-geo__pin-count' +
+      wide +
+      '">' +
+      count +
+      "</span></span>"
+    );
+  }
+
   function pinSizeClass(count) {
     if (count <= 0) return "home-geo__pin--empty";
     if (count >= 10) return "home-geo__pin--lg";
@@ -86,12 +102,14 @@
         : entry.city + ", нет проектов";
       var tag = clickable ? "button" : "span";
       var typeAttr = clickable ? ' type="button"' : "";
+      var markerClass = clickable ? " home-geo__pin--marker" : "";
       return (
         "<" +
         tag +
         typeAttr +
         ' class="home-geo__pin ' +
         sizeClass +
+        markerClass +
         '" style="left:' +
         entry.x +
         "%;top:" +
@@ -103,7 +121,9 @@
         '" aria-label="' +
         escapeHtml(aria) +
         '">' +
-        '<span class="home-geo__pin-dot" aria-hidden="true"></span>' +
+        (clickable
+          ? markerMarkup(count)
+          : '<span class="home-geo__pin-dot" aria-hidden="true"></span>') +
         '<span class="home-geo__pin-label">' +
         escapeHtml(entry.city) +
         "</span>" +
@@ -166,7 +186,104 @@
         activeBtn.setAttribute("aria-pressed", "true");
       }
     }
-    applyLogoSearch();
+    applyLogoSearchSync();
+  }
+
+  function applyLogoSearchSync() {
+    var query = searchEl ? searchEl.value.trim() : "";
+    var visible = 0;
+    listEl.querySelectorAll("li").forEach(function (item) {
+      var btn = item.querySelector("[data-geo-id]");
+      var client = btn ? findById(btn.getAttribute("data-geo-id")) : null;
+      var show = !query || (client && clientNameMatches(client.client, query));
+      item.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (emptyEl) emptyEl.hidden = visible !== 0;
+  }
+
+  var logosFadeBusy = false;
+  var logosFadeQueued = null;
+  var logosFadeToken = 0;
+
+  function prefersReducedMotion() {
+    return (
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  function softRefreshLogos(options) {
+    options = options || {};
+    var update = options.update || applyLogoSearchSync;
+    var resetScroll = !!options.resetScroll;
+
+    if (prefersReducedMotion()) {
+      update();
+      if (resetScroll) {
+        var scrollerNow = root.querySelector(".home-geo__logos-scroll");
+        if (scrollerNow) scrollerNow.scrollTop = 0;
+      }
+      return;
+    }
+
+    if (logosFadeBusy) {
+      logosFadeQueued = { update: update, resetScroll: resetScroll };
+      return;
+    }
+
+    logosFadeBusy = true;
+    var token = ++logosFadeToken;
+    var swapped = false;
+
+    function swapAndFadeIn() {
+      if (swapped || token !== logosFadeToken) return;
+      swapped = true;
+      listEl.removeEventListener("transitionend", onFadeOut);
+      update();
+      if (resetScroll) {
+        var scroller = root.querySelector(".home-geo__logos-scroll");
+        if (scroller) scroller.scrollTop = 0;
+      }
+      void listEl.offsetWidth;
+      listEl.classList.remove("is-fading");
+
+      window.setTimeout(function () {
+        if (token !== logosFadeToken) return;
+        logosFadeBusy = false;
+        if (logosFadeQueued) {
+          var queued = logosFadeQueued;
+          logosFadeQueued = null;
+          softRefreshLogos(queued);
+        }
+      }, 360);
+    }
+
+    function onFadeOut(event) {
+      if (event.target !== listEl || event.propertyName !== "opacity") return;
+      swapAndFadeIn();
+    }
+
+    listEl.classList.add("is-fading");
+    listEl.addEventListener("transitionend", onFadeOut);
+    window.setTimeout(swapAndFadeIn, 200);
+  }
+
+  function rebuildLogosAnimated() {
+    softRefreshLogos({
+      resetScroll: true,
+      update: buildLogos
+    });
+  }
+
+  var searchDebounceTimer = null;
+
+  function scheduleLogoSearch() {
+    if (searchDebounceTimer) window.clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = window.setTimeout(function () {
+      searchDebounceTimer = null;
+      softRefreshLogos({ update: applyLogoSearchSync });
+    }, 160);
   }
 
   var CLIENT_SEARCH_ALIASES = {
@@ -255,19 +372,6 @@
     return false;
   }
 
-  function applyLogoSearch() {
-    var query = searchEl ? searchEl.value.trim() : "";
-    var visible = 0;
-    listEl.querySelectorAll("li").forEach(function (item) {
-      var btn = item.querySelector("[data-geo-id]");
-      var client = findById(btn.getAttribute("data-geo-id"));
-      var show = !query || (client && clientNameMatches(client.client, query));
-      item.hidden = !show;
-      if (show) visible += 1;
-    });
-    if (emptyEl) emptyEl.hidden = visible !== 0;
-  }
-
   function pinsForCities(cities) {
     return pins.filter(function (pin) {
       return cities.indexOf(pin.getAttribute("data-city")) !== -1;
@@ -349,8 +453,10 @@
     cardEl.classList.add("is-open");
   }
 
-  function placeCard(anchorPin) {
+  function placeCard(anchorPin, options) {
     if (!anchorPin) return;
+    options = options || {};
+    var keepPosition = !!options.keepPosition;
     var avoid = pins.filter(function (pin) {
       return pin.classList.contains("is-active");
     });
@@ -364,14 +470,15 @@
     cardEl.style.width = cardW + "px";
     cardEl.hidden = false;
     var cardH = cardEl.offsetHeight;
+    var pinPad = 18;
 
     var obstacles = avoid.map(function (pin) {
       var box = pin.getBoundingClientRect();
       return {
-        left: box.left - mapBox.left - 12,
-        top: box.top - mapBox.top - 12,
-        right: box.right - mapBox.left + 12,
-        bottom: box.bottom - mapBox.top + 12,
+        left: box.left - mapBox.left - pinPad,
+        top: box.top - mapBox.top - pinPad,
+        right: box.right - mapBox.left + pinPad,
+        bottom: box.bottom - mapBox.top + pinPad,
         cx: box.left + box.width / 2 - mapBox.left,
         cy: box.top + box.height / 2 - mapBox.top
       };
@@ -389,45 +496,59 @@
       return count;
     }
 
-    var centroidX = 0;
-    var centroidY = 0;
-    obstacles.forEach(function (obstacle) {
-      centroidX += obstacle.cx;
-      centroidY += obstacle.cy;
-    });
-    centroidX /= obstacles.length;
-    centroidY /= obstacles.length;
+    // Keep the card still while paging, unless the new pins would sit under it.
+    if (keepPosition && wasOpen && cardEl.style.left && cardEl.style.top) {
+      var lockedLeft = Math.max(
+        margin,
+        Math.min(parseFloat(cardEl.style.left) || margin, mapBox.width - cardW - margin)
+      );
+      var lockedTop = Math.max(
+        margin,
+        Math.min(parseFloat(cardEl.style.top) || margin, mapBox.height - cardH - margin)
+      );
+      if (hits(lockedLeft, lockedTop) === 0) {
+        cardEl.style.left = lockedLeft + "px";
+        cardEl.style.top = lockedTop + "px";
+        setCardOriginFromPin(anchorPin, lockedLeft, lockedTop);
+        showCard(false);
+        return;
+      }
+    }
+
+    var pinBox = anchorPin.getBoundingClientRect();
+    var marker = anchorPin.classList.contains("home-geo__pin--marker");
+    var headY = pinBox.top - mapBox.top + pinBox.height * (marker ? 0.38 : 0.5);
+    var gap = 18;
+    var maxLeft = Math.max(margin, mapBox.width - cardW - margin);
+    var maxTop = Math.max(margin, mapBox.height - cardH - margin);
+    var preferredLeft = pinBox.right - mapBox.left + gap;
+    var preferredTop = headY - 36;
+
+    if (preferredLeft > maxLeft) {
+      var leftOfPin = pinBox.left - mapBox.left - cardW - gap;
+      preferredLeft = leftOfPin >= margin ? leftOfPin : maxLeft;
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(value, max));
+    }
 
     var best = null;
     function consider(rawLeft, rawTop, bias) {
-      var left = Math.max(margin, Math.min(rawLeft, mapBox.width - cardW - margin));
-      var top = Math.max(margin, Math.min(rawTop, mapBox.height - cardH - margin));
-      var dx = left + cardW / 2 - centroidX;
-      var dy = top + cardH / 2 - centroidY;
-      var score = hits(left, top) * 1000000 + Math.hypot(dx, dy) + (bias || 0);
+      var left = clamp(rawLeft, margin, maxLeft);
+      var top = clamp(rawTop, margin, maxTop);
+      var dy = Math.abs(top + 36 - headY);
+      var score = hits(left, top) * 1000000 + dy + (bias || 0);
+      if (left + 4 < pinBox.right - mapBox.left && left > pinBox.left - mapBox.left) score += 8000;
       if (!best || score < best.score) best = { left: left, top: top, score: score };
     }
 
-    if (avoid.length === 1) {
-      var pinBox = anchorPin.getBoundingClientRect();
-      var besideLeft = pinBox.right - mapBox.left + 16;
-      var besideTop = pinBox.top - mapBox.top - cardH / 2 + pinBox.height / 2;
-      if (besideLeft + cardW > mapBox.width - margin) {
-        besideLeft = pinBox.left - mapBox.left - cardW - 16;
-      }
-      consider(besideLeft, besideTop, -48);
+    consider(preferredLeft, preferredTop, -240);
+    var shift;
+    for (shift = 16; shift <= maxTop; shift += 16) {
+      consider(preferredLeft, preferredTop - shift, 0);
+      consider(preferredLeft, preferredTop + shift, 20);
     }
-
-    var step = 32;
-    var maxLeft = mapBox.width - cardW - margin;
-    var maxTop = mapBox.height - cardH - margin;
-    for (var left = margin; left <= maxLeft; left += step) {
-      for (var top = margin; top <= maxTop; top += step) {
-        consider(left, top, 0);
-      }
-    }
-    consider(maxLeft, margin, 0);
-    consider(maxLeft, maxTop, 0);
 
     cardEl.style.left = best.left + "px";
     cardEl.style.top = best.top + "px";
@@ -513,56 +634,81 @@
     window.requestAnimationFrame(stepScroll);
   }
 
-  function renderSlide(animate) {
+  var slideToken = 0;
+
+  function renderSlide(animate, direction) {
     var slot = activeQueue[activeIndex];
     if (!slot) return;
     activeItem = slot.item;
     var project = activeItem.projects[slot.index];
     if (!project) return;
 
-    if (animate && bodyEl) {
-      bodyEl.classList.remove("is-swap");
-      void bodyEl.offsetWidth;
-      bodyEl.classList.add("is-swap");
-    }
-
     var cities =
       project.cities && project.cities.length ? project.cities : activeItem.cities;
     var cityText = cities && cities.length ? cities.join(", ") : "";
     var year = project.year && project.year !== "—" ? project.year : "";
+    var reduceMotion = prefersReducedMotion();
 
-    if (cityEl) cityEl.textContent = cityText;
-    if (yearEl) {
-      yearEl.textContent = year;
-      yearEl.hidden = !year;
+    function paint() {
+      if (cityEl) cityEl.textContent = cityText;
+      if (yearEl) {
+        yearEl.textContent = year;
+        yearEl.hidden = !year;
+      }
+      if (metaSepEl) metaSepEl.hidden = !(cityText && year);
+      if (metaEl) metaEl.hidden = !(cityText || year);
+
+      nameEl.textContent = activeItem.client;
+      descEl.textContent = project.desc;
+
+      linkEl.href = project.href || "projects.html#projects-all";
+      setLogo(logoLightEl, activeItem.logo, activeItem.logo);
+      setLogo(logoDarkEl, activeItem.logoDark || activeItem.logo, activeItem.logo);
+
+      var total = activeQueue.length;
+      var multi = total > 1;
+      navEl.hidden = !multi;
+      cardEl.classList.toggle("is-multi", multi);
+      if (countEl) {
+        countEl.textContent = multi ? activeIndex + 1 + " из " + total : "";
+      }
+      if (navEl) {
+        navEl.setAttribute(
+          "aria-label",
+          anchorCity ? "Проекты в городе " + anchorCity : "Проекты заказчика"
+        );
+      }
+
+      revealLogo(activeItem);
+      highlightCities(cities);
+      placeCard(pinByCity(anchorCity) || pinsForCities(cities)[0] || null, {
+        keepPosition: !!animate
+      });
     }
-    if (metaSepEl) metaSepEl.hidden = !(cityText && year);
-    if (metaEl) metaEl.hidden = !(cityText || year);
 
-    nameEl.textContent = activeItem.client;
-    descEl.textContent = project.desc;
+    cardEl.classList.remove(
+      "is-slide-next",
+      "is-slide-prev",
+      "is-slide-out-next",
+      "is-slide-out-prev"
+    );
 
-    linkEl.href = project.href || "projects.html#projects-all";
-    setLogo(logoLightEl, activeItem.logo, activeItem.logo);
-    setLogo(logoDarkEl, activeItem.logoDark || activeItem.logo, activeItem.logo);
-
-    var total = activeQueue.length;
-    var multi = total > 1;
-    navEl.hidden = !multi;
-    cardEl.classList.toggle("is-multi", multi);
-    if (countEl) {
-      countEl.textContent = multi ? activeIndex + 1 + " из " + total : "";
-    }
-    if (navEl) {
-      navEl.setAttribute(
-        "aria-label",
-        anchorCity ? "Проекты в городе " + anchorCity : "Проекты заказчика"
-      );
+    if (!animate || reduceMotion) {
+      paint();
+      return;
     }
 
-    revealLogo(activeItem);
-    highlightCities(cities);
-    placeCard(pinByCity(anchorCity) || pinsForCities(cities)[0] || null);
+    var token = ++slideToken;
+    var forward = direction >= 0;
+    cardEl.classList.add(forward ? "is-slide-out-next" : "is-slide-out-prev");
+
+    window.setTimeout(function () {
+      if (token !== slideToken) return;
+      paint();
+      cardEl.classList.remove("is-slide-out-next", "is-slide-out-prev");
+      void cardEl.offsetWidth;
+      cardEl.classList.add(forward ? "is-slide-next" : "is-slide-prev");
+    }, 200);
   }
 
   function openQueue(queue, city) {
@@ -605,7 +751,7 @@
     if (activeQueue.length < 2) return;
     var total = activeQueue.length;
     activeIndex = (activeIndex + delta + total) % total;
-    renderSlide(true);
+    renderSlide(true, delta);
   }
 
   function findById(id) {
@@ -636,17 +782,18 @@
     });
 
     if (searchEl) {
-      searchEl.addEventListener("input", applyLogoSearch);
+      searchEl.addEventListener("input", scheduleLogoSearch);
     }
     if (sortEl) {
       sortEl.addEventListener("click", function (event) {
         var btn = event.target.closest("[data-sort]");
         if (!btn || btn.getAttribute("aria-pressed") === "true") return;
+        if (logosFadeBusy) return;
         sortEl.querySelectorAll("[data-sort]").forEach(function (item) {
           var on = item === btn;
           item.setAttribute("aria-pressed", on ? "true" : "false");
         });
-        buildLogos();
+        rebuildLogosAnimated();
       });
     }
 
